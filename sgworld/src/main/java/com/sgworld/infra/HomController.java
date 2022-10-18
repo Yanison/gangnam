@@ -8,7 +8,7 @@ public class HomController {
 	
 	@RequestMapping(value="/")
 	public String home() {
-		return "home";
+		return "infra/user/modules/home/home";
 	}
 
 }
