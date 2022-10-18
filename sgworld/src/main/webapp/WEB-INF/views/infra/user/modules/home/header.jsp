@@ -11,7 +11,7 @@
 			<li><a href="#">게시글</a></li>
 			<li><a href="#">싸게월드</a></li>
 		</ul>
-	</div>
+	</div> 
 	<div class="rightNav">
 		<ul class="navBtn">
 			<li class="write"><a class="writeBtn" href="#" type="button" id="">글쓰기</a></li>
