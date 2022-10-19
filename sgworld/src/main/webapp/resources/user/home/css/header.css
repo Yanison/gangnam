@@ -1,10 +1,11 @@
 .navbar{
-	border-bottom: 1px solid #DEDEDE;
+	border-bottom: 1px solid #777;
 	display: flex;
 	justify-content: space-evenly;
 	align-items: center;
-	padding: 8px 12px;
+	padding: 10px 100px;
 	min-width: 1000px;
+	font-size:20px;
 }
 .logoStyle{
 	padding-left: 0;
@@ -32,8 +33,19 @@ a{
 	padding-left: 0;
 	align-items: center;
 }
-.navMenu li{
-	padding: 8px 30px;
+.leftNav ul li{
+	height: 45px;
+    text-align:center;
+    line-height:45px;
+    margin-right:30px;
+}
+.rightNav ul li{
+	height: 40px;
+    width: 90;
+    text-align:center;
+    line-height:40px;
+    margin-right:10px;
+    font-size:14px;
 }
 .navBtn{
 	list-style: none;
@@ -41,16 +53,15 @@ a{
 	margin: 0;
 	padding-left: 0;
 }
-.navBtn li{
-	padding: 8px 15px;
-}
-.write{
+.navBtn li:first-child{
 	border-radius: 5px;
 	background-color: #434A72;
-	width: 80px;
-	height: 30px;
-	text-align: center;
 }
+.navBtn li:last-child{
+	border-radius: 5px;
+	border:1px solid #dedede;
+}
+
 .writeBtn{
 	color: white;
 }

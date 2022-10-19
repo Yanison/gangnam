@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<link href="/resources/user/home/css/header.css" rel="stylesheet">
+<link href="./resources/user/home/css/header.css" rel="stylesheet">
 <nav class="navbar">
 	<div class="leftNav">
 		<div class="logoStyle">
-			<a href="#"><img class="headerLogo" alt="logo아이콘" src="../image/user/logo.png"></a>
+			<a href="#"><img class="headerLogo" alt="logo아이콘" src="./resources/user/home/images/mainLogo.png"></a>
 		</div>
 		<ul class="navMenu">
 			<li><a href="#">홈</a></li>

@@ -1,0 +1,32 @@
+:root{
+	--mC-blue:#434A72;
+}
+@font-face {
+    font-family: 'Arcade';
+    src: url('./resources/common/font/PressStart2P-Regular.ttf') format('truetype');
+}
+
+html,body{
+	margin:0;
+	padding:0;
+	font-size:14px;
+	color:#333;
+	font-family: 'Roboto', sans-serif !important;
+}
+div,span,ul,li,a{
+	font-family: 'Roboto', sans-serif !important;
+	color:#333;
+}
+
+table,tr,td{
+	border-collapse:collape;
+}
+
+a{
+	text-decoration: none;
+	color:#333;
+}
+
+ul{
+	list-style: none;
+}
