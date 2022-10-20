@@ -7,9 +7,9 @@
 	<meta charset="UTF-8">
 	<meta name=viewport"" content="width=device-width, initial-scale=1.0">
 	<title>sgworld | 싸게월드</title>
-	
+	<%@ include file="rscs/basicRscs.jsp" %>
 	<script src="https://kit.fontawesome.com/059fbc3cf8.js" crossorigin="anonymous"></script>
-	<link href="../css/user/boardView.css" rel="stylesheet">
+	<link href="/resources/user/board/css/boardView.css" rel="stylesheet">
 </head>
 <body>
 	<!-- header s -->
@@ -80,7 +80,7 @@
 						</div>
 						<div>
 							<p>들어오면 뭐해 빠져나가면 없음</p>
-						</div>
+						</div> 
 						<div class="iconComment">
 							<i class="fa-regular fa-clock"> 5분</i>
 							<i class="fa-regular fa-thumbs-up"> 13</i>
