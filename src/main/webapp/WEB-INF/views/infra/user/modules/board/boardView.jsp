@@ -91,7 +91,7 @@
 						<div>
 							<p>r*****</p>
 						</div>
-						<div>
+						<div> 
 							<p>세후 580</p>
 						</div>
 						<div class="iconComment">
