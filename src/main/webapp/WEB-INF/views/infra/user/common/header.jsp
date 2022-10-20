@@ -15,7 +15,7 @@
 	<div class="rightNav">
 		<ul class="navBtn">
 			<li class="write"><a class="writeBtn" href="#" type="button" id="">글쓰기</a></li>
-			<li><a href="#" type="button" id="">로그인</a></li>
+			<li><a href="http://127.0.0.1:8085/userLogin" type="button" id="">로그인</a></li>
 		</ul>
 	</div>
 </nav>

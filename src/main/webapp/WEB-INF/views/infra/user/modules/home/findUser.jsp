@@ -5,7 +5,7 @@
 <html>
 <head>
 	<title>Home</title>
-	<%@ include file="../../../../rscs/basicRscs.jsp" %>
+	<%@ include file="rscs/basicRscs.jsp" %>
 </head>
 <body>
 <h1>

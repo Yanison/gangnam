@@ -11,7 +11,7 @@
 </head>
 <body>
 	<header>
-		<%@ include file="header.jsp"%> 
+		<%@ include file="../../common/header.jsp"%> 
 	</header>
 
 	<section class="bodyWrapper">
@@ -128,7 +128,7 @@
 		</article>
 	</section>
 	<footer>
-		<%@include file="footer.jsp" %>
+		<%@include file="../../common/footer.jsp" %>
 	</footer>
 
 </body>

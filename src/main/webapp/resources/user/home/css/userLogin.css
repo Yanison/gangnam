@@ -1,0 +1,77 @@
+.loginHead{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.loginLogo{
+	width: 50px;
+	height: 50px;
+	padding-right: 15px;
+}
+.loginBody{
+	display: flex;
+	justify-content: center;
+}
+.loginBox{
+	border: 1px solid #DEDEDE;
+	width: 550px;
+}
+.inputIdBox{
+	display: flex;
+	justify-content: center;
+	padding: 10px 0;
+}
+.inputId{
+	border: 1px solid #DEDEDE;
+	width: 420px;
+	height: 40px;
+}
+.inputPwBox{
+	display: flex;
+	justify-content: center;
+}
+.inputPw{
+	border: 1px solid #DEDEDE;
+	width: 420px;
+	height: 40px;
+}
+.loignCheck{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding-right: 30px;
+}
+.loginBtnBox{
+	display: flex;
+	justify-content: center;
+}
+.loginBtn{
+	background-color: #434A72;
+	color: white;
+	border-radius: 5px;
+}
+.easyLoginHead{
+	display: flex;
+	justify-content: center;
+	font-weight: bold;
+}
+.easyLoginLogo{
+	display: flex;
+	justify-content: center;
+}
+.easyLoginLogo img{
+	width: 50px;
+	height: 50px;
+	border-radius: 70%;
+	padding: 0 15px;
+}
+.loginFooterBox{
+	display: flex;
+	justify-content: center;
+}
+.loginFooter{
+	display: flex;
+	justify-content: space-between;
+	width: 550px;
+	align-items: center;
+}
