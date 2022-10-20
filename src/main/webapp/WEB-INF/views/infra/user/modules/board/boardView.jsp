@@ -80,7 +80,7 @@
 						</div>
 						<div>
 							<p>들어오면 뭐해 빠져나가면 없음</p>
-						</div>
+						</div> 
 						<div class="iconComment">
 							<i class="fa-regular fa-clock"> 5분</i>
 							<i class="fa-regular fa-thumbs-up"> 13</i>

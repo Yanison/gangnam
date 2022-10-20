@@ -13,9 +13,7 @@
 </head>
 <body>
 	<!-- header s -->
-	<header>
-	
-	</header>
+	<%@ include file="../home/header.jsp" %>
 	<!-- header e -->
 	
 	<!-- contend s -->
@@ -158,9 +156,7 @@
 	<!-- contend e -->
 	
 	<!-- footer s -->
-	<footer>
-	
-	</footer>
+	<%@ include file="../home/footer.jsp" %>
 	<!-- footer e -->
 </body>
 </html>
