@@ -17,7 +17,7 @@
 		<div>
 			<div class="loginHead">
 				<img class="loginLogo" alt="로고이미지" src="../image/user/logo.png">
-				<h1>로그인</h1>
+				<h1>로그</h1>
 			</div>
 		</div>
 		<section class="loginBody">
