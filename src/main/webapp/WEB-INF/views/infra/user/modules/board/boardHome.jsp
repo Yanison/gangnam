@@ -7,13 +7,13 @@
 	<meta charset="UTF-8">
 	<meta name=viewport"" content="width=device-width, initial-scale=1.0">
 	<title>sgworld | 싸게월드</title>
-	<%@ include file="rscs/basicRscs.jsp" %>
+	<%@ include file="../../../../rscs/basicRscs.jsp" %>
 	<script src="https://kit.fontawesome.com/059fbc3cf8.js" crossorigin="anonymous"></script>
 	<link href="/resources/user/board/css/boardList.css" rel="stylesheet">
 </head>
 <body>
 	<!-- header s -->
-	<%@ include file="../home/header.jsp" %>
+	<%@ include file="../../common/header.jsp" %>
 	<!-- header e -->
 	
 	<!-- contend s -->
@@ -201,7 +201,7 @@
 	<!-- contend e -->
 	
 	<!-- footer s -->
-	<%@ include file="../home/footer.jsp" %>
+	<%@ include file="../../common/footer.jsp" %>
 	<!-- footer e -->
 </body>
 </html>

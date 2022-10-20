@@ -4,7 +4,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping(value = "/member/")
 public class HomController {
 	
 	@RequestMapping(value="/")
@@ -12,12 +11,12 @@ public class HomController {
 		return "infra/user/modules/home/home";
 	}
 	
-	@RequestMapping(value="userLogin")
+	@RequestMapping(value="/userLogin")
 	public String userLogin() {
 		return "infra/user/modules/home/userLogin";
 	}
 	
-	@RequestMapping(value="boardList")
+	@RequestMapping(value="/boardList")
 	public String boardList() {
 		return "infra/user/modules/board/boardHome";
 	}
