@@ -1,0 +1,39 @@
+footer{
+	border-top:1px solid #dedede;
+	width:100%;
+	height:300px;
+	padding:20px;
+}
+
+.footerLogo{
+	height:60px;
+	width:60px;
+	margin-bottom:20px;
+}
+
+.footer{
+	max-width:1140px;
+	height:100%;
+	margin:0 auto;
+	display:flex;
+	flex-direction:column;
+	justify-content:center;
+	align-items:center;
+}
+.footerInfo > .hTag{
+	text-align:center;
+}
+.hTag:last-child{
+	margin:10px;
+}
+
+.devMemberList{
+	display:flex;
+}
+.devMemberList ul li a{
+	font-size:12px;
+}
+
+.devMemberList > div{
+	margin:0 30px;
+}
