@@ -1,17 +1,32 @@
+.bodyWrapper{
+	width:100%;
+	height:calc(100% - 380px);
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}
+
+
 .loginHead{
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 .loginLogo{
-	width: 50px;
-	height: 50px;
-	padding-right: 15px;
+	object-fit: contain;
+    width: 60px;
+    height: 50px;
+    padding-right: 15px;
 }
 .loginBody{
 	display: flex;
 	justify-content: center;
+	margin:10px 0px;
 }
+.loginBox > div {
+	margin:10px 0px;
+}
+
 .loginBox{
 	border: 1px solid #DEDEDE;
 	width: 550px;
@@ -21,34 +36,34 @@
 	justify-content: center;
 	padding: 10px 0;
 }
-.inputId{
+.inputLogin{
 	border: 1px solid #DEDEDE;
 	width: 420px;
-	height: 40px;
+	height: 50px;
+	padding:5px;
+	border-radius:5px;
 }
 .inputPwBox{
 	display: flex;
 	justify-content: center;
 }
-.inputPw{
-	border: 1px solid #DEDEDE;
-	width: 420px;
-	height: 40px;
-}
 .loignCheck{
+	color:#999;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	padding-right: 30px;
 }
 .loginBtnBox{
 	display: flex;
 	justify-content: center;
 }
 .loginBtn{
+	width: 420px;
+	height: 50px;
 	background-color: #434A72;
 	color: white;
 	border-radius: 5px;
+	margin-bottom:20px;
 }
 .easyLoginHead{
 	display: flex;
@@ -60,7 +75,8 @@
 	justify-content: center;
 }
 .easyLoginLogo img{
-	width: 50px;
+	object-fit: contain;
+	width: 60px;
 	height: 50px;
 	border-radius: 70%;
 	padding: 0 15px;
@@ -69,7 +85,11 @@
 	display: flex;
 	justify-content: center;
 }
+.loginFooterBox a{
+	cursor:pointer;
+}
 .loginFooter{
+	font-size:10px;
 	display: flex;
 	justify-content: space-between;
 	width: 550px;

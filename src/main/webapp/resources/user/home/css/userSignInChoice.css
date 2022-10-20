@@ -1,0 +1,59 @@
+.bodyWrapper{
+	width:100%;
+	height:calc(100% - 380px);
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}
+
+.SignInChoiceHeader{
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	margin-bottom:10px;
+}
+.ChoiceBoxDiv{
+	width: 550px;
+	height:315px;
+}
+.ChoiceBox{
+	width:100%;
+	height:100%;
+	display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+}
+
+.signInChoiceBtn{
+	background-color: #434A72;
+	width: 420px;
+	height: 50px;
+	padding:5px;
+	border-radius:5px;
+	color:#fff;
+	margin-bottom:10px;
+	position:relative;
+}
+.signInChoiceBtn span{
+	color:#fff;
+}
+
+.ChoiceBox button img{
+	object-fit: contain;
+	width: 60px;
+	height: 30px;
+	border-radius: 70%;
+	padding: 0 15px;
+	position:absolute;
+	left:0;
+	top:9px;
+}
+
+img.logo{
+	object-fit: contain;
+	width: 60px;
+	height: 50px;
+	border-radius: 70%;
+}
+

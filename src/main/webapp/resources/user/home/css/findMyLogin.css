@@ -1,0 +1,41 @@
+.bodyWrapper{
+	width:100%;
+	height:calc(100% - 380px);
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}
+
+.findMyLogin{
+	display:flex;
+	flex-direction:column;
+}
+
+img.logo{
+	object-fit: contain;
+	width: 60px;
+	height: 50px;
+	border-radius: 70%;
+	padding: 0 15px;
+}
+
+.inputBox >div{
+	display:flex;
+	justify-content:space-between;
+	align-items:center;
+}
+.inputBox input{
+	height:50px;
+	border-radius:5px;
+	border:1px solid #eee;
+}
+
+.btn{
+	background:#434A72;
+	color:#fff;
+	height:50px;
+	border-radius:5px;
+}
+.btn:hover{
+	background:#363a5a;
+}
