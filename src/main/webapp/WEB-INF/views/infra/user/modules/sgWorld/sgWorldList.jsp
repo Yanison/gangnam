@@ -1,0 +1,166 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page session="false" %>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name=viewport"" content="width=device-width, initial-scale=1.0">
+	<title>sgworld | 싸게월드</title>
+	<%@ include file="rscs/basicRscs.jsp" %>
+	<script src="https://kit.fontawesome.com/059fbc3cf8.js" crossorigin="anonymous"></script>
+	<link href="/resources/user/sgworld/css/sgworldList.css" rel="stylesheet">
+</head>
+<body>
+	<!-- header s -->
+	<header>
+	
+	</header>
+	<!-- header e -->
+	
+	<!-- contend s -->
+	<section>
+		<div class="boarderTitle">
+			<h2>싸게월드</h2> <!-- 게시판 타이틀 -->
+		</div>
+		<section class="boarder">
+			<article class="board">
+				<div class="post1">
+					<div class="sgworldLive">
+						<a href="#"><img class="map" src="../image/user/map1.png"></a> <!-- 라이브 방 -->
+					</div>
+					<div class="boardField1">
+						<div class="boardField2">
+							<div class="profilFiled">
+								<img class="profil" src="../image/user/profil1.png"> <!-- 프로필 사진 -->
+							</div>
+							<div>
+								<div class="sgworldTitle">
+									<p>일요일 즐거운 일각코</p> <!-- 생성 제목 -->
+								</div>
+								<div class="nickname">
+									<p>싸게타운오줌싸게</p> <!-- 생성자 닉네임 -->
+								</div>
+								<div class="boardField3"> <!-- 해시타그 -->
+									<div>
+										<span class="word">코딩</span>
+										<span class="word">JAVA</span>
+										<span class="word">소통</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="icon">
+							<i class="fa-solid fa-eye">99</i> <!-- 조회수 -->
+						</div>
+					</div>
+				</div>
+			</article>
+			<article class="board">
+				<div class="post1">
+					<div class="sgworldLive">
+						<a href="#"><img class="map" src="../image/user/map2.png"></a>
+					</div>
+					<div class="boardField1">
+						<div class="boardField2">
+							<div class="profilFiled">
+								<img class="profil" src="../image/user/profil2.png">
+							</div>
+							<div>
+								<div class="sgworldTitle">
+									<p>일요일 즐거운 일각코</p>
+								</div>
+								<div class="nickname">
+									<p>나는모르겠다</p> 
+								</div>
+								<div class="boardField3">
+									<div>
+										<span class="word">코딩</span>
+										<span class="word">JAVA</span>
+										<span class="word">소통</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="icon">
+							<i class="fa-solid fa-eye">99</i> 
+						</div>
+					</div>
+				</div>
+			</article>
+		</section>
+		<section class="boarder">
+			<article class="board">
+				<div class="post1">
+					<div class="sgworldLive">
+						<a href="#"><img class="map" src="../image/user/map3.png"></a>
+					</div>
+					<div class="boardField1">
+						<div class="boardField2">
+							<div class="profilFiled">
+								<img class="profil" src="../image/user/profil3.png">
+							</div>
+							<div>
+								<div class="sgworldTitle">
+									<p>일요일 즐거운 일각코</p>
+								</div>
+								<div class="nickname">
+									<p>흐즈믈르그</p> 
+								</div>
+								<div class="boardField3">
+									<div>
+										<span class="word">코딩</span>
+										<span class="word">JAVA</span>
+										<span class="word">소통</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="icon">
+							<i class="fa-solid fa-eye">99</i> 
+						</div>
+					</div>
+				</div>
+			</article>
+			<article class="board">
+				<div class="post1">
+					<div class="sgworldLive">
+						<a href="#"><img class="map" src="../image/user/map4.png"></a>
+					</div>
+					<div class="boardField1">
+						<div class="boardField2">
+							<div class="profilFiled">
+								<img class="profil" src="../image/user/profil4.png">
+							</div>
+							<div>
+								<div class="sgworldTitle">
+									<p>일요일 즐거운 일각코</p>
+								</div>
+								<div class="nickname">
+									<p>아왜살고있지</p>
+								</div>
+								<div class="boardField3">
+									<div>
+										<span class="word">코딩</span>
+										<span class="word">JAVA</span>
+										<span class="word">소통</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="icon">
+							<i class="fa-solid fa-eye">99</i> 
+						</div>
+					</div>
+				</div>
+			</article>
+		</section>
+	<!-- contend e -->
+	
+	<!-- footer s -->
+	<footer>
+	
+	</footer>
+	<!-- footer e -->
+</body>
+</html>

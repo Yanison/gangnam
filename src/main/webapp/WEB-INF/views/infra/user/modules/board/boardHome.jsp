@@ -7,10 +7,9 @@
 	<meta charset="UTF-8">
 	<meta name=viewport"" content="width=device-width, initial-scale=1.0">
 	<title>sgworld | 싸게월드</title>
-	
+	<%@ include file="rscs/basicRscs.jsp" %>
 	<script src="https://kit.fontawesome.com/059fbc3cf8.js" crossorigin="anonymous"></script>
 	<link href="/resources/user/board/css/boardList.css" rel="stylesheet">
-	<%@ include file="rscs/basicRscs.jsp" %>
 </head>
 <body>
 	<!-- header s -->
