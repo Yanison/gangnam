@@ -9,7 +9,7 @@
 	<title>sgworld | 싸게월드</title>
 	
 	<script src="https://kit.fontawesome.com/059fbc3cf8.js" crossorigin="anonymous"></script>
-	<link href="../css/user/boardForm.css" rel="stylesheet">
+	<link href="/resources/user/board/css/boardForm.css" rel="stylesheet">
 </head>
 <body>
 	<!-- header s -->
