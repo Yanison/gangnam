@@ -30,6 +30,10 @@ footer{
 .devMemberList{
 	display:flex;
 }
+.devMemberList li{
+	list-style: none;
+	
+}
 .devMemberList ul li a{
 	font-size:12px;
 }

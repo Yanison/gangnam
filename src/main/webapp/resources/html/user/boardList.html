@@ -3,15 +3,35 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name=viewport"" content="width=device-width, initial-scale=1.0">
-	<title>sgworld | 게시판</title>
+	<title>sgworld | 싸게월드</title>
 	
 	<script src="https://kit.fontawesome.com/059fbc3cf8.js" crossorigin="anonymous"></script>
+	<link href="css/header.css" rel="stylesheet">
 	<link href="css/boardList.css" rel="stylesheet">
+	<link href="css/footer.css" rel="stylesheet">
+	
 </head>
 <body>
 	<!-- header s -->
 	<header>
-	
+		<nav class="navbar">
+			<div class="leftNav">
+				<div class="logoStyle">
+					<a href="#"><img class="headerLogo" alt="logo아이콘" src="image/logo.png"></a>
+				</div>
+				<ul class="navMenu">
+					<li><a href="#">홈</a></li>
+					<li><a href="#">게시글</a></li>
+					<li><a href="#">싸게월드</a></li>
+				</ul>
+			</div> 
+			<div class="rightNav">
+				<ul class="navBtn">
+					<li class="write"><a class="writeBtn" href="#" type="button" id="">글쓰기</a></li>
+					<li><a href="http://127.0.0.1:8085/userLogin" type="button" id="">로그인</a></li>
+				</ul>
+			</div>
+		</nav>
 	</header>
 	<!-- header e -->
 	
@@ -201,7 +221,39 @@
 	
 	<!-- footer s -->
 	<footer>
-	
+		<div class="footer">
+			<img class="footerLogo" alt="" src="image/Logo.png">
+			<div class="footerInfo">
+				<h5 class="hTag">프로젝트 싸게타운</h1>
+				<h6 class="hTag" style="margin:10 0 20 0">개발멤버</h4>
+				<div class="devMemberList">
+					<div>
+						<ul>
+							<li><strong>이름</strong></li>
+							<li><a>이메일</a></li>
+							<li><a>전화번호</a></li>
+							<li><a>블로그주소</a></li>
+						</ul>
+					</div>
+					<div>
+						<ul>
+							<li><strong>이름</strong></li>
+							<li><a>이메일</a></li>
+							<li><a>전화번호</a></li>
+							<li><a>블로그주소</a></li>
+						</ul>
+					</div>
+					<div>
+						<ul>
+							<li><strong>이름</strong></li>
+							<li><a>이메일</a></li>
+							<li><a>전화번호</a></li>
+							<li><a>블로그주소</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
 	</footer>
 	<!-- footer e -->
 </body>
