@@ -7,126 +7,54 @@
 	<title>SGWorld</title>
 	<%@ include file="../../../../rscs/basicRscs.jsp" %>
 	 
-	<link href="./resources/user/home/css/home.css" rel="stylesheet">
+	<link href="./resources/user/member/css/memberView.css" rel="stylesheet">
 </head>
 <body>
 	<header>
 		<%@ include file="../../common/header.jsp"%> 
 	</header>
-
-	<section class="bodyWrapper">
-		<article class="mySgWorld">
-			<button class="creatMySgWorld" id="creatMySgWorld">Create SgWorld</button>
-		</article>
-		<article class="onLiveSgWorld">
-			<h1 class="onLiveSgWorldTitle">OnLive</h1>
-			<div class="onSgWorldListDiv">
-				<!-- forEach로 데이터 뿌려주세요 -->
-				<div class="onSgWorldList onSgWorldList1">
-					<div>
-						<a class="SgWorldPreview">
-							<img scr="./resources/common/images/pepe.png">
-						</a>
-						<div class="sgwTitle">
-							<div>
-								<i class="fa-solid fa-circle"></i>
-								<span>title</span>
+		<div class="wrap">
+		<!-- header 넣을자리-->
+		<div class="contentWrap">
+			<span>My Page</span>
+			<div class="leftDiv">	
+				<nav class="leftVanner">
+					<ul>
+						<li>내 정보 보기
+						<li>아바타 수정
+						<li>내 글 조회
+						<li>회원 탈퇴
+					</ul>
+				</nav>
+				<section style=" width: 1000px;">
+					<b>내 정보 보기</b>
+					<article class="rightContent">
+						<div>
+							<div class="inputBox">
+								<label>이메일</label>
+								<input type="text" class="txt">
 							</div>
-							<div>
-								<i class="fa-solid fa-eye"></i>
-								<em>num</em>
+							<div class="inputBox">
+								<label>닉네임</label>
+								<input type="text" class="txt">
 							</div>
-						</div>
-					</div>
-				</div>
-				<!-- forEach로 데이터 뿌려주세요 -->
-				<!-- forEach로 데이터 뿌려주세요 -->
-				<div class="onSgWorldList onSgWorldList2">
-					<div>
-						<a class="SgWorldPreview">
-							<img scr="./resources/common/images/pepe.png">
-						</a>
-						<div class="sgwTitle">
-							<div>
-								<i class="fa-solid fa-circle"></i>
-								<span>title</span>
+							<div class="inputBox">
+								<label>휴대폰</label>
+								<input type="text" class="txt">
 							</div>
-							<div>
-								<i class="fa-solid fa-eye"></i>
-								<em>num</em>
+							<div class="inputBox">
+								<label>생년월일</label>
+								<input type="text" class="txt2">
+								<input type="text" class="txt2">
+								<input type="text" class="txt2">
 							</div>
 						</div>
-					</div>
-				</div>
-				<!-- forEach로 데이터 뿌려주세요 -->
-			</div>
-		</article>
-		<article class="board">
-			<div class="boardPrev free">
-				<table>
-					<colgroup>
-						<col width="70%">
-						<col width="30%">
-					</colgroup>
-					<thead>
-						<th>자유게시판</th>
-						<td><strong><a>더보기</a></strong></td>
-					</thead>
-					<tbody>
-						<th>
-							<a>title</a>
-						</th>
-						<td>
-							<i class="fa-solid fa-eye"></i>
-							<em>num</em>
-						</td>
-					</tbody>
-				</table>
-			</div>
-			<div class="boardPrev info">
-				<table>
-					<colgroup>
-						<col width="70%">
-						<col width="30%">
-					</colgroup>
-					<thead>
-						<th>정보게시판</th>
-						<td><strong><a>더보기</a></strong></td>
-					</thead>
-					<tbody>
-						<th>
-							<a>title</a>
-						</th>
-						<td>
-							<i class="fa-solid fa-eye"></i>
-							<em>num</em>
-						</td>
-					</tbody>
-				</table>
-			</div>
-			<div class="boardPrev trade">
-				<table>
-					<colgroup>
-						<col width="70%">
-						<col width="30%">
-					</colgroup>
-					<thead>
-						<th>거래게시판</th>
-						<td><strong><a>더보기</a></strong></td>
-					</thead>
-					<tbody>
-						<th>
-							<a>title</a>
-						</th>
-						<td>
-							<i class="fa-solid fa-eye"></i>
-							<em>num</em>
-						</td>
-					</tbody>
-				</table>
-			</div>
-		</article>
-	</section>
+						<button type="button" class="modifyBtn">수정하기</button>					
+					</article>
+				</section>
+			</div>	
+		</div><!-- contentWrap end -->
+	</div><!-- wrap end -->
 	<footer>
 		<%@include file="../../common/footer.jsp" %>
 	</footer>
