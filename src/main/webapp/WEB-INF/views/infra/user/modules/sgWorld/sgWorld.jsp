@@ -21,7 +21,7 @@
 		<article class="utilDiv chatDiv">
 			<div class="headerDiv">
 				<h6>SgWorld Room Title</h6>
-				<i class="fa-solid fa-x"></i>
+				<i id="extiRoom" class="fa-solid fa-x"></i>
 			</div>
 			<p style="font-size:24px; width:100%;">Chat</p>
 			<div class="showNumPeople">
@@ -33,11 +33,26 @@
 			<div class="chat">
 				<div class="msgDiv">
 					<div class="msgHeader">
-						<i class="fa-solid fa-user"></i>
+						<i id="exitSgWorld"class="fa-solid fa-user"></i>
 						<p>dateTime</p>
+					</div>
+					<div class="msgBody">
+						<p class="magTextarea" id="magTextarea">
+							msgTextarea
+						</p>
 					</div>
 				</div>
 			</div>
+			<form class="inputMsgDiv">
+				<div class="msgTo">
+				<span>To.</span>
+				<select>
+					<option>NearBy</option>
+					<option>EveryOne</option>
+				</select>
+				</div>
+				<input type="text" class="inputMsg" name="msg" placeholder="Message...">
+			</form>
 		</article>
 	</section>
 	<section class="div2 utilDiv">
