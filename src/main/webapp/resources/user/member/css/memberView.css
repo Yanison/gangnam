@@ -1,0 +1,70 @@
+.contentWrap{
+	width:1400px;
+	margin: auto;
+	margin-top: 100px;
+}
+
+.contentWrap > span{
+	margin-left: 100px;
+}
+
+.leftDiv{
+	display: flex;
+	justify-content: space-between;
+	padding-left: 100px;
+	padding-right: 100px;
+}
+
+.leftVanner{
+	height: 500px;
+	width:150px;
+	text-align: center;
+	border-right: 1px solid #DEDEDE;
+	
+}
+
+.leftVanner > ul{
+	list-style: none;
+	padding: 0;
+}
+
+.leftVanner > ul > li{
+	margin-top: 50px;
+	font-weight: bold;
+	cursor: pointer; 
+}
+
+.rightContent{
+	width: 700px;
+	margin: auto;
+}
+
+section > b{
+	font-size: 30px;
+}
+
+.inputBox > label{
+	width: 200px;
+}
+
+.inputBox > label , input{
+	margin-top: 40px;
+}
+
+.txt{
+	width: 300px;
+}
+
+.txt2{
+	width: 96px;
+}
+
+.modifyBtn{
+	width:200px;
+	margin: auto;
+	margin-top:50px;
+	display: block;
+	background-color: #434A72;
+	color: white;
+	height: 50px;
+}

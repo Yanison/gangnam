@@ -16,10 +16,7 @@
 	
 	<div class="bodyWrapper">
 		<section class="findMyLogin">
-			<div class="divHeader">
-				<img class="logo" alt="로고이미지" src="./resources/user/home/images/logo/mainLogo.png">
-				<h1>아이디/비밀번호 찾기</h1>
-			</div>
+			<h1>아이디/비밀번호 찾기</h1>
 			<p>
 				이메일을 입력하시고 인증번호를 받아주신 후<br>
 				아이디 찾기 혹은 비밀번호 찾기를 해주세요
@@ -29,7 +26,7 @@
 					<input type="text" class="" name="" id="inputEmail" placeholder="Email" style="width:350px;">
 					<button class="btn" id="" name="">보내기</button>
 				</div>
-				<input type="text" class="" name="" id="inputEmail" placeholder="인증번호 입력" style="width:420px;">
+				<input type="text" class="EmailAuthCode" name="" id="EmailAuthCode" placeholder="인증번호 입력" style="width:420px;">
 				<div>
 					<button class="btn" id="" name="" style="width:200px;">아이디 찾기</button>
 					<button class="btn" id="" name="" style="width:200px;">비밀번호 찾기</button>

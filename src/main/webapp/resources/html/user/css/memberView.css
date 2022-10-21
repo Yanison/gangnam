@@ -1,0 +1,91 @@
+.contentWrap{
+	width:1400px;
+	margin: auto;
+	margin-top: 100px;
+}
+
+.contentWrap > span{
+	margin-left: 100px;
+}
+
+.leftDiv{
+	display: flex;
+	justify-content: space-between;
+	padding-left: 100px;
+	padding-right: 100px;
+	margin-bottom: 100px;
+}
+
+.leftVanner{
+	height: 500px;
+	width:150px;
+	text-align: center;
+	border-right: 1px solid #DEDEDE;
+	
+}
+
+.leftVanner > ul{
+	list-style: none;
+	padding: 0;
+}
+
+.leftVanner > ul > li{
+	margin-top: 50px;
+	font-weight: bold;
+	cursor: pointer; 
+}
+
+.rightContent{
+	width: 700px;
+	margin: auto;
+}
+
+section > b{
+	font-size: 30px;
+}
+
+.inputBox{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+} 
+
+.inputBox > label , input{
+	margin-top: 40px;
+}
+
+label{
+	width: 70px;
+}
+
+.txt{
+	width: 400px;
+}
+
+
+
+.txt , .txt2{
+	height: 25px;
+}
+
+.phoneButton{
+	background-color: #434A72;
+	border-radius: 5px;
+	border-color: #434A72;
+	color: white;
+	position: absolute;
+	right: 375px;
+	top: 438px;
+}
+
+.modifyBtn{
+	width:200px;
+	margin: auto;
+	margin-top:50px;
+	display: block;
+	background-color: #434A72;
+	color: white;
+	height: 50px;
+	border-radius: 10px;
+	border-color: #434A72;
+} 

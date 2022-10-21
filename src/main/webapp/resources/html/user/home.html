@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name=viewport"" content="width=device-width, initial-scale=1.0">
+	<title>sgworld | 싸게월드</title>
+	
+	<script src="https://kit.fontawesome.com/059fbc3cf8.js" crossorigin="anonymous"></script>
+	<link href="css/header.css" rel="stylesheet">
+	<link href="css/home.css" rel="stylesheet">
+	<link href="css/common.css" rel="stylesheet">
+	<link href="css/footer.css" rel="stylesheet">
+	
+</head>
+<body>
+	<!-- header s -->
+	<header>
+		<nav class="navbar">
+			<div class="leftNav">
+				<div class="logoStyle">
+					<a href="#"><img class="headerLogo" alt="logo아이콘" src="image/logo.png"></a>
+				</div>
+				<ul class="navMenu">
+					<li><a href="#">홈</a></li>
+					<li><a href="#">게시글</a></li>
+					<li><a href="#">싸게월드</a></li>
+				</ul>
+			</div> 
+			<div class="rightNav">
+				<ul class="navBtn">
+					<li class="write"><a class="writeBtn" href="#" type="button" id="">글쓰기</a></li>
+					<li><a href="http://127.0.0.1:8085/userLogin" type="button" id="">로그인</a></li>
+				</ul>
+			</div>
+		</nav>
+	</header>
+	<!-- header e -->
+	
+	<!-- contend s -->
+	<section class="bodyWrapper">
+		<article class="mySgWorld">
+			<button class="creatMySgWorld" id="creatMySgWorld">Create SgWorld</button>
+		</article>
+		<article class="onLiveSgWorld">
+			<h1 class="onLiveSgWorldTitle">OnLive</h1>
+			<div class="onSgWorldListDiv">
+				<!-- forEach로 데이터 뿌려주세요 -->
+				<div class="onSgWorldList onSgWorldList1">
+					<div>
+						<a class="SgWorldPreview">
+							<img scr="./resources/common/images/pepe.png">
+						</a>
+						<div class="sgwTitle">
+							<div>
+								<i class="fa-solid fa-circle"></i>
+								<span>title</span>
+							</div>
+							<div>
+								<i class="fa-solid fa-eye"></i>
+								<em>num</em>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- forEach로 데이터 뿌려주세요 -->
+				<!-- forEach로 데이터 뿌려주세요 -->
+				<div class="onSgWorldList onSgWorldList2">
+					<div>
+						<a class="SgWorldPreview">
+							<img scr="./resources/common/images/pepe.png">
+						</a>
+						<div class="sgwTitle">
+							<div>
+								<i class="fa-solid fa-circle"></i>
+								<span>title</span>
+							</div>
+							<div>
+								<i class="fa-solid fa-eye"></i>
+								<em>num</em>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- forEach로 데이터 뿌려주세요 -->
+			</div>
+		</article>
+		<article class="board">
+			<div class="boardPrev free">
+				<table>
+					<colgroup>
+						<col width="70%">
+						<col width="30%">
+					</colgroup>
+					<thead>
+						<th>자유게시판</th>
+						<td><strong><a>더보기</a></strong></td>
+					</thead>
+					<tbody>
+						<th>
+							<a>title</a>
+						</th>
+						<td>
+							<i class="fa-solid fa-eye"></i>
+							<em>num</em>
+						</td>
+					</tbody>
+				</table>
+			</div>
+			<div class="boardPrev info">
+				<table>
+					<colgroup>
+						<col width="70%">
+						<col width="30%">
+					</colgroup>
+					<thead>
+						<th>정보게시판</th>
+						<td><strong><a>더보기</a></strong></td>
+					</thead>
+					<tbody>
+						<th>
+							<a>title</a>
+						</th>
+						<td>
+							<i class="fa-solid fa-eye"></i>
+							<em>num</em>
+						</td>
+					</tbody>
+				</table>
+			</div>
+			<div class="boardPrev trade">
+				<table>
+					<colgroup>
+						<col width="70%">
+						<col width="30%">
+					</colgroup>
+					<thead>
+						<th>거래게시판</th>
+						<td><strong><a>더보기</a></strong></td>
+					</thead>
+					<tbody>
+						<th>
+							<a>title</a>
+						</th>
+						<td>
+							<i class="fa-solid fa-eye"></i>
+							<em>num</em>
+						</td>
+					</tbody>
+				</table>
+			</div>
+		</article>
+	</section>
+	<!-- contend e -->
+	
+	<!-- footer s -->
+	<footer>
+		<div class="footer">
+			<img class="footerLogo" alt="" src="image/Logo.png">
+			<div class="footerInfo">
+				<h5 class="hTag">프로젝트 싸게타운</h1>
+				<h6 class="hTag" style="margin:10 0 20 0">개발멤버</h4>
+				<div class="devMemberList">
+					<div>
+						<ul>
+							<li><strong>이름</strong></li>
+							<li><a>이메일</a></li>
+							<li><a>전화번호</a></li>
+							<li><a>블로그주소</a></li>
+						</ul>
+					</div>
+					<div>
+						<ul>
+							<li><strong>이름</strong></li>
+							<li><a>이메일</a></li>
+							<li><a>전화번호</a></li>
+							<li><a>블로그주소</a></li>
+						</ul>
+					</div>
+					<div>
+						<ul>
+							<li><strong>이름</strong></li>
+							<li><a>이메일</a></li>
+							<li><a>전화번호</a></li>
+							<li><a>블로그주소</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- footer e -->
+</body>
+</html>

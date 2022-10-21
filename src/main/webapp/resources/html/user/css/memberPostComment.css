@@ -1,0 +1,112 @@
+.contentWrap{
+	width:1400px;
+	margin: auto;
+	margin-top: 100px;
+}
+
+.contentWrap > span{
+	margin-left: 100px;
+}
+
+.leftDiv{
+	display: flex;
+	justify-content: space-between;
+	padding-left: 100px;
+	padding-right: 100px;
+	margin-bottom: 100px;
+}
+
+.leftVanner{
+	height: 500px;
+	width:150px;
+	text-align: center;
+	border-right: 1px solid #DEDEDE;
+	
+}
+
+ ul{
+	list-style: none;
+	padding: 0;
+}
+
+.leftVanner > ul > li{
+	margin-top: 50px;
+	font-weight: bold;
+	cursor: pointer; 
+}
+
+.rightContent{
+	width: 1000px;
+	margin: auto;
+}
+
+.rightContent > b{
+	font-size: 30px;
+}
+
+.rightUl{
+	margin-top: 40px;
+	display: flex;
+	justify-content: flex-start;
+}
+
+.rightUl > li{
+	margin-right: 60px;
+	cursor: pointer;
+}
+
+table {
+	clear: both;
+	text-align: center;
+	border-top: 2px solid black;
+	margin-top: 50px;
+	width: 100%;
+}
+
+tr{
+	border-bottom: 1px solid #D9D9D9;
+}
+
+th, td {
+			padding:  10px;
+}
+
+.button{
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 50px;
+}
+
+.btnDelete{
+	background-color: #FD6064;
+	color: white;
+	margin-right: 20px;
+	border-radius: 5px;
+	border-color: #FD6064;
+}
+
+.btnModify{
+	background-color: #8F8CFF;
+	color: white;
+	border-radius: 5px;
+	border-color: #8F8CFF;
+}
+
+.pagination{
+	display: flex;
+	justify-content: center;
+	margin-top: 70px;
+}
+
+.paginationUl{
+	list-style: none;
+	display: flex;
+}
+
+.paginationUl > li{
+	margin-right: 30px;
+	cursor: pointer;
+}
+
+
+

@@ -30,7 +30,9 @@ public class HomeController {
 	public String findUser() {
 		return "infra/user/modules/home/findMyLogin";
 	}
-
 	
-	
+	@RequestMapping(value="/sgWorld")
+	public String sgWorld() {
+		return "infra/user/modules/sgWorld/sgWorld";
+	}
 }

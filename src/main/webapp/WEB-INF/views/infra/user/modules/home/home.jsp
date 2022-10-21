@@ -8,6 +8,7 @@
 	<%@ include file="../../../../rscs/basicRscs.jsp" %>
 	 
 	<link href="./resources/user/home/css/home.css" rel="stylesheet">
+	<script src="./resources/user/home/js/home.js"></script>
 </head>
 <body>
 	<header>
@@ -16,7 +17,9 @@
 
 	<section class="bodyWrapper">
 		<article class="mySgWorld">
-			<button class="creatMySgWorld" id="creatMySgWorld">Create SgWorld</button>
+			<button class="creatMySgWorld" id="creatMySgWorld" href="http://127.0.0.1:8085/sgWorld">
+				Create SgWorld
+			</button>
 		</article>
 		<article class="onLiveSgWorld">
 			<h1 class="onLiveSgWorldTitle">OnLive</h1>

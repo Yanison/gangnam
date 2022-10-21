@@ -1,0 +1,87 @@
+.boardFormHead{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.boardFormHead1{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 860px;
+}
+.boardFormTitle{
+	display: flex;
+	align-items: center;
+	width: 860px;
+	font-size: 1.2em;
+}
+.boardFormTitle i{
+	padding-right: 10px;
+}
+.regBtn{
+	background-color: #434A72;
+	color: white;
+	border-radius: 5px;
+	width: 60px;
+	height: 30px;
+	align-items: center;
+	text-align: center;
+}
+.regBtn p{
+	margin: 0;
+	padding: 4.5px 0;
+	
+}
+.boardFormContent{
+	width: 860px;
+	height: 450px;
+	resize: none;
+	border: 1px solid #DEDEDE;
+}
+.boardHead{
+	display: flex;
+	justify-content: center;
+}
+.boardTitle{
+	display: flex;
+	justify-content: center;
+	padding: 10px 0;
+}
+.contentTitle{
+	width: 860px;
+	height: 40px;
+	border: 1px solid #DEDEDE;
+	font-size: 1.1em;
+	text-indent: 15px;
+}
+.boardContent{
+	display: flex;
+	justify-content: center;
+}
+.boardFormContent{
+	text-indent: 15px;
+	line-height: 50px;
+	background-color: #FCFCFC;
+}
+.board{
+	justify-content: center;
+}
+.boardFooter{
+	display: flex;
+	margin: 0;
+	justify-content: center;
+}
+.boardIcon{
+	width: 866px;
+	height: 70px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #E2E0E0;
+}
+.icon i{
+	padding: 0 15px;
+	font-size: 1.5em;
+	text-decoration: none;
+	color: #8F8CFF;
+}

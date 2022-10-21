@@ -1,0 +1,56 @@
+.navbar{
+	border-bottom: 1px solid #DEDEDE;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	padding: 8px 12px;
+	min-width: 1000px;
+}
+.logoStyle{
+	padding-left: 0;
+	margin-right: 100px;
+}
+.headerLogo{
+	width: 60px;
+	height: 60px;
+}
+.leftNav{
+	display: flex;
+}
+.rightNav{
+	display: flex;
+}
+a{
+	text-decoration: none;
+	color: black;
+	font-size: 1.5em;
+}
+.navMenu{
+	list-style: none;
+	display: flex;
+	margin: 0;
+	padding-left: 0;
+	align-items: center;
+}
+.navMenu li{
+	padding: 8px 30px;
+}
+.navBtn{
+	list-style: none;
+	display: flex;
+	margin: 0;
+	padding-left: 0;
+}
+.navBtn li{
+	padding: 8px 15px;
+}
+.write{
+	border-radius: 5px;
+	background-color: #434A72;
+	width: 80px;
+	height: 30px;
+	text-align: center;
+}
+.writeBtn{
+	color: white;
+}
