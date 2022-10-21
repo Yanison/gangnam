@@ -43,12 +43,17 @@ section > b{
 	font-size: 30px;
 }
 
-.label{
-	width: 400px;
-}
+.inputBox{
+	display: flex;
+	justify-content: center;
+} 
 
 .inputBox > label , input{
 	margin-top: 40px;
+}
+
+label{
+	width: 100px;
 }
 
 .txt{
@@ -56,7 +61,11 @@ section > b{
 }
 
 .txt2{
-	width: 96px;
+	
+}
+
+.txt , .txt2{
+	height: 20px;
 }
 
 .modifyBtn{
