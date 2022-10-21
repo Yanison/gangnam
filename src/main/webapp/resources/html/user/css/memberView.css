@@ -13,6 +13,7 @@
 	justify-content: space-between;
 	padding-left: 100px;
 	padding-right: 100px;
+	margin-bottom: 100px;
 }
 
 .leftVanner{
@@ -53,16 +54,14 @@ section > b{
 }
 
 label{
-	width: 100px;
+	width: 70px;
 }
 
 .txt{
-	width: 300px;
+	width: 400px;
 }
 
-.txt2{
-	
-}
+
 
 .txt , .txt2{
 	height: 20px;
@@ -76,4 +75,6 @@ label{
 	background-color: #434A72;
 	color: white;
 	height: 50px;
+	border-radius: 10px;
+	border-color: #434A72;
 }
