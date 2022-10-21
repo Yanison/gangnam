@@ -35,4 +35,10 @@ public class HomeController {
 	public String sgWorld() {
 		return "infra/user/modules/sgWorld/sgWorld";
 	}
+	
+	@RequestMapping(value="/boardList")
+	public String boardList() {
+		return "infra/user/modules/board/boardHome";
+	}
+	
 }

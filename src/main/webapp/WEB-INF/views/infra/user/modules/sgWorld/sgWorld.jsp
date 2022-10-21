@@ -31,7 +31,12 @@
 				</div>
 			</div>
 			<div class="chat">
-				<div>a</div>
+				<div class="msgDiv">
+					<div class="msgHeader">
+						<i class="fa-solid fa-user"></i>
+						<p>dateTime</p>
+					</div>
+				</div>
 			</div>
 		</article>
 	</section>
