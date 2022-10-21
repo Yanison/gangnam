@@ -47,6 +47,7 @@ section > b{
 .inputBox{
 	display: flex;
 	justify-content: center;
+	align-items: center;
 } 
 
 .inputBox > label , input{
@@ -64,7 +65,17 @@ label{
 
 
 .txt , .txt2{
-	height: 20px;
+	height: 25px;
+}
+
+.phoneButton{
+	background-color: #434A72;
+	border-radius: 5px;
+	border-color: #434A72;
+	color: white;
+	position: absolute;
+	right: 375px;
+	top: 438px;
 }
 
 .modifyBtn{
@@ -77,4 +88,4 @@ label{
 	height: 50px;
 	border-radius: 10px;
 	border-color: #434A72;
-}
+} 
