@@ -5,6 +5,7 @@ div, span, ul, li, a {
 
 .sgWorld{
 	width:100%;
+	min-width:1300px;
 	height:100%;
 }
 
@@ -19,6 +20,7 @@ div, span, ul, li, a {
 }
 .chatDiv{
 	width:280px;
+	min-width:280px;
 	height:100%;
 	background:#21263E;
 	border:1px solid #3b405c;
@@ -81,10 +83,15 @@ div, span, ul, li, a {
     text-align:center;
     line-height:35px;
 }
+.chat{
+    width: 100%;
+    height: 645px;
+    overflow:scroll;
+}
 
 .msgDiv{
 	width:100%;
-	min-height:90px;
+	height:120px;
 	margin:10px 0;
 	padding:0 10px;
 	border-bottom:1px solid #3b405c;
@@ -97,11 +104,12 @@ div, span, ul, li, a {
 
 .magTextarea{
 	width:100%;
-	height:100%;
+	height:80%;
 	padding:5px 0;
+	overflow:scroll;
 }
 .inputMsgDiv{
-	width:195px;
+	width:260px;
 	height:90px;
 	position:absolute;
 	bottom:0;
@@ -127,7 +135,7 @@ div, span, ul, li, a {
 }
 
 .inputMsgDiv input{
-	width:195px;
+	width:100%;
 	height:40px;
 	background:#21263E;
 	border:1px solid #6e75a5;

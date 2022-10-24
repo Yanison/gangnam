@@ -17,7 +17,7 @@
 
 	<section class="bodyWrapper">
 		<article class="mySgWorld">
-			<button class="creatMySgWorld" id="creatMySgWorld" href="http://127.0.0.1:8085/sgWorld">
+			<button class="creatMySgWorld" id="creatMySgWorld" onclick="showModal()" rel="modal:open">
 				Create SgWorld
 			</button>
 		</article>
@@ -133,6 +133,10 @@
 	<footer>
 		<%@include file="../../common/footer.jsp" %>
 	</footer>
+	
+	<div id="modalDiv" class="modalDiv"  style="display:none">
+			<%@include file="./createOption.jsp" %>
+	</div>
 
 </body>
 </html>

@@ -42,6 +42,73 @@
 						</p>
 					</div>
 				</div>
+				<div class="msgDiv">
+					<div class="msgHeader">
+						<i id="exitSgWorld"class="fa-solid fa-user"></i>
+						<p>dateTime</p>
+					</div>
+					<div class="msgBody">
+						<p class="magTextarea" id="magTextarea">
+							msgTextarea
+						</p>
+					</div>
+				</div>
+				<div class="msgDiv">
+					<div class="msgHeader">
+						<i id="exitSgWorld"class="fa-solid fa-user"></i>
+						<p>dateTime</p>
+					</div>
+					<div class="msgBody">
+						<p class="magTextarea" id="magTextarea">
+							msgTextarea
+						</p>
+					</div>
+				</div>
+				<div class="msgDiv">
+					<div class="msgHeader">
+						<i id="exitSgWorld"class="fa-solid fa-user"></i>
+						<p>dateTime</p>
+					</div>
+					<div class="msgBody">
+						<p class="magTextarea" id="magTextarea">
+							msgTextarea
+						</p>
+					</div>
+				</div>
+				<div class="msgDiv">
+					<div class="msgHeader">
+						<i id="exitSgWorld"class="fa-solid fa-user"></i>
+						<p>dateTime</p>
+					</div>
+					<div class="msgBody">
+						<p class="magTextarea" id="magTextarea">
+							msgTextarea
+						</p>
+					</div>
+				</div>
+				<div class="msgDiv">
+					<div class="msgHeader">
+						<i id="exitSgWorld"class="fa-solid fa-user"></i>
+						<p>dateTime</p>
+					</div>
+					<div class="msgBody">
+						<p class="magTextarea" id="magTextarea">
+							msgTextarea
+						</p>
+					</div>
+				</div>
+				<div class="msgDiv">
+					<div class="msgHeader">
+						<i id="exitSgWorld"class="fa-solid fa-user"></i>
+						<p>dateTime</p>
+					</div>
+					<div class="msgBody">
+						<p class="magTextarea" id="magTextarea">
+							msgTextarea
+						</p>
+					</div>
+				</div>
+				
 			</div>
 			<form class="inputMsgDiv">
 				<div class="msgTo">

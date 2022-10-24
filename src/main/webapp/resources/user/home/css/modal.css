@@ -1,0 +1,97 @@
+.modalDiv{
+	width:100%;
+	height:100%;
+	position:absolute;
+	top:0;
+	left:0;
+	background:rgba(0,0,0,0.5);
+}
+
+.selectCreatOption{
+	width:600px;
+	height:900px;
+	background:#21263E;
+	position:fixed;
+	top:50%;
+	left:50%;
+	transform: translate(-50%,-50%);
+	border-radius:10px;
+	color:#fff;
+	
+	display:flex;
+	flex-direction:column;
+	padding:50px 40px;
+	box-shadow: 6px 6px 12px -5px rgb(88 88 88);
+}
+.selectCreatOption label{
+	display:flex;
+	align-items:center;
+	margin-bottom:5px;
+}
+.selectCreatOption .pwDiv{
+	margin-bottom:20px;
+}
+.selectCreatOption p{
+	font-size:20px;
+	text-align:center;
+	margin-bottom:30px;
+}
+
+.inputGroup{
+	width:100%;
+	height:50px;
+	border-radius:5px;
+	border:1px solid #eee;
+	margin-bottom:20px;
+	padding:10px;
+}
+
+[type=radio]{
+	width:0px;
+	height:0px;
+}
+.radioGroupDiv{
+	width:100%;
+	margin-bottom:20px;
+}
+.radioGroupDiv p{
+	height:40px;
+	border:1px solid #eee;
+	border-radius:5px;
+	color:#fff;
+	margin-bottom:10px;
+	line-height:40px;
+}
+.radioGroup{
+	display:flex;
+	justify-content:space-between;
+}
+
+.aRadioImg{
+	width: 100;
+    height: 100;
+    border-radius: 50px;
+    object-fit: cover;
+}
+
+
+.mRadioImg{
+	width: 130px;
+    height: 100px;
+    object-fit: contain;
+}
+
+.focus{
+	border:3px solid #fff100;
+}
+
+.submitCreate:hover{
+	background:#dedede;
+}
+
+.closeBtn{
+    position: absolute;
+    top: 20;
+    right: 20;
+    cursor:pointer;
+}
