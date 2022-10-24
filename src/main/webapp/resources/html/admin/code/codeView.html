@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>sgWorld - Admin</title>
+        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+        <link href="../../../admin/adminTemplate/css/styles.css" rel="stylesheet" />
+        <script src="https://kit.fontawesome.com/059fbc3cf8.js" crossorigin="anonymous"></script>
+    </head>
+    <body class="sb-nav-fixed">
+    	
+    	<!-- top banner s-->
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+            <!-- Navbar Brand-->
+            <a class="navbar-brand ps-3" href="index.html">sgWorld 관리자</a>
+            <!-- Sidebar Toggle-->
+            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+            <!-- Navbar-->
+            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#!">Settings</a></li>
+                        <li><a class="dropdown-item" href="#!">Activity Log</a></li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li><a class="dropdown-item" href="#!">로그아웃</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <!-- top banner e-->
+        
+        
+        <div id="layoutSidenav">
+        
+        	<!-- left banner s-->
+            <div id="layoutSidenav_nav">
+                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                    <div class="sb-sidenav-menu">
+                        <div class="nav">
+                            <a class="nav-link" href="index.html">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                홈
+                            </a>
+                            <div class="sb-sidenav-menu-heading">관리</div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts1" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                코드그룹관리
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseLayouts1" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="layout-static.html">코드그룹관리</a>
+                                    <a class="nav-link" href="layout-sidenav-light.html">코드</a>
+                                </nav>
+                            </div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts2" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                매타버스관리
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseLayouts2" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="layout-static.html">기본매타버스맵관리</a>
+                                    <a class="nav-link" href="layout-sidenav-light.html">매타버스내 기능관리</a>
+                                </nav>
+                            </div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts3" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+								아바타관리	
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseLayouts3" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="layout-static.html">기본아바타관리</a>
+                                </nav>
+                            </div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts4" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                회원관리
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseLayouts4" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="layout-static.html">회원목록</a>
+                                </nav>
+                            </div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts5" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                계시판관리
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseLayouts5" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="layout-static.html">계시글</a>
+                                    <a class="nav-link" href="layout-sidenav-light.html">댓글</a>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <!-- left banner e-->
+            
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+                        <h3 class="mt-4">코드관리</h3>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item active">코드</li>
+                        </ol>
+                        <div class="row mb-4">
+	                        <div class="col-6"> <!-- forEach문으로 코드그릅 리스트 뿌리기 -->
+	                        	<label class="form-label">코드그룹</label>
+	                        	<select class="form-select" id="infrCcDelNy" name="infrCcDelNy">
+	                        		<option>코드그룹선택</option>
+	                        		<option>통신사</option>
+	                        		<option>이메일주소</option>
+	                        	</select>
+	                        </div>
+                        </div>
+                        <div class="row mb-4">
+	                        <div class="col-6">
+	                        	<label class="form-label">코드 이름 (한글)</label>
+	                        	<input class="form-control" type="text" id="infrCcNameKor" name="infrCcNameKor">
+	                        </div>
+	                        <div class="col">
+	                        	<label class="form-label">코드 이름 (영문)</label>
+	                        	<input class="form-control" type="text" id="infrCcNameEng" name="infrCcNameEng">
+	                        </div>
+                        </div>
+                        <div class="row mb-4">
+	                        <div class="col-6">
+	                        	<label class="form-label">순서</label>
+	                        	<input class="form-control" type="text" id="infrCcOrder" name="infrCcOrder">
+	                        </div>
+	                        <div class="col">
+	                        	<label class="form-label">사용여부</label>
+	                        	<select class="form-select" id="infrCcUseNy" name="infrCcUseNy">
+	                        		<option>사용여부선택</option> 
+	                        		<option>N</option>
+	                        		<option>Y</option>
+	                        	</select>
+	                        </div>
+                        </div>
+                        <div class="row mb-4">
+	                        <div class="col-6">
+	                        	<label class="form-label">삭제여부</label>
+	                        	<select class="form-select" id="infrCcDelNy" name="infrCcDelNy">
+	                        		<option>삭제여부선택</option>
+	                        		<option>N</option>
+	                        		<option>Y</option>
+	                        	</select>
+	                        </div>
+	                        <div class="col">
+	                        	<label class="form-label">등록일</label>
+	                        	<input class="form-control" type="text">
+	                        </div>
+                        </div>
+                        <div class="row mb-4">
+                        	<div class="col-6">
+                        		<label class="form-label">설명</label>
+								<textarea class="form-control" style="resize: none; height: 150px;"></textarea>
+							</div>
+							<div class="col">
+	                        	<label class="form-label">수정일</label>
+	                        	<input class="form-control" type="text">
+	                        </div>
+                        </div>
+						<div class="row p-0">
+							<div class="col">
+								<button class="btn btn-secondary" type="button" id="cglCancel"><i class="fa-sharp fa-solid fa-bars"></i></button>
+							</div>
+							<div class="col" style="text-align: right;">
+								<button class="btn btn-danger" type="button" id="cglCancel"><i class="fa-duotone fa-x"></i></button>
+								<button class="btn btn-danger" type="button" id="cglDel"><i class="fa-regular fa-trash-can"></i></button>
+								<button class="btn btn-primary" type="button" id="cglPlus"><i class="fa-regular fa-plus"></i></button>
+							</div>
+						</div>
+					</div>
+				</main>
+			</div>
+		</div>
+        <footer class="py-4 bg-light mt-auto">
+            <div class="container-fluid px-4">
+                <div class="d-flex align-items-center justify-content-center small">
+                    <div class="text-muted">Copyright &copy; Your Website 2022</div>
+                </div>
+            </div>
+        </footer>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="../../../admin/adminTemplate/js/scripts.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="../../../admin/adminTemplate/assets/demo/chart-area-demo.js"></script>
+        <script src="../../../admin/adminTemplate/assets/demo/chart-bar-demo.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+        <script src="../../../admin/adminTemplate/js/datatables-simple-demo.js"></script>
+    </body>
+</html>
