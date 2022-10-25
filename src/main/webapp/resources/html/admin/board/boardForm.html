@@ -133,42 +133,44 @@
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">공지글</li>
                         </ol>
-						<div class="row mb-4">
-	                        <div class="col-6">
-	                        	<label class="form-label">제목</label>
-	                        	<input class="form-control" type="text" placeholder="제목">
+                        <div class="container">
+							<div class="row mb-4">
+		                        <div class="col-6">
+		                        	<label class="form-label">제목</label>
+		                        	<input class="form-control" type="text" placeholder="제목">
+		                        </div>
 	                        </div>
-                        </div>
-                        <div class="row mb-4">
-	                        <div class="col-12">
-	                        	<label class="form-label">내용</label>
-								<textarea class="form-control" style="resize: none; height: 150px;"></textarea>
+	                        <div class="row mb-4">
+		                        <div class="col-12">
+		                        	<label class="form-label">내용</label>
+									<textarea class="form-control" style="resize: none; height: 150px;"></textarea>
+		                        </div>
+		                    </div>    
+		                    <div class="row mb-4">    
+		                        <div class="col-6">
+		                        	<label for="memberUploadedImage" class="form-label input-file-button">첨부파일</label>
+									<input class="form-control form-control-sm" id="memberUploadedImage" name="memberUploadedImage" type="file" multiple="multiple" style="display: none;" onchange="upload('memberUploadedImage',2)">
+									<div class="addScroll">
+										<ul id="ulFile1" class="list-group">
+										</ul>
+									</div>
+		                        </div>
+		                        <div class="col">
+		                        	<label for="memberUploadedImage" class="form-label input-file-button">첨부이미지</label>
+									<input class="form-control form-control-sm" id="memberUploadedImage" name="memberUploadedImage" type="file" multiple="multiple" style="display: none;" onchange="upload('memberUploadedImage',2)">
+									<div class="addScroll">
+										<ul id="ulFile1" class="list-group">
+										</ul>
+									</div>
+		                        </div>
 	                        </div>
-	                    </div>    
-	                    <div class="row mb-4">    
-	                        <div class="col-6">
-	                        	<label for="memberUploadedImage" class="form-label input-file-button">첨부파일</label>
-								<input class="form-control form-control-sm" id="memberUploadedImage" name="memberUploadedImage" type="file" multiple="multiple" style="display: none;" onchange="upload('memberUploadedImage',2)">
-								<div class="addScroll">
-									<ul id="ulFile1" class="list-group">
-									</ul>
+							<div class="row p-0">
+								<div class="col">
+									<button class="btn btn-secondary" type="button" id="cglList"><i class="fa-sharp fa-solid fa-bars"></i></button>
 								</div>
-	                        </div>
-	                        <div class="col">
-	                        	<label for="memberUploadedImage" class="form-label input-file-button">첨부이미지</label>
-								<input class="form-control form-control-sm" id="memberUploadedImage" name="memberUploadedImage" type="file" multiple="multiple" style="display: none;" onchange="upload('memberUploadedImage',2)">
-								<div class="addScroll">
-									<ul id="ulFile1" class="list-group">
-									</ul>
+								<div class="col" style="text-align: right;">
+									<button class="btn btn-primary" type="button" id="cglPlus"><i class="fa-regular fa-plus"></i></button>
 								</div>
-	                        </div>
-                        </div>
-						<div class="row p-0">
-							<div class="col">
-								<button class="btn btn-secondary" type="button" id="cglList"><i class="fa-sharp fa-solid fa-bars"></i></button>
-							</div>
-							<div class="col" style="text-align: right;">
-								<button class="btn btn-primary" type="button" id="cglPlus"><i class="fa-regular fa-plus"></i></button>
 							</div>
 						</div>
 					</div>
