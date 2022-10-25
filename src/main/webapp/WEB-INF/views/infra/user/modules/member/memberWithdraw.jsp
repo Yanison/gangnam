@@ -26,7 +26,7 @@
 					<b>회원탈퇴</b>
 					<article class="rightContent">
 						<div class="rightContentWrap">
-							<h5>회원탈퇴를 원하시면 아래의 텍스트를 입력해주세요</h5>
+							<h5>회원탈퇴를 원하시면 아래의 텍스트를 입력해주세요.</h5>
 							<div>
 								<input type="text" placeholder="회원탈퇴" class="txt">
 							</div>	
