@@ -1,0 +1,76 @@
+header, footer{
+	background: #eee;
+}
+
+
+.bodyWrapper{
+	width:100%;
+	height:920px;
+	display:flex;
+	flex-direction:column;
+	justify-content:center;
+	align-items:center;
+	background: #434A72;
+}
+
+img.logo{
+	object-fit: contain;
+	width: 50px;
+	height: 50px;
+	border-radius: 70%;
+}
+
+.inputSignInGroup{
+	width:860px;
+	display:flex;
+	flex-direction:column;
+	justify-content:center;
+	align-items:center;
+}
+
+.inputSignInGroup div{
+	width:420px;
+	display:flex;
+	justify-content:space-between;
+}
+
+.inputSignInGroup > .dobDiv{
+	width:420px;
+	display:flex;
+	justify-content:space-between;
+	align-items:center;
+}
+
+.inputSignInGroup > .dobDiv .memberInput{
+	width:135px;
+}
+
+.telDiv{
+	display:flex;
+	flex-direction:column;
+	justify-content:center;
+	align-items:center;
+}
+.telDiv  > div > input{
+	width:310px;
+}
+.telDiv  > div > button{
+	width:100px;
+}
+.emailDiv .memberInput{
+	width:200px;
+}
+
+.memberInput{
+	height:50px;
+	width:420px;
+	border-radius:5px;
+	border:1px solid #eee;
+	margin:10px 0px;
+}
+
+.Btn{
+	background:#292E4C;
+	border:none;
+	color:#fff;
+}

@@ -40,3 +40,17 @@
 	margin-bottom: 20px;
 	color: #9D9D9D;
 }
+.pagination{
+	display: flex;
+	justify-content: center;
+	margin-top: 70px;
+}
+.paginationUl{
+	list-style: none;
+	display: flex;
+}
+
+.paginationUl > li{
+	margin-right: 30px;
+	cursor: pointer;
+}

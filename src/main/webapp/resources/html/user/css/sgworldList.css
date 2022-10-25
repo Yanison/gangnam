@@ -68,3 +68,17 @@
 	font-size: 0.7em;
 	line-height: 110px;
 }
+.pagination{
+	display: flex;
+	justify-content: center;
+	margin-top: 70px;
+}
+.paginationUl{
+	list-style: none;
+	display: flex;
+}
+
+.paginationUl > li{
+	margin-right: 30px;
+	cursor: pointer;
+}

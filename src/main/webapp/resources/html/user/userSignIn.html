@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name=viewport"" content="width=device-width, initial-scale=1.0">
+	<title>sgworld | 싸게월드</title>
+	
+	<script src="https://kit.fontawesome.com/059fbc3cf8.js" crossorigin="anonymous"></script>
+	<link href="css/header.css" rel="stylesheet">
+	<link href="css/home.css" rel="stylesheet">
+	<link href="css/common.css" rel="stylesheet">
+	<link href="css/footer.css" rel="stylesheet">
+	<link href="css/userSignIn.css" rel="stylesheet">
+	
+</head>
+<body>
+	<!-- header s -->
+	<header>
+		<nav class="navbar">
+			<div class="leftNav">
+				<div class="logoStyle">
+					<a href="#"><img class="headerLogo" alt="logo아이콘" src="image/logo.png"></a>
+				</div>
+				<ul class="navMenu">
+					<li><a href="#">홈</a></li>
+					<li><a href="#">게시글</a></li>
+					<li><a href="#">싸게월드</a></li>
+				</ul>
+			</div> 
+			<div class="rightNav">
+				<ul class="navBtn">
+					<li class="write"><a class="writeBtn" href="#" type="button" id="">글쓰기</a></li>
+					<li><a href="http://127.0.0.1:8085/userLogin" type="button" id="">로그인</a></li>
+				</ul>
+			</div>
+		</nav>
+	</header>
+	<!-- header e -->
+	
+	<!-- contend s -->
+	<div class="bodyWrapper">
+		<img class="logo" alt="로고이미지" src="image/logo.png" style="margin-bottom:20px">
+		<form class="inputSignInGroup">
+			<input type="text" id="memberId" class="memberInput" name="member" placeholder="ID"> 
+			<input type="text" id="memberPw" class="memberInput" name="member" placeholder="Passcode"> 
+			<input type="text" id="memberName" class="memberInput" name="member" placeholder="Name">
+			<input type="text" id="memberNickName" class="memberInput" name="member" placeholder="Nickname">
+			<div class="dobDiv">
+				<input type="text" id="dobYear" class="memberInput" name="" placeholder="BirthYear">
+				<select id="dobMonth" class="dobSelect memberInput" name="dobSelect">
+					<option value="1">1월</option>
+					<option value="2">2월</option>
+					<option value="3">3월</option>
+					<option value="4">4월</option>
+					<option value="5">5월</option>
+					<option value="6">6월</option>
+					<option value="7">7월</option>
+					<option value="8">8월</option>
+					<option value="9">9월</option>
+					<option value="10">10월</option>
+					<option value="11">11월</option>
+					<option value="12">12월</option>
+				</select>
+				<input type="text" id="dobDay" class="memberInput" name="member" placeholder="BirthDay">
+			</div>
+			
+			<div class="telDiv">
+				<input type="text" id="memberTel" class="memberInput" name="member" placeholder="Tel">
+				<div>
+					<input type="text" id="AuthCode" class="memberInput" name="member">
+					<button class="getAuthCode memberInput Btn" id="getAuthCode">인증번호받기</button>
+				</div>
+			</div>
+			<div class="emailDiv">
+				<input type="text" id="memberEmail" class="memberInput" name="member" placeholder="Email"> 
+				<select class="emailAddr memberInput" id="emailAddr" name="emailAddr">
+					<option>이메일주소</option>
+				</select>
+			</div>
+			<div class="getKkoAddr">
+				<input type="text" id="memberPostCode" class="memberInput" name="member" placeholder="Address">
+			</div>
+			<input type="submit" id="submit" class="memberInput formSubmit Btn" name="member" value="회원가입" style="margin-top:20px">
+		</form>
+	</div>
+	<!-- contend e -->
+	
+	<!-- footer s -->
+	<footer>
+		<div class="footer">
+			<img class="footerLogo" alt="" src="image/Logo.png">
+			<div class="footerInfo">
+				<h5 class="hTag">프로젝트 싸게타운</h1>
+				<h6 class="hTag" style="margin:10 0 20 0">개발멤버</h4>
+				<div class="devMemberList">
+					<div>
+						<ul>
+							<li><strong>이름</strong></li>
+							<li><a>이메일</a></li>
+							<li><a>전화번호</a></li>
+							<li><a>블로그주소</a></li>
+						</ul>
+					</div>
+					<div>
+						<ul>
+							<li><strong>이름</strong></li>
+							<li><a>이메일</a></li>
+							<li><a>전화번호</a></li>
+							<li><a>블로그주소</a></li>
+						</ul>
+					</div>
+					<div>
+						<ul>
+							<li><strong>이름</strong></li>
+							<li><a>이메일</a></li>
+							<li><a>전화번호</a></li>
+							<li><a>블로그주소</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- footer e -->
+</body>
+</html>
