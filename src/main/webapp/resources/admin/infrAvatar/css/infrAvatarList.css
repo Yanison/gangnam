@@ -1,0 +1,10 @@
+table{
+	text-align: center;
+}
+th, td{
+	align-items: center;
+}
+img{
+	width: 60px;
+	height: 60px;
+}

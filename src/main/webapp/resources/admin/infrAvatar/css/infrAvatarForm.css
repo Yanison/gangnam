@@ -1,0 +1,39 @@
+.addScroll{
+	width:605px;
+	overflow-y:auto;
+	background-color:#E9ECEF;
+	padding-top:5px; 
+	padding-left:5px;
+	margin: auto;
+	margin-top: 100px;
+	height: 472px;
+}
+ 	
+.input-file-button{
+	cursor: pointer;
+}
+.inputBox{
+	width: 600px;
+	margin: auto;
+	margin-top: 30px;
+}
+.button{
+	width:200px;
+	margin: auto;
+	margin-top:20px;
+	display: block;
+	background-color: #434A72;
+	color: white;
+	height: 50px;
+	border-radius: 10px;
+	border-color: #434A72;
+}
+.list{
+	text-align: center;
+	color: white;
+	font-size: 15px
+}
+.profilIcon{
+	font-size: 12em;
+	line-height: 400px;
+}
