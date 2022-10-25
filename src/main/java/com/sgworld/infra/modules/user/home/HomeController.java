@@ -1,4 +1,4 @@
-package com.sgworld.infra.modules.home;
+package com.sgworld.infra.modules.user.home;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
