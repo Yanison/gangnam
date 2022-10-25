@@ -38,6 +38,7 @@
 .rightContent{
 	width: 700px;
 	margin: auto;
+	margin-top: 40px;
 }
 
 section > b{
@@ -75,7 +76,7 @@ label{
 	color: white;
 	position: absolute;
 	right: 375px;
-	top: 438px;
+	top: 478px;
 }
 
 .modifyBtn{
