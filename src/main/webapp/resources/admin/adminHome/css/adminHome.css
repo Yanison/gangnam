@@ -1,0 +1,36 @@
+table{
+	width: 100%;
+	text-align: center;
+}
+.i1{
+	font-size: 0.5em;
+	color: pink;
+}
+.i2{
+	font-size: 0.5em;
+	color: #0275D8;
+}
+.bellBox{
+	border: 1px solid pink;
+	border-radius: 100%;
+	background-color: pink;
+	padding: 2px;
+	color: white;
+}
+.i3{
+	font-size: 1.5em;
+	color: pink;
+	padding-right: 5px;
+}
+.boardBox{
+	border-bottom: 1px solid #DEDEDE;
+	padding: 10px 0;
+}
+.profil{
+	width: 60px;
+	height: 60px;
+	border: 1px solid black;
+}
+.card{
+	height: 385px;
+}
