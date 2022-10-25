@@ -25,12 +25,12 @@
 			<article class="board">
 				<div class="post1">
 					<div class="sgworldLive">
-						<a href="#"><img class="map" src="../image/user/map1.png"></a> <!-- 라이브 방 -->
+						<a href="#"><img class="map" src="../images/user/map1.png"></a> <!-- 라이브 방 -->
 					</div>
 					<div class="boardField1">
 						<div class="boardField2">
 							<div class="profilFiled">
-								<img class="profil" src="../image/user/profil1.png"> <!-- 프로필 사진 -->
+								<img class="profil" src="../images/user/profil1.png"> <!-- 프로필 사진 -->
 							</div>
 							<div>
 								<div class="sgworldTitle">
@@ -57,12 +57,12 @@
 			<article class="board">
 				<div class="post1">
 					<div class="sgworldLive">
-						<a href="#"><img class="map" src="../image/user/map2.png"></a>
+						<a href="#"><img class="map" src="../images/user/map2.png"></a>
 					</div>
 					<div class="boardField1">
 						<div class="boardField2">
 							<div class="profilFiled">
-								<img class="profil" src="../image/user/profil2.png">
+								<img class="profil" src="../images/user/profil2.png">
 							</div>
 							<div>
 								<div class="sgworldTitle">
@@ -91,12 +91,12 @@
 			<article class="board">
 				<div class="post1">
 					<div class="sgworldLive">
-						<a href="#"><img class="map" src="../image/user/map3.png"></a>
+						<a href="#"><img class="map" src="../images/user/map3.png"></a>
 					</div>
 					<div class="boardField1">
 						<div class="boardField2">
 							<div class="profilFiled">
-								<img class="profil" src="../image/user/profil3.png">
+								<img class="profil" src="../images/user/profil3.png">
 							</div>
 							<div>
 								<div class="sgworldTitle">
