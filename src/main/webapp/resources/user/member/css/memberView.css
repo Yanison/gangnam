@@ -13,6 +13,7 @@
 	justify-content: space-between;
 	padding-left: 100px;
 	padding-right: 100px;
+	margin-bottom: 100px;
 }
 
 .leftVanner{
@@ -37,26 +38,45 @@
 .rightContent{
 	width: 700px;
 	margin: auto;
+	margin-top: 40px;
 }
 
 section > b{
 	font-size: 30px;
 }
 
-.inputBox > label{
-	width: 200px;
-}
+.inputBox{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+} 
 
 .inputBox > label , input{
 	margin-top: 40px;
 }
 
-.txt{
-	width: 300px;
+label{
+	width: 70px;
 }
 
-.txt2{
-	width: 96px;
+.txt{
+	width: 400px;
+}
+
+
+
+.txt , .txt2{
+	height: 25px;
+}
+
+.phoneButton{
+	background-color: #434A72;
+	border-radius: 5px;
+	border-color: #434A72;
+	color: white;
+	position: absolute;
+	right: 375px;
+	top: 478px;
 }
 
 .modifyBtn{
@@ -67,4 +87,7 @@ section > b{
 	background-color: #434A72;
 	color: white;
 	height: 50px;
-}
+	border-radius: 10px;
+	border-color: #434A72;
+} 
+

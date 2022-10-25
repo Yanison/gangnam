@@ -13,6 +13,7 @@
 	justify-content: space-between;
 	padding-left: 100px;
 	padding-right: 100px;
+	margin-bottom: 100px;
 }
 
 .leftVanner{
@@ -47,7 +48,7 @@ section > b{
 	font-size: 5.0em;
 	margin: auto;
 	text-align: center;
-	margin-top: 40px;
+	margin-top: 100px;
 }
 
 .btns{
@@ -67,4 +68,7 @@ section > b{
 	background-color: #434A72;
 	color: white;
 	height: 50px;
+	border-radius: 10px;
+	border-color: #434A72;
 }
+

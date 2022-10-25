@@ -7,12 +7,13 @@
 	<title>SGWorld</title>
 	<%@ include file="../../../../rscs/basicRscs.jsp" %>
 	 
-	<link href="./resources/user/member/css/memberWithdraw.css" rel="stylesheet">
+	<link href="/resources/user/member/css/memberWithdraw.css" rel="stylesheet">
 </head>
 <body>
 	<header>
 		<%@ include file="../../common/header.jsp"%> 
 	</header>
+	<!-- contend s -->
 	<div class="wrap">
 		<!-- header 넣을자리-->
 		<div class="contentWrap">
@@ -20,10 +21,10 @@
 			<div class="leftDiv">	
 				<nav class="leftVanner">
 					<ul>
-						<li>내 정보 보기
-						<li>아바타 수정
-						<li>내 글 조회
-						<li>회원 탈퇴
+						<li><i class="fa-sharp fa-solid fa-user"></i>&nbsp내 정보 보기
+						<li><i class="fa-sharp fa-solid fa-robot"></i>&nbsp아바타 수정
+						<li><i class="fa-sharp fa-solid fa-pen"></i>&nbsp내 글 조회
+						<li><i class="fa-sharp fa-solid fa-door-open"></i>&nbsp회원 탈퇴
 					</ul>
 				</nav>
 				<section style=" width: 1000px;">
@@ -34,14 +35,27 @@
 							<div>
 								<input type="text" placeholder="회원탈퇴" class="txt">
 							</div>	
-							<input type="text" placeholder="탈퇴사유" class="txt">
-							<button type="button" class="modifyBtn">수정하기</button>
+							<div>	
+								<select class="txt1">
+									<option>탈퇴사유</option>
+									<option>이용하고 싶은 서비스가 없어요.</option>
+									<option>서비스 퀄리티가 낮아요.</option>
+									<option>비매너 회원을 만났어요.</option>
+									<option>잦은 오류가 발생해요.</option>
+									<option>대체할 만한 서비스를 찾았어요.</option>
+									<option>기타</option>
+								</select>
+								<!-- <input type="text" placeholder="탈퇴사유" class="txt"> -->
+							</div>
+							<button type="button" class="modifyBtn">탈퇴하기</button>
+							
 						</div>
 					</article>
 				</section>
 			</div>	
 		</div><!-- contentWrap end -->
 	</div><!-- wrap end -->
+	<!-- contend e -->
 	<footer>
 		<%@include file="../../common/footer.jsp" %>
 	</footer>

@@ -7,7 +7,7 @@
 	<title>SGWorld</title>
 	<%@ include file="../../../../rscs/basicRscs.jsp" %>
 	 
-	<link href="./resources/user/member/css/memberPostComment.css" rel="stylesheet">
+	<link href="/resources/user/member/css/memberPostComment.css" rel="stylesheet">
 </head>
 <body>
 	<header>

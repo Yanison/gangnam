@@ -13,6 +13,7 @@
 	justify-content: space-between;
 	padding-left: 100px;
 	padding-right: 100px;
+	margin-bottom: 100px;
 }
 
 .leftVanner{
@@ -80,11 +81,15 @@ th, td {
 	background-color: #FD6064;
 	color: white;
 	margin-right: 20px;
+	border-radius: 5px;
+	border-color: #FD6064;
 }
 
 .btnModify{
 	background-color: #8F8CFF;
 	color: white;
+	border-radius: 5px;
+	border-color: #8F8CFF;
 }
 
 .pagination{

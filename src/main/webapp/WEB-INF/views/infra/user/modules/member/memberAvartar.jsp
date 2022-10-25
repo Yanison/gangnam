@@ -7,22 +7,24 @@
 	<title>SGWorld</title>
 	<%@ include file="../../../../rscs/basicRscs.jsp" %>
 	 
-	<link href="./resources/user/member/css/memberAvartar.css" rel="stylesheet">
+	<link href="/resources/user/member/css/memberAvartar.css" rel="stylesheet">
 </head>
 <body>
 	<header>
 		<%@ include file="../../common/header.jsp"%> 
 	</header>
+	<!-- contend s -->
 	<div class="wrap">
+		<!-- header 넣을자리-->
 		<div class="contentWrap">
 			<span>My Page</span>
 			<div class="leftDiv">	
 				<nav class="leftVanner">
 					<ul>
-						<li>내 정보 보기
-						<li>아바타 수정
-						<li>내 글 조회
-						<li>회원 탈퇴
+						<li><i class="fa-sharp fa-solid fa-user"></i>&nbsp내 정보 보기
+						<li><i class="fa-sharp fa-solid fa-robot"></i>&nbsp아바타 수정
+						<li><i class="fa-sharp fa-solid fa-pen"></i>&nbsp내 글 조회
+						<li><i class="fa-sharp fa-solid fa-door-open"></i>&nbsp회원 탈퇴
 					</ul>
 				</nav>
 				<section style=" width: 1000px;">
@@ -40,6 +42,7 @@
 			</div>	
 		</div><!-- contentWrap end -->
 	</div><!-- wrap end -->
+	<!-- contend e -->
 	<footer>
 		<%@include file="../../common/footer.jsp" %>
 	</footer>
