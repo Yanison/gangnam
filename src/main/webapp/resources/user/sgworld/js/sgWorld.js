@@ -2,18 +2,14 @@ const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 
 var mtAvatar = new Image();
-mtAvatar.src = "./resources/user/sgworld/images/pepeCrying.jpg"
-mtAvatar.onload = function(){
-	ctx.drawImage(mtAvatar,20,20,100,100)
-}
+mtAvatar.src = "./resources/common/images/pepe.png"
 
-//const img = document.getElementById('#myAvatar');
 const player = {
-  w: 50,
-  h: 70,
+  w: 10,
+  h: 10,
   x: 20,
-  y: 200,
-  speed: 10,
+  y: 100,
+  speed: 1.5,
   dx: 0,
   dy: 0,
 };

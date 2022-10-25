@@ -7,7 +7,7 @@
 			<a href="http://127.0.0.1:8085/"><img class="headerLogo" alt="logo아이콘" src="./resources/user/home/images/logo/mainLogo.png"></a>
 		</div>
 		<ul class="navMenu">
-			<li><a href="#">홈</a></li>
+			<li><a href="#" onclick="gohome()">홈</a></li>
 			<li><a href="#">게시글</a></li>
 			<li><a href="#">싸게월드</a></li>
 		</ul>
