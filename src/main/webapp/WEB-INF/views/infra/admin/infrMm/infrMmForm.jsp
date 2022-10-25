@@ -10,7 +10,7 @@
     <link href="../../../admin/adminTemplate/css/styles.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/059fbc3cf8.js" crossorigin="anonymous"></script>
 </head>
-<body>
+<body class="sb-nav-fixed">
 	<!-- top banner s-->
 	<%@ include file="common/header.jsp"%>   
 	<!-- top banner e-->
