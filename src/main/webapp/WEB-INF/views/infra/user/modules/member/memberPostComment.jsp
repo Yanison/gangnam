@@ -19,14 +19,9 @@
 			<!-- 왼쪽영영 s -->
 			<span>My Page</span>
 			<div class="leftDiv">	
-				<nav class="leftVanner">
-					<ul>
-						<li>내 정보 보기
-						<li>아바타 수정
-						<li>내 글 조회
-						<li>회원 탈퇴
-					</ul>
-				</nav>
+				<!-- left Nav s-->
+				<%@ include file="../../common/memberNav.jsp"%>
+				<!-- left Nav e -->
 				<!-- 왼쪽영역 e -->
 				<!-- 오른쪽 영역 s -->
 				<section style=" width: 1000px;">	

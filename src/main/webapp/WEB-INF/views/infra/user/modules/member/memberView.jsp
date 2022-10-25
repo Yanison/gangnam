@@ -19,14 +19,9 @@
 		<div class="contentWrap">
 			<span>My Page</span>
 			<div class="leftDiv">	
-				<nav class="leftVanner">
-					<ul>
-						<li><i class="fa-sharp fa-solid fa-user"></i>&nbsp내 정보 보기
-						<li><i class="fa-sharp fa-solid fa-robot"></i>&nbsp아바타 수정
-						<li><i class="fa-sharp fa-solid fa-pen"></i>&nbsp내 글 조회
-						<li><i class="fa-sharp fa-solid fa-door-open"></i>&nbsp회원 탈퇴
-					</ul>
-				</nav>
+				<!-- left Nav s-->
+				<%@ include file="../../common/memberNav.jsp"%>
+				<!-- left Nav e -->
 				<section style=" width: 1000px;">
 					<b>내 정보 보기</b>
 					<article class="rightContent">
