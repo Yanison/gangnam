@@ -23,4 +23,7 @@
 	<update id="ueleteMm">
 	</update>
 	
+	<delete id="deleteMm">
+	</delete>
+	
 </mapper>
