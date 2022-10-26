@@ -7,9 +7,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(value="/admin/")
 public class AdminHomeController {
 	
-	@RequestMapping(value="adminHome")
-	public String adminHome() throws Exception {
-		return "infra/admin/adminHome/adminHome";
-	}
+	/*
+	 * 여기는 비워두셔도 됩니다. :) 
+	 */
+	
+//	@RequestMapping(value="adminHome")
+//	public String adminHome() throws Exception {
+//		return "infra/admin/adminHome/adminHome";
+//	}
 
 }

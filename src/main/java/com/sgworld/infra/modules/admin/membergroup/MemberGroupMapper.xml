@@ -3,4 +3,24 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.sgworld.infra.membergroup.ExchMapper"></mapper>
+<mapper namespace="com.sgworld.infra.modules.admin.membergroup.MemberGroupMapper">
+
+	<resultMap id="MemberGroup" type="com.sgworld.infra.modules.admin.membergroup.MemberGroup"></resultMap>
+	
+	<select id="selectMmList" resultMap="MemberGroup">
+		select * from infrMember
+	</select>
+	
+	<insert id="insertMm">
+	</insert>
+	
+	<insert id="inserAddMm">
+	</insert>
+	
+	<update id="udptMmifo">
+	
+	</update>
+	<update id="ueleteMm">
+	</update>
+	
+</mapper>
