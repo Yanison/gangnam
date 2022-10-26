@@ -1,5 +1,5 @@
 package com.sgworld.infra.modules.admin.code;
 
-public class CodeServiceImpl {
+public interface AdminCodeService {
 
 }

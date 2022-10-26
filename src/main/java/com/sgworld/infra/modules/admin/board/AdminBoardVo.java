@@ -1,5 +1,5 @@
 package com.sgworld.infra.modules.admin.board;
 
-public class BoardVo {
+public class AdminBoardVo {
 
 }

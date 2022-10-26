@@ -1,5 +1,5 @@
 package com.sgworld.infra.modules.admin.codegroup;
 
-public interface CodeGroupServiceImpl {
+public class AdminCodeGroupVo {
 
 }

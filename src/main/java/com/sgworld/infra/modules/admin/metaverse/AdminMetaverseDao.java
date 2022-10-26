@@ -1,5 +1,5 @@
 package com.sgworld.infra.modules.admin.metaverse;
 
-public class MetaverseVo {
+public class AdminMetaverseDao {
 
 }

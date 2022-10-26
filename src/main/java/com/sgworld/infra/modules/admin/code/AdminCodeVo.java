@@ -1,5 +1,5 @@
 package com.sgworld.infra.modules.admin.code;
 
-public class CodeDao {
+public class AdminCodeVo {
 
 }
