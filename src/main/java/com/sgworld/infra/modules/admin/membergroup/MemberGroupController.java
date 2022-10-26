@@ -21,4 +21,4 @@ public class MemberGroupController {
 	public String infrMmView() throws Exception {
 		return "infra/admin/infrMm/infrMmView";
 	}
-}
+} 

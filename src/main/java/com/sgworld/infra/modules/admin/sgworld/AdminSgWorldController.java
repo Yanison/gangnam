@@ -1,4 +1,4 @@
-package com.sgworld.infra.modules.admin.metaverse;
+package com.sgworld.infra.modules.admin.sgworld;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping(value="/admin/metaverse/")
-public class AdminMetaverseController {
+public class AdminSgWorldController {
 
 	@RequestMapping(value="infrMapList")
 	public String infrMapList() throws Exception {
