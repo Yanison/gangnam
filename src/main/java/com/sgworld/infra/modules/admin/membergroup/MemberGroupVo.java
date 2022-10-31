@@ -1,6 +1,5 @@
 package com.sgworld.infra.modules.admin.membergroup;
 
-import java.util.Date;
 
 public class MemberGroupVo {
 	private String shValue;

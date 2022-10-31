@@ -1,7 +1,7 @@
 package com.sgworld.infra.common;
 
 public class Upload {
-	private Integer uploadSeq;
+	private Integer seq;
 	private Integer type;
 	private Integer sort;
 	private Integer	defaultNy;
@@ -11,11 +11,12 @@ public class Upload {
 	private String ext;
 	private Integer size;
 	private Integer pSeq;
-	public Integer getUploadSeq() {
-		return uploadSeq;
+///////////////////////////////////////////////////////////	
+	public Integer getSeq() {
+		return seq;
 	}
-	public void setUploadSeq(Integer uploadSeq) {
-		this.uploadSeq = uploadSeq;
+	public void setSeq(Integer seq) {
+		this.seq = seq;
 	}
 	public Integer getType() {
 		return type;
