@@ -8,6 +8,9 @@
 	<%@ include file="../../../../rscs/basicRscs.jsp" %>
 	 
 	<link href="/resources/user/member/css/memberView.css" rel="stylesheet">
+	<link href="../resources/user/home/css/header.css" rel="stylesheet">
+	<link href="../resources/user/home/css/footer.css" rel="stylesheet">
+	
 </head>
 <body>
 	<header>
