@@ -2,7 +2,9 @@ package com.sgworld.infra.modules.admin.board;
 
 import java.util.Date;
 
-public class BoardDto {
+import com.sgworld.infra.common.base.Base;
+
+public class BoardDto extends Base{
 	private Integer bdSeq;
 	private Integer infrMmSeq;
 	private Integer bdDiv;
@@ -12,6 +14,10 @@ public class BoardDto {
 	private String regBy;
 	private Date modDatetime;
 	private String modBy;
+	private	Integer delNy;
+	private String infrMmNickname;
+
+///////////////////////////////////////////////////	
 	
 	public Integer getBdSeq() {
 		return bdSeq;
@@ -66,6 +72,18 @@ public class BoardDto {
 	}
 	public void setModBy(String modBy) {
 		this.modBy = modBy;
+	}
+	public Integer getDelNy() {
+		return delNy;
+	}
+	public void setDelNy(Integer delNy) {
+		this.delNy = delNy;
+	}
+	public String getInfrMmNickname() {
+		return infrMmNickname;
+	}
+	public void setInfrMmNickname(String infrMmNickname) {
+		this.infrMmNickname = infrMmNickname;
 	}
 	
 	
