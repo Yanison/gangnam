@@ -2,7 +2,7 @@ package com.sgworld.infra.modules.admin.board;
 
 import java.util.Date;
 
-public class Comment {
+public class AdminComment {
 	/*
 	 * beComment
 	 */

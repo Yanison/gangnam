@@ -3,7 +3,7 @@ package com.sgworld.infra.modules.admin.board;
 import com.sgworld.infra.common.base.BaseVo;
 import com.sgworld.infra.common.constants.Constants;
 
-public class BoardVo extends BaseVo {
+public class AdminBoardVo extends BaseVo {
 
 	//	paging
 	private int thisPage = 1;									// 현재 페이지

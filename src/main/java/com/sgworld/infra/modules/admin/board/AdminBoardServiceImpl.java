@@ -12,19 +12,19 @@ public class AdminBoardServiceImpl implements AdminBoardService {
 	AdminBoardDao dao;
 	
 	@Override
-	public List<BoardDto> selectList(BoardVo vo) throws Exception {
-		List<BoardDto> list = dao.selectList(vo);
+	public List<AdminBoardDto> selectList(AdminBoardVo vo) throws Exception {
+		List<AdminBoardDto> list = dao.selectList(vo);
 		return list;
 	}
 
 	@Override
-	public int selectOneCount(BoardVo vo) throws Exception {
+	public int selectOneCount(AdminBoardVo vo) throws Exception {
 		return dao.selectOneCount(vo);
 	}
 
 	@Override
-	public BoardDto selectOne(BoardVo vo) throws Exception {
-		BoardDto item = dao.selectOne(vo);
+	public AdminBoardDto selectOne(AdminBoardVo vo) throws Exception {
+		AdminBoardDto item = dao.selectOne(vo);
 		return item;
 	}
 

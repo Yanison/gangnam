@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface AdminBoardService {
 
-	public List<BoardDto> selectList(BoardVo vo) throws Exception;
-	public int selectOneCount(BoardVo vo) throws Exception;
-	public BoardDto selectOne(BoardVo vo) throws Exception;
+	public List<AdminBoardDto> selectList(AdminBoardVo vo) throws Exception;
+	public int selectOneCount(AdminBoardVo vo) throws Exception;
+	public AdminBoardDto selectOne(AdminBoardVo vo) throws Exception;
 }

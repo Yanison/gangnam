@@ -1,6 +1,6 @@
 package com.sgworld.infra.modules.admin.board;
 
-public class Like {
+public class AdminLike {
 	
 	private Integer bdLike;
 	private Integer cmSeq;
