@@ -17,17 +17,17 @@ public class AdminBoardDao {
 	
 	private static String namespace = "com.sgworld.infra.modules.admin.board.AdminBoardMapper";
 	
-	public List<BoardDto> selectList(BoardVo vo) {
-		List<BoardDto> list = sqlSession.selectList(namespace + ".selectList", vo);
+	public List<AdminBoardDto> selectList(AdminBoardVo vo) {
+		List<AdminBoardDto> list = sqlSession.selectList(namespace + ".selectList", vo);
 		return list;
 	}
 	
-	public int selectOneCount(BoardVo vo) {
+	public int selectOneCount(AdminBoardVo vo) {
 		return sqlSession.selectOne(namespace + ".selectOneCount", vo);
 	}
 	
-	public BoardDto selectOne(BoardVo vo) {
-		BoardDto item = sqlSession.selectOne(namespace + ".selectOne", vo);
+	public AdminBoardDto selectOne(AdminBoardVo vo) {
+		AdminBoardDto item = sqlSession.selectOne(namespace + ".selectOne", vo);
 		return item;
 	}
 }

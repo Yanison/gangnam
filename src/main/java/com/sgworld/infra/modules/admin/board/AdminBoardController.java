@@ -16,11 +16,11 @@ public class AdminBoardController {
 	AdminBoardServiceImpl service;
 	
 	@RequestMapping(value="infrBdList")
-	public String infrBdList(@ModelAttribute("vo") BoardVo vo, Model model) throws Exception {
+	public String infrBdList(@ModelAttribute("vo") AdminBoardVo vo, Model model) throws Exception {
 		
 		vo.setParamsPaging(service.selectOneCount(vo));
 		
-		List<BoardDto> list = service.selectList(vo);
+		List<AdminBoardDto> list = service.selectList(vo);
 		model.addAttribute("list", list);
 		
 		return "infra/admin/infrBd/infrBdList";

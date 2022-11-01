@@ -4,7 +4,7 @@ import java.util.Date;
 
 import com.sgworld.infra.common.base.Base;
 
-public class BoardDto extends Base{
+public class AdminBoardDto extends Base{
 	private Integer bdSeq;
 	private Integer infrMmSeq;
 	private Integer bdDiv;
