@@ -55,7 +55,7 @@ a{
 }
 
 .navBtn li.logedIn a {
-	font-size:21px;
+	font-size:10px;
 }
 .navBtn li:first-child{
 	border-radius: 5px;
