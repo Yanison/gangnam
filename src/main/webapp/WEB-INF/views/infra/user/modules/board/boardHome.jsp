@@ -10,14 +10,16 @@
 	<%@ include file="../../../../rscs/basicRscs.jsp" %>
 	<script src="https://kit.fontawesome.com/059fbc3cf8.js" crossorigin="anonymous"></script>
 	<link href="/resources/user/board/css/boardList.css" rel="stylesheet">
+	<link href="/resources/user/home/css/header.css" rel="stylesheet">
+	<link href="/resources/user/home/css/footer.css" rel="stylesheet">
 </head>
 <body>
 	<!-- header s -->
 	<%@ include file="../../common/header.jsp" %>
 	<!-- header e -->
-	
+<form method="post" id="form" name="form">
 	<!-- contend s -->
-	<section>
+	<section class="boardBody">
 		<div class="boarderTitle">
 			<h2>자유게시판</h2> <!-- 게시판 타이틀 -->
 		</div>
@@ -199,7 +201,7 @@
 		</section>
 	</section>
 	<!-- contend e -->
-	
+</form>	
 	<!-- footer s -->
 	<%@ include file="../../common/footer.jsp" %>
 	<!-- footer e -->

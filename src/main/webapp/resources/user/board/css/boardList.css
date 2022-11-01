@@ -1,3 +1,7 @@
+
+.boardBody{
+	margin-top: 40px;
+}
 .boarder{
 	display: flex;
 	justify-content: center;
