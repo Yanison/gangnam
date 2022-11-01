@@ -29,24 +29,6 @@ public class MemberController {
 	@RequestMapping(value="memberWithdraw")
 	public String memberWithdraw() {
 		return "infra/user/modules/member/memberWithdraw";
-	}	
-	
-	//로그인 화면
-	@RequestMapping(value="userLogin")
-	public String userLogin() {
-		return "infra/user/modules/home/userLogin";
-	}
-	
-	//가입선택
-	@RequestMapping(value="userSignInChoice")
-	public String userSignInChoice() {
-		return "infra/user/modules/home/userSignInChoice";
-	}
-	
-	//회원가입
-	@RequestMapping(value="userSignIn")
-	public String userSignIn() {
-		return "infra/user/modules/home/userSignIn";
 	}
 	
 	//아이디/비번 찾기

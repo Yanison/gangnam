@@ -11,10 +11,56 @@
 		select * from infrMember
 	</select>
 	
-	<insert id="insertMm">
-	</insert>
+	<select id="selectUserLogin" resultMap="MemberGroup">
+		select 
+			infrMmId
+			,infrMmPw
+			,infrMmSeq
+			,infrMmName
+			from infrMember
+		where 1=1
+		and infrMmId = #{infrMmId}
+		and infrMmPw = #{infrMmPw}
+	</select>
 	
-	<insert id="inserAddMm">
+	<insert id="insertMmSignIn">
+	insert into infrMemeber(
+	  infrMmId
+	  ,infrMmPw
+	  ,infrMmName
+	  ,infrMmNickname
+	  ,infrMmBod
+	  ,infrMmGender
+	  ,infrMmTelecom
+	  ,infrMmPhone
+	  ,infrMmEmailId
+	  ,infrMmEmailAddress
+	  ,infrMmZip
+	  ,infrMmRoadAddress
+	  ,infrMmJibunAddress
+	  ,infrMmDetailAddress
+	  ,infrMmLat
+	  ,infrMmLong
+	  ,regDateAt
+	) values(
+	  #{infrMmId}
+	  ,#{infrMmKakaoIdToken}
+	  ,MD5(#{infrMmPw})
+	  ,#{infrMmName}
+	  ,#{infrMmNinckName}
+	  ,#{infrMmDod}
+	  ,#{infrMmGender}
+	  ,#{infrMmPhone}
+	  ,#{infrMmEmailId}
+	  ,#{infrMmEmailAddr}
+	  ,#{infrMmZip}
+	  ,#{infrMmRoadAdress}
+	  ,#{infrMmJibunAdress}
+	  ,#{infrMmDetailAdress}
+	  ,#{infrMmLat}
+	  ,#{infrMmLong}
+	  ,now()
+	)
 	</insert>
 	
 	<update id="udptMmifo">

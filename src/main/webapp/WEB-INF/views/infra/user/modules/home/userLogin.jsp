@@ -7,7 +7,7 @@
 	<title>Home</title>
 	<%@ include file="../../../../rscs/basicRscs.jsp" %>
 	<link href="./resources/user/home/css/userLogin.css" rel="stylesheet">
-	<script src="./resources/user/home/js/userLogin.js"></script>
+	<script src="./resources/user/home/js/userSignIn/userLogin.js"></script>
 </head>
 <body>
 	<header>
@@ -24,19 +24,19 @@
 			</div>
 			<section class="loginBody">
 				<article class="loginBox">
-					<div class="inputIdBox">
-						<input class="inputId inputLogin" type="text" placeholder="아이디">
-					</div>
-					<div class="inputPwBox">
-						<input class="inputPw inputLogin" type="password" placeholder="비밀번호">
-					</div>
-					<div class="loignCheck">
-						<i class="fa-regular fa-circle-check" style="margin-right:10px;"></i>
-						<p>로그인 상태 유지</p>
-					</div>
-					<div class="loginBtnBox">
-						<button class="loginBtn" type="button">로그인</button>
-					</div>
+						<div class="inputIdBox">
+							<input class="inputId inputLogin" id="infrMmId" name="infrMmId" type="text" placeholder="아이디">
+						</div>
+						<div class="inputPwBox">
+							<input class="inputPw inputLogin" id="infrMmPw" name="infrMmPw" type="password" placeholder="비밀번호">
+						</div>
+						<div class="loignCheck">
+							<i class="fa-regular fa-circle-check" style="margin-right:10px;"></i>
+							<p>로그인 상태 유지</p>
+						</div>
+						<div class="loginBtnBox">
+							<button class="loginBtn" type="button" onClick="userLogin()">로그인</button>
+						</div>
 					<div>
 						<div class="easyLoginHead">
 							<p>간편 로그인</p>

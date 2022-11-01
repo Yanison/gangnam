@@ -14,9 +14,9 @@
 		<property name="username" value="hwangdmin" />
 		<property name="password" value="992837yns13616!" /> -->
 		<!-- local db -->		
-		<property name="url" value="jdbc:log4jdbc:db 주소" />
-		<property name="username" value="db_id" />
-		<property name="password" value="db_pw!" />
+		<property name="url" value="jdbc:log4jdbc:mysql://gangnam.cuadqgxjiv7f.ap-northeast-2.rds.amazonaws.com:33068/sgworld" />
+		<property name="username" value="sgworld" />
+		<property name="password" value="rkdska123!" />
 	</bean>
 	    
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">

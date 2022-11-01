@@ -9,6 +9,8 @@
 	<%@ include file="../../../../rscs/basicRscs.jsp"%>
 	<link href="./resources/user/home/css/userSignIn.css" rel="stylesheet">
 	<script src="./resources/user/home/js/userSignIn.js"></script>
+	<script src="./resources/user/home/js/userSignIn/kkoGetAddr.js"></script>
+	<!-- <script src="./resources/user/home/js/userSignIn/Validation.js"></script> -->
 </head>
 <body>
 	<header>
@@ -54,8 +56,32 @@
 				</select>
 			</div>
 			<div class="getKkoAddr">
-				<input type="text" id="memberPostCode" class="memberInput" name="member" placeholder="Address">
+			
+				<div class="srchAddr">
+					<input id="kkoAddr" class="memberInput" type="button" value="우편번호 찾기">	
+					<input type="text" class="memberInput" id="postcode" name="postCode" placeholder="우편번호"  readonly>					
+				</div>
+				
+				<input type="text" class="memberInput" id="roadAddress" name="memberAddrLoad" placeholder="도로명주소"   readonly>
+				
+				<input type="text" class="memberInput" id="jibunAddress" name="memberAddrJibun" placeholder="지번주소"  readonly >
+				
+				<span id="guide" style="color:#999;display:none"></span>
+				
+				<input type="text" class="memberInput" id="detailAddress" name="addrDetail" placeholder="상세주소">
+				
+				<div id="addressDetail-alert" class="alert-box"></div>
+				
+				<input type="text" class="memberInput" id="extraAddress" name="addrLoca"  placeholder="참고항목" readonly>
+				
+				<div class="srchAddr">
+					<input id="lat" class="memberInput" type="text" name="addrLat" placeholder="위도" readonly>
+					<input id="long" class="memberInput" type="text" name="addrLong" placeholder="경도" readonly>
+				</div>
+				
+				<div id="addr-alert" class="alert-box"></div>
 			</div>
+			
 			<input type="submit" id="submit" class="memberInput formSubmit Btn" name="member" value="회원가입" style="margin-top:20px">
 		</form>
 	</div>

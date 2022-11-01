@@ -5,7 +5,7 @@ header, footer{
 
 .bodyWrapper{
 	width:100%;
-	height:920px;
+	height:1200px;
 	display:flex;
 	flex-direction:column;
 	justify-content:center;
@@ -73,4 +73,16 @@ img.logo{
 	background:#292E4C;
 	border:none;
 	color:#fff;
+}
+.getKkoAddr{
+	display:flex;
+	flex-direction:column;
+}
+
+.getKkoAddr div .memberInput{
+	width:200px;
+}
+
+.getKkoAddr .memberInput{
+	height:30px;
 }
