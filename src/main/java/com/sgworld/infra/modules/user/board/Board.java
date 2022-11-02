@@ -4,8 +4,8 @@ import java.util.Date;
 
 public class Board {
 
-	private Integer bdSeq;
-	private Integer infrMmSeq;
+	private String bdSeq;
+	private String infrMmSeq;
 	private Integer bdDiv;
 	private String bdTitle;
 	private String bdContent;
@@ -18,16 +18,16 @@ public class Board {
 	
 ///////////////////////////////////////////	
 	
-	public Integer getBdSeq() {
+	public String getBdSeq() {
 		return bdSeq;
 	}
-	public void setBdSeq(Integer bdSeq) {
+	public void setBdSeq(String bdSeq) {
 		this.bdSeq = bdSeq;
 	}
-	public Integer getInfrMmSeq() {
+	public String getInfrMmSeq() {
 		return infrMmSeq;
 	}
-	public void setInfrMmSeq(Integer infrMmSeq) {
+	public void setInfrMmSeq(String infrMmSeq) {
 		this.infrMmSeq = infrMmSeq;
 	}
 	public Integer getBdDiv() {

@@ -3,7 +3,7 @@
 <link href="./resources/user/home/css/footer.css" rel="stylesheet">
 
 <div class="footer">
-	<img class="footerLogo" alt="" src="./resources/user/home/images/logo/mainLogo.png"  onclick="gohome()">
+	<img class="footerLogo" alt="logo아이콘" src="/resources/user/home/images/logo/mainLogo.png" onclick="gohome()">
 	<div class="footerInfo">
 		<h5 class="hTag">프로젝트 싸게타운</h1>
 		<h6 class="hTag" style="margin:10 0 20 0">개발멤버</h4>

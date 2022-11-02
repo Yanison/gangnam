@@ -18,186 +18,45 @@
 	<%@ include file="../../common/header.jsp" %>
 	<!-- header e -->
 <form method="post" id="form" name="form">
+	<input type="hidden" name="bdSeq" value="${dto.bdSeq }">
 	<!-- contend s -->
 	<section class="boardBody">
 		<div class="boarderTitle">
 			<h2>자유게시판</h2> <!-- 게시판 타이틀 -->
 		</div>
 		<section class="boarder">
+		<c:choose>
+			<c:when test="${fn:length(list) eq 0 }">
+				<div>
+					<p>게시글이 없습니다.</p>
+				</div>
+			</c:when>
+			<c:otherwise>
+				<c:forEach items="${list }" var="list" varStatus="status">
 			<article class="board">
-				<div class="post1">
+				<div class="post1" style="curcor: pointer;">
 					<div class="state1">
 						<span>NOW</span> <!-- 작성상태(최신글, 조회수 높은 글 등) -->
 					</div>
 					<div class="title1">
-						<span>교사인데 오늘 진짜 마음 울렁울렁함..</span> <!-- 글 제목 -->
+						<a href="javascript:goBoardView(<c:out value="${list.bdSeq }" />)" style="text-decoration: none;"><c:out value="${list.bdTitle }" /></a> <!-- 글 제목 -->
 					</div>
 					<div>
-						<p>해당 게시글에 대한 내용이 들어가는 곳입니다.</p> <!-- 글 내용(게시판 리스트에 보이는 글자 수 제한 둘 것) -->
+						<p><c:out value="${list.bdContent }" /></p> <!-- 글 내용(게시판 리스트에 보이는 글자 수 제한 둘 것) -->
 					</div>
 					<div>
-						<p>nickname</p> <!-- 작성자 닉네임 -->
+						<p><c:out value="${list.infrMmNickname }" /></p> <!-- 작성자 닉네임 -->
 					</div>
 					<div class="icon">
-						<i class="fa-solid fa-eye">99</i> <!-- 조회수 -->
-						<i class="fa-regular fa-thumbs-up">99</i> <!-- 좋아요 -->
-						<i class="fa-regular fa-message">99</i> <!-- 댓글수 -->
+						<i class="fa-solid fa-eye"> 99</i> <!-- 조회수 -->
+						<i class="fa-regular fa-thumbs-up"> 99</i> <!-- 좋아요 -->
+						<i class="fa-regular fa-message"> 99</i> <!-- 댓글수 -->
 					</div>
 				</div>
 			</article>
-			<article class="board">
-				<div class="post1">
-					<div class="state2">
-						<span>HOT</span>
-					</div>
-					<div class="title1">
-						<span>기대 없었는데 맥카페 존맛이네</span>
-					</div>
-					<div>
-						<p>해당 게시글에 대한 내용이 들어가는 곳입니다.</p>
-					</div>
-					<div>
-						<p>nickname</p>
-					</div>
-					<div class="icon">
-						<i class="fa-solid fa-eye">99</i>
-						<i class="fa-regular fa-thumbs-up">99</i>
-						<i class="fa-regular fa-message">99</i>
-					</div>
-				</div>
-			</article>
-		</section>
-		<section class="boarder">
-			<article class="board">
-				<div class="post1">
-					<div class="state1">
-						<span></span>
-					</div>
-					<div class="title1">
-						<span>31살까지 1억</span>
-					</div>
-					<div>
-						<p>해당 게시글에 대한 내용이 들어가는 곳입니다.</p>
-					</div>
-					<div>
-						<p>nickname</p>
-					</div>
-					<div class="icon">
-						<i class="fa-solid fa-eye">99</i>
-						<i class="fa-regular fa-thumbs-up">99</i>
-						<i class="fa-regular fa-message">99</i>
-					</div>
-				</div>
-			</article>
-			<article class="board">
-				<div class="post1">
-					<div class="state1">
-						<span></span>
-					</div>
-					<div class="title1">
-						<span>남자들은 소개팅녀 맘에 들면 어떻게함??</span>
-					</div>
-					<div>
-						<p>해당 게시글에 대한 내용이 들어가는 곳입니다.</p>
-					</div>
-					<div>
-						<p>nickname</p>
-					</div>
-					<div class="icon">
-						<i class="fa-solid fa-eye">99</i>
-						<i class="fa-regular fa-thumbs-up">99</i>
-						<i class="fa-regular fa-message">99</i>
-					</div>
-				</div>
-			</article>
-		</section>
-		<section class="boarder">
-			<article class="board">
-				<div class="post1">
-					<div class="state1">
-						<span></span>
-					</div>
-					<div class="title1">
-						<span>결혼식 전에 청첩장 돌리고...</span>
-					</div>
-					<div>
-						<p>해당 게시글에 대한 내용이 들어가는 곳입니다.</p>
-					</div>
-					<div>
-						<p>nickname</p>
-					</div>
-					<div class="icon">
-						<i class="fa-solid fa-eye">99</i>
-						<i class="fa-regular fa-thumbs-up">99</i>
-						<i class="fa-regular fa-message">99</i>
-					</div>
-				</div>
-			</article>
-			<article class="board">
-				<div class="post1">
-					<div class="state1">
-						<span></span>
-					</div>
-					<div class="title1">
-						<span>아아아 졸려 ㅜㅜ</span>
-					</div>
-					<div>
-						<p>해당 게시글에 대한 내용이 들어가는 곳입니다.</p>
-					</div>
-					<div>
-						<p>nickname</p>
-					</div>
-					<div class="icon">
-						<i class="fa-solid fa-eye">99</i>
-						<i class="fa-regular fa-thumbs-up">99</i>
-						<i class="fa-regular fa-message">99</i>
-					</div>
-				</div>
-			</article>
-		</section>
-		<section class="boarder">
-			<article class="board">
-				<div class="post1">
-					<div class="state1">
-						<span></span>
-					</div>
-					<div class="title1">
-						<span>아 진짜 연애하고 싶다</span>
-					</div>
-					<div>
-						<p>해당 게시글에 대한 내용이 들어가는 곳입니다.</p>
-					</div>
-					<div>
-						<p>nickname</p>
-					</div>
-					<div class="icon">
-						<i class="fa-solid fa-eye">99</i>
-						<i class="fa-regular fa-thumbs-up">99</i>
-						<i class="fa-regular fa-message">99</i>
-					</div>
-				</div>
-			</article>
-			<article class="board">
-				<div class="post1">
-					<div class="state1">
-						<span></span>
-					</div>
-					<div class="title1">
-						<span>나랑 친구할사람?</span>
-					</div>
-					<div>
-						<p>해당 게시글에 대한 내용이 들어가는 곳입니다.</p>
-					</div>
-					<div>
-						<p>nickname</p>
-					</div>
-					<div class="icon">
-						<i class="fa-solid fa-eye">99</i>
-						<i class="fa-regular fa-thumbs-up">99</i>
-						<i class="fa-regular fa-message">99</i>
-					</div>
-				</div>
-			</article>
+				</c:forEach>
+			</c:otherwise>
+		</c:choose>
 		</section>
 	</section>
 	<!-- contend e -->
@@ -205,5 +64,21 @@
 	<!-- footer s -->
 	<%@ include file="../../common/footer.jsp" %>
 	<!-- footer e -->
+	<script type="text/javascript">
+		var goUrlBoardRegForm = "/board/boardWrite";
+		var goUrlBoardView = "/board/boardView";
+		
+		var form = $("form[name=form]");
+		var seq = $("input:hidden[name=bdSeq]");
+		
+		$("#btnBoardRegForm").on("click", function(){
+			$(location).attr("href", goUrlBoardRegForm);
+		})
+		
+		goBoardView = function(keyValue) {
+			seq.val(keyValue);
+			form.attr("action", goUrlBoardView).submit();
+		}
+	</script>
 </body>
 </html>

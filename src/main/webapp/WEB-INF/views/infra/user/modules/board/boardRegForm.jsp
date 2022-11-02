@@ -10,14 +10,16 @@
 	<%@ include file="../../../../rscs/basicRscs.jsp" %>
 	<script src="https://kit.fontawesome.com/059fbc3cf8.js" crossorigin="anonymous"></script>
 	<link href="/resources/user/board/css/boardForm.css" rel="stylesheet">
+	<link href="/resources/user/home/css/header.css" rel="stylesheet">
+	<link href="/resources/user/home/css/footer.css" rel="stylesheet">
 </head>
 <body>
 	<!-- header s -->
 	<%@ include file="../../common/header.jsp" %>
 	<!-- header e -->
-	
+	<form method="post" id="form" name="form" autocomplete="off" enctype="multipart/form-data">
 	<!-- contend s -->
-	<section>
+	<section class="body">
 		<div class="boardFormHead">
 			<div class="boardFormHead1">
 				<div>
@@ -27,7 +29,7 @@
 					<h2>글쓰기</h2> <!-- 게시판 타이틀 -->
 				</div>
 				<div class="regBtn">
-					<p type="button">등록</p>
+					<p type="button" id="btnSave">등록</p>
 				</div>
 			</div>
 		</div>
@@ -41,10 +43,10 @@
 				</div>
 				<div class="boardBody">
 					<div class="boardTitle">
-						<input class="contentTitle" type="text" placeholder="글 제목을 입력해 주세요.">
+						<input class="contentTitle" type="text" id="bdTitle" name="bdTitle" value="<c:out value="${dto.bdTitle }" />" placeholder="글 제목을 입력해 주세요.">
 					</div>
 					<div class="boardContent">
-						<textarea class="boardFormContent" placeholder="내용을 입력해 주세요."></textarea>
+						<textarea class="boardFormContent" id="bdContent" name="bdContent" placeholder="내용을 입력해 주세요."><c:out value="${dto.bdContent }" /></textarea>
 					</div>
 				</div>
 				<div class="boardFooter">
@@ -62,9 +64,23 @@
 		</section>
 	</section>
 	<!-- contend e -->
-	
+	</form>
 	<!-- footer s -->
 	<%@ include file="../../common/footer.jsp" %>
 	<!-- footer e -->
+	<script type="text/javascript">
+		var goUrlBoardInst = "/board/boardInst";
+		var goUrlBoardRegForm = "/board/boardWrite";
+		
+		var form = $("form[name=form]");
+		
+		$("#btnSave").on("click", function(){
+			form.attr("action", goUrlBoardInst).submit();
+		})
+		
+		$("#btnBoardRegForm").on("click", function(){
+			$(location).attr("href", goUrlBoardRegForm);
+		})
+	</script>
 </body>
 </html>

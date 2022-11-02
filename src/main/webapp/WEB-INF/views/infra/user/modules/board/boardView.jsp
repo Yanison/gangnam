@@ -7,15 +7,17 @@
 	<meta charset="UTF-8">
 	<meta name=viewport"" content="width=device-width, initial-scale=1.0">
 	<title>sgworld | 싸게월드</title>
-	<%@ include file="rscs/basicRscs.jsp" %>
+	<%@ include file="../../../../rscs/basicRscs.jsp" %>
 	<script src="https://kit.fontawesome.com/059fbc3cf8.js" crossorigin="anonymous"></script>
 	<link href="/resources/user/board/css/boardView.css" rel="stylesheet">
+	<link href="/resources/user/home/css/header.css" rel="stylesheet">
+	<link href="/resources/user/home/css/footer.css" rel="stylesheet">
 </head>
 <body>
 	<!-- header s -->
-	<%@ include file="../home/header.jsp" %>
+	<%@ include file="../../common/header.jsp" %>
 	<!-- header e -->
-	
+	<form id="form" name="form" autocomplete="off" enctype="multipart/form-data">
 	<!-- contend s -->
 	<section>
 		<div class="boarderTitle">
@@ -25,10 +27,10 @@
 			<article class="board">
 				<div class="boardHead">
 					<div>
-						<h1>다들 매달 찍히는 월급 얼마정도야</h1>
+						<h3><c:out value="${item.bdTitle }"/></h3>
 					</div>
 					<div>
-						<p>C*******</p>
+						<p><c:out value="${item.infrMmNickname }"/></p>
 					</div>
 					<div class="icon">
 						<i class="fa-regular fa-clock"> 10-19</i>
@@ -39,12 +41,7 @@
 				<div class="boarderBody">
 					<div class="content">
 						<p>
-							우리반 여자아이 중에 발표를 절대 안 하는 아이가 있는데, 오늘 구술평가라 모든 학생 돌아가며 쓴 내용 발표를 해야했어.<br><br>
-							얘가 일어나서 아무말도 안하고 못하겠다고 하길래 내가 괜찮다고 틀려도 된다 이미 잘 썼으니 그대로 읽기만 하면 된다. 
-							선생님이 그냥 발표 안했다고 0점 주면 끝날 일이라도 그렇게 하지 않는 이유는 00이가 앞으로도 자기 자신을 믿고 좀더 
-							자신감을 가졌으면 좋겠어서 이렇게 기회를 주는거다. 다른 친구들도 선생님과 같은 마음으로 응원하고 있으니 편안한 마음으로 
-							읽어봐라 작게 읽어도 괜찮다 했거든?<br><br>
-							결국 자기 순서 때 못하고, 아이들 다 끝나고 두번째 기회에는 눈물 뚝 흘리고, 마지막 세번째 기회에 읽기 시작했어.<br>
+							<c:out value="${item.bdContent }"/>
 						</p> <!-- 게시글 내용 -->
 					</div>
 					<div class="icon">
@@ -108,9 +105,9 @@
 		</section>
 	</section>
 	<!-- contend e -->
-	
+	</form>
 	<!-- footer s -->
-	<%@ include file="../home/footer.jsp" %>
+	<%@ include file="../../common/footer.jsp" %>
 	<!-- footer e -->
 </body>
 </html>

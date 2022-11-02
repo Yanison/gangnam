@@ -138,5 +138,19 @@
 			<%@include file="./createOption.jsp" %>
 	</div>
 
+	<script type="text/javascript">
+		var gorUrlBoardHome = "/board/boardList";
+		var goUrlBoardRegForm = "/board/boardWrite";
+		
+		var form = $("form[name=form]");
+		
+		$("#btnBoardHome").on("click", function(){
+			$(location).attr("href", gorUrlBoardHome);
+		})
+		
+		$("#btnBoardRegForm").on("click", function(){
+			$(location).attr("href", goUrlBoardRegForm);
+		})
+	</script>
 </body>
 </html>
