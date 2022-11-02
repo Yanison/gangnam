@@ -7,7 +7,7 @@
 	<title>Home</title>
 	<%@ include file="../../../../rscs/basicRscs.jsp" %>
 	<link href="./resources/user/home/css/userLogin.css" rel="stylesheet">
-	<script src="./resources/user/home/js/userSignIn/userLogin.js"></script>
+	<script src="./resources/user/home/js/userLogin.js"></script>
 </head>
 <body>
 	<header>

@@ -8,3 +8,23 @@ $(document).ready(function(){
 	console.log("hiddenGroup infrMmName :: " + infrMmName)
 	
 })
+
+
+function userLogOut(){
+	if(confirm("정말로 로그아웃 하시겠습니까?")){
+		$.ajax({
+			type:"post"
+			,url:"./mmRest/userLogOut"
+			,success:function(logout){
+				if(logout == "userLogOut"){
+					alert('로그아웃 되셨습니다.')
+					location.replace("/")	
+				}
+			},err:function(){
+			}
+		})
+	}else{
+		false
+	}
+	
+}

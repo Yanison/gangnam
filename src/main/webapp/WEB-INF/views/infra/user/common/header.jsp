@@ -22,6 +22,7 @@
 				</c:when>
 				<c:otherwise>
 					<li class="logedIn"><c:out value="${infrMmName}"/> 님</li>
+					<li><button onClick="userLogOut()">로그아웃</button></li>
 					<li class="logedIn"><a type="button" id="">마이페이지</a></li>
 				</c:otherwise>
 			</c:choose>
@@ -32,5 +33,4 @@
 		<input type="hidden" id="infrMmSeq" value="${infrMmSeq}">
 		<input type="hidden" id="infrMmName" value="${infrMmName}">
 	</div>
-	
 </nav>
