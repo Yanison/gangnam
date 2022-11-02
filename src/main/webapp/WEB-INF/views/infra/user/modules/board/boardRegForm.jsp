@@ -18,6 +18,7 @@
 	<%@ include file="../../common/header.jsp" %>
 	<!-- header e -->
 	<form method="post" id="form" name="form" autocomplete="off" enctype="multipart/form-data">
+	<input type="hidden" id="infrMmSeq" value="${infrMmSeq}">
 	<!-- contend s -->
 	<section class="body">
 		<div class="boardFormHead">
