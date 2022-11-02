@@ -41,10 +41,9 @@ a{
 }
 .rightNav ul li{
 	height: 40px;
-    width: 90;
+    width: 90px;
     text-align:center;
     line-height:40px;
-    margin-right:10px;
     font-size:14px;
 }
 .navBtn{
@@ -54,8 +53,25 @@ a{
 	padding-left: 0;
 }
 
+.navBtn li.logedIn{
+	width:80px;
+	height:40px;
+	font-size:14px;
+}
+
 .navBtn li.logedIn a {
-	font-size:10px;
+	font-size:14px;
+	color:#434A72;
+	font-weight:700;
+}
+.navBtn li.logedIn #logOutBtn{
+	height:40px;
+	line-height:40px;
+	border:none;
+	background:none;
+	padding:0px;
+	color:#434A72;
+	font-weight:700;
 }
 .navBtn li:first-child{
 	border-radius: 5px;
