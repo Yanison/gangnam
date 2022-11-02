@@ -18,7 +18,7 @@ public class AdminBoardController {
 	@RequestMapping(value="infrBdList")
 	public String infrBdList(@ModelAttribute("vo") AdminBoardVo vo, Model model) throws Exception {
 		
-		vo.setParamsPaging(service.selectOneCount(vo));
+		//vo.setParamsPaging(service.selectOneCount(vo));
 		
 		List<AdminBoardDto> list = service.selectList(vo);
 		model.addAttribute("list", list);
