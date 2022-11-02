@@ -23,7 +23,7 @@ function userLogin(){
 			async:true
 			,cache:false
 			,type:"get"
-			,url:"../mmRest/userLogin"
+			,url:"../member/userLogin"
 			,data:{
 				"infrMmId" : infrMmId
 				,"infrMmPw" : infrMmPw

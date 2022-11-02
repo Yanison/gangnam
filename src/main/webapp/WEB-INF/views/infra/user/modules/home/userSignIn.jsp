@@ -9,6 +9,7 @@
 	<%@ include file="../../../../rscs/basicRscs.jsp"%>
 	<link href="./resources/user/home/css/userSignIn.css" rel="stylesheet">
 	<script src="./resources/user/home/js/userSignIn.js"></script>
+	<script src="./resources/user/home/js/userSignIn/sol.js"></script>
 	<script src="./resources/user/home/js/userSignIn/kkoGetAddr.js"></script>
 	<!-- <script src="./resources/user/home/js/userSignIn/Validation.js"></script> -->
 </head>
@@ -45,9 +46,11 @@
 			<div class="telDiv">
 				<input type="text" id="memberTel" class="memberInput" name="member" placeholder="Tel">
 				<div>
-					<input type="text" id="AuthCode" class="memberInput" name="member">
-					<button class="getAuthCode memberInput Btn" id="getAuthCode">인증번호받기</button>
+					<input type="text" id="AuthCode" class="memberInput" name="member" placeholder="인증번호 입력" onkeyup="onkeyupCerti()">
+					<button type="button" class="getAuthCode memberInput" id="getAuthCode" onClick="getSMS()" >인증번호받기</button>
+					<input type="hidden" id="certiNum" value="1234"/>
 				</div>
+				<span id="AuthCodeValiText"class="vailText" style="color:#fff; font-size:5px;"></span>
 			</div>
 			<div class="emailDiv">
 				<input type="text" id="memberEmail" class="memberInput" name="member" placeholder="Email"> 
