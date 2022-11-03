@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class MemberDto {
 	
+	//infrMember
 	private String infrMmSeq;
 	private Integer infrMmDiv;
 	private String infrMmId;
@@ -23,4 +24,19 @@ public class MemberDto {
 	private String infrMmLong;
 	private Date regDatetime;
 
+	//board
+	private String bdSeq;
+	private Integer bdDiv;
+	private String bdTitle;
+	private String bdContent;
+	private Date regDatetie;
+	private String regBy;
+	private Date modDateTime;
+	private String modBy;
+	private Integer delNy;
+	
+	//bdLike
+	private String bdLikeSeq;
+	private Integer likeNy;
+	
 }

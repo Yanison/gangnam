@@ -15,6 +15,13 @@ public class MemberGroupServiceImpl implements MemberGroupService {
 	public List<MemberGroup> selectMmList(MemberGroup dto) throws Exception{
 		return mmDao.selectMmList(dto);
 	}
+	
+	
+	@Override
+	public MemberGroup selectMmOne(MemberGroupVo vo) throws Exception {
+		return mmDao.selectMmOne(vo);
+	}
+
 	@Override
 	public int insertMmSignIn (MemberGroup dto) throws Exception{
 		return mmDao.insertMmSignIn(dto);
@@ -24,4 +31,12 @@ public class MemberGroupServiceImpl implements MemberGroupService {
 	public MemberGroup selectUserLogin(MemberGroup dto) throws Exception{
 		return mmDao.selectUserLogin(dto);
 	}
+
+
+	@Override
+	public int udptMmifo(MemberGroup dto) throws Exception {
+		return mmDao.udptMmifo(dto);
+	}
+	
+	
 }

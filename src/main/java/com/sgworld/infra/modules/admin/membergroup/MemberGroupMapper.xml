@@ -11,6 +11,12 @@
 		select * from infrMember
 	</select>
 	
+	<select id="selectMmOne" resultMap="MemberGroup">
+		select * from infrMember
+		WHERE 1=1 
+		AND infrMmSeq = #{infrMmSeq}
+	</select>
+	
 	<select id="selectUserLogin" resultMap="MemberGroup">
 		select 
 			infrMmId
@@ -63,9 +69,24 @@
 	)
 	</insert>
 	
+	<!-- admin_회원정보 수정 -->
 	<update id="udptMmifo">
-	
+		UPDATE infrMember
+		SET
+			infrMmId = #{infrMmId}
+			,infrMmName = #{infrMmName}
+			,infrMmPw = #{infrMmPw}
+			,infrMmEmailId = #{infrMmEmailId}
+			,infrMmNickname = #{infrMmNickname}
+			,infrMmGender = #{infrMmGender}
+			,infrMmBod = #{infrMmBod}
+			,infrMmPhone = #{infrMmPhone}
+			,infrMmDelNy = #{infrMmDelNy}
+			,infrMmUseNy = #{infrMmUseNy}
+		WHERE 1=1
+			AND infrMmSeq = #{infrMmSeq}	
 	</update>
+	
 	<update id="ueleteMm">
 	</update>
 	

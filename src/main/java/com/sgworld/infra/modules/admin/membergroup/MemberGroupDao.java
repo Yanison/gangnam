@@ -21,11 +21,20 @@ public class MemberGroupDao {
 		return sqlSession.selectList(namespace + ".selectMmList", dto);
 	}
 	
+	public MemberGroup selectMmOne(MemberGroupVo vo) {
+		return sqlSession.selectOne(namespace +".selectMmOne", vo);
+	}
+	
 	public int insertMmSignIn (MemberGroup dto) {
 		return sqlSession.insert(namespace + "insertMmSignIn", dto);
 	}
 	
 	public MemberGroup selectUserLogin(MemberGroup dto) {
 		return sqlSession.selectOne(namespace + ".selectUserLogin", dto);
+	}
+	
+	//회원정보 수정
+	public int udptMmifo(MemberGroup dto) {
+		return sqlSession.update(namespace +".udptMmifo", dto);
 	}
 }
