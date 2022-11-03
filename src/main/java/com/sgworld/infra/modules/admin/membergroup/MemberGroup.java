@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class MemberGroup extends MemberGroupVo{
 	
-	private Integer infrMmSeq;
+	private String infrMmSeq;
 	private Integer infrMmDiv;
 	private String infrMmId;
 	private String infrMmKakaoIdToken;
@@ -29,10 +29,10 @@ public class MemberGroup extends MemberGroupVo{
 	private Integer infrMmUseNy;
 	private Integer infrMmDelNy;
 	
-	public Integer getInfrMmSeq() {
+	public String getInfrMmSeq() {
 		return infrMmSeq;
 	}
-	public void setInfrMmSeq(Integer infrMmSeq) {
+	public void setInfrMmSeq(String infrMmSeq) {
 		this.infrMmSeq = infrMmSeq;
 	}
 	public Integer getInfrMmDiv() {
