@@ -33,16 +33,16 @@ public class MemberRestController {
 	}
 	
 	@RequestMapping(value="userLogin")
-	public MemberGroup userLogin(MemberGroup dto,MemberGroup vo,HttpSession httpSession)throws Exception{
+	public MemberGroup userLogin(MemberGroup dto,MemberGroup vo,HttpSession session)throws Exception{
 		
 		MemberGroup user = mmService.selectUserLogin(dto);
 		
-		httpSession.setAttribute("infrMmSeq", user.getInfrMmSeq());
-		httpSession.setAttribute("infrMmId", user.getInfrMmId());
-		httpSession.setAttribute("infrMmName", user.getInfrMmName());
-		Object infrMmSeq = httpSession.getAttribute("infrMmSeq");
-		Object infrMmId = httpSession.getAttribute("infrMmId");
-		Object infrMmName = httpSession.getAttribute("infrMmName");
+		session.setAttribute("infrMmSeq", user.getInfrMmSeq());
+		session.setAttribute("infrMmId", user.getInfrMmId());
+		session.setAttribute("infrMmName", user.getInfrMmName());
+		Object infrMmSeq = session.getAttribute("infrMmSeq");
+		Object infrMmId = session.getAttribute("infrMmId");
+		Object infrMmName = session.getAttribute("infrMmName");
 		
 		
 		System.out.println("userLogin session infrMmSeq ::" + infrMmSeq);
