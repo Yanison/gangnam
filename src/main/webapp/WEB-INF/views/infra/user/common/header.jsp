@@ -24,7 +24,7 @@
 					<li class="logedIn" style="margin-left:20px"><span style="font-weight:600;"><c:out value="${infrMmName}"/></span> 님</li>
 					<li class="logedIn"><button id="logOutBtn" onClick="userLogOut()">로그아웃</button></li>
 					<!-- 마이페이지 링크 연결해주세요 -->
-					<li class="logedIn" f><a type="button" id="goMypage">마이페이지</a></li>
+					<li class="logedIn" f><a href="http://127.0.0.1:8085/member/memberView" type="button" id="">마이페이지</a></li>
 				</c:otherwise>
 			</c:choose>
 		</ul>
