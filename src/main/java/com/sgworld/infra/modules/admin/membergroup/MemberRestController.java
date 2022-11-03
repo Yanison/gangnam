@@ -1,13 +1,10 @@
 package com.sgworld.infra.modules.admin.membergroup;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.Random;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -46,6 +43,7 @@ public class MemberRestController {
 		Object infrMmSeq = session.getAttribute("infrMmSeq");
 		Object infrMmId = session.getAttribute("infrMmId");
 		Object infrMmName = session.getAttribute("infrMmName");
+		
 		
 		System.out.println("userLogin session infrMmSeq ::" + infrMmSeq);
 		System.out.println("userLogin session infrMmId ::" + infrMmId);

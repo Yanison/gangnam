@@ -46,7 +46,7 @@ public class BoardController {
 	@RequestMapping(value = "boardWrite")
 	public String boardWrite() {
 		
-		return "infra/user/modules/board/boardRegForm";
+		return "infra/user/modules/board/boardRegForm"; 
 	}
 
 	@SuppressWarnings(value = {"all"})
