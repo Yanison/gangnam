@@ -30,15 +30,9 @@
 		</ul>
 	</div>
 	<div class="hiddenGroup" style="none">
-<<<<<<< HEAD
 		<input type="hidden" id="infrMmId" value="${infrMmId}">
 		<input type="hidden" id="infrMmSeq" name="infrMmSeq" value="${infrMmSeq}">
 		<input type="hidden" id="infrMmName" value="${infrMmName}">
-=======
-		<input type="hidden" id="infrMmId"  value="${infrMmId}">
-		<input type="hidden" id="infrMmSeq"  value="${infrMmSeq}">
-		<input type="hidden" id="infrMmName"  value="${infrMmName}">
->>>>>>> branch 'main' of https://github.com/Seonya/gangnam.git
 	</div>
 </nav>
 

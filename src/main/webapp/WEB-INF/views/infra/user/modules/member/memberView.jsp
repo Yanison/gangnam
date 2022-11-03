@@ -46,7 +46,6 @@
 							<input type="text" class="txt" id="infrMmPhone"
 							name="infrMmPhone" value="<c:out value="${item.infrMmPhone }"/>"							
 							>
-							<button class="phoneButton">인증</button>
 						</div>
 						<div class="inputBox">
 							<label class="label">생년월일</label>
