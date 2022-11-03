@@ -10,7 +10,7 @@
 	<%@ include file="../../../../rscs/basicRscs.jsp" %>
 	<script src="https://kit.fontawesome.com/059fbc3cf8.js" crossorigin="anonymous"></script>
 	<link href="/resources/user/board/css/boardList.css" rel="stylesheet">
-	<link href="/resources/user/home/css/header.css" rel="stylesheet">
+	<!-- <link href="/resources/user/home/css/header.css" rel="stylesheet"> -->
 	<link href="/resources/user/home/css/footer.css" rel="stylesheet">
 </head>
 <body>

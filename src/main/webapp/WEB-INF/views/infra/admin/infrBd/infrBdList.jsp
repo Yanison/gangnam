@@ -4,26 +4,31 @@
 <%@ page session="false" %>
 <html>
 <head>
-	<title>계시판리스트</title>
-	<%@ include file="rscs/basicRscs.jsp" %>
+	<title>게시판리스트</title>
+	<%@ include file="../../../rscs/basicRscs.jsp" %>
 	<link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-    <link href="../../../admin/adminTemplate/css/styles.css" rel="stylesheet" />
+    <link href="/resources/admin/adminTemplate/css/styles.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/059fbc3cf8.js" crossorigin="anonymous"></script>
 </head>
 <body class="sb-nav-fixed">
+<form method="post" name="form" id="form">
+	<input type="hidden" name="ccSeq" value="${dto.bdSeq }">
+		<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>">
+		<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow }"/>">
+		<input type="hidden" name="checkboxSeqArray">
 	<!-- top banner s-->
-	<%@ include file="common/header.jsp"%>   
+	<%@ include file="../common/header.jsp"%>   
 	<!-- top banner e-->
         <div id="layoutSidenav">
         	<!-- sidebar s-->
-            <%@ include file="common/sidebar.jsp"%> 
+            <%@ include file="../common/sidebar.jsp"%> 
             <!-- sidebar e-->
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h3 class="mt-4">계시판관리</h3>
+                        <h3 class="mt-4">게시판관리</h3>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">계시글목록</li>
+                            <li class="breadcrumb-item active">게시글목록</li>
                         </ol>
 						<div class="col">
 							<div class="row">
@@ -90,138 +95,33 @@
 											</tr>
 										</thead>
 										<tbody>
+										<c:choose>
+											<c:when test="${fn:length(list) eq 0 }">
 											<tr>
-												<td class="tableHead1"><input class="listCheck" type="checkbox"></td>
-												<td class="tableHead1">#</td>
-												<td class="tableHead">작성자</td>
-												<td class="tableHead">글 제목</td>
-												<td class="tableHead">글 분류</td>
-												<td class="tableHead">시간</td>
-												<td class="tableHead">신고</td>
-												<td class="tableHead">삭제여부</td>
+												<td class="text-center" colspan="8">There is no data!</td>
 											</tr>
-											<tr>
+											</c:when>
+											<c:otherwise>
+												<c:forEach items="${list }" var="list" varStatus="status">
+											<tr style="cursor: pointer;">
 												<td class="tableHead1"><input class="listCheck" type="checkbox"></td>
-												<td class="tableHead1">#</td>
-												<td class="tableHead">작성자</td>
-												<td class="tableHead">글 제목</td>
-												<td class="tableHead">글 분류</td>
-												<td class="tableHead">시간</td>
+												<td class="tableHead1"><c:out value="${list.bdSeq }" /></td>
+												<td class="tableHead"><c:out value="${list.infrMmNickname }" /></td>
+												<td class="tableHead"><c:out value="${list.bdTitle }" /></td>
+												<td class="tableHead"><c:out value="${list.bdDiv }" /></td>
+												<td class="tableHead"><c:out value="${list.regDatetime }" /></td>
 												<td class="tableHead">신고</td>
-												<td class="tableHead">삭제여부</td>
+												<td class="tableHead"><c:out value="${list.delNy }" /></td>
 											</tr>
-											<tr>
-												<td class="tableHead1"><input class="listCheck" type="checkbox"></td>
-												<td class="tableHead1">#</td>
-												<td class="tableHead">작성자</td>
-												<td class="tableHead">글 제목</td>
-												<td class="tableHead">글 분류</td>
-												<td class="tableHead">시간</td>
-												<td class="tableHead">신고</td>
-												<td class="tableHead">삭제여부</td>
-											</tr>
-											<tr>
-												<td class="tableHead1"><input class="listCheck" type="checkbox"></td>
-												<td class="tableHead1">#</td>
-												<td class="tableHead">작성자</td>
-												<td class="tableHead">글 제목</td>
-												<td class="tableHead">글 분류</td>
-												<td class="tableHead">시간</td>
-												<td class="tableHead">신고</td>
-												<td class="tableHead">삭제여부</td>
-											</tr>
-											<tr>
-												<td class="tableHead1"><input class="listCheck" type="checkbox"></td>
-												<td class="tableHead1">#</td>
-												<td class="tableHead">작성자</td>
-												<td class="tableHead">글 제목</td>
-												<td class="tableHead">글 분류</td>
-												<td class="tableHead">시간</td>
-												<td class="tableHead">신고</td>
-												<td class="tableHead">삭제여부</td>
-											</tr>
-											<tr>
-												<td class="tableHead1"><input class="listCheck" type="checkbox"></td>
-												<td class="tableHead1">#</td>
-												<td class="tableHead">작성자</td>
-												<td class="tableHead">글 제목</td>
-												<td class="tableHead">글 분류</td>
-												<td class="tableHead">시간</td>
-												<td class="tableHead">신고</td>
-												<td class="tableHead">삭제여부</td>
-											</tr>
-											<tr>
-												<td class="tableHead1"><input class="listCheck" type="checkbox"></td>
-												<td class="tableHead1">#</td>
-												<td class="tableHead">작성자</td>
-												<td class="tableHead">글 제목</td>
-												<td class="tableHead">글 분류</td>
-												<td class="tableHead">시간</td>
-												<td class="tableHead">신고</td>
-												<td class="tableHead">삭제여부</td>
-											</tr>
-											<tr>
-												<td class="tableHead1"><input class="listCheck" type="checkbox"></td>
-												<td class="tableHead1">#</td>
-												<td class="tableHead">작성자</td>
-												<td class="tableHead">글 제목</td>
-												<td class="tableHead">글 분류</td>
-												<td class="tableHead">시간</td>
-												<td class="tableHead">신고</td>
-												<td class="tableHead">삭제여부</td>
-											</tr>
-											<tr>
-												<td class="tableHead1"><input class="listCheck" type="checkbox"></td>
-												<td class="tableHead1">#</td>
-												<td class="tableHead">작성자</td>
-												<td class="tableHead">글 제목</td>
-												<td class="tableHead">글 분류</td>
-												<td class="tableHead">시간</td>
-												<td class="tableHead">신고</td>
-												<td class="tableHead">삭제여부</td>
-											</tr>
-											<tr>
-												<td class="tableHead1"><input class="listCheck" type="checkbox"></td>
-												<td class="tableHead1">#</td>
-												<td class="tableHead">작성자</td>
-												<td class="tableHead">글 제목</td>
-												<td class="tableHead">글 분류</td>
-												<td class="tableHead">시간</td>
-												<td class="tableHead">신고</td>
-												<td class="tableHead">삭제여부</td>
-											</tr>
+												</c:forEach>
+											</c:otherwise>
+										</c:choose>
 										</tbody>
 									</table>
 								</div>
-								<div class="row mt-2 text-center">
-									<ul class="pagination" style="justify-content: center;">
-										<li class="page-item">
-											<a class="page-link" href="#" aria-label="Previous">
-												<span aria-hidden="true">&laquo;</span>
-											</a>
-										</li>
-										<li class="page-item">
-											<a class="page-link active" aria-current="page">1</a>
-										</li>
-										<li class="page-item">
-											<a class="page-link" href="#">2</a>
-										</li>
-										<li class="page-item">
-											<a class="page-link" href="#">3</a>
-										</li>
-										<li class="page-item">
-											<a class="page-link" href="#">4</a>
-										</li>
-										<li class="page-item">
-											<a class="page-link" href="#">5</a>
-										</li>
-										<li class="page-item">
-											<a class="page-link" href="#" aria-label="Next">
-												<span aria-hidden="true">&raquo;</span>
-											</a>
-										</li>
-									</ul>
-								</div>
+								<!-- pagination s -->
+								<%@include file="../common/pagination.jsp"%>
+								<!-- pagination e -->
 								<div class="row p-0">
 									<div class="col">
 										<button class="btn btn-danger" type="button" id="cglCancel"><i class="fa-duotone fa-x"></i></button>
@@ -239,8 +139,9 @@
 			</div>
 		</div>
         <!-- footer s -->
-        <%@ include file="common/footer.jsp"%> 
+        <%@ include file="../common/footer.jsp"%> 
         <!-- footer s -->
+</form>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="../../../admin/adminTemplate/js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>

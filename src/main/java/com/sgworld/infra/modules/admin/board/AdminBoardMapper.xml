@@ -6,6 +6,9 @@
 <mapper namespace="com.sgworld.infra.modules.admin.board.AdminBoardMapper">
 
 	<resultMap id="resultMapObj" type="com.sgworld.infra.modules.admin.board.AdminBoardDto"></resultMap>
+	<resultMap id="resultMapCommnet" type="com.sgworld.infra.modules.admin.board.AdminComment"></resultMap>
+	<resultMap id="resultMapLike" type="com.sgworld.infra.modules.admin.board.AdminLike"></resultMap>
+	
 	<sql id="selectCommon">
 		FROM board a
 		JOIN infrMember b on a.infrMmSeq = b.infrMmSeq
@@ -22,6 +25,11 @@
 			<include refid="selectCommon" />
 			ORDER BY a.bdSeq DESC
 		<include refid="Base.selectListLowerForMysql" />
+	</select>
+	
+	<select id="selectOneCount" resultType="Integer">
+		SELECT COUNT(*)
+		<include refid="selectCommon" />
 	</select>
 	
 	<select id="selectOne" resultMap="resultMapObj">
@@ -76,4 +84,22 @@
  	<delete id="delete">
  		DELETE FROM board WHERE bdSeq = #{bdSeq}
  	</delete>
+ 	
+ 	<!-- 댓글 -->
+ 	<select id="selectCommentList" resultMap="resultMapCommnet">
+ 		<include refid="Base.selectListUpperForMysql" />
+ 			SELECT
+ 				a.cmSeq
+ 				,b.infrMmNickname
+ 				,a.content
+ 				,a.regDatetime
+			FROM bdComment a
+			JOIN infrMember b on a.infrMmSeq = b.infrMmSeq 
+			JOIN board c on a.board_seq = c.bdSeq
+			WHERE 1=1
+				AND c.bdSeq = #{bdSeq}
+ 		<include refid="Base.selectListLowerForMysql" />
+ 	</select>
+ 	
+ 	
 </mapper>

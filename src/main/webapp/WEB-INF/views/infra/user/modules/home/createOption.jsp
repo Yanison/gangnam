@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 	
 
-<link href="./resources/user/home/css/modal.css" rel="stylesheet">
-<script src="./resources/user/home/js/modal.js"></script>
+<link href="/resources/user/home/css/modal.css" rel="stylesheet">
+<script src="/resources/user/home/js/modal.js"></script>
 
 <div class="selectCreatOption">
 	<p>방만들기</p>

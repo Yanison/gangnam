@@ -36,4 +36,10 @@ public class AdminBoardDao {
 	public int update(AdminBoardDto dto) { return sqlSession.update(namespace + ".update", dto); }
 	public int uelete(AdminBoardDto dto) { return sqlSession.update(namespace + ".uelete", dto); }
 	public int delete(AdminBoardVo vo) { return sqlSession.delete(namespace + ".delete", vo); }
+	
+	//댓글
+	public List<AdminBoardDto> selectCommentList(AdminBoardVo vo) {
+		List<AdminBoardDto> list = sqlSession.selectList(namespace + ".selectCommentList", vo);
+		return list;
+	}
 }

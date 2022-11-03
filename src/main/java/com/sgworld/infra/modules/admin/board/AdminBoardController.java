@@ -32,7 +32,11 @@ public class AdminBoardController {
 	}
 	
 	@RequestMapping(value="infrBdView")
-	public String infrBdView() throws Exception {
+	public String infrBdView(@ModelAttribute("vo") AdminBoardVo vo, Model model) throws Exception {
+		
+		List<AdminBoardDto> list = service.selectCommentList(vo);
+		model.addAttribute("list", list);
 		return "infra/admin/infrBd/infrBdView";
 	}
+	
 }

@@ -40,4 +40,10 @@ public class AdminBoardServiceImpl implements AdminBoardService {
 	@Override
 	public int delete(AdminBoardVo vo) throws Exception { return dao.delete(vo); }
 
+	@Override
+	public List<AdminBoardDto> selectCommentList(AdminBoardVo vo) throws Exception {
+		List<AdminBoardDto> list = dao.selectCommentList(vo);
+		return list;
+	}
+
 }

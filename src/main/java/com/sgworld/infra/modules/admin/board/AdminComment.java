@@ -6,19 +6,22 @@ public class AdminComment {
 	/*
 	 * beComment
 	 */
-	private Integer cmSeq;
+	private String cmSeq;
 	private String content;
 	private Date regDatetime;
 	private String regBy;
 	private Date modDatetime;
 	private String modBy;
-	private Integer bdSeq;
-	private Integer infrMmSeq;
+	private String board_seq;
+	private String infrMmSeq;
 	
-	public Integer getCmSeq() {
+	private String infrMmNickname;
+	private String bdSeq;
+///////////////////////////////////////////////	
+	public String getCmSeq() {
 		return cmSeq;
 	}
-	public void setCmSeq(Integer cmSeq) {
+	public void setCmSeq(String cmSeq) {
 		this.cmSeq = cmSeq;
 	}
 	public String getContent() {
@@ -51,17 +54,29 @@ public class AdminComment {
 	public void setModBy(String modBy) {
 		this.modBy = modBy;
 	}
-	public Integer getBdSeq() {
+	public String getBdSeq() {
 		return bdSeq;
 	}
-	public void setBdSeq(Integer bdSeq) {
+	public void setBdSeq(String bdSeq) {
 		this.bdSeq = bdSeq;
 	}
-	public Integer getInfrMmSeq() {
+	public String getInfrMmSeq() {
 		return infrMmSeq;
 	}
-	public void setInfrMmSeq(Integer ifnrMmSeq) {
+	public void setInfrMmSeq(String ifnrMmSeq) {
 		this.infrMmSeq = ifnrMmSeq;
+	}
+	public String getBoard_seq() {
+		return board_seq;
+	}
+	public void setBoard_seq(String board_seq) {
+		this.board_seq = board_seq;
+	}
+	public String getInfrMmNickname() {
+		return infrMmNickname;
+	}
+	public void setInfrMmNickname(String infrMmNickname) {
+		this.infrMmNickname = infrMmNickname;
 	}
 	
 	/*

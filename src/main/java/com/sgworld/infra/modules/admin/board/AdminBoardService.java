@@ -13,4 +13,7 @@ public interface AdminBoardService {
 	public int update(AdminBoardDto dto) throws Exception;
 	public int uelete(AdminBoardDto dto) throws Exception;
 	public int delete(AdminBoardVo vo) throws Exception;
+	
+	//댓글
+	public List<AdminBoardDto> selectCommentList(AdminBoardVo vo) throws Exception;
 }

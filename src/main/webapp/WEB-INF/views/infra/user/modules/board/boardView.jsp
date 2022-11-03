@@ -52,54 +52,39 @@
 				<div>
 					<div class="boarderFooter">
 						<div>
-							<p>댓글 200</p>
+							<p>전체댓글수 200</p>
 						</div>
 						<div class="commentHead">
-							<p class="writeBtn" type="button">작성하기</p>
+							<button class="writeBtn1" id="writeBtn">작성하기</button>
 						</div>
 					</div>
+					<div id="writeDiv" class="writeDiv">
+						<textarea style="width: 735px; height: 70px; resize: none;"></textarea>
+					</div>
+				<c:choose>
+					<c:when test="${fn:length(list) eq 0 }">
+						<div>
+							<p>댓글이 없습니다. 댓글을 남겨주세요.</p>
+						</div>
+					</c:when>
+					<c:otherwise>
+						<c:forEach items="${list }" var="list" varStatus="status">
 					<div class="commentBody">
 						<div>
-							<p>g*******</p>
+							<p><c:out value="${list.infrMmNickname }" /></p>
 						</div>
 						<div>
-							<p>6년차 실수령 300</p>
+							<p><c:out value="${list.content }" /></p>
 						</div>
 						<div class="iconComment">
-							<i class="fa-regular fa-clock"> 5분</i>
+							<i class="fa-regular fa-clock"> <c:out value="${list.regDatetime }" /></i>
 							<i class="fa-regular fa-thumbs-up"> 13</i>
 							<i class="fa-regular fa-message"> 10</i>
 						</div>
 					</div>
-					<div class="commentBody">
-						<div>
-							<p>k*****</p>
-						</div>
-						<div>
-							<p>들어오면 뭐해 빠져나가면 없음</p>
-						</div> 
-						<div class="iconComment">
-							<i class="fa-regular fa-clock"> 5분</i>
-							<i class="fa-regular fa-thumbs-up"> 13</i>
-							<i class="fa-regular fa-message"> 10</i>
-						</div>
-					</div>
-					<div class="commentBody">
-						<div>
-							<p>r*****</p>
-						</div>
-						<div> 
-							<p>세후 580</p>
-						</div>
-						<div class="iconComment">
-							<i class="fa-regular fa-clock"> 5분</i>
-							<i class="fa-regular fa-thumbs-up"> 13</i>
-							<i class="fa-regular fa-message"> 10</i>
-						</div>
-					</div>
-					<div class="commentPlus">
-						<p>더보기<i class="fa-solid fa-chevron-down"></i></p>
-					</div>
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
 				</div>
 			</article>
 		</section>
@@ -109,5 +94,11 @@
 	<!-- footer s -->
 	<%@ include file="../../common/footer.jsp" %>
 	<!-- footer e -->
+	
+	<script type="text/javascript">
+		$(document).ready(function(){
+			
+		})
+	</script>
 </body>
 </html>
