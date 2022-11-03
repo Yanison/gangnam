@@ -24,16 +24,56 @@
 		<include refid="Base.selectListLowerForMysql" />
 	</select>
 	
-	<select id="selectOneCount" resultType="Integer">
-		SELECT COUNT(*)
-		<include refid="selectCommon" />
-	</select>
-	
 	<select id="selectOne" resultMap="resultMapObj">
 		SELECT
 			a.*
+			,b.infrMmNickname
 		FROM board a
+		JOIN infrMember b on a.infrMmSeq = b.infrMmSeq
 		WHERE 1=1
 			AND bdSeq = #{bdSeq}
 	</select>
+
+	<insert id="insert">
+		INSERT INTO board (
+			infrMmSeq
+			,bdDiv
+			,bdTitle
+			,bdContent
+			,regDatetime
+			,delNy
+		)
+		VALUES (
+			#{infrMmSeq}
+			,1
+			,#{bdTitle}
+			,#{bdContent}
+			,now()
+			,1
+		)
+			<selectKey resultType="String" keyProperty="bdSeq" order="AFTER">
+				SELECT last_insert_id()
+			</selectKey>
+	</insert>
+	
+	<update id="update">
+		UPDATE board
+		SET
+			bdDiv = 1
+			,bdTitle = #{bdTitle}
+			,bdContent = #{bdContent}
+		WHERE
+			bdSeq = #{bdSeq}
+	</update>
+	
+	<update id="uelete">
+		UPDATE board
+		SET
+			delNy = 0
+		WHERE bdSeq = #{bdSeq}
+	</update>
+ 
+ 	<delete id="delete">
+ 		DELETE FROM board WHERE bdSeq = #{bdSeq}
+ 	</delete>
 </mapper>

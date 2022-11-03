@@ -30,4 +30,10 @@ public class AdminBoardDao {
 		AdminBoardDto item = sqlSession.selectOne(namespace + ".selectOne", vo);
 		return item;
 	}
+	
+	//글쓰기
+	public int insert(AdminBoardDto dto) { return sqlSession.insert(namespace + ".insert", dto); }
+	public int update(AdminBoardDto dto) { return sqlSession.update(namespace + ".update", dto); }
+	public int uelete(AdminBoardDto dto) { return sqlSession.update(namespace + ".uelete", dto); }
+	public int delete(AdminBoardVo vo) { return sqlSession.delete(namespace + ".delete", vo); }
 }

@@ -9,20 +9,24 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.sgworld.infra.modules.admin.board.AdminBoardDto;
+import com.sgworld.infra.modules.admin.board.AdminBoardServiceImpl;
+import com.sgworld.infra.modules.admin.board.AdminBoardVo;
+
 @Controller
 @RequestMapping(value = "/board/")
 public class BoardController {
 	
 	@Autowired
-	BoardServiceImpl service;
+	AdminBoardServiceImpl service;
 	
 	//계시판 리스트
 	@RequestMapping(value = "boardList")
-	public String boardList(@ModelAttribute("vo") BoardVo vo, Model model) throws Exception {
+	public String boardList(@ModelAttribute("vo") AdminBoardVo vo, Model model) throws Exception {
 		
 		vo.setParamsPaging(service.selectOneCount(vo));
 		
-		List<Board> list = service.selectList(vo);
+		List<AdminBoardDto> list = service.selectList(vo);
 		model.addAttribute("list", list);
 		
 		return "infra/user/modules/board/boardHome";
@@ -30,9 +34,9 @@ public class BoardController {
 	
 	//게시글 보기
 	@RequestMapping(value = "boardView")
-	public String boardView(@ModelAttribute("vo") BoardVo vo, Model model) throws Exception {
+	public String boardView(@ModelAttribute("vo") AdminBoardVo vo, Model model) throws Exception {
 		
-		Board item = service.selectOne(vo);
+		AdminBoardDto item = service.selectOne(vo);
 		model.addAttribute("item", item);
 		
 		return "infra/user/modules/board/boardView";
@@ -47,7 +51,7 @@ public class BoardController {
 
 	@SuppressWarnings(value = {"all"})
 	@RequestMapping(value = "boardInst")
-	public String boardInst(BoardVo vo, Board dto, RedirectAttributes redirectAttributes) throws Exception {
+	public String boardInst(AdminBoardVo vo, AdminBoardDto dto, RedirectAttributes redirectAttributes) throws Exception {
 		
 		service.insert(dto);
 		vo.setBdSeq(dto.getBdSeq());
@@ -57,19 +61,19 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "boardUpdt")
-	public String boardUpdt(BoardVo vo, Board dto, RedirectAttributes redirectAttributes) throws Exception {
+	public String boardUpdt(AdminBoardVo vo, AdminBoardDto dto, RedirectAttributes redirectAttributes) throws Exception {
 		service.update(dto);
 		return "redirect:/board/boardList";
 	}
 	
 	@RequestMapping(value = "boardUele")
-	public String boardUele(BoardVo vo, Board dto, RedirectAttributes redirectAttributes) throws Exception {
+	public String boardUele(AdminBoardVo vo, AdminBoardDto dto, RedirectAttributes redirectAttributes) throws Exception {
 		service.uelete(dto);
 		return "redirect:/board/boardList";
 	}
 	
 	@RequestMapping(value = "boardDele")
-	public String boardDele(BoardVo vo, RedirectAttributes redirectAttributes) throws Exception {
+	public String boardDele(AdminBoardVo vo, RedirectAttributes redirectAttributes) throws Exception {
 		service.delete(vo);
 		return "redirect:/board/boardList";
 	}

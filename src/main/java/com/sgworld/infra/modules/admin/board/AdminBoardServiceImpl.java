@@ -27,5 +27,17 @@ public class AdminBoardServiceImpl implements AdminBoardService {
 		AdminBoardDto item = dao.selectOne(vo);
 		return item;
 	}
+	
+	@Override
+	public int insert(AdminBoardDto dto) throws Exception { return dao.insert(dto); }
+		
+	@Override
+	public int update(AdminBoardDto dto) throws Exception { return dao.update(dto); }
+		
+	@Override
+	public int uelete(AdminBoardDto dto) throws Exception { return dao.uelete(dto); }
+		
+	@Override
+	public int delete(AdminBoardVo vo) throws Exception { return dao.delete(vo); }
 
 }

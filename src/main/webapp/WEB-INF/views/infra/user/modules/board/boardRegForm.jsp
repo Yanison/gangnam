@@ -9,16 +9,27 @@
 	<title>sgworld | 싸게월드</title>
 	<%@ include file="../../../../rscs/basicRscs.jsp" %>
 	<script src="https://kit.fontawesome.com/059fbc3cf8.js" crossorigin="anonymous"></script>
+	
+	<!-- include libraries(jQuery, bootstrap) -->
+	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+	
+	<!-- include summernote css/js-->
+	<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+	
 	<link href="/resources/user/board/css/boardForm.css" rel="stylesheet">
 	<link href="/resources/user/home/css/header.css" rel="stylesheet">
 	<link href="/resources/user/home/css/footer.css" rel="stylesheet">
+	
 </head>
 <body>
 	<!-- header s -->
 	<%@ include file="../../common/header.jsp" %>
 	<!-- header e -->
 	<form method="post" id="form" name="form" autocomplete="off" enctype="multipart/form-data">
-	<input type="hidden" id="infrMmSeq" value="${infrMmSeq}">
+	<input type="hidden" id="infrMmSeq" name="infrMmSeq" value="${infrMmSeq}">
 	<!-- contend s -->
 	<section class="body">
 		<div class="boardFormHead">
@@ -47,7 +58,9 @@
 						<input class="contentTitle" type="text" id="bdTitle" name="bdTitle" value="<c:out value="${dto.bdTitle }" />" placeholder="글 제목을 입력해 주세요.">
 					</div>
 					<div class="boardContent">
-						<textarea class="boardFormContent" id="bdContent" name="bdContent" placeholder="내용을 입력해 주세요."><c:out value="${dto.bdContent }" /></textarea>
+						<div class="boardFormContent" id="summernote">
+							<%-- <textarea class="boardFormContent" id="bdContent" name="bdContent" placeholder="내용을 입력해 주세요."><c:out value="${dto.bdContent }" /></textarea> --%>
+						</div>
 					</div>
 				</div>
 				<div class="boardFooter">
@@ -82,6 +95,13 @@
 		$("#btnBoardRegForm").on("click", function(){
 			$(location).attr("href", goUrlBoardRegForm);
 		})
+		
+		$(document).ready(function() {
+		  $('#summernote').summernote({
+			  height: 450,
+			  width: 860,
+		  });
+		});
 	</script>
 </body>
 </html>

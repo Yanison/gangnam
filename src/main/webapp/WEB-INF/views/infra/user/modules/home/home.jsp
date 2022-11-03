@@ -7,8 +7,8 @@
 	<title>SGWorld</title>
 	<%@ include file="../../../../rscs/basicRscs.jsp" %>
 	 
-	<link href="./resources/user/home/css/home.css" rel="stylesheet">
-	<script src="./resources/user/home/js/home.js"></script>
+	<link href="/resources/user/home/css/home.css" rel="stylesheet">
+	<script src="/resources/user/home/js/home.js"></script>
 </head>
 <body>
 	<header>
@@ -28,7 +28,7 @@
 				<div class="onSgWorldList onSgWorldList1">
 					<div>
 						<a class="SgWorldPreview">
-							<img scr="./resources/common/images/pepe.png">
+							<img scr="/resources/common/images/pepe.png">
 						</a>
 						<div class="sgwTitle">
 							<div>
@@ -47,7 +47,7 @@
 				<div class="onSgWorldList onSgWorldList2">
 					<div>
 						<a class="SgWorldPreview">
-							<img scr="./resources/common/images/pepe.png">
+							<img scr="/resources/common/images/pepe.png">
 						</a>
 						<div class="sgwTitle">
 							<div>

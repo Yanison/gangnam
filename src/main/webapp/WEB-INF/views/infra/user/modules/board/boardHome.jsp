@@ -24,7 +24,7 @@
 		<div class="boarderTitle">
 			<h2>자유게시판</h2> <!-- 게시판 타이틀 -->
 		</div>
-		<section class="boarder">
+		<section class="boarder row">
 		<c:choose>
 			<c:when test="${fn:length(list) eq 0 }">
 				<div>
@@ -33,7 +33,7 @@
 			</c:when>
 			<c:otherwise>
 				<c:forEach items="${list }" var="list" varStatus="status">
-			<article class="board">
+			<article class="board col-4">
 				<div class="post1" style="curcor: pointer;">
 					<div class="state1">
 						<span>NOW</span> <!-- 작성상태(최신글, 조회수 높은 글 등) -->

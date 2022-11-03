@@ -5,7 +5,7 @@ import java.util.Date;
 import com.sgworld.infra.common.base.Base;
 
 public class AdminBoardDto extends Base{
-	private Integer bdSeq;
+	private String bdSeq;
 	private Integer infrMmSeq;
 	private Integer bdDiv;
 	private String bdTitle;
@@ -19,10 +19,10 @@ public class AdminBoardDto extends Base{
 
 ///////////////////////////////////////////////////	
 	
-	public Integer getBdSeq() {
+	public String getBdSeq() {
 		return bdSeq;
 	}
-	public void setBdSeq(Integer bdSeq) {
+	public void setBdSeq(String bdSeq) {
 		this.bdSeq = bdSeq;
 	}
 	public Integer getInfrMmSeq() {

@@ -30,6 +30,7 @@ public class AdminBoardVo extends BaseVo {
 	private String shDateEnd;
 	private Integer shOptionDate;
 	
+	private String bdSeq;
 /////////////////////////////////////////////////////	
 	
 	public int getThisPage() {
@@ -140,7 +141,12 @@ public class AdminBoardVo extends BaseVo {
 	public void setShOptionDate(Integer shOptionDate) {
 		this.shOptionDate = shOptionDate;
 	}
-
+	public String getBdSeq() {
+		return bdSeq;
+	}
+	public void setBdSeq(String bdSeq) {
+		this.bdSeq = bdSeq;
+	}
 //////////////////////////////////////////////////////////////
 	
 	public void setParamsPaging(int totalRows) {
@@ -192,5 +198,6 @@ public class AdminBoardVo extends BaseVo {
 //			System.out.println("getStartRnumForMysql(): " + getStartRnumForMysql());
 			
 		}
+	
 	
 }
