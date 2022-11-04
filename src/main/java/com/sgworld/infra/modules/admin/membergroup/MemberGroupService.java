@@ -18,4 +18,7 @@ public interface MemberGroupService {
 	
 	//회원정보 수정
 	public int udptMmifo(MemberGroup dto)throws Exception;
+	
+	//중복확인
+	public MemberGroup isduple(MemberGroup dto) throws Exception;
 }
