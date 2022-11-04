@@ -175,6 +175,21 @@ public class MemberGroup extends MemberGroupVo{
 	}
 	
 	
-	
+	private String dupleValiObj;
+	private String shDupleStr;
+
+
+	public String getDupleValiObj() {
+		return dupleValiObj;
+	}
+	public void setDupleValiObj(String dupleValiObj) {
+		this.dupleValiObj = dupleValiObj;
+	}
+	public String getShDupleStr() {
+		return shDupleStr;
+	}
+	public void setShDupleStr(String shDupleStr) {
+		this.shDupleStr = shDupleStr;
+	}
 	
 }
