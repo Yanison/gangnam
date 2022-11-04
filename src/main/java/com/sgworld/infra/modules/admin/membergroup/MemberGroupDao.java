@@ -48,5 +48,10 @@ public class MemberGroupDao {
 		return sqlSession.selectList(namespace + ".selectListBoard", vo);
 	}
 	
+	//user_admin 부분삭제
+	public int ueleteMm(MemberGroup dto) {
+		return sqlSession.update(namespace + ".ueleteMm", dto);
+	}
+	
 	
 }

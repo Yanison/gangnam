@@ -43,15 +43,24 @@
 									<th>조회수</th>
 									<th>좋아요</th>
 								</tr>
-								<c:forEach items="${list }" var="list" varStatus="status">	
-								<tr>
-									<td><input type="checkbox"></td>
-									<td><c:out value="${list.bdTitle }" /></td>
-									<td><c:out value="${list.regDatetime }" /></td>
-									<td>10<!-- ? --></td>
-									<td><c:out value="${list.bdLikeSeq }" /></td>
-								</tr>
-								</c:forEach>
+								<c:choose>
+									<c:when test="${fn:length(list) eq 0}">
+							  			<tr>
+							  				<td class="text-center" colspan="5">작성글이 없습니다</td>
+							  			</tr>
+					  				</c:when>
+					  				<c:otherwise> 
+										<c:forEach items="${list }" var="list" varStatus="status">	
+										<tr>
+											<td><input type="checkbox"></td>
+											<td><c:out value="${list.bdTitle }" /></td>
+											<td><c:out value="${list.regDatetime }" /></td>
+											<td>10<!-- ? --></td>
+											<td><c:out value="${list.bdLikeSeq }" /></td>
+										</tr>
+										</c:forEach>
+									</c:otherwise>
+								</c:choose>		
 							</table>
 							<div class="button">
 								<button type="button" class="btnDelete">삭제</button>

@@ -123,7 +123,13 @@
 			AND infrMmSeq = #{infrMmSeq}	
 	</update>
 	
+	<!-- user-admin uelete -->
 	<update id="ueleteMm">
+		UPDATE infrMember
+		SET
+			infrMmDelNy = 0
+		WHERE 
+			infrMmSeq = #{infrMmSeq}	
 	</update>
 	
 	<delete id="deleteMm">
@@ -140,6 +146,9 @@
 		LEFT JOIN board b on b.infrMmSeq = a.infrMmSeq
 		WHERE 1=1
 			AND a.infrMmSeq = #{infrMmSeq}
+			ORDER BY b.bdSeq DESC
 	</select>
+	
+	
 	
 </mapper>

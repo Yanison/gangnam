@@ -48,6 +48,13 @@ public class MemberGroupServiceImpl implements MemberGroupService {
 	public List<MemberGroup> selectListBoard(MemberGroupVo vo) throws Exception {
 		return mmDao.selectListBoard(vo);
 	}
+
+	@Override
+	public int ueleteMm(MemberGroup dto) throws Exception {
+		return mmDao.ueleteMm(dto);
+	}
+	
+	
 	
 	
 }

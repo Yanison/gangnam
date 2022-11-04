@@ -24,4 +24,7 @@ public interface MemberGroupService {
 	
 	//user_계시판 리스트 띄우기
 	public List<MemberGroup>selectListBoard(MemberGroupVo vo)throws Exception;
+	
+	//user_admin 부분삭제
+	public int ueleteMm(MemberGroup dto)throws Exception;
 }
