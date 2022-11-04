@@ -33,6 +33,10 @@ public class MemberGroupDao {
 		return sqlSession.selectOne(namespace + ".selectUserLogin", dto);
 	}
 	
+	public MemberGroup isduple(MemberGroup dto) {
+		return sqlSession.selectOne(namespace + ".isduple", dto);
+	}
+	
 	//회원정보 수정
 	public int udptMmifo(MemberGroup dto) {
 		return sqlSession.update(namespace +".udptMmifo", dto);
