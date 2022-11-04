@@ -21,6 +21,7 @@ public class MemberGroupDao {
 		return sqlSession.selectList(namespace + ".selectMmList", dto);
 	}
 	
+	//user_회원정보 보기
 	public MemberGroup selectMmOne(MemberGroupVo vo) {
 		return sqlSession.selectOne(namespace +".selectMmOne", vo);
 	}
@@ -37,8 +38,15 @@ public class MemberGroupDao {
 		return sqlSession.selectOne(namespace + ".isduple", dto);
 	}
 	
-	//회원정보 수정
+	//user_회원정보 수정
 	public int udptMmifo(MemberGroup dto) {
 		return sqlSession.update(namespace +".udptMmifo", dto);
 	}
+	
+	//user_회원 계시글 리스트 띄우기
+	public List<MemberGroup>selectListBoard(MemberGroupVo vo){
+		return sqlSession.selectList(namespace + ".selectListBoard", vo);
+	}
+	
+	
 }

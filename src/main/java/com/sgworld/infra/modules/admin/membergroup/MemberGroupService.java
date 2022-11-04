@@ -21,4 +21,7 @@ public interface MemberGroupService {
 	
 	//중복확인
 	public MemberGroup isduple(MemberGroup dto) throws Exception;
+	
+	//user_계시판 리스트 띄우기
+	public List<MemberGroup>selectListBoard(MemberGroupVo vo)throws Exception;
 }

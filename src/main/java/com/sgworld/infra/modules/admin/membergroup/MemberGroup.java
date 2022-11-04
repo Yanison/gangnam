@@ -29,6 +29,21 @@ public class MemberGroup extends MemberGroupVo{
 	private Integer infrMmUseNy;
 	private Integer infrMmDelNy;
 	
+	//board
+	private String bdSeq;
+	private Integer bdDiv;
+	private String bdTitle;
+	private String bdContent;
+	private Date regDatetie;
+	private String regBy;
+	private Date modDateTime;
+	private String modBy;
+	private Integer delNy;
+		
+	//bdLike
+	private String bdLikeSeq;
+	private Integer likeNy;
+	
 	public String getInfrMmSeq() {
 		return infrMmSeq;
 	}
@@ -174,7 +189,77 @@ public class MemberGroup extends MemberGroupVo{
 		this.infrMmDelNy = infrMmDelNy;
 	}
 	
+	//board get set
+	public String getBdSeq() {
+		return bdSeq;
+	}
+	public void setBdSeq(String bdSeq) {
+		this.bdSeq = bdSeq;
+	}
+	public Integer getBdDiv() {
+		return bdDiv;
+	}
+	public void setBdDiv(Integer bdDiv) {
+		this.bdDiv = bdDiv;
+	}
+	public String getBdTitle() {
+		return bdTitle;
+	}
+	public void setBdTitle(String bdTitle) {
+		this.bdTitle = bdTitle;
+	}
+	public String getBdContent() {
+		return bdContent;
+	}
+	public void setBdContent(String bdContent) {
+		this.bdContent = bdContent;
+	}
+	public Date getRegDatetie() {
+		return regDatetie;
+	}
+	public void setRegDatetie(Date regDatetie) {
+		this.regDatetie = regDatetie;
+	}
+	public String getRegBy() {
+		return regBy;
+	}
+	public void setRegBy(String regBy) {
+		this.regBy = regBy;
+	}
+	public Date getModDateTime() {
+		return modDateTime;
+	}
+	public void setModDateTime(Date modDateTime) {
+		this.modDateTime = modDateTime;
+	}
+	public String getModBy() {
+		return modBy;
+	}
+	public void setModBy(String modBy) {
+		this.modBy = modBy;
+	}
+	public Integer getDelNy() {
+		return delNy;
+	}
+	public void setDelNy(Integer delNy) {
+		this.delNy = delNy;
+	}
 	
+	// bdLike get set
+	public String getBdLikeSeq() {
+		return bdLikeSeq;
+	}
+	public void setBdLikeSeq(String bdLikeSeq) {
+		this.bdLikeSeq = bdLikeSeq;
+	}
+	public Integer getLikeNy() {
+		return likeNy;
+	}
+	public void setLikeNy(Integer likeNy) {
+		this.likeNy = likeNy;
+	}
+
+
 	private String dupleValiObj;
 	private String shDupleStr;
 

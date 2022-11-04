@@ -43,34 +43,15 @@
 									<th>조회수</th>
 									<th>좋아요</th>
 								</tr>
+								<c:forEach items="${list }" var="list" varStatus="status">	
 								<tr>
 									<td><input type="checkbox"></td>
-									<td>자기 어필 한마디씩 해봐</td>
-									<td>2022-10-14</td>
-									<td>10</td>
-									<td>0</td>
+									<td><c:out value="${list.bdTitle }" /></td>
+									<td><c:out value="${list.regDatetime }" /></td>
+									<td>10<!-- ? --></td>
+									<td><c:out value="${list.bdLikeSeq }" /></td>
 								</tr>
-								<tr>
-									<td><input type="checkbox"></td>
-									<td>후배한테 설렜다</td>
-									<td>2022-10-09</td>
-									<td>456</td>
-									<td>2</td>
-								</tr>
-								<tr>
-									<td><input type="checkbox"></td>
-									<td>잘헤어진거지?</td>
-									<td>2022-10-06</td>
-									<td>999</td>
-									<td>5</td>
-								</tr>
-								<tr>
-									<td><input type="checkbox"></td>
-									<td>다들 매달 찍히는 월급 얼마정도야?</td>
-									<td>2022-10-02</td>
-									<td>1247</td>
-									<td>20</td>
-								</tr>
+								</c:forEach>
 							</table>
 							<div class="button">
 								<button type="button" class="btnDelete">삭제</button>
