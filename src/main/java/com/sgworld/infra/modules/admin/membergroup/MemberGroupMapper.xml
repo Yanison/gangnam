@@ -29,6 +29,42 @@
 		and infrMmPw = #{infrMmPw}
 	</select>
 	
+	<select id="isduple" resultMap="MemberGroup">
+		select 
+	<choose>
+		<when test="dupleValiObj ==  infrMmId">
+				infrMmId
+			from infrMember 
+			where 
+				infrMmId = #{shDupleStr}
+		</when>
+		<when test="dupleValiObj ==  infrMmPw">
+				infrMmPw
+			from infrMember 
+			where 
+				infrMmPw = #{shDupleStr}
+		</when>
+		<when test="dupleValiObj ==  infrMmName">
+				infrMmName
+			from infrMember 
+			where 
+				infrMmName = #{shDupleStr
+		</when>
+		<when test="dupleValiObj ==  infrMmNickName">
+				infrMmNickname
+			from infrMember 
+			where 
+				infrMmNickname = #{shDupleStr
+		</when>
+		<when test="dupleValiObj ==  infrMmPhone">
+				infrMmPhone
+			from infrMember 
+			where 
+				infrMmPhone = #{shDupleStr
+		</when>
+	</choose>
+	</select>
+	
 	<insert id="insertMmSignIn">
 	insert into infrMemeber(
 	  infrMmId
