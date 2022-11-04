@@ -31,6 +31,11 @@ public class MemberGroupServiceImpl implements MemberGroupService {
 	public MemberGroup selectUserLogin(MemberGroup dto) throws Exception{
 		return mmDao.selectUserLogin(dto);
 	}
+	
+	@Override
+	public MemberGroup isduple(MemberGroup dto) throws Exception{
+		return mmDao.isduple(dto);
+	}
 
 
 	@Override
