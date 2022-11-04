@@ -5,7 +5,7 @@ header, footer{
 
 .bodyWrapper{
 	width:100%;
-	height:1200px;
+	height:1300px;
 	display:flex;
 	flex-direction:column;
 	justify-content:center;
@@ -32,6 +32,40 @@ img.logo{
 	width:420px;
 	display:flex;
 	justify-content:space-between;
+}
+
+.inputSignInGroup div.inputDiv{
+	height:75px;
+	position: relative;
+}
+.alertDiv{
+	color:#fff;
+	font-size:12px;
+	position: absolute;
+    bottom: 3px;
+    left:5px;
+}
+
+.ReAlertDiv{
+	color:#fff;
+	font-size:12px;
+	position: absolute;
+    bottom: 3px;
+    right:5px;
+}
+
+.enable{
+	color:#67db5c;
+}
+
+.disable{
+	color:#e2b3b9;
+}
+.duple{
+	color:#e2b3b9;
+}
+.inputSignInGroup div.inputDiv .memberInput{
+	width:100%;
 }
 
 .inputSignInGroup > .dobDiv{
@@ -66,7 +100,6 @@ img.logo{
 	width:420px;
 	border-radius:5px;
 	border:1px solid #eee;
-	margin:10px 0px;
 }
 
 .Btn{
@@ -84,5 +117,5 @@ img.logo{
 }
 
 .getKkoAddr .memberInput{
-	height:30px;
+	height:50px;
 }

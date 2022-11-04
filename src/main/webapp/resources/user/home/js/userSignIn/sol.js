@@ -20,27 +20,6 @@ function getSMS(){
 	})
 }
 
-function addHtmlBelowInput(msg){
-	
-	var html ="";
-	html +='<span id="AuthCodeValiText"class="vailText">'
-	html += msg
-	html +='</span>'
-}
-
-function onkeyupCerti(){
-	var certiNum = $('#certiNum').val()
-	var AuthCode = $('#AuthCode').val()
-	console.log("onkeyupCerti AuthCode // certiNum ::" + AuthCode +"//" + certiNum)
-	
-	
-	if(certiNum == AuthCode){
-		$('#AuthCodeValiText').text("일치합니다")
-	}else{
-		$('#AuthCodeValiText').text("일치하지않습니다")
-	}
-}
-
 
 
 
