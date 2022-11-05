@@ -34,7 +34,7 @@ public class MemberGroupDao {
 		return sqlSession.selectOne(namespace + ".selectUserLogin", dto);
 	}
 	
-	public MemberGroup isduple(MemberGroup dto) {
+	public int isduple(MemberGroup dto) {
 		return sqlSession.selectOne(namespace + ".isduple", dto);
 	}
 	

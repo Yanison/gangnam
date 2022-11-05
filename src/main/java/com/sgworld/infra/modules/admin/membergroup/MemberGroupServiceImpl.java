@@ -33,7 +33,7 @@ public class MemberGroupServiceImpl implements MemberGroupService {
 	}
 	
 	@Override
-	public MemberGroup isduple(MemberGroup dto) throws Exception{
+	public int isduple(MemberGroup dto) throws Exception{
 		return mmDao.isduple(dto);
 	}
 
