@@ -27,7 +27,7 @@ public class MemberGroupDao {
 	}
 	
 	public int insertMmSignIn (MemberGroup dto) {
-		return sqlSession.insert(namespace + "insertMmSignIn", dto);
+		return sqlSession.insert(namespace + ".insertMmSignIn", dto);
 	}
 	
 	public MemberGroup selectUserLogin(MemberGroup dto) {

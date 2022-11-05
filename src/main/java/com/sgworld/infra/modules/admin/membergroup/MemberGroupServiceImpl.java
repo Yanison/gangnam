@@ -53,4 +53,7 @@ public class MemberGroupServiceImpl implements MemberGroupService {
 	public int ueleteMm(MemberGroup dto) throws Exception {
 		return mmDao.ueleteMm(dto);
 	}
+	
+	
+	
 }

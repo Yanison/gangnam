@@ -2,6 +2,8 @@ package com.sgworld.infra.modules.admin.membergroup;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class MemberGroup extends MemberGroupVo{
 	
 	private String infrMmSeq;
@@ -10,22 +12,24 @@ public class MemberGroup extends MemberGroupVo{
 	private String infrMmKakaoIdToken;
 	private String infrMmPw;
 	private String infrMmName;
-	private String infrMmNinckName;
-	private Date infrMmDod;
+	private String infrMmNickname;
+	private Date infrMmBod;
 	private Integer infrMmGender;
 	private String infrMmPhone;
+	private Integer infrMmTelecom;
 	private String infrMmEmailId;
-	private Integer infrMmEmailAddr;
+	private Integer infrMmEmailAddress;
 	private String infrMmZip;
 	private String infrMmRoadAdress;
 	private String infrMmJibunAdress;
 	private String infrMmDetailAdress;
+	private String infrMmExtraAddress;
 	private String infrMmLat;
 	private String infrMmLong;
-	private Date regDateAt;
-	private String regDateBy;
-	private Date modDateAt;
-	private String modDateBy;
+	private Date regDatetime;
+	private String regBy;
+	private Date modDatetime;
+	private String modBy;
 	private Integer infrMmUseNy;
 	private Integer infrMmDelNy;
 	
@@ -76,17 +80,17 @@ public class MemberGroup extends MemberGroupVo{
 	public void setInfrMmName(String infrMmName) {
 		this.infrMmName = infrMmName;
 	}
-	public String getInfrMmNinckName() {
-		return infrMmNinckName;
+	public String getInfrMmNickname() {
+		return infrMmNickname;
 	}
-	public void setInfrMmNinckName(String infrMmNinckName) {
-		this.infrMmNinckName = infrMmNinckName;
+	public void setInfrMmNickname(String infrMmNickname) {
+		this.infrMmNickname = infrMmNickname;
 	}
-	public Date getInfrMmDod() {
-		return infrMmDod;
+	public Date getInfrMmBod() {
+		return infrMmBod;
 	}
-	public void setInfrMmDod(Date infrMmDod) {
-		this.infrMmDod = infrMmDod;
+	public void setInfrMmBod(Date infrMmBod) {
+		this.infrMmBod = infrMmBod;
 	}
 	public Integer getInfrMmGender() {
 		return infrMmGender;
@@ -100,17 +104,23 @@ public class MemberGroup extends MemberGroupVo{
 	public void setInfrMmPhone(String infrMmPhone) {
 		this.infrMmPhone = infrMmPhone;
 	}
+	public Integer getInfrMmTelecom() {
+		return infrMmTelecom;
+	}
+	public void setInfrMmTelecom(Integer infrMmTelecom) {
+		this.infrMmTelecom = infrMmTelecom;
+	}
 	public String getInfrMmEmailId() {
 		return infrMmEmailId;
 	}
 	public void setInfrMmEmailId(String infrMmEmailId) {
 		this.infrMmEmailId = infrMmEmailId;
 	}
-	public Integer getInfrMmEmailAddr() {
-		return infrMmEmailAddr;
+	public Integer getInfrMmEmailAddress() {
+		return infrMmEmailAddress;
 	}
-	public void setInfrMmEmailAddr(Integer infrMmEmailAddr) {
-		this.infrMmEmailAddr = infrMmEmailAddr;
+	public void setInfrMmEmailAddress(Integer infrMmEmailAddress) {
+		this.infrMmEmailAddress = infrMmEmailAddress;
 	}
 	public String getInfrMmZip() {
 		return infrMmZip;
@@ -136,6 +146,12 @@ public class MemberGroup extends MemberGroupVo{
 	public void setInfrMmDetailAdress(String infrMmDetailAdress) {
 		this.infrMmDetailAdress = infrMmDetailAdress;
 	}
+	public String getInfrMmExtraAddress() {
+		return infrMmExtraAddress;
+	}
+	public void setInfrMmExtraAddress(String infrMmExtraAddress) {
+		this.infrMmExtraAddress = infrMmExtraAddress;
+	}
 	public String getInfrMmLat() {
 		return infrMmLat;
 	}
@@ -148,29 +164,29 @@ public class MemberGroup extends MemberGroupVo{
 	public void setInfrMmLong(String infrMmLong) {
 		this.infrMmLong = infrMmLong;
 	}
-	public Date getRegDateAt() {
-		return regDateAt;
+	public Date getRegDatetime() {
+		return regDatetime;
 	}
-	public void setRegDateAt(Date regDateAt) {
-		this.regDateAt = regDateAt;
+	public void setRegDatetime(Date regDatetime) {
+		this.regDatetime = regDatetime;
 	}
-	public String getRegDateBy() {
-		return regDateBy;
+	public String getRegBy() {
+		return regBy;
 	}
-	public void setRegDateBy(String regDateBy) {
-		this.regDateBy = regDateBy;
+	public void setRegBy(String regBy) {
+		this.regBy = regBy;
 	}
-	public Date getModDateAt() {
-		return modDateAt;
+	public Date getModDatetime() {
+		return modDatetime;
 	}
-	public void setModDateAt(Date modDateAt) {
-		this.modDateAt = modDateAt;
+	public void setModDatetime(Date modDatetime) {
+		this.modDatetime = modDatetime;
 	}
-	public String getModDateBy() {
-		return modDateBy;
+	public String getModBy() {
+		return modBy;
 	}
-	public void setModDateBy(String modDateBy) {
-		this.modDateBy = modDateBy;
+	public void setModBy(String modBy) {
+		this.modBy = modBy;
 	}
 	public Integer getInfrMmUseNy() {
 		return infrMmUseNy;

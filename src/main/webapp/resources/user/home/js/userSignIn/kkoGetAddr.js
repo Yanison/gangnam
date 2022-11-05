@@ -1,7 +1,6 @@
 $(document).ready(function(){
 	
 	$('#kkoAddr').click(function sample4_execDaumPostcode(){
-		alert("123123")
 		 new daum.Postcode({
             oncomplete: function(data) {
                 // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
@@ -27,14 +26,14 @@ $(document).ready(function(){
 
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
                 document.getElementById('postcode').value = data.zonecode;
-                document.getElementById("roadAddress").value = roadAddr;
-                document.getElementById("jibunAddress").value = data.jibunAddress;
+                document.getElementById("infrMmRoadAddress").value = roadAddr;
+                document.getElementById("infrMmJibunAddress").value = data.jibunAddress;
                 
                 // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
                 if(roadAddr !== ''){
-                    document.getElementById("extraAddress").value = extraRoadAddr;
+                    document.getElementById("infrMmExtraAddress").value = extraRoadAddr;
                 } else {
-                    document.getElementById("extraAddress").value = '';
+                    document.getElementById("infrMmExtraAddress").value = '';
                 }
 
                 var guideTextBox = document.getElementById("guide");
@@ -55,7 +54,7 @@ $(document).ready(function(){
                 
                 //위도 경도 추가
                 var geocoder = new daum.maps.services.Geocoder();
-				var roadAddr = $('#roadAddress').val()
+				var roadAddr = $('#infrMmRoadAddress').val()
 				if(roadAddr != ''){
 					console.log("@@"+roadAddr)
 					// 주소로 좌표를 검색
@@ -65,8 +64,8 @@ $(document).ready(function(){
 					if (status == daum.maps.services.Status.OK) {
 						var lat = result[0].y;
 						var lan = result[0].x;
-						$('#lat').val(lat);
-						$('#long').val(lan);
+						$('#infrMmLat').val(lat);
+						$('#infrMmLong').val(lan);
 					}
 				
 					});		

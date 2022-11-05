@@ -4,11 +4,13 @@ import java.util.Random;
 
 import javax.servlet.http.HttpSession;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sgworld.infra.common.MailService;
 import com.sgworld.infra.common.SMS;
 
 import net.nurigo.sdk.NurigoApp;
@@ -23,11 +25,14 @@ public class MemberRestController {
 	
 	@Autowired
 	MemberGroupServiceImpl mmService;
+	@Autowired
+	MailService mainService;
 	
 	@RequestMapping(value="userSignIn")
 	public String userSignIn(MemberGroup dto)throws Exception {
 		
-		mmService.insertMmSignIn(dto);
+		int insertMmSignIn = mmService.insertMmSignIn(dto);
+		System.out.println("insertMmSignIn :: " + insertMmSignIn);
 		
 		return "userSignIn";
 	}
@@ -59,13 +64,20 @@ public class MemberRestController {
 		
 		return "userLogOut";
 	}
+	@RequestMapping(value="getValidationOfDuple")
+	public int getValidationOfDuple(MemberGroup dto)throws Exception {
+		
+		int getValidationOfDuple = mmService.isduple(dto);
+		
+		return getValidationOfDuple;
+	}
 	
 	
 	/**
-     * 단일 메시지 발송 예제
+     * 휴대번호 인증
      */
 	
-
+	
 	final DefaultMessageService messageService;
 
    public MemberRestController() {
@@ -98,5 +110,24 @@ public class MemberRestController {
     	sendSMS(sms,randSMSNumToSend);
     	
         return randSMSNumToSend;
+    }
+    
+    /*
+     * 이메일 인증
+     */
+    @PostMapping(value="getEmailAuthCode")
+    public String getEmailAuthCode(SMS email)throws Exception {
+    	
+    	
+    	String infrMmEmail = email.getInfrMmEmail();
+    	
+    	System.out.println("infrMmEmail :: " + infrMmEmail);
+    	
+    	if(infrMmEmail != null) {
+    		return mainService.sendMailViaSmtpGmail(infrMmEmail);
+    	}else {
+    		return "fail";
+    	}
+    	
     }
 }

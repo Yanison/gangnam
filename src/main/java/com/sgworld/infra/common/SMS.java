@@ -1,5 +1,7 @@
 package com.sgworld.infra.common;
 
+import org.jetbrains.annotations.NotNull;
+
 public class SMS {
 	
 	private String fromNum;
@@ -22,6 +24,15 @@ public class SMS {
 	}
 	public void setMsgText(String msgText) {
 		this.msgText = msgText;
+	}
+	
+	
+	private String infrMmEmail;
+	public String getInfrMmEmail() {
+		return infrMmEmail;
+	}
+	public void setInfrMmEmail(String infrMmEmail) {
+		this.infrMmEmail = infrMmEmail;
 	}
 	
 	

@@ -52,7 +52,7 @@
 			where 
 			infrMmPhone = #{shDupleStr}
 		</when>
-	</choose>
+		</choose>
 	</select>
 	
 	<insert id="insertMmSignIn">
