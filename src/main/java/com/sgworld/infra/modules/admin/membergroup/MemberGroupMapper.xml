@@ -29,44 +29,34 @@
 		and infrMmPw = #{infrMmPw}
 	</select>
 	
-	<select id="isduple" resultMap="MemberGroup">
-		select 
+	<select id="isduple" resultType="Integer">
+		select count(*)
 	<choose>
-		<when test="dupleValiObj ==  infrMmId">
-				infrMmId
+		<when test="dupleValiObj ==  'infrMmId'">
 			from infrMember 
 			where 
-				infrMmId = #{shDupleStr}
+			infrMmId = #{shDupleStr}
 		</when>
-		<when test="dupleValiObj ==  infrMmPw">
-				infrMmPw
+		<when test="dupleValiObj ==  'infrMmName'">
 			from infrMember 
 			where 
-				infrMmPw = #{shDupleStr}
+			infrMmName = #{shDupleStr}
 		</when>
-		<when test="dupleValiObj ==  infrMmName">
-				infrMmName
+		<when test="dupleValiObj ==  'infrMmNickname'">
 			from infrMember 
 			where 
-				infrMmName = #{shDupleStr
+			infrMmNickname = #{shDupleStr}
 		</when>
-		<when test="dupleValiObj ==  infrMmNickName">
-				infrMmNickname
+		<when test="dupleValiObj ==  'infrMmPhone'">
 			from infrMember 
 			where 
-				infrMmNickname = #{shDupleStr
-		</when>
-		<when test="dupleValiObj ==  infrMmPhone">
-				infrMmPhone
-			from infrMember 
-			where 
-				infrMmPhone = #{shDupleStr
+			infrMmPhone = #{shDupleStr}
 		</when>
 	</choose>
 	</select>
 	
 	<insert id="insertMmSignIn">
-	insert into infrMemeber(
+	insert into infrMember(
 	  infrMmId
 	  ,infrMmPw
 	  ,infrMmName
@@ -81,24 +71,26 @@
 	  ,infrMmRoadAddress
 	  ,infrMmJibunAddress
 	  ,infrMmDetailAddress
+	  ,infrMmExtraAddress
 	  ,infrMmLat
 	  ,infrMmLong
-	  ,regDateAt
+	  ,regDatetime
 	) values(
 	  #{infrMmId}
-	  ,#{infrMmKakaoIdToken}
 	  ,MD5(#{infrMmPw})
 	  ,#{infrMmName}
-	  ,#{infrMmNinckName}
-	  ,#{infrMmDod}
+	  ,#{infrMmNickname}
+	  ,#{infrMmBod}
 	  ,#{infrMmGender}
+	  ,#{infrMmTelecom}
 	  ,#{infrMmPhone}
 	  ,#{infrMmEmailId}
-	  ,#{infrMmEmailAddr}
+	  ,#{infrMmEmailAddress}
 	  ,#{infrMmZip}
 	  ,#{infrMmRoadAdress}
 	  ,#{infrMmJibunAdress}
 	  ,#{infrMmDetailAdress}
+	  ,#{infrMmExtraAddress}
 	  ,#{infrMmLat}
 	  ,#{infrMmLong}
 	  ,now()
