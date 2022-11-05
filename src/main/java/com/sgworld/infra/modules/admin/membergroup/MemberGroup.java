@@ -201,55 +201,6 @@ public class MemberGroup extends MemberGroupVo{
 		this.infrMmDelNy = infrMmDelNy;
 	}
 	
-	//board get set
-	public String getBdSeq() {
-		return bdSeq;
-	}
-	public void setBdSeq(String bdSeq) {
-		this.bdSeq = bdSeq;
-	}
-	public Integer getBdDiv() {
-		return bdDiv;
-	}
-	public void setBdDiv(Integer bdDiv) {
-		this.bdDiv = bdDiv;
-	}
-	public String getBdTitle() {
-		return bdTitle;
-	}
-	public void setBdTitle(String bdTitle) {
-		this.bdTitle = bdTitle;
-	}
-	public String getBdContent() {
-		return bdContent;
-	}
-	public void setBdContent(String bdContent) {
-		this.bdContent = bdContent;
-	}
-	public Integer getDelNy() {
-		return delNy;
-	}
-	public void setDelNy(Integer delNy) {
-		this.delNy = delNy;
-	}
-	
-	
-	// bdLike get set
-	public String getBdLikeSeq() {
-		return bdLikeSeq;
-	}
-	public void setBdLikeSeq(String bdLikeSeq) {
-		this.bdLikeSeq = bdLikeSeq;
-	}
-	public Integer getLikeNy() {
-		return likeNy;
-	}
-	public void setLikeNy(Integer likeNy) {
-		this.likeNy = likeNy;
-	}
-
-
-	
 	private String dupleValiObj;
 	private String shDupleStr;
 
