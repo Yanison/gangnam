@@ -33,7 +33,7 @@ public class MemberGroupServiceImpl implements MemberGroupService {
 	}
 	
 	@Override
-	public MemberGroup isduple(MemberGroup dto) throws Exception{
+	public int isduple(MemberGroup dto) throws Exception{
 		return mmDao.isduple(dto);
 	}
 
@@ -43,5 +43,16 @@ public class MemberGroupServiceImpl implements MemberGroupService {
 		return mmDao.udptMmifo(dto);
 	}
 	
+	@Override
+	public List<MemberGroup> selectListBoard(MemberGroupVo vo) throws Exception {
+		return mmDao.selectListBoard(vo);
+	}
+
+	@Override
+	public int ueleteMm(MemberGroup dto) throws Exception {
+		return mmDao.ueleteMm(dto);
+	}
 	
+	
+
 }

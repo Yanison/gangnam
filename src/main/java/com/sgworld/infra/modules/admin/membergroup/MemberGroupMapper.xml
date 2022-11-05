@@ -29,44 +29,34 @@
 		and infrMmPw = #{infrMmPw}
 	</select>
 	
-	<select id="isduple" resultMap="MemberGroup">
-		select 
+	<select id="isduple" resultType="Integer">
+		select count(*)
 	<choose>
-		<when test="dupleValiObj ==  infrMmId">
-				infrMmId
+		<when test="dupleValiObj ==  'infrMmId'">
 			from infrMember 
 			where 
 				infrMmId = #{shDupleStr}
 		</when>
-		<when test="dupleValiObj ==  infrMmPw">
-				infrMmPw
+		<when test="dupleValiObj ==  'infrMmName'">
 			from infrMember 
 			where 
-				infrMmPw = #{shDupleStr}
+				infrMmName = #{shDupleStr}
 		</when>
-		<when test="dupleValiObj ==  infrMmName">
-				infrMmName
+		<when test="dupleValiObj ==  'infrMmNickname'">
 			from infrMember 
 			where 
-				infrMmName = #{shDupleStr
+				infrMmNickname = #{shDupleStr}
 		</when>
-		<when test="dupleValiObj ==  infrMmNickName">
-				infrMmNickname
+		<when test="dupleValiObj ==  'infrMmPhone'">
 			from infrMember 
 			where 
-				infrMmNickname = #{shDupleStr
-		</when>
-		<when test="dupleValiObj ==  infrMmPhone">
-				infrMmPhone
-			from infrMember 
-			where 
-				infrMmPhone = #{shDupleStr
+				infrMmPhone = #{shDupleStr}
 		</when>
 	</choose>
 	</select>
 	
 	<insert id="insertMmSignIn">
-	insert into infrMemeber(
+	insert into infrMember(
 	  infrMmId
 	  ,infrMmPw
 	  ,infrMmName
@@ -81,24 +71,26 @@
 	  ,infrMmRoadAddress
 	  ,infrMmJibunAddress
 	  ,infrMmDetailAddress
+	  ,infrMmExtraAddress
 	  ,infrMmLat
 	  ,infrMmLong
-	  ,regDateAt
+	  ,regDatetime
 	) values(
 	  #{infrMmId}
-	  ,#{infrMmKakaoIdToken}
 	  ,MD5(#{infrMmPw})
 	  ,#{infrMmName}
-	  ,#{infrMmNinckName}
-	  ,#{infrMmDod}
+	  ,#{infrMmNickname}
+	  ,#{infrMmBod}
 	  ,#{infrMmGender}
+	  ,#{infrMmTelecom}
 	  ,#{infrMmPhone}
 	  ,#{infrMmEmailId}
-	  ,#{infrMmEmailAddr}
+	  ,#{infrMmEmailAddress}
 	  ,#{infrMmZip}
 	  ,#{infrMmRoadAdress}
 	  ,#{infrMmJibunAdress}
 	  ,#{infrMmDetailAdress}
+	  ,#{infrMmExtraAddress}
 	  ,#{infrMmLat}
 	  ,#{infrMmLong}
 	  ,now()
@@ -122,11 +114,31 @@
 		WHERE 1=1
 			AND infrMmSeq = #{infrMmSeq}	
 	</update>
-	
-	<update id="ueleteMm">
+		<!-- user-admin uelete -->
+		<update id="ueleteMm">
+		UPDATE infrMember
+		SET
+			infrMmDelNy = 0
+		WHERE 
+			infrMmSeq = #{infrMmSeq}	
 	</update>
 	
 	<delete id="deleteMm">
 	</delete>
 	
+	<!-- user_계시판 리스트 띠우기 -->
+	<select id="selectListBoard" resultMap="MemberGroup">
+		SELECT
+			a.infrMmSeq
+			,b.bdTitle
+			,b.regDatetime
+			,(SELECT COUNT(aa.bdLikeSeq) FROM bdLike aa where 1=1 AND aa.bdSeq = b.bdSeq)as bdLikeSeq
+		FROM infrMember a
+		LEFT JOIN board b on b.infrMmSeq = a.infrMmSeq
+		WHERE 1=1
+			AND a.infrMmSeq = #{infrMmSeq}
+			ORDER BY b.bdSeq DESC
+	</select>
+
+
 </mapper>

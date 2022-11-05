@@ -3,7 +3,7 @@ $(document).ready(function(){
 })
 
 function getSMS(){
-	var toNum = $('#memberTel').val();
+	var toNum = $('#infrMmPhone').val();
 	console.log("toNum :: "+toNum)
 	$.ajax({
 		url:'../member/send-one'
