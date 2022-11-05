@@ -38,7 +38,7 @@ public class MemberGroupDao {
 		return sqlSession.selectOne(namespace + ".isduple", dto);
 	}
 	
-	//회원정보 수정
+	//user_회원정보 수정
 	public int udptMmifo(MemberGroup dto) {
 		return sqlSession.update(namespace +".udptMmifo", dto);
 	}

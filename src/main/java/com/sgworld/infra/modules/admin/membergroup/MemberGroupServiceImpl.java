@@ -42,6 +42,19 @@ public class MemberGroupServiceImpl implements MemberGroupService {
 	public int udptMmifo(MemberGroup dto) throws Exception {
 		return mmDao.udptMmifo(dto);
 	}
+
+
+	@Override
+	public List<MemberGroup> selectListBoard(MemberGroupVo vo) throws Exception {
+		return mmDao.selectListBoard(vo);
+	}
+
+	@Override
+	public int ueleteMm(MemberGroup dto) throws Exception {
+		return mmDao.ueleteMm(dto);
+	}
+	
+	
 	
 	@Override
 	public List<MemberGroup> selectListBoard(MemberGroupVo vo) throws Exception {

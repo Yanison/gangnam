@@ -1,5 +1,7 @@
 package com.sgworld.infra.modules.user.member;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,14 +43,24 @@ public class MemberController {
 		
 	//내정보_내 글 조회
 	@RequestMapping(value="memberPostComment")
-	public String memberPostComment()throws Exception {
+	public String memberPostComment(@ModelAttribute("vo") MemberGroupVo vo , Model model)throws Exception {
+		List<MemberGroup>list = service.selectListBoard(vo);
+		model.addAttribute("list", list);
+		
 		return "infra/user/modules/member/memberPostComment";
 	}	
 		
-	//내정보_회원탈퇴
+	//내정보_회원탈퇴하기
 	@RequestMapping(value="memberWithdraw")
 	public String memberWithdraw()throws Exception {
 		return "infra/user/modules/member/memberWithdraw";
+	}
+	
+	// user,admin 회원탈퇴 실행 이거 좀더 고민해봐야겠습니다
+	@RequestMapping(value = "ueleteMm")
+	public String ueleteMm(MemberGroup dto)throws Exception {
+		service.ueleteMm(dto);
+		return "";
 	}
 	
 	//아이디/비번 찾기
