@@ -53,8 +53,4 @@ public class MemberGroupDao {
 		return sqlSession.update(namespace + ".ueleteMm", dto);
 	}
 	
-	
-	
-	
-	
 }
