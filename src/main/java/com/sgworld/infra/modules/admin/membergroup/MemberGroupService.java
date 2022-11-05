@@ -27,4 +27,5 @@ public interface MemberGroupService {
 	
 	//user_admin 부분삭제
 	public int ueleteMm(MemberGroup dto)throws Exception;
+	
 }
