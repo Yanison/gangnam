@@ -96,4 +96,48 @@
 	  ,now()
 	)
 	</insert>
+	
+	<!-- admin_회원정보 수정 -->
+	<update id="udptMmifo">
+		UPDATE infrMember
+		SET
+			infrMmId = #{infrMmId}
+			,infrMmName = #{infrMmName}
+			,infrMmPw = #{infrMmPw}
+			,infrMmEmailId = #{infrMmEmailId}
+			,infrMmNickname = #{infrMmNickname}
+			,infrMmGender = #{infrMmGender}
+			,infrMmBod = #{infrMmBod}
+			,infrMmPhone = #{infrMmPhone}
+			,infrMmDelNy = #{infrMmDelNy}
+			,infrMmUseNy = #{infrMmUseNy}
+		WHERE 1=1
+			AND infrMmSeq = #{infrMmSeq}	
+	</update>
+	
+	<!-- user-admin uelete -->
+	<update id="ueleteMm">
+		UPDATE infrMember
+		SET
+			infrMmDelNy = 0
+		WHERE 
+			infrMmSeq = #{infrMmSeq}	
+	</update>
+	
+	<delete id="deleteMm">
+	</delete>
+	
+	<!-- user_계시판 리스트 띠우기 -->
+	<select id="selectListBoard" resultMap="MemberGroup">
+		SELECT
+			a.infrMmSeq
+			,b.bdTitle
+			,b.regDatetime
+			,(SELECT COUNT(aa.bdLikeSeq) FROM bdLike aa where 1=1 AND aa.bdSeq = b.bdSeq)as bdLikeSeq
+		FROM infrMember a
+		LEFT JOIN board b on b.infrMmSeq = a.infrMmSeq
+		WHERE 1=1
+			AND a.infrMmSeq = #{infrMmSeq}
+			ORDER BY b.bdSeq DESC
+	</select>
 </mapper>
