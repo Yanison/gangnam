@@ -35,24 +35,24 @@
 		<when test="dupleValiObj ==  'infrMmId'">
 			from infrMember 
 			where 
-				infrMmId = #{shDupleStr}
+			infrMmId = #{shDupleStr}
 		</when>
 		<when test="dupleValiObj ==  'infrMmName'">
 			from infrMember 
 			where 
-				infrMmName = #{shDupleStr}
+			infrMmName = #{shDupleStr}
 		</when>
 		<when test="dupleValiObj ==  'infrMmNickname'">
 			from infrMember 
 			where 
-				infrMmNickname = #{shDupleStr}
+			infrMmNickname = #{shDupleStr}
 		</when>
 		<when test="dupleValiObj ==  'infrMmPhone'">
 			from infrMember 
 			where 
-				infrMmPhone = #{shDupleStr}
+			infrMmPhone = #{shDupleStr}
 		</when>
-	</choose>
+		</choose>
 	</select>
 	
 	<insert id="insertMmSignIn">
