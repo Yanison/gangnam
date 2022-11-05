@@ -52,4 +52,5 @@ public class MemberGroupDao {
 	public int ueleteMm(MemberGroup dto) {
 		return sqlSession.update(namespace + ".ueleteMm", dto);
 	}
+	
 }
