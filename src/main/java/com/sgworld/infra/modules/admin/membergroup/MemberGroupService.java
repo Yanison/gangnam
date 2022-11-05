@@ -20,7 +20,7 @@ public interface MemberGroupService {
 	public int udptMmifo(MemberGroup dto)throws Exception;
 	
 	//중복확인
-	public MemberGroup isduple(MemberGroup dto) throws Exception;
+	public int isduple(MemberGroup dto) throws Exception;
 	
 	//user_계시판 리스트 띄우기
 	public List<MemberGroup>selectListBoard(MemberGroupVo vo)throws Exception;
