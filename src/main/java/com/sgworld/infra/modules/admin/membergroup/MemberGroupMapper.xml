@@ -140,7 +140,4 @@
 			AND a.infrMmSeq = #{infrMmSeq}
 			ORDER BY b.bdSeq DESC
 	</select>
-	
-	
-	
 </mapper>
