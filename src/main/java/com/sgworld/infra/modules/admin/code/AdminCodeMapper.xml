@@ -3,4 +3,23 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.sgworld.infra.membergroup.ExchMapper"></mapper>
+<mapper namespace="com.sgworld.infra.modules.admin.code.AdminCodeMapper">
+
+	 <resultMap id="resultMapObj" type="com.sgworld.infra.modules.admin.code.CodeDto"></resultMap>
+
+
+	<select id="selectListCachedCodeArrayList" resultMap="resultMapObj">
+		SELECT 
+			a.infrCcSeq
+			,a.infrCcNameKor
+			,a.infrCcNameEng
+			,a.infrCodeGroupSeq
+			,b.infrCcgSeq
+		FROM infrCode a
+		join infrCodeGroup b on a.infrCodeGroupSeq = b.infrCcgSeq
+		WHERE 1=1
+			AND infrCcDelNy = 1
+		    AND infrCcUseNy = 0
+    </select>
+
+</mapper>

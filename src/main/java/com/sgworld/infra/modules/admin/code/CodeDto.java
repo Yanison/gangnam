@@ -1,11 +1,14 @@
 package com.sgworld.infra.modules.admin.code;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
 
 public class CodeDto {
 	
-	private Integer infrCcSeq;
-	private Integer infrCodeGroupSeq;
+	private String infrCcSeq;
+	private String infrCodeGroupSeq;
 	private String infrCcNameKor;
 	private String infrCcNameEng;
 	private Integer infrCcUseNy;
@@ -16,16 +19,22 @@ public class CodeDto {
 	private Date modDatetime;
 	private String modBy;
 	
-	public Integer getInfrCcSeq() {
+	private String infrCcgSeq;
+//////////////////////////////////////////////////////////	
+	
+	//for cache
+	public static List<CodeDto> cachedCodeArrayList = new ArrayList<CodeDto>();
+	
+	public String getInfrCcSeq() {
 		return infrCcSeq;
 	}
-	public void setInfrCcSeq(Integer infrCcSeq) {
+	public void setInfrCcSeq(String infrCcSeq) {
 		this.infrCcSeq = infrCcSeq;
 	}
-	public Integer getInfrCodeGroupSeq() {
+	public String getInfrCodeGroupSeq() {
 		return infrCodeGroupSeq;
 	}
-	public void setInfrCodeGroupSeq(Integer infrCodeGroupSeq) {
+	public void setInfrCodeGroupSeq(String infrCodeGroupSeq) {
 		this.infrCodeGroupSeq = infrCodeGroupSeq;
 	}
 	public String getInfrCcNameKor() {
@@ -82,4 +91,11 @@ public class CodeDto {
 	public void setModBy(String modBy) {
 		this.modBy = modBy;
 	}
+	public String getInfrCcgSeq() {
+		return infrCcgSeq;
+	}
+	public void setInfrCcgSeq(String infrCcgSeq) {
+		this.infrCcgSeq = infrCcgSeq;
+	}
+	
 }

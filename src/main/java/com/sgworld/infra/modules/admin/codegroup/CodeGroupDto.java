@@ -2,7 +2,9 @@ package com.sgworld.infra.modules.admin.codegroup;
 
 import java.util.Date;
 
-public class CodeGroupDto {
+import com.sgworld.infra.common.base.Base;
+
+public class CodeGroupDto extends Base {
 	
 	private Integer infrCcgSeq;
 	private String infrCcgNameKor;
@@ -14,6 +16,10 @@ public class CodeGroupDto {
 	private String regBy;
 	private Date modDatetime;
 	private String modBy;
+	private Integer infrCcDelNy;
+	private String infrCodeGroupSeq;
+	private Integer infrCcCount;
+//////////////////////////////////////////////////////
 	public Integer getInfrCcgSeq() {
 		return infrCcgSeq;
 	}
@@ -73,6 +79,24 @@ public class CodeGroupDto {
 	}
 	public void setModBy(String modBy) {
 		this.modBy = modBy;
+	}
+	public Integer getInfrCcDelNy() {
+		return infrCcDelNy;
+	}
+	public void setInfrCcDelNy(Integer infrCcDelNy) {
+		this.infrCcDelNy = infrCcDelNy;
+	}
+	public String getInfrCodeGroupSeq() {
+		return infrCodeGroupSeq;
+	}
+	public void setInfrCodeGroupSeq(String infrCodeGroupSeq) {
+		this.infrCodeGroupSeq = infrCodeGroupSeq;
+	}
+	public Integer getInfrCcCount() {
+		return infrCcCount;
+	}
+	public void setInfrCcCount(Integer infrCcCount) {
+		this.infrCcCount = infrCcCount;
 	}
 	
 	

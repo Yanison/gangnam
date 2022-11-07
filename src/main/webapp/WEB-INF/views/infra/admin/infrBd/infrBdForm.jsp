@@ -5,9 +5,9 @@
 <html>
 <head>
 	<title>계시판폼</title>
-	<%@ include file="rscs/basicRscs.jsp" %>
+	<%@ include file="../../../rscs/basicRscs.jsp" %>
 	<link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-    <link href="../../../admin/adminTemplate/css/styles.css" rel="stylesheet" />
+    <link href="/resources/admin/adminTemplate/css/styles.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/059fbc3cf8.js" crossorigin="anonymous"></script>
     <style type="text/css">
 		
@@ -30,12 +30,13 @@
 	</style>
 </head>
 <body class="sb-nav-fixed">
-	<!-- top banner s-->
-	<%@ include file="common/header.jsp"%>   
-	<!-- top banner e-->
+	<form method="post" id="form" name="form" autocomplete="off" enctype="multipart/form-data">
+		<!-- top banner s-->
+		<%@ include file="../common/header.jsp"%>   
+		<!-- top banner e-->
         <div id="layoutSidenav">
         	<!-- sidebar s-->
-            <%@ include file="common/sidebar.jsp"%> 
+            <%@ include file="../common/sidebar.jsp"%> 
             <!-- sidebar e-->
             <div id="layoutSidenav_content">
                 <main>
@@ -45,6 +46,17 @@
                             <li class="breadcrumb-item active">공지글</li>
                         </ol>
                         <div class="container">
+                        	<div class="row mb-4">
+		                        <div class="col-6">
+		                        	<label class="form-label">게시판</label>
+		                        	<select class="form-select" id="codeGroup_ccgSeq" name="codeGroup_ccgSeq">
+										<option>게시판 선택</option>
+										<option>자유게시판</option>
+										<option>정보게시판</option>
+										<option>거래게시판</option>
+									</select>
+		                        </div>
+	                        </div>
 							<div class="row mb-4">
 		                        <div class="col-6">
 		                        	<label class="form-label">제목</label>
@@ -89,8 +101,9 @@
 			</div>
 		</div>
         <!-- footer s -->
-        <%@ include file="common/footer.jsp"%> 
+        <%@ include file="../common/footer.jsp"%> 
         <!-- footer s -->
+	</form>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="../../../admin/adminTemplate/js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
@@ -98,5 +111,8 @@
         <script src="../../../admin/adminTemplate/assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="../../../admin/adminTemplate/js/datatables-simple-demo.js"></script>
+        <script type="text/javascript">
+        
+        </script>
 </body>
 </html>

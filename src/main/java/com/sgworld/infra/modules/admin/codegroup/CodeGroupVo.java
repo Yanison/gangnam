@@ -1,5 +1,7 @@
 package com.sgworld.infra.modules.admin.codegroup;
 
-public class CodeGroupVo {
+import com.sgworld.infra.common.base.BaseVo;
+
+public class CodeGroupVo extends BaseVo {
 
 }

@@ -12,7 +12,7 @@
 </head>
 <body class="sb-nav-fixed">
 <form method="post" name="form" id="form">
-	<input type="hidden" name="ccSeq" value="${dto.bdSeq }">
+	<input type="hidden" name="bdSeq" value="${dto.bdSeq }">
 		<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>">
 		<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow }"/>">
 		<input type="hidden" name="checkboxSeqArray">
@@ -103,9 +103,9 @@
 											</c:when>
 											<c:otherwise>
 												<c:forEach items="${list }" var="list" varStatus="status">
-											<tr style="cursor: pointer;">
+											<tr style="cursor: pointer;" >
 												<td class="tableHead1"><input class="listCheck" type="checkbox"></td>
-												<td class="tableHead1"><c:out value="${list.bdSeq }" /></td>
+												<td class="tableHead1"><a href="javascript:goView(<c:out value="${list.bdSeq }" />)" style="text-decoration: none;"><c:out value="${list.bdSeq }" /></a></td>
 												<td class="tableHead"><c:out value="${list.infrMmNickname }" /></td>
 												<td class="tableHead"><c:out value="${list.bdTitle }" /></td>
 												<td class="tableHead"><c:out value="${list.bdDiv }" /></td>
@@ -129,7 +129,7 @@
 									</div>
 									<div class="col" style="text-align: right;">
 										<button class="btn btn-success" type="button" id="cglExcel"><i class="fa-regular fa-file-excel"></i></button>
-										<button class="btn btn-primary" type="button" id="cglPlus"><i class="fa-regular fa-plus"></i></button>
+										<button class="btn btn-primary" type="button" id="btnForm"><i class="fa-regular fa-plus"></i></button>
 									</div>
 								</div>
 							</div>
@@ -149,5 +149,28 @@
         <script src="../../../admin/adminTemplate/assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="../../../admin/adminTemplate/js/datatables-simple-demo.js"></script>
+        <script type="text/javascript">
+        	var goUrlList = "/admin/board/infrBdList";
+        	var goUrlView = "/admin/board/infrBdView";
+        	var goUrlForm = "/admin/board/infrBdForm";
+        	
+        	var form = $("form[name=form]");
+        	var seq = $("input:hidden[name=bdSeq]");
+        	
+        	$("#btnForm").on("click", function(){
+    			$(location).attr("href", goUrlForm);
+    		});
+        	
+        	goList = function(thisPage) {
+    			$("input:hidden[name=thisPage]").val(thisPage);
+    			form.attr("action", goUrlList).submit();
+    		}
+        	
+        	goView = function(keyValue) {
+    	    	/* if(keyValue != 0) seq.val(btoa(keyValue)); */
+    	    	seq.val(keyValue);
+    			form.attr("action", goUrlView).submit();
+    		}
+        </script>
 </body>
 </html>
