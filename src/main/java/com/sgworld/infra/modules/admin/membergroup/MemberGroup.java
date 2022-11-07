@@ -33,16 +33,6 @@ public class MemberGroup extends MemberGroupVo{
 	private Integer infrMmUseNy;
 	private Integer infrMmDelNy;
 	
-	//board
-	private String bdSeq;
-	private Integer bdDiv;
-	private String bdTitle;
-	private String bdContent;
-	private Integer delNy;
-		
-	//bdLike
-	private String bdLikeSeq;
-	private Integer likeNy;
 	
 	public String getInfrMmSeq() {
 		return infrMmSeq;
