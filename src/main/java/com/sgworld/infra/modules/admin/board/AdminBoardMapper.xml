@@ -22,6 +22,9 @@
 				,b.infrMmNickname
 				,a.bdTitle
 				,a.bdContent
+				,a.bdDiv
+				,a.regDatetime
+				,a.delNy
 			<include refid="selectCommon" />
 			ORDER BY a.bdSeq DESC
 		<include refid="Base.selectListLowerForMysql" />
@@ -33,7 +36,7 @@
 	</select>
 	
 	<select id="selectOne" resultMap="resultMapObj">
-		SELECT
+		SELECT		
 			a.*
 			,b.infrMmNickname
 		FROM board a
@@ -42,6 +45,7 @@
 			AND bdSeq = #{bdSeq}
 	</select>
 
+	<!-- 관리자 게시글 등록 -->
 	<insert id="insert">
 		INSERT INTO board (
 			infrMmSeq
@@ -52,8 +56,8 @@
 			,delNy
 		)
 		VALUES (
-			#{infrMmSeq}
-			,1
+			1
+			,#{bdDiv}
 			,#{bdTitle}
 			,#{bdContent}
 			,now()
@@ -67,24 +71,46 @@
 	<update id="update">
 		UPDATE board
 		SET
-			bdDiv = 1
+			bdDiv = #{bdDiv}
 			,bdTitle = #{bdTitle}
 			,bdContent = #{bdContent}
-		WHERE
-			bdSeq = #{bdSeq}
+			,delNy = #{delNy}
+		WHERE 1=1
+			AND bdSeq = #{bdSeq}
 	</update>
 	
 	<update id="uelete">
 		UPDATE board
 		SET
 			delNy = 0
-		WHERE bdSeq = #{bdSeq}
+		WHERE 1=1
+			AND bdSeq = #{bdSeq}
 	</update>
  
  	<delete id="delete">
- 		DELETE FROM board WHERE bdSeq = #{bdSeq}
+ 		DELETE FROM board 
+ 		WHERE 1=1
+ 			AND bdSeq = #{bdSeq}
  	</delete>
  	
+ 	<!-- 업로드 관련 -->
+ 	<select id="selectListUploaded" resultMap="resultMapObj">
+		SELECT 
+			seq
+			,type
+			,defaultNy
+			,sort
+			,path
+			,originalName
+			,uuidName
+		FROM sgworld.boardUploaded
+		WHERE 1=1
+			AND delNy = 0
+			AND pSeq = #{bdSeq}
+		ORDER BY
+			type, sort
+	</select>
+	
  	<!-- 댓글 -->
  	<select id="selectCommentList" resultMap="resultMapCommnet">
  		<include refid="Base.selectListUpperForMysql" />
@@ -100,6 +126,8 @@
 				AND c.bdSeq = #{bdSeq}
  		<include refid="Base.selectListLowerForMysql" />
  	</select>
+ 	
+ 	<!-- 사용자 게시글 등록 -->
  	
  	
 </mapper>

@@ -63,6 +63,7 @@
 						</div>
 					</div>
 				</div>
+				<!-- 
 				<div class="boardFooter">
 					<div class="boardIcon">
 						<div class="icon">
@@ -74,6 +75,7 @@
 						</div>
 					</div>
 				</div>
+				 -->
 			</article>
 		</section>
 	</section>
