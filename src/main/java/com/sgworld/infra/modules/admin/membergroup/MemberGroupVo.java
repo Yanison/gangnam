@@ -26,4 +26,15 @@ public class MemberGroupVo {
 	}
 	
 	
+	private String mmSsSeq;
+
+	public String getMmSsSeq() {
+		return mmSsSeq;
+	}
+	public void setMmSsSeq(String mmSsSeq) {
+		this.mmSsSeq = mmSsSeq;
+	}
+	
+	
+	
 }

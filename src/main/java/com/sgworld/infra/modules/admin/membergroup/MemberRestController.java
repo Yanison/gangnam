@@ -38,7 +38,7 @@ public class MemberRestController {
 	}
 	
 	@RequestMapping(value="userLogin")
-	public MemberGroup userLogin(MemberGroup dto,MemberGroup vo,HttpSession session)throws Exception{
+	public MemberGroup userLogin(MemberGroup dto,MemberGroupVo vo,HttpSession session)throws Exception{
 		
 		MemberGroup user = mmService.selectUserLogin(dto);
 		
@@ -48,6 +48,8 @@ public class MemberRestController {
 		Object infrMmSeq = session.getAttribute("infrMmSeq");
 		Object infrMmId = session.getAttribute("infrMmId");
 		Object infrMmName = session.getAttribute("infrMmName");
+		String mmSs = (String) session.getAttribute("infrMmSeq");
+		vo.setMmSsSeq(mmSs);
 		
 		
 		System.out.println("userLogin session infrMmSeq ::" + infrMmSeq);
