@@ -12,12 +12,13 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.sgworld.infra.common.base.BaseServiceImpl;
 import com.sgworld.infra.common.constants.Constants;
 import com.sgworld.infra.common.util.UtilDateTime;
 import com.sgworld.infra.common.util.UtilRegMod;
 
 @Service
-public class AdminBoardServiceImpl implements AdminBoardService {
+public class AdminBoardServiceImpl extends BaseServiceImpl implements AdminBoardService {
 
 	@Autowired
 	AdminBoardDao dao;
@@ -102,7 +103,20 @@ public class AdminBoardServiceImpl implements AdminBoardService {
 	}
 	
 	@Override
-	public int insert(AdminBoardDto dto) throws Exception { return dao.insert(dto); }
+	public int insert(AdminBoardDto dto) throws Exception { 
+		
+		setRegMod(dto);
+		dao.insert(dto);
+		
+		System.out.print(
+				"who?" + "\n"
+						+"getUploadImg: " + dto.getUploadImg() +"\n" 
+						+ "getUploadImgType: " + dto.getUploadImgType() + "\n"
+						+ "getUploadImgMaxNumber: " + dto.getUploadImgMaxNumber());
+		uploadFiles(dto.getUploadImg(), dto, "boardUploaded", dto.getUploadImgType(), dto.getUploadImgMaxNumber());
+		uploadFiles(dto.getUploadFile(), dto, "boardUploaded", dto.getUploadFileType(), dto.getUploadFileMaxNumber());
+		return 1; 
+	}
 		
 	@Override
 	public int update(AdminBoardDto dto) throws Exception { return dao.update(dto); }
@@ -118,10 +132,6 @@ public class AdminBoardServiceImpl implements AdminBoardService {
 		List<AdminBoardDto> list = dao.selectCommentList(vo);
 		return list;
 	}
-
-	
-
-	
 
 	@Override
 	public void deleteFiles(String[] deleteSeq, String[] deletePathFile, AdminBoardDto dto, String tableName) throws Exception {
