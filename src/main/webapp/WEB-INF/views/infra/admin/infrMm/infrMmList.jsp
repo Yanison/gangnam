@@ -5,18 +5,18 @@
 <html>
 <head>
 	<title>맴버리스트</title>
-	<%@ include file="rscs/basicRscs.jsp" %>
+	<%@ include file="../../../rscs/basicRscs.jsp" %>
 	<link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-    <link href="../../../admin/adminTemplate/css/styles.css" rel="stylesheet" />
+    <link href="/resources/admin/adminTemplate/css/styles.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/059fbc3cf8.js" crossorigin="anonymous"></script>
 </head>
 <body class="sb-nav-fixed">
 	<!-- top banner s-->
-	<%@ include file="common/header.jsp"%>   
+	<%@ include file="../common/header.jsp"%>   
 	<!-- top banner e-->
         <div id="layoutSidenav">
         	<!-- left banner s-->
-            <%@ include file="common/sidebar.jsp"%> 
+            <%@ include file="../common/sidebar.jsp"%> 
             <!-- left banner e-->
             <div id="layoutSidenav_content">
                 <main>
@@ -92,126 +92,31 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<td class="tableHead1"><input class="listCheck" type="checkbox"></td>
-												<td class="tableHead1">#</td>
-												<td class="tableHead">회원아이디</td>
-												<td class="tableHead">이름</td>
-												<td class="tableHead">닉네임</td>
-												<td class="tableHead">성별</td>
-												<td class="tableHead">생년월일</td>
-												<td class="tableHead">이메일</td>
-												<td class="tableHead">전화번호</td>
-												<td class="tableHead">계정상태</td>
-											</tr>
-											<tr>
-												<td class="tableHead1"><input class="listCheck" type="checkbox"></td>
-												<td class="tableHead1">#</td>
-												<td class="tableHead">회원아이디</td>
-												<td class="tableHead">이름</td>
-												<td class="tableHead">닉네임</td>
-												<td class="tableHead">성별</td>
-												<td class="tableHead">생년월일</td>
-												<td class="tableHead">이메일</td>
-												<td class="tableHead">전화번호</td>
-												<td class="tableHead">계정상태</td>
-											</tr>
-											<tr>
-												<td class="tableHead1"><input class="listCheck" type="checkbox"></td>
-												<td class="tableHead1">#</td>
-												<td class="tableHead">회원아이디</td>
-												<td class="tableHead">이름</td>
-												<td class="tableHead">닉네임</td>
-												<td class="tableHead">성별</td>
-												<td class="tableHead">생년월일</td>
-												<td class="tableHead">이메일</td>
-												<td class="tableHead">전화번호</td>
-												<td class="tableHead">계정상태</td>
-											</tr>
-											<tr>
-												<td class="tableHead1"><input class="listCheck" type="checkbox"></td>
-												<td class="tableHead1">#</td>
-												<td class="tableHead">회원아이디</td>
-												<td class="tableHead">이름</td>
-												<td class="tableHead">닉네임</td>
-												<td class="tableHead">성별</td>
-												<td class="tableHead">생년월일</td>
-												<td class="tableHead">이메일</td>
-												<td class="tableHead">전화번호</td>
-												<td class="tableHead">계정상태</td>
-											</tr>
-											<tr>
-												<td class="tableHead1"><input class="listCheck" type="checkbox"></td>
-												<td class="tableHead1">#</td>
-												<td class="tableHead">회원아이디</td>
-												<td class="tableHead">이름</td>
-												<td class="tableHead">닉네임</td>
-												<td class="tableHead">성별</td>
-												<td class="tableHead">생년월일</td>
-												<td class="tableHead">이메일</td>
-												<td class="tableHead">전화번호</td>
-												<td class="tableHead">계정상태</td>
-											</tr>
-											<tr>
-												<td class="tableHead1"><input class="listCheck" type="checkbox"></td>
-												<td class="tableHead1">#</td>
-												<td class="tableHead">회원아이디</td>
-												<td class="tableHead">이름</td>
-												<td class="tableHead">닉네임</td>
-												<td class="tableHead">성별</td>
-												<td class="tableHead">생년월일</td>
-												<td class="tableHead">이메일</td>
-												<td class="tableHead">전화번호</td>
-												<td class="tableHead">계정상태</td>
-											</tr>
-											<tr>
-												<td class="tableHead1"><input class="listCheck" type="checkbox"></td>
-												<td class="tableHead1">#</td>
-												<td class="tableHead">회원아이디</td>
-												<td class="tableHead">이름</td>
-												<td class="tableHead">닉네임</td>
-												<td class="tableHead">성별</td>
-												<td class="tableHead">생년월일</td>
-												<td class="tableHead">이메일</td>
-												<td class="tableHead">전화번호</td>
-												<td class="tableHead">계정상태</td>
-											</tr>
-											<tr>
-												<td class="tableHead1"><input class="listCheck" type="checkbox"></td>
-												<td class="tableHead1">#</td>
-												<td class="tableHead">회원아이디</td>
-												<td class="tableHead">이름</td>
-												<td class="tableHead">닉네임</td>
-												<td class="tableHead">성별</td>
-												<td class="tableHead">생년월일</td>
-												<td class="tableHead">이메일</td>
-												<td class="tableHead">전화번호</td>
-												<td class="tableHead">계정상태</td>
-											</tr>
-											<tr>
-												<td class="tableHead1"><input class="listCheck" type="checkbox"></td>
-												<td class="tableHead1">#</td>
-												<td class="tableHead">회원아이디</td>
-												<td class="tableHead">이름</td>
-												<td class="tableHead">닉네임</td>
-												<td class="tableHead">성별</td>
-												<td class="tableHead">생년월일</td>
-												<td class="tableHead">이메일</td>
-												<td class="tableHead">전화번호</td>
-												<td class="tableHead">계정상태</td>
-											</tr>
-											<tr>
-												<td class="tableHead1"><input class="listCheck" type="checkbox"></td>
-												<td class="tableHead1">#</td>
-												<td class="tableHead">회원아이디</td>
-												<td class="tableHead">이름</td>
-												<td class="tableHead">닉네임</td>
-												<td class="tableHead">성별</td>
-												<td class="tableHead">생년월일</td>
-												<td class="tableHead">이메일</td>
-												<td class="tableHead">전화번호</td>
-												<td class="tableHead">계정상태</td>
-											</tr>
+											<c:set var="listCodeGender" value="${AdminCodeServiceImpl.selectListCachedCode('2')}"/>
+					  						<c:set var="listCodePersonal" value="${AdminCodeServiceImpl.selectListCachedCode('3')}"/>
+											<c:choose>
+												<c:when test="${fn:length(list) eq 0 }">
+													<tr>
+														<td class="text-center" colspan="10"></td>
+													</tr>
+												</c:when>
+												<c:otherwise>
+												<c:forEach items="${list }" var="list" varStatus="status">
+													<tr>
+														<td class="tableHead1"><input class="listCheck" type="checkbox"></td>
+														<td class="tableHead1"><c:out value="${list.infrMmSeq }" /></td>
+														<td class="tableHead"><c:out value="${list.infrMmId }" /></td>
+														<td class="tableHead"><c:out value="${list.infrMmName }" /></td>
+														<td class="tableHead"><c:out value="${list.infrMmNickname }" /></td>
+														<td class="tableHead"><c:out value="${list.infrMmGender }" /></td>
+														<td class="tableHead"><c:out value="${list.infrMmBod }" /></td>
+														<td class="tableHead"><c:out value="${list.infrMmEmailId }" />@<c:out value="${list.infrMmEmailAddress }" /></td>
+														<td class="tableHead"><c:out value="${list.infrMmPhone }" /></td>
+														<td class="tableHead"><c:out value="${list.infrMmDelNy }" /></td>
+													</tr>
+												</c:forEach>
+												</c:otherwise>
+											</c:choose>
 										</tbody>
 									</table>
 								</div>
@@ -251,7 +156,7 @@
 									</div>
 									<div class="col" style="text-align: right;">
 										<button class="btn btn-success" type="button" id="cglExcel"><i class="fa-regular fa-file-excel"></i></button>
-										<button class="btn btn-primary" type="button" id="cglPlus"><i class="fa-regular fa-plus"></i></button>
+										<button class="btn btn-primary" type="button" id="formBtn"><i class="fa-regular fa-plus"></i></button>
 									</div>
 								</div>
 							</div>
@@ -261,7 +166,7 @@
 			</div>
 		</div>
         <!-- footer s -->
-        <%@ include file="common/footer.jsp"%> 
+        <%@ include file="../common/footer.jsp"%> 
         <!-- footer s -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="../../../admin/adminTemplate/js/scripts.js"></script>
@@ -270,5 +175,15 @@
         <script src="../../../admin/adminTemplate/assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="../../../admin/adminTemplate/js/datatables-simple-demo.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <script>
+        	var goUrlMemberForm = "/admin/memberGroup/infrMmForm"
+        	
+        		$("#formBtn").on("click",function(){
+        			$(location).attr("href",goUrlMemberForm);
+        		});
+        	
+        	
+        </script>
 </body>
 </html>

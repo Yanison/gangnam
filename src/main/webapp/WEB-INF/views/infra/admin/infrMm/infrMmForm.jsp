@@ -5,18 +5,18 @@
 <html>
 <head>
 	<title>맴버폼</title>
-	<%@ include file="rscs/basicRscs.jsp" %>
+	<%@ include file="../../../rscs/basicRscs.jsp" %>
 	<link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-    <link href="../../../admin/adminTemplate/css/styles.css" rel="stylesheet" />
+    <link href="resources/admin/adminTemplate/css/styles.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/059fbc3cf8.js" crossorigin="anonymous"></script>
 </head>
 <body class="sb-nav-fixed">
 	<!-- top banner s-->
-	<%@ include file="common/header.jsp"%>   
+	<%@ include file="../common/header.jsp"%>   
 	<!-- top banner e-->
         <div id="layoutSidenav">
         	<!-- left banner s-->
-            <%@ include file="common/sidebar.jsp"%> 
+            <%@ include file="../common/sidebar.jsp"%> 
             <!-- left banner e-->
             <div id="layoutSidenav_content">
                 <main>
@@ -25,48 +25,70 @@
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">회원목록</li>
                         </ol>
+                       	<form method="post" action="infrMmInsert" name="memberFormReg" id="memberFormReg" enctype="multipart/form-data">
                         <div class="container">
 							<div class="row mb-4">
 		                        <div class="col-6">
 		                        	<label class="form-label">회원아이디</label>
-		                        	<input class="form-control" type="text" placeholder="회원아이디" id="infrMmId">
+		                        	<input class="form-control" type="text" 
+		                        	placeholder="회원아이디" id="infrMmId" 
+		                        	name="infrMmId" value="<c:out value="${dto.infrMmId }"/>"
+		                        	>
 		                        </div>
 		                        <div class="col">
 		                        	<label class="form-label">이름</label>
-		                        	<input class="form-control" type="text" placeholder="이름" id="infrMmName">
+		                        	<input class="form-control" type="text" 
+		                        	placeholder="이름" id="infrMmName"
+		                        	name="infrMmName" value="<c:out value="${dto.infrMmName }"/>"
+		                        	>
 		                        </div>
 	                        </div>
 	                        <div class="row mb-4">
 		                        <div class="col-6">
 		                        	<label class="form-label">비밀번호</label>
-		                        	<input class="form-control" type="password" placeholder="비밀번호" id="infrMmPw">
+		                        	<input class="form-control" type="password" 
+		                        	placeholder="비밀번호" id="infrMmPw"
+		                        	name="infrMmPw" value="<c:out value="${dto.infrMmPw }"/>"
+		                        	>
 		                        </div>
 		                        <div class="col">
 		                        	<label class="form-label">이메일</label>
-		                        	<input class="form-control" type="text" placeholder="이메일" id="infrMmEmailId">
+		                        	<input class="form-control" type="text" 
+		                        	placeholder="이메일" id="infrMmEmailId"
+		                        	name="infrMmEmailId" value="<c:out value="${dto.infrMmEmailId }"/>"
+		                        	>
 		                        </div>
 	                        </div>
 	                        <div class="row mb-4">
 		                        <div class="col-6">
 		                        	<label class="form-label">닉네임</label>
-		                        	<input class="form-control" type="text" placeholder="닉네임">
+		                        	<input class="form-control" type="text" 
+		                        	placeholder="닉네임" id="infrMmNickname"
+		                        	name="infrMmNickname" value="<c:out value="${dto.infrMmNickname }"/>"
+		                        	>
 		                        </div>
 		                        <div class="col mb-4">
 		                        	<label class="form-label">성별</label>
-		                        	<select class="form-select">
-		                        		<option>남자</option>
-		                        		<option>여자</option>
+		                        	<select class="form-select" id="infrMmGender" name="infrMmGender">
+		                        		<option value="5">남자</option>
+		                        		<option value="6">여자</option>
 		                        	</select>
 		                        </div>
 	                        </div>
 	                        <div class="row mb-4">
 		                        <div class="col-6">
 		                        	<label class="form-label">생년월일</label>
-		                        	<input class="form-control" type="text" placeholder="생년월일">
+		                        	<input class="form-control" type="text"
+		                        	 placeholder="생년월일" id="infrMmBod"
+		                        	 name="infrMmBod" value="<c:out value="${dto.infrMmBod }"/>"
+		                        	 >
 		                        </div>
 		                        <div class="col">
 		                        	<label class="form-label">전화번호</label>
-		                        	<input class="form-control" type="text" placeholder="전화번호">
+		                        	<input class="form-control" type="text" 
+		                        	placeholder="전화번호" id="infrMmPhone"
+		                        	name="infrMmPhone" value="<c:out value="${dto.infrMmPhone }"/>"
+		                        	>
 		                        </div>
 	                        </div>
 	                        <div class="row mb-4">
@@ -79,15 +101,34 @@
 		                        </div>
 		                        <div class="col">
 		                        	<label class="form-label">사용여부</label>
-									<select class="form-select">
-		                        		<option>N</option>
-		                        		<option>Y</option>
+									<select class="form-select" id="infrMmDelNy" name="infrMmDelNy">
+		                        		<option value="1">N</option>
+		                        		<option value="0">Y</option>
 		                        	</select>
 		                        </div>
 	                        </div>
 							<div class="row mb-4">
 		                        <div class="col-6">
-		                        	<label class="form-label">주소 넣을칸</label>
+		                        	<label class="form-label">주소</label>
+		                        	<input type="text" id="sample4_postcode" 
+		                        	placeholder="우편번호" name="infrMmZip"
+		                        	value="<c:out value="${dto.infrMmZip }"/>"
+		                        	>
+									<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
+									<input type="text" id="sample4_roadAddress" 
+									placeholder="도로명주소" name="infrMmRoadAddress"
+									value="<c:out value="${dto.infrMmRoadAddress }"/>"
+									>
+									<input type="text" id="sample4_jibunAddress" 
+									placeholder="지번주소" name="infrMmJibunAddress"
+									value="<c:out value="${dto.infrMmJibunAddress }"/>"
+									>
+									<span id="guide" style="color:#999;display:none"></span>
+									<input type="text" id="sample4_detailAddress" 
+									placeholder="상세주소" name="infrMmDetailAddress"
+									value="<c:out value="${infrMmDetailAddress }"/>"
+									>
+									<input type="text" id="sample4_extraAddress" placeholder="참고항목">
 		                        </div>
 		                        <div class="col">
 		                        	<label class="form-label"></label>
@@ -100,16 +141,17 @@
 								<div class="col" style="text-align: right;">
 									<button class="btn btn-danger" type="button" id="cglDel"><i class="fa-regular fa-trash-can"></i></button>
 									<button class="btn btn-success" type="button" id="cglExcel"><i class="fa-regular fa-file-excel"></i></button>
-									<button class="btn btn-primary" type="button" id="cglPlus"><i class="fa-regular fa-plus"></i></button>
+									<button class="btn btn-primary" type="button" id="cglPlus" onclick="register()"><i class="fa-regular fa-plus"></i></button>
 								</div>
 							</div>
 						</div>
+						</form>
 					</div>
 				</main>
 			</div>
 		</div>
         <!-- footer s -->
-        <%@ include file="common/footer.jsp"%> 
+        <%@ include file="../common/footer.jsp"%> 
         <!-- footer s -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="../../../admin/adminTemplate/js/scripts.js"></script>
@@ -118,5 +160,67 @@
         <script src="../../../admin/adminTemplate/assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="../../../admin/adminTemplate/js/datatables-simple-demo.js"></script>
+        <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+		<script>
+		    //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
+		    function sample4_execDaumPostcode() {
+		        new daum.Postcode({
+		            oncomplete: function(data) {
+		                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+		
+		                // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+		                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+		                var roadAddr = data.roadAddress; // 도로명 주소 변수
+		                var extraRoadAddr = ''; // 참고 항목 변수
+		
+		                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+		                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+		                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+		                    extraRoadAddr += data.bname;
+		                }
+		                // 건물명이 있고, 공동주택일 경우 추가한다.
+		                if(data.buildingName !== '' && data.apartment === 'Y'){
+		                   extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+		                }
+		                // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+		                if(extraRoadAddr !== ''){
+		                    extraRoadAddr = ' (' + extraRoadAddr + ')';
+		                }
+		
+		                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+		                document.getElementById('sample4_postcode').value = data.zonecode;
+		                document.getElementById("sample4_roadAddress").value = roadAddr;
+		                document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
+		                
+		                // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
+		                if(roadAddr !== ''){
+		                    document.getElementById("sample4_extraAddress").value = extraRoadAddr;
+		                } else {
+		                    document.getElementById("sample4_extraAddress").value = '';
+		                }
+		
+		                var guideTextBox = document.getElementById("guide");
+		                // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
+		                if(data.autoRoadAddress) {
+		                    var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+		                    guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+		                    guideTextBox.style.display = 'block';
+		
+		                } else if(data.autoJibunAddress) {
+		                    var expJibunAddr = data.autoJibunAddress;
+		                    guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
+		                    guideTextBox.style.display = 'block';
+		                } else {
+		                    guideTextBox.innerHTML = '';
+		                    guideTextBox.style.display = 'none';
+		                }
+		            }
+		        }).open();
+		    }
+		    
+		    function register(){
+		    	document.getElementById('memberFormReg').submit();
+		    };
+		</script>
 </body>
 </html>

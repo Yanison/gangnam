@@ -47,11 +47,30 @@
                             <li class="breadcrumb-item active">공지글</li>
                         </ol>
                         <div class="container">
+                        	<div class="row mb-4">
+		                        <div class="col-6">
+		                        	<label class="form-label" for="bdDiv">게시판</label>
+		                        	<select class="form-select" id="bdDiv" name="bdDiv">
+										<option value="" <c:if test="${empty item.bdDiv }">selected</c:if>>게시판 선택</option>
+										<option value="8" <c:if test="${item.bdDiv eq 8 }">selected</c:if>>자유게시판</option>
+										<option value="9" <c:if test="${item.bdDiv eq 9 }">selected</c:if>>정보게시판</option>
+										<option value="10" <c:if test="${item.bdDiv eq 10 }">selected</c:if>>거래게시판</option>
+									</select>
+		                        </div>
+	                        </div>
 							<div class="row mb-4">
 		                        <div class="col-6">
 		                        	<label class="form-label">제목</label>
 		                        	<input class="form-control" type="text" id="bdTitle" name="bdTitle" value="<c:out value="${item.bdTitle }" />">
 		                        </div>
+		                        <div class="col-6">
+			                        <label class="form-label" for="delNy">삭제여부</label>
+									<select class="form-select" id="delNy" name="delNy">
+										<option value="" <c:if test="${empty item.delNy }">selected</c:if>>삭제여부 선택</option>
+										<option value="1" <c:if test="${item.delNy eq 1 }">selected</c:if>>Y</option>
+										<option value="0" <c:if test="${item.delNy eq 0 }">selected</c:if>>N</option>
+									</select>
+								</div> 
 	                        </div>
 	                        <div class="row mb-4">
 		                        <div class="col-12">
@@ -82,7 +101,7 @@
 									<button class="btn btn-secondary" type="button" id="btnList"><i class="fa-sharp fa-solid fa-bars"></i></button>
 								</div>
 								<div class="col" style="text-align: right;">
-									<button class="btn btn-primary" type="button" id="cglPlus"><i class="fa-regular fa-plus"></i></button>
+									<button class="btn btn-primary" type="button" id="btnUpdate"><i class="fa-regular fa-plus"></i></button>
 								</div>
 							</div>
 						</div>
@@ -108,6 +127,9 @@
         <script src="../../../admin/adminTemplate/js/datatables-simple-demo.js"></script>
         <script type="text/javascript">
         	var goUrlList = "/admin/board/infrBdList";
+        	var goUrlUpdt = "/admin/board/infrBdUpdt";
+        	var goUrlUele = "/admin/board/infrBdUele";
+        	var goUrlDele = "/admin/board/infrBdDele";
         
 			var seq = $("input:hidden[name=bdSeq]");
 			
@@ -116,6 +138,19 @@
 			
 			$("#btnList").on("click", function(){
 				formVo.attr("action", goUrlList).submit();
+			});
+			
+			$("#btnUpdate").on("click",function(){
+				form.attr("action", goUrlUpdt).submit();
+			});
+			
+			$("#btnUelete").on("click", function(){
+				formVo.attr("action", goUrlUele).submit();
+			});
+			
+			
+			$("#btnDelete").on("click", function(){
+				formVo.attr("action", goUrlDele).submit();
 			});
         </script>
 </body>

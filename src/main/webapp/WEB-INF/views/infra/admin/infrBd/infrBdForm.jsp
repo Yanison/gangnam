@@ -48,25 +48,25 @@
                         <div class="container">
                         	<div class="row mb-4">
 		                        <div class="col-6">
-		                        	<label class="form-label">게시판</label>
-		                        	<select class="form-select" id="codeGroup_ccgSeq" name="codeGroup_ccgSeq">
-										<option>게시판 선택</option>
-										<option>자유게시판</option>
-										<option>정보게시판</option>
-										<option>거래게시판</option>
+		                        	<label class="form-label" for="bdDiv">게시판</label>
+		                        	<select class="form-select" id="bdDiv" name="bdDiv">
+										<option value="" <c:if test="${empty dto.bdDiv }">selected</c:if>>게시판 선택</option>
+										<option value="8" <c:if test="${dto.bdDiv eq 8 }">selected</c:if>>자유게시판</option>
+										<option value="9" <c:if test="${dto.bdDiv eq 9 }">selected</c:if>>정보게시판</option>
+										<option value="10" <c:if test="${dto.bdDiv eq 10 }">selected</c:if>>거래게시판</option>
 									</select>
 		                        </div>
 	                        </div>
 							<div class="row mb-4">
 		                        <div class="col-6">
-		                        	<label class="form-label">제목</label>
-		                        	<input class="form-control" type="text" placeholder="제목">
+		                        	<label class="form-label" for="bdTitle">제목</label>
+		                        	<input class="form-control" type="text" placeholder="제목" id="bdTitle" name="bdTitle" value="<c:out value="${dto.bdTitle }" />">
 		                        </div>
 	                        </div>
 	                        <div class="row mb-4">
 		                        <div class="col-12">
-		                        	<label class="form-label">내용</label>
-									<textarea class="form-control" style="resize: none; height: 150px;"></textarea>
+		                        	<label class="form-label" for="bdContent">내용</label>
+									<textarea class="form-control" style="resize: none; height: 150px;" id="bdContent" name="bdContent"><c:out value="${dto.bdContent }" /></textarea>
 		                        </div>
 		                    </div>    
 		                    <div class="row mb-4">    
@@ -89,10 +89,10 @@
 	                        </div>
 							<div class="row p-0">
 								<div class="col">
-									<button class="btn btn-secondary" type="button" id="cglList"><i class="fa-sharp fa-solid fa-bars"></i></button>
+									<button class="btn btn-secondary" type="button" id="btnList"><i class="fa-sharp fa-solid fa-bars"></i></button>
 								</div>
 								<div class="col" style="text-align: right;">
-									<button class="btn btn-primary" type="button" id="cglPlus"><i class="fa-regular fa-plus"></i></button>
+									<button class="btn btn-primary" type="button" id="btnSave"><i class="fa-regular fa-plus"></i></button>
 								</div>
 							</div>
 						</div>
@@ -112,7 +112,18 @@
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="../../../admin/adminTemplate/js/datatables-simple-demo.js"></script>
         <script type="text/javascript">
-        
+        	var goUrlList = "/admin/board/infrBdList";
+        	var goUrlInst = "/admin/board/infrBdInst";
+        	
+        	var form = $("form[name=form]");
+        	
+        	$("#btnList").on("click", function(){
+    			form.attr("action", goUrlList).submit();
+    		});
+        	
+        	$("#btnSave").on("click", function(){
+    	   		form.attr("action", goUrlInst).submit();
+    		}); 
         </script>
 </body>
 </html>
