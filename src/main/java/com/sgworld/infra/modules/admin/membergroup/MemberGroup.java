@@ -1,8 +1,6 @@
 package com.sgworld.infra.modules.admin.membergroup;
 
-import java.util.Date;
-
-import org.springframework.format.annotation.DateTimeFormat;
+import java.sql.Date;
 
 public class MemberGroup extends MemberGroupVo{
 	
@@ -217,5 +215,19 @@ public class MemberGroup extends MemberGroupVo{
 	public void setShDupleStr(String shDupleStr) {
 		this.shDupleStr = shDupleStr;
 	}
+	
+	private Integer count;
+	public Integer getCount() {
+		return count;
+	}
+	public void setCount(Integer count) {
+		this.count = count;
+	}
+
+	private String loginErrMsg = "회원정보가 없습니다.";
+	public String getLoginErrMsg() {
+		return loginErrMsg;
+	}
+	
 	
 }

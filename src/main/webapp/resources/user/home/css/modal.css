@@ -17,7 +17,6 @@
 	transform: translate(-50%,-50%);
 	border-radius:10px;
 	color:#fff;
-	
 	display:flex;
 	flex-direction:column;
 	padding:50px 40px;
@@ -42,7 +41,6 @@
 	height:50px;
 	border-radius:5px;
 	border:1px solid #eee;
-	margin-bottom:20px;
 	padding:10px;
 }
 
@@ -94,4 +92,28 @@
     top: 20;
     right: 20;
     cursor:pointer;
+}
+
+.alertDiv{
+	color:#fff;
+	font-size:12px;
+	position: absolute;
+    bottom: 3px;
+    left:5px;
+    margin:0;
+}
+
+.enable{
+	font-size:10px;
+	color:#67db5c;
+}
+
+.disable{
+	font-size:10px;
+	color:#e2b3b9;
+}
+
+.inputDiv{
+	position:relative;
+	margin-bottom:20px;
 }
