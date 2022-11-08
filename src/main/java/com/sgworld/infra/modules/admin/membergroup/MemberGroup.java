@@ -1,8 +1,6 @@
 package com.sgworld.infra.modules.admin.membergroup;
 
-import java.util.Date;
-
-import org.springframework.format.annotation.DateTimeFormat;
+import java.sql.Date;
 
 public class MemberGroup extends MemberGroupVo{
 	
