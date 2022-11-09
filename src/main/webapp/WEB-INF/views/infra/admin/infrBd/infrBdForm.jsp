@@ -12,29 +12,29 @@
     <script src="https://kit.fontawesome.com/059fbc3cf8.js" crossorigin="anonymous"></script>
     <style type="text/css">
 		
-	.addScroll{
-	overflow-y:auto;
-	height: 200px;
-	background-color:#E9ECEF;
-	padding-top:5px; 
-	padding-left:5px;
-	}
-	 	
-	.input-file-button{
-		padding: 4px 25px;
-		background-color:#FF6600;
-		border-radius: 4px;
-		color: white;
-		cursor: pointer;
-	}
+		.addScroll{
+			overflow-y:auto;
+			height: 200px;
+			background-color:#E9ECEF;
+			padding-top:5px; 
+			padding-left:5px;
+		}
+		 	
+		.input-file-button{
+			padding: 4px 25px;
+			background-color:#FF6600;
+			border-radius: 4px;
+			color: white;
+			cursor: pointer;
+		}
 			
 	</style>
 </head>
 <body class="sb-nav-fixed">
-		<!-- top banner s-->
-		<%@ include file="../common/header.jsp"%>   
-		<!-- top banner e-->
-	<form method="post" id="bdForm" name="form" enctype="multipart/form-data">
+	<!-- top banner s-->
+	<%@ include file="../common/header.jsp"%>   
+	<!-- top banner e-->
+	<form method="post" id="bdForm" name="bdForm" autocomplete="off" enctype="multipart/form-data">
         <div id="layoutSidenav">
         	<!-- sidebar s-->
             <%@ include file="../common/sidebar.jsp"%> 
@@ -70,6 +70,7 @@
 									<textarea class="form-control" style="resize: none; height: 150px;" id="bdContent" name="bdContent"><c:out value="${dto.bdContent }"/></textarea>
 		                        </div>
 		                    </div>    
+		                    
 		                    <div class="row mb-4">
 						        <div class="col-6">
 						        	<c:set var="type" value="2"/>		<!-- #-> -->
@@ -114,6 +115,7 @@
 									</div>
 						        </div>
 						    </div>
+						     
 							<div class="row p-0">
 								<div class="col">
 									<button class="btn btn-secondary" type="button" id="btnList"><i class="fa-sharp fa-solid fa-bars"></i></button>
@@ -146,7 +148,7 @@
         	var goUrlList = "/admin/board/infrBdList";
         	var goUrlInst = "/admin/board/infrBdInst";
         	
-        	var form = $("form[id=bdForm]");
+        	var form = $("form[name=bdForm]");
         	
         	$("#btnSave").on("click", function(){
     	   		form.attr("action", goUrlInst).submit();

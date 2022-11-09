@@ -7,17 +7,22 @@ public class SgWorldDto {
 	/*
 	 * sgWorld 
 	 */
-	private Integer sgwSeq;
+	private String sgwSeq;
 	private String sgwTitle;
 	private String sgwPw;
 	private String sgwMmNum;
 	private Integer sgwMap;
 	private Integer sgwLink;
 	private Date regDateTime;
-	public Integer getSgwSeq() {
+	
+	
+////////////////////////////////////////////
+	
+	
+	public String getSgwSeq() {
 		return sgwSeq;
 	}
-	public void setSgwSeq(Integer sgwSeq) {
+	public void setSgwSeq(String sgwSeq) {
 		this.sgwSeq = sgwSeq;
 	}
 	public String getSgwTitle() {
@@ -67,10 +72,17 @@ public class SgWorldDto {
 	/*
 	 * sgWorldChat
 	 */
-	private Integer chatSeq;
+	private String chatSeq;
 	private String sgwChId;
 	private String sgwChMsg;
 	private Date sgwTS;
+	
+	public SgWorldDto() {
+	}
+	
+	public SgWorldDto(String sgwChId) {
+		this.sgwChId = sgwChId;
+	}
 	
 	public Integer getInfrMmSeq() {
 		return infrMmSeq;
@@ -78,10 +90,10 @@ public class SgWorldDto {
 	public void setInfrMmSeq(Integer infrMmSeq) {
 		this.infrMmSeq = infrMmSeq;
 	}
-	public Integer getChatSeq() {
+	public String getChatSeq() {
 		return chatSeq;
 	}
-	public void setChatSeq(Integer chatSeq) {
+	public void setChatSeq(String chatSeq) {
 		this.chatSeq = chatSeq;
 	}
 	public String getSgwChId() {

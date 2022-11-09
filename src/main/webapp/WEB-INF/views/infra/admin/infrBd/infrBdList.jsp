@@ -11,14 +11,14 @@
     <script src="https://kit.fontawesome.com/059fbc3cf8.js" crossorigin="anonymous"></script>
 </head>
 <body class="sb-nav-fixed">
-<form method="post" name="form" id="form">
-	<input type="hidden" name="bdSeq" value="${dto.bdSeq }">
-		<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>">
-		<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow }"/>">
-		<input type="hidden" name="checkboxSeqArray">
 	<!-- top banner s-->
 	<%@ include file="../common/header.jsp"%>   
 	<!-- top banner e-->
+	<form method="post" name="form" id="form">
+		<input type="hidden" name="bdSeq" value="${dto.bdSeq }">
+		<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>">
+		<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow }"/>">
+		<input type="hidden" name="checkboxSeqArray">
         <div id="layoutSidenav">
         	<!-- sidebar s-->
             <%@ include file="../common/sidebar.jsp"%> 
@@ -70,7 +70,8 @@
 							<div class="row mt-3">
 								<div class="row">
 									<div class="col-11 p-0">
-										<span>Total: 42</span>
+										<span>Total: </span><c:out value="${vo.totalRows }" />
+										<sapn>Remain: </sapn><c:out value="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + status.index) }" />
 									</div>
 									<div class="col-1 p-0">
 										<div class="col-12">

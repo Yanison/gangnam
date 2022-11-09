@@ -107,7 +107,6 @@ public class AdminBoardServiceImpl extends BaseServiceImpl implements AdminBoard
 		
 		setRegMod(dto);
 		dao.insert(dto);
-		
 		System.out.print(
 				"who?" + "\n"
 						+"getUploadImg: " + dto.getUploadImg() +"\n" 

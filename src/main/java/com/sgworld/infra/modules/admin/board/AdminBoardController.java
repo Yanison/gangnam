@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.sgworld.infra.common.constants.Constants;
-
 @Controller
 @RequestMapping(value="/admin/board/")
 public class AdminBoardController {
@@ -21,7 +19,7 @@ public class AdminBoardController {
 	@RequestMapping(value="infrBdList")
 	public String infrBdList(@ModelAttribute("vo") AdminBoardVo vo, Model model) throws Exception {
 		
-		//vo.setParamsPaging(service.selectOneCount(vo));
+		vo.setParamsPaging(service.selectOneCount(vo));
 		
 		List<AdminBoardDto> list = service.selectList(vo);
 		model.addAttribute("list", list);
@@ -45,19 +43,17 @@ public class AdminBoardController {
 	@SuppressWarnings(value = {"all"})
 	@RequestMapping(value = "infrBdInst")
 	public String infrBdInst(AdminBoardVo vo, AdminBoardDto dto, RedirectAttributes redirectAttributes) throws Exception {
+		
 		System.out.println("bdDiv: " + dto.getBdDiv());
 		System.out.println("bdTitle: " + dto.getBdTitle());
 		System.out.println("bdContent: " + dto.getBdContent());
+		
 		service.insert(dto);
 		vo.setBdSeq(dto.getBdSeq());
 		
 		redirectAttributes.addFlashAttribute("vo", vo);
 		
-		if (Constants.INSERT_AFTER_TYPE == 1) {
-			return "redirect:/admin/board/infrBdForm";
-		} else {
-			return "redirect:/admin/board/infrBdList";
-		}
+		return "redirect:/admin/board/infrBdList";
 	}
 	
 	@RequestMapping(value = "infrBdUpdt")

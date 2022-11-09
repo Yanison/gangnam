@@ -50,7 +50,7 @@
 <!-- commonJS -->
 <!-- <script src="../resources/js/numFmt.js"></script> -->
 <!-- commonCSS -->
-<link href="./resources/common/css/common.css" rel="stylesheet">
+<link href="/resources/common/css/common.css" rel="stylesheet">
 
 
 <!-- JavaScript Bundle with Popper -->

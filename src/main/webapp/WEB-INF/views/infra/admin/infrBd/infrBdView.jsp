@@ -30,11 +30,11 @@
 	</style>
 </head>
 <body class="sb-nav-fixed">
-	<form id="form" name="form" autocomplete="off" enctype="multipart/form-data">
-	<input type="hidden" name="bdSeq" value="<c:out value="${vo.bdSeq}"/>"/>
 	<!-- top banner s-->
 	<%@ include file="../common/header.jsp"%>   
 	<!-- top banner e-->
+	<form id="form" name="form" autocomplete="off" enctype="multipart/form-data">
+	<input type="hidden" name="bdSeq" value="<c:out value="${vo.bdSeq}"/>"/>
         <div id="layoutSidenav">
         	<!-- sidebar s-->
             <%@ include file="../common/sidebar.jsp"%> 

@@ -56,7 +56,7 @@
 			,delNy
 		)
 		VALUES (
-			1
+			"1"
 			,#{bdDiv}
 			,#{bdTitle}
 			,#{bdContent}
