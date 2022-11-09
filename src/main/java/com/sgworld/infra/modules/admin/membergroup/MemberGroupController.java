@@ -20,6 +20,7 @@ public class MemberGroupController {
 	//회원관리 리스트
 	@RequestMapping(value = "infrMmList")
 	public String infrCcList(@ModelAttribute("dto") MemberGroup dto , Model model) throws Exception {
+		dto.setParamsPaging(service.selectOneCount(dto));
 		List<MemberGroup>list = service.selectMmList(dto);
 		model.addAttribute("list", list);
 		return "infra/admin/infrMm/infrMmList";

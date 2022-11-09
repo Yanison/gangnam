@@ -31,7 +31,6 @@ public class MemberGroup extends MemberGroupVo{
 	private Integer infrMmUseNy;
 	private Integer infrMmDelNy;
 	
-	
 	public String getInfrMmSeq() {
 		return infrMmSeq;
 	}
@@ -205,5 +204,30 @@ public class MemberGroup extends MemberGroupVo{
 	public void setShDupleStr(String shDupleStr) {
 		this.shDupleStr = shDupleStr;
 	}
+	
+	private String shValue;
+	private Integer shOption;
+	private Integer shdelNy;
+
+	public String getShValue() {
+		return shValue;
+	}
+	public void setShValue(String shValue) {
+		this.shValue = shValue;
+	}
+	public Integer getShOption() {
+		return shOption;
+	}
+	public void setShOption(Integer shOption) {
+		this.shOption = shOption;
+	}
+	public Integer getShdelNy() {
+		return shdelNy;
+	}
+	public void setShdelNy(Integer shdelNy) {
+		this.shdelNy = shdelNy;
+	}
+	
+	
 	
 }

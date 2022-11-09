@@ -1,7 +1,8 @@
 package com.sgworld.infra.modules.admin.membergroup;
 
+import com.sgworld.infra.common.base.BaseVo;
 
-public class MemberGroupVo {
+public class MemberGroupVo extends BaseVo{
 	private String shValue;
 	private Integer shOption;
 	private String infrMmSeq;

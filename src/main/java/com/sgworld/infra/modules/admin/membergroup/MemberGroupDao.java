@@ -53,4 +53,10 @@ public class MemberGroupDao {
 		return sqlSession.update(namespace + ".ueleteMm", dto);
 	}
 	
+	//admin count조회
+	public int selectOneCount(MemberGroupVo vo) {
+		return sqlSession.selectOne(namespace + ".selectOneCount", vo);
+	}
+	
+	
 }
