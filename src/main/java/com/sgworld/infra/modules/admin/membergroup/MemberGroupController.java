@@ -38,4 +38,12 @@ public class MemberGroupController {
 		return "redirect:/admin/memberGroup/infrMmList";
 	}
 	
+	//회원관리 상세화면
+	@RequestMapping(value = "infrMmView")
+	public String selectMmOne(@ModelAttribute("vo")MemberGroupVo vo , Model model) throws Exception {
+		MemberGroup item=service.selectMmOne(vo);
+		model.addAttribute("item", item);
+		return "infra/admin/infrMm/infrMmView";
+	}
+	
 }

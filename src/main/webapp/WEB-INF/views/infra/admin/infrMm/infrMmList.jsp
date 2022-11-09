@@ -25,6 +25,8 @@
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">회원목록</li>
                         </ol>
+                        <form  method="post" name="mform">
+                        <input type="hidden" name="infrMmSeq" value="<c:out value="${dto.infrMmSeq }"/>">
 						<div class="col">
 							<div class="row">
 								<div class="col border me-4">
@@ -106,7 +108,7 @@
 														<td class="tableHead1"><input class="listCheck" type="checkbox"></td>
 														<td class="tableHead1"><c:out value="${list.infrMmSeq }" /></td>
 														<td class="tableHead"><c:out value="${list.infrMmId }" /></td>
-														<td class="tableHead"><c:out value="${list.infrMmName }" /></td>
+														<td class="tableHead"><a href="javascript:goView(<c:out value="${list.infrMmSeq }"/>)" class="text-decoration-none"><c:out value="${list.infrMmName }"/></td>
 														<td class="tableHead"><c:out value="${list.infrMmNickname }" /></td>
 														<td class="tableHead"><c:out value="${list.infrMmGender }" /></td>
 														<td class="tableHead"><c:out value="${list.infrMmBod }" /></td>
@@ -161,6 +163,7 @@
 								</div>
 							</div>
 						</div>
+						</form>
 					</div>
 				</main>
 			</div>
@@ -178,11 +181,19 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
         <script>
         	var goUrlMemberForm = "/admin/memberGroup/infrMmForm"
+        	var goUrlView ="/admin/memberGroup/infrMmView"
         	
-        		$("#formBtn").on("click",function(){
-        			$(location).attr("href",goUrlMemberForm);
-        		});
+       		var seq = $("input:hidden[name=infrMmSeq]");
+        	var form = $("form[name=mform]");
         	
+       		$("#formBtn").on("click",function(){
+       			$(location).attr("href",goUrlMemberForm);
+       		});
+        	
+        	goView = function(seqValue){
+        		seq.val(seqValue);
+        		form.attr("action" , goUrlView).submit();
+        	}
         	
         </script>
 </body>

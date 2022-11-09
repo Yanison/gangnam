@@ -32,7 +32,7 @@
 		                        	<label class="form-label">회원아이디</label>
 		                        	<input class="form-control" type="text" 
 		                        	placeholder="회원아이디" id="infrMmId" 
-		                        	name="infrMmId" value="<c:out value="${dto.infrMmId }"/>"
+		                        	name="infrMmId" 
 		                        	>
 		                        </div>
 		                        <div class="col">
