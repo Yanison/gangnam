@@ -105,7 +105,7 @@ public class AdminBoardServiceImpl extends BaseServiceImpl implements AdminBoard
 	@Override
 	public int insert(AdminBoardDto dto) throws Exception { 
 		
-		setRegMod(dto);
+		//setRegMod(dto);
 		dao.insert(dto);
 		System.out.print(
 				"who?" + "\n"
