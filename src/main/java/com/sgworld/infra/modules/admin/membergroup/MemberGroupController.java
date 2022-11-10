@@ -20,6 +20,7 @@ public class MemberGroupController {
 	//회원관리 리스트
 	@RequestMapping(value = "infrMmList")
 	public String infrCcList(@ModelAttribute("dto") MemberGroup dto , Model model) throws Exception {
+		dto.setParamsPaging(service.selectOneCount(dto));
 		List<MemberGroup>list = service.selectMmList(dto);
 		model.addAttribute("list", list);
 		return "infra/admin/infrMm/infrMmList";
@@ -36,6 +37,14 @@ public class MemberGroupController {
 	public String insertMmSignIn(MemberGroup dto , RedirectAttributes redirectAttributes)throws Exception{
 		service.insertMmSignIn(dto);
 		return "redirect:/admin/memberGroup/infrMmList";
+	}
+	
+	//회원관리 상세화면
+	@RequestMapping(value = "infrMmView")
+	public String selectMmOne(@ModelAttribute("vo")MemberGroupVo vo , Model model) throws Exception {
+		MemberGroup item=service.selectMmOne(vo);
+		model.addAttribute("item", item);
+		return "infra/admin/infrMm/infrMmView";
 	}
 	
 }
