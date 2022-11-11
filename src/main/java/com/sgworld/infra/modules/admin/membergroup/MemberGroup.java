@@ -205,7 +205,6 @@ public class MemberGroup extends MemberGroupVo{
 		this.shDupleStr = shDupleStr;
 	}
 	
-<<<<<<< HEAD
 	private Integer count;
 	public Integer getCount() {
 		return count;
@@ -218,7 +217,7 @@ public class MemberGroup extends MemberGroupVo{
 	public String getLoginErrMsg() {
 		return loginErrMsg;
 	}
-=======
+	
 	private String shValue;
 	private Integer shOption;
 	private Integer shdelNy;
@@ -241,8 +240,6 @@ public class MemberGroup extends MemberGroupVo{
 	public void setShdelNy(Integer shdelNy) {
 		this.shdelNy = shdelNy;
 	}
-	
->>>>>>> branch 'main' of https://github.com/Seonya/gangnam.git
 	
 	
 }
