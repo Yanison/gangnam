@@ -17,7 +17,7 @@ public class Base {
 		private String ext;
 		private long size;
 		private Integer delNy;
-		private String pSeq;
+		private String pseq;
 		
 		//regmod
 		private String regIp;
@@ -102,10 +102,10 @@ public class Base {
 			this.delNy = delNy;
 		}
 		public String getpSeq() {
-			return pSeq;
+			return pseq;
 		}
 		public void setpSeq(String pSeq) {
-			this.pSeq = pSeq;
+			this.pseq = pSeq;
 		}
 		public String getRegIp() {
 			return regIp;

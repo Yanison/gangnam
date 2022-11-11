@@ -56,7 +56,7 @@
 			,delNy
 		)
 		VALUES (
-			1
+			"1"
 			,#{bdDiv}
 			,#{bdTitle}
 			,#{bdContent}
@@ -106,7 +106,7 @@
 		FROM sgworld.boardUploaded
 		WHERE 1=1
 			AND delNy = 0
-			AND pSeq = #{bdSeq}
+			AND pseq = #{bdSeq}
 		ORDER BY
 			type, sort
 	</select>

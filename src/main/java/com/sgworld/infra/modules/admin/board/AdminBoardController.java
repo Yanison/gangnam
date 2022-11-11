@@ -19,7 +19,7 @@ public class AdminBoardController {
 	@RequestMapping(value="infrBdList")
 	public String infrBdList(@ModelAttribute("vo") AdminBoardVo vo, Model model) throws Exception {
 		
-		//vo.setParamsPaging(service.selectOneCount(vo));
+		vo.setParamsPaging(service.selectOneCount(vo));
 		
 		List<AdminBoardDto> list = service.selectList(vo);
 		model.addAttribute("list", list);
@@ -37,22 +37,23 @@ public class AdminBoardController {
 		
 		AdminBoardDto item = service.selectOne(vo);
 		model.addAttribute("item", item);
+		model.addAttribute("listUploaded", service.selectListUploaded(vo));
 		return "infra/admin/infrBd/infrBdView";
 	}
 	
 	@SuppressWarnings(value = {"all"})
 	@RequestMapping(value = "infrBdInst")
 	public String infrBdInst(AdminBoardVo vo, AdminBoardDto dto, RedirectAttributes redirectAttributes) throws Exception {
-		System.out.println("service1: " +  dto.getBdContent());
-		System.out.println("service1: " +  dto.getBdTitle());
-		System.out.println("service1: " +  dto.getBdDiv());
+		
+		System.out.println("bdDiv: " + dto.getBdDiv());
+		System.out.println("bdTitle: " + dto.getBdTitle());
+		System.out.println("bdContent: " + dto.getBdContent());
+		
 		service.insert(dto);
-		System.out.println("service: " +  dto.getBdContent());
-		System.out.println("service: " +  dto.getBdTitle());
-		System.out.println("service: " +  dto.getBdDiv());
 		vo.setBdSeq(dto.getBdSeq());
 		
 		redirectAttributes.addFlashAttribute("vo", vo);
+		
 		return "redirect:/admin/board/infrBdList";
 	}
 	

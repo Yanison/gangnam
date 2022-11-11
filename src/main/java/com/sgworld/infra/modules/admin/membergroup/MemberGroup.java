@@ -31,7 +31,6 @@ public class MemberGroup extends MemberGroupVo{
 	private Integer infrMmUseNy;
 	private Integer infrMmDelNy;
 	
-	
 	public String getInfrMmSeq() {
 		return infrMmSeq;
 	}
@@ -206,6 +205,7 @@ public class MemberGroup extends MemberGroupVo{
 		this.shDupleStr = shDupleStr;
 	}
 	
+<<<<<<< HEAD
 	private Integer count;
 	public Integer getCount() {
 		return count;
@@ -218,6 +218,31 @@ public class MemberGroup extends MemberGroupVo{
 	public String getLoginErrMsg() {
 		return loginErrMsg;
 	}
+=======
+	private String shValue;
+	private Integer shOption;
+	private Integer shdelNy;
+
+	public String getShValue() {
+		return shValue;
+	}
+	public void setShValue(String shValue) {
+		this.shValue = shValue;
+	}
+	public Integer getShOption() {
+		return shOption;
+	}
+	public void setShOption(Integer shOption) {
+		this.shOption = shOption;
+	}
+	public Integer getShdelNy() {
+		return shdelNy;
+	}
+	public void setShdelNy(Integer shdelNy) {
+		this.shdelNy = shdelNy;
+	}
+	
+>>>>>>> branch 'main' of https://github.com/Seonya/gangnam.git
 	
 	
 }

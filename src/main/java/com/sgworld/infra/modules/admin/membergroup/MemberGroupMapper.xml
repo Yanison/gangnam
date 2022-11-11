@@ -7,8 +7,23 @@
 
 	<resultMap id="MemberGroup" type="com.sgworld.infra.modules.admin.membergroup.MemberGroup"></resultMap>
 	
+	
+	<sql id="selectCommon">
+		FROM infrMember a
+		WHERE 1=1
+		<if test="shdelNy != null and !shdelNy.equals('')">AND delNy = #{shdelNy}</if>
+	 	<choose>
+			<when test="shOption == 1">AND infrMmSeq = #{shValue}</when>
+			<when test="shOption == 2">AND infrMmName LIKE CONCAT('%',#{shValue},'%')</when>
+			<when test="shOption == 3">AND infrMmId LIKE CONCAT('%',#{shValue},'%')</when>
+			<otherwise></otherwise>
+		</choose>
+	</sql>
+	
+	
 	<select id="selectMmList" resultMap="MemberGroup">
 		select * from infrMember
+		ORDER BY infrMmSeq DESC
 	</select>
 	
 	<select id="selectMmOne" resultMap="MemberGroup">
@@ -140,6 +155,12 @@
 		WHERE 1=1
 			AND a.infrMmSeq = #{infrMmSeq}
 			ORDER BY b.bdSeq DESC
+	</select>
+	
+	<!-- admin total count-->
+	<select id="selectOneCount" resultType="Integer">
+		SELECT COUNT(*)
+		<include refid="selectCommon" />
 	</select>
 	
 </mapper>
