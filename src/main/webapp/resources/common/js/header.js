@@ -29,3 +29,11 @@ function userLogOut(){
 	
 }
 
+function isSssValThere(str){
+	var infrMmId = $(str).val();
+	console.log(
+		str + " Session is:: " + infrMmId +"\n"
+	)
+}
+
+

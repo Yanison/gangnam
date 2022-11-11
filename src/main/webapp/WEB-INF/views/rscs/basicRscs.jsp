@@ -51,9 +51,10 @@
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 
 <!-- commonJS -->
+<script src="/resources/common/js/paging.js"></script>
 <!-- <script src="../resources/js/numFmt.js"></script> -->
 <!-- commonCSS -->
-<link href="./resources/common/css/common.css" rel="stylesheet">
+<link href="/resources/common/css/common.css" rel="stylesheet">
 
 
 <!-- JavaScript Bundle with Popper -->

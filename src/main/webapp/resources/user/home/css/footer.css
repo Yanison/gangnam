@@ -37,3 +37,10 @@ footer{
 .devMemberList > div{
 	margin:0 30px;
 }
+.goUserAdmin{
+	cursor:pointer;
+}
+
+.goUserAdmin:hover{
+	color:#999;
+}

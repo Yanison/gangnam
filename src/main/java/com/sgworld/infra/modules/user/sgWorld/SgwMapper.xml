@@ -6,5 +6,21 @@
 <mapper namespace="com.sgworld.infra.modules.user.sgWorld.SgwMapper">
 	<resultMap id="SgwDto" type="com.sgworld.infra.modules.user.sgWorld.sgwdto.SgwDto"></resultMap>
 	
-	
+	<insert id="buildSgw">
+		insert into sgWorld
+		(
+		sgwTitle
+		,isHidden
+		,sgwMmNumber
+		,sgwMap
+		,regByMm
+		)
+		values(
+		#{sgwTitle}
+		,#{isHidden}
+		,#{sgwMmNumber}
+		,#{sgwMap}
+		,#{inftMmSeq}
+		)
+	</insert>
 </mapper>
