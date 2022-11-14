@@ -163,4 +163,28 @@
 		<include refid="selectCommon" />
 	</select>
 	
+	
+	<!-- 로그인 -->
+	<select id="selectOneId" resultMap="MemberGroup">
+		SELECT
+			a.infrMmSeq
+			,a.infrMmId
+		FROM
+			infrMember a
+		WHERE 1=1
+			AND a.infrMmId = #{infrMmId}
+	</select>
+	
+	
+	<select id="selectOneLogin" resultMap="MemberGroup">
+		SELECT
+			a.infrMmSeq
+			,a.infrMmId
+			,a.infrMmName
+		FROM
+			infrMember a
+		WHERE 1=1
+			AND a.infrMmId = #{infrMmId}
+			<if test="infrMmPw != null and !infrMmPw.equals('')">AND a.infrMmPw = #{infrMmPw}</if>
+	</select>
 </mapper>

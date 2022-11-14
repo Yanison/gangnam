@@ -53,7 +53,7 @@
 			,c.uuidName
 		FROM board a
 		JOIN infrMember b on a.infrMmSeq = b.infrMmSeq
-		JOIN boardUploaded c on a.bdSeq = c.pSeq
+		LEFT JOIN boardUploaded c on a.bdSeq = c.pSeq
 		WHERE 1=1
 			AND bdSeq = #{bdSeq}
 	</select>

@@ -1,5 +1,7 @@
 package com.sgworld.infra.modules.admin.membergroup;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 import javax.servlet.http.HttpSession;
@@ -7,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sgworld.infra.common.MailService;
@@ -36,13 +39,11 @@ public class MemberRestController {
 		
 		return "userSignIn";
 	}
-	
+	/*
 	@RequestMapping(value="userLogin")
 	public String userLogin(MemberGroup dto,MemberGroupVo vo,HttpSession session)throws Exception{
 		
 		MemberGroup user = mmService.selectUserLogin(dto);
-		
-		
 		
 		if(user.getCount() == 1) {
 			
@@ -68,12 +69,6 @@ public class MemberRestController {
 			return "nope";
 		}
 		
-		
-		
-		
-		
-
-		
 	}
 	
 	@RequestMapping(value="userLogOut")
@@ -82,6 +77,45 @@ public class MemberRestController {
 		session.invalidate();
 		
 		return "userLogOut";
+	}
+	*/
+	
+	@ResponseBody
+	@RequestMapping(value = "loginProc")
+	public Map<String, Object> loginProc(MemberGroup dto, HttpSession httpSession) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		MemberGroup rtMember = mmService.selectOneId(dto);
+		if (rtMember != null) {
+//			dto.setIfmmPassword(UtilSecurity.encryptSha256(dto.getIfmmPassword()));
+			MemberGroup rtMember2 = mmService.selectOneLogin(dto);
+
+			if (rtMember2 != null) {
+				
+				httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE); // 60second * 30 = 30minute
+				httpSession.setAttribute("sessSeq", rtMember2.getInfrMmSeq());
+				httpSession.setAttribute("sessId", rtMember2.getInfrMmId());
+				httpSession.setAttribute("sessName", rtMember2.getInfrMmName());
+
+				returnMap.put("rt", "success");
+			} else {
+				returnMap.put("rt", "fail");
+			}
+		} else {
+			returnMap.put("rt", "fail");
+		}
+		return returnMap;
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "logoutProc")
+	public Map<String, Object> logoutProc(HttpSession httpSession) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		//UtilCookie.deleteCookie();
+		httpSession.invalidate();
+		returnMap.put("rt", "success");
+		return returnMap;
 	}
 	 
 	@RequestMapping(value="getValidationOfDuple")
@@ -92,6 +126,11 @@ public class MemberRestController {
 		return getValidationOfDuple;
 	}
 	
+	 public void session(MemberGroup dto, HttpSession httpSession) {
+	     httpSession.setAttribute("sessSeq", dto.getInfrMmSeq());    
+	     httpSession.setAttribute("sessEmail", dto.getInfrMmId());
+	     httpSession.setAttribute("sessName", dto.getInfrMmName());
+	 }
 	
 	/**
      * 휴대번호 인증

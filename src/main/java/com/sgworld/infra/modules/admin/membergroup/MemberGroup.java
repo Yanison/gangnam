@@ -30,6 +30,9 @@ public class MemberGroup extends MemberGroupVo{
 	private String modBy;
 	private Integer infrMmUseNy;
 	private Integer infrMmDelNy;
+	private String sessSeq;
+	private String sessName;
+	private String sessId;
 	
 	public String getInfrMmSeq() {
 		return infrMmSeq;
@@ -239,6 +242,24 @@ public class MemberGroup extends MemberGroupVo{
 	}
 	public void setShdelNy(Integer shdelNy) {
 		this.shdelNy = shdelNy;
+	}
+	public String getSessSeq() {
+		return sessSeq;
+	}
+	public void setSessSeq(String sessSeq) {
+		this.sessSeq = sessSeq;
+	}
+	public String getSessName() {
+		return sessName;
+	}
+	public void setSessName(String sessName) {
+		this.sessName = sessName;
+	}
+	public String getSessId() {
+		return sessId;
+	}
+	public void setSessId(String sessId) {
+		this.sessId = sessId;
 	}
 	
 	
