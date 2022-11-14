@@ -13,6 +13,16 @@
 		FROM board a
 		JOIN infrMember b on a.infrMmSeq = b.infrMmSeq
 		WHERE 1=1
+			<if test="shDelNy != null and !shDelNy.equals('')">AND a.delNy = #{shDelNy}</if>
+			<choose>
+				<when test="shOptionDate == 1">AND a.regDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+				<when test="shOptionDate == 2">AND a.modDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+			</choose>
+			<choose>
+				<when test="shOption == 1">AND b.infrMmNickname LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption == 2">AND a.bdTitle LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption == 3">AND a.bdDiv LIKE CONCAT('%',#{shValue},'%')</when>
+			</choose>
 	</sql>
 
 	<select id="selectList" resultMap="resultMapObj">
@@ -39,8 +49,11 @@
 		SELECT		
 			a.*
 			,b.infrMmNickname
+			,c.path
+			,c.uuidName
 		FROM board a
 		JOIN infrMember b on a.infrMmSeq = b.infrMmSeq
+		JOIN boardUploaded c on a.bdSeq = c.pSeq
 		WHERE 1=1
 			AND bdSeq = #{bdSeq}
 	</select>

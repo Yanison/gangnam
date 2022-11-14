@@ -4,7 +4,6 @@ import java.util.Random;
 
 import javax.servlet.http.HttpSession;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sgworld.infra.common.MailService;
 import com.sgworld.infra.common.SMS;
+import com.sgworld.infra.common.constants.Constants;
 
 import net.nurigo.sdk.NurigoApp;
 import net.nurigo.sdk.message.model.Message;
@@ -42,6 +42,7 @@ public class MemberRestController {
 		
 		MemberGroup user = mmService.selectUserLogin(dto);
 		
+		session.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE);
 		session.setAttribute("infrMmSeq", user.getInfrMmSeq());
 		session.setAttribute("infrMmId", user.getInfrMmId());
 		session.setAttribute("infrMmName", user.getInfrMmName());
@@ -66,6 +67,7 @@ public class MemberRestController {
 		
 		return "userLogOut";
 	}
+	 
 	@RequestMapping(value="getValidationOfDuple")
 	public int getValidationOfDuple(MemberGroup dto)throws Exception {
 		
