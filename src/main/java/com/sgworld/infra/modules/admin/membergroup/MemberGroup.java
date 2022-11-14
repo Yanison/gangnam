@@ -205,6 +205,19 @@ public class MemberGroup extends MemberGroupVo{
 		this.shDupleStr = shDupleStr;
 	}
 	
+	private Integer count;
+	public Integer getCount() {
+		return count;
+	}
+	public void setCount(Integer count) {
+		this.count = count;
+	}
+
+	private String loginErrMsg = "회원정보가 없습니다.";
+	public String getLoginErrMsg() {
+		return loginErrMsg;
+	}
+	
 	private String shValue;
 	private Integer shOption;
 	private Integer shdelNy;
@@ -227,7 +240,6 @@ public class MemberGroup extends MemberGroupVo{
 	public void setShdelNy(Integer shdelNy) {
 		this.shdelNy = shdelNy;
 	}
-	
 	
 	
 }

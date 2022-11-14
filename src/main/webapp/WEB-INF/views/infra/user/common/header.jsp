@@ -30,9 +30,9 @@
 		</ul>
 	</div>
 	<div class="hiddenGroup" style="none">
-		<input type="hidden" id="infrMmId" value="${infrMmId}">
-		<input type="hidden" id="infrMmSeq" name="infrMmSeq" value="${infrMmSeq}">
-		<input type="hidden" id="infrMmName" value="${infrMmName}">
+		<input type="hidden" id="infrMmId" value="${infrMmId}" onchange="isSssValThere('#infrMmId')">
+		<input type="hidden" id="infrMmSeq" name="infrMmSeq" value="${infrMmSeq}" onchange="isSssValThere('infrMmSeq')">
+		<input type="hidden" id="infrMmName" value="${infrMmName}" onchange="isSssValThere('infrMmName')">
 	</div>
 </nav>
 

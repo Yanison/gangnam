@@ -38,10 +38,11 @@ public class MemberRestController {
 	}
 	
 	@RequestMapping(value="userLogin")
-	public MemberGroup userLogin(MemberGroup dto,MemberGroupVo vo,HttpSession session)throws Exception{
+	public String userLogin(MemberGroup dto,MemberGroupVo vo,HttpSession session)throws Exception{
 		
 		MemberGroup user = mmService.selectUserLogin(dto);
 		
+<<<<<<< HEAD
 		session.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE);
 		session.setAttribute("infrMmSeq", user.getInfrMmSeq());
 		session.setAttribute("infrMmId", user.getInfrMmId());
@@ -51,13 +52,37 @@ public class MemberRestController {
 		Object infrMmName = session.getAttribute("infrMmName");
 		String mmSs = (String) session.getAttribute("infrMmSeq");
 		vo.setMmSsSeq(mmSs);
+=======
+		if(user.getCount() == 1) {
+			
+			session.setAttribute("infrMmSeq", user.getInfrMmSeq());
+			session.setAttribute("infrMmId", user.getInfrMmId());
+			session.setAttribute("infrMmName", user.getInfrMmName());
+			Object infrMmSeq = session.getAttribute("infrMmSeq");
+			Object infrMmId = session.getAttribute("infrMmId");
+			Object infrMmName = session.getAttribute("infrMmName");
+			String mmSs = (String) session.getAttribute("infrMmSeq");
+			
+			vo.setMmSsSeq(mmSs);
+			
+			System.out.print(
+					"userLogin session infrMmSeq ::" + infrMmSeq + "\n "
+					+ "userLogin session infrMmId ::" + infrMmId + "\n "
+					+ "userLogin session infrMmName ::" + infrMmName + "\n "
+					+ "userLogin session infrMmName ::" + infrMmName + "\n "
+					);
+			return "okay";
+		}else {
+			return "nope";
+		}
+>>>>>>> branch 'main' of https://github.com/Seonya/gangnam.git
 		
 		
-		System.out.println("userLogin session infrMmSeq ::" + infrMmSeq);
-		System.out.println("userLogin session infrMmId ::" + infrMmId);
-		System.out.println("userLogin session infrMmName ::" + infrMmName);
 		
-		return user;
+		
+		
+
+		
 	}
 	
 	@RequestMapping(value="userLogOut")
@@ -93,7 +118,11 @@ public class MemberRestController {
        // 발신번호 및 수신번호는 반드시 01012345678 형태로 입력되어야 합니다.
        message.setFrom("01031744295");
        message.setTo(sms.getToNum());
-       message.setText(randNum);
+       message.setText(
+    		   "싸게월드 휴대폰 인증번호 입니다." +
+    		   "<br><br>" 
+    		   + randNum
+    		   );
 
        SingleMessageSentResponse response 
        	= this.messageService.sendOne(new SingleMessageSendingRequest(message));

@@ -4,7 +4,7 @@
     <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
         <div class="sb-sidenav-menu">
             <div class="nav">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" onclick="goAdmin()">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     홈
                 </a>
@@ -38,7 +38,17 @@
                 </a>
                 <div class="collapse" id="collapseLayouts3" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="layout-static.html">기본아바타관리</a>
+                        <a class="nav-link" //  onclick="goAdminAvartList()">goAdminAvartList</a>
+                    </nav>
+                </div>
+                <div class="collapse" id="collapseLayouts3" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                        <a class="nav-link" //  onclick="goAdminAvartView()">goAdminAvartView</a>
+                    </nav>
+                </div>
+                <div class="collapse" id="collapseLayouts3" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                        <a class="nav-link" onclick="goAdminAvartForm()">goAdminAvartForm</a>
                     </nav>
                 </div>
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts4" aria-expanded="false" aria-controls="collapseLayouts">

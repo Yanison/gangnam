@@ -5,11 +5,12 @@
 <html>
 <head>
 	<title>AvatarForm</title>
-	<%@ include file="../../../../rscs/basicRscs.jsp" %>
+	<%@ include file="../../../rscs/basicRscs.jsp" %>
 	<link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
     <link href="/resources/admin/adminTemplate/css/styles.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/059fbc3cf8.js" crossorigin="anonymous"></script>
     <link href="/resources/admin/infrAvatar/css/infrAvatarForm.css" rel="stylesheet" />
+    <script src="/resources/admin/infrAvatar/js/imgUpload/imgUpload.js"></script>
 </head>
 <body>
 	<!-- header s-->
@@ -22,20 +23,22 @@
 	        <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h3 class="mt-4">싸게월드 아바타 업로드</h3>
-                        <input class="form-control form-control-sm" id="memberUploadedImage" name="memberUploadedImage" type="file" multiple="multiple" style="display: none;" onchange="upload('memberUploadedImage',2)" placeholder="click">
-						<div class="addScroll">
-							<ul id="ulFile1" class="list-group list">
-								<i class="fa-solid fa-user profilIcon"></i>
-								<label class="input-file-button" for="memberUploadedImage">
-									click
-								</label>
-							</ul>
-						</div>
-                        <div class="inputBox">
-                        	<input type="text" class="form-control" placeholder="아바타 이름 입력">
-                        	<button type="button" class="button" >업로드</button>
-                        </div>
+                    	<form encoding="mutipart/form-data">
+	                        <h3 class="mt-4">싸게월드 아바타 업로드</h3>
+	                        <input class="form-control form-control-sm" id="memberUploadedImage" name="memberUploadedImage" type="file" 
+	                        	multiple="multiple" style="display: none;" onchange="addUploadLi('memberUploadedImage',)" placeholder="click">
+							<div class="addScroll">
+								<ul id="ulFile1" class="list-group list">
+									<label class="input-file-button" for="memberUploadedImage">
+										click
+									</label>
+								</ul>
+							</div>
+	                        <div class="inputBox">
+	                        	<input type="text" class="form-control" placeholder="아바타 이름 입력">
+	                        	<button type="button" class="button" >업로드</button>
+	                        </div>	
+                        </form>
 					</div>
 				</main>
 			</div>
@@ -50,5 +53,10 @@
         <script src="/resources/admin/adminTemplate/assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="/resources/admin/adminTemplate/js/datatables-simple-demo.js"></script>
+        <script>
+        function simpleUpld(objName){
+        	
+        }
+        </script>
 </body>
 </html>
