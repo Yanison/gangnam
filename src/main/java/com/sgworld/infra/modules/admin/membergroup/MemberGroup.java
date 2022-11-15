@@ -2,7 +2,10 @@ package com.sgworld.infra.modules.admin.membergroup;
 
 import java.sql.Date;
 
-public class MemberGroup extends MemberGroupVo{
+import com.sgworld.infra.common.base.Base;
+
+
+public class MemberGroup extends Base{
 	
 	private String infrMmSeq;
 	private Integer infrMmDiv;
@@ -243,6 +246,17 @@ public class MemberGroup extends MemberGroupVo{
 	public void setShdelNy(Integer shdelNy) {
 		this.shdelNy = shdelNy;
 	}
+<<<<<<< HEAD
+	
+	private String mmSsSeq;
+
+	public String getMmSsSeq() {
+		return mmSsSeq;
+	}
+	public void setMmSsSeq(String mmSsSeq) {
+		this.mmSsSeq = mmSsSeq;
+	}
+=======
 	public String getSessSeq() {
 		return sessSeq;
 	}
@@ -262,5 +276,6 @@ public class MemberGroup extends MemberGroupVo{
 		this.sessId = sessId;
 	}
 	
+>>>>>>> branch 'main' of https://github.com/Seonya/gangnam.git
 	
 }

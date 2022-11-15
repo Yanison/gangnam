@@ -7,11 +7,11 @@
 
 	<resultMap id="MemberGroup" type="com.sgworld.infra.modules.admin.membergroup.MemberGroup"></resultMap>
 	
-	
+	<!-- 검색조건 -->
 	<sql id="selectCommon">
 		FROM infrMember a
 		WHERE 1=1
-		<if test="shdelNy != null and !shdelNy.equals('')">AND delNy = #{shdelNy}</if>
+		<if test="shDelNy != null and !shDelNy.equals('')">AND infrMmDelNy = #{shDelNy}</if>
 	 	<choose>
 			<when test="shOption == 1">AND infrMmSeq = #{shValue}</when>
 			<when test="shOption == 2">AND infrMmName LIKE CONCAT('%',#{shValue},'%')</when>
@@ -29,7 +29,7 @@
 	<select id="selectMmOne" resultMap="MemberGroup">
 		select * from infrMember
 		WHERE 1=1 
-		AND infrMmSeq = #{infrMmSeq}
+		AND infrMmSeq = #{mmSsSeq}
 	</select>
 	
 	<select id="selectUserLogin" resultMap="MemberGroup">
@@ -128,7 +128,7 @@
 			,infrMmDelNy = #{infrMmDelNy}
 			,infrMmUseNy = #{infrMmUseNy}
 		WHERE 1=1
-			AND infrMmSeq = #{infrMmSeq}	
+			AND infrMmSeq = #{mmSsSeq}	
 	</update>
 	
 	<!-- user-admin uelete -->
@@ -137,7 +137,7 @@
 		SET
 			infrMmDelNy = 0
 		WHERE 
-			infrMmSeq = #{infrMmSeq}	
+			infrMmSeq = #{mmSsSeq}	
 	</update>
 	
 	<delete id="deleteMm">
@@ -153,7 +153,7 @@
 		FROM infrMember a
 		LEFT JOIN board b on b.infrMmSeq = a.infrMmSeq
 		WHERE 1=1
-			AND a.infrMmSeq = #{infrMmSeq}
+			AND a.infrMmSeq = #{mmSsSeq}
 			ORDER BY b.bdSeq DESC
 	</select>
 	
