@@ -30,9 +30,12 @@ public class MemberGroupDao {
 		return sqlSession.insert(namespace + ".insertMmSignIn", dto);
 	}
 	
+	//user_로그인
 	public MemberGroup selectUserLogin(MemberGroup dto) {
 		return sqlSession.selectOne(namespace + ".selectUserLogin", dto);
 	}
+	public MemberGroup selectOneId(MemberGroup dto) { return sqlSession.selectOne(namespace + ".selectOneId", dto); }
+	public MemberGroup selectOneLogin(MemberGroup dto) { return sqlSession.selectOne(namespace + ".selectOneLogin", dto); }
 	
 	public int isduple(MemberGroup dto) {
 		return sqlSession.selectOne(namespace + ".isduple", dto);

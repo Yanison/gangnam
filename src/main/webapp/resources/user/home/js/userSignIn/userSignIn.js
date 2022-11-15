@@ -132,7 +132,7 @@ function Validation(inputArrStr){
 			}else{
 				addValiHtml(inputArrStr[i],"Enable","enable")
 			}
-		}
+	}
 	if($('.enable').length != 18){
 		alert(" 올바른 회원가입 정보를 입력해주세요 $('.enable').length :: " + $('.enable').length)
 		return false;
@@ -181,8 +181,6 @@ function addValiHtmlOnKeyEvent(str){
 		addValiHtml(str,"Enable","enable")
 	}
 }
-
-
 
 var regExpEm = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 
@@ -281,7 +279,7 @@ function getSMS(){
 	var infrMmTelecom = $('#infrMmTelecom').val()
 	console.log("infrMmPhone // infrMmTelecom" + toNum + " // " + infrMmTelecom);
 	
-	if(toNum != '' || infrMmTelecom !=''){
+	if(toNum != '' && infrMmTelecom !=''){
 		$.ajax({
 			url:'../member/send-one'
 			,method:'post'
@@ -296,8 +294,8 @@ function getSMS(){
 			}
 		})	
 	}else{
-		addHtmlBelowInput("#infrMmPhone","휴대폰 번호를 입력해주세요.","disable")
-		addHtmlBelowInput("#infrMmTelecom","통신사를 선택해주세요","disable")
+		addValiHtml("#infrMmPhone","휴대폰 번호를 입력해주세요.","disable")
+		addValiHtml("#infrMmTelecom","통신사를 선택해주세요","disable")
 	}
 }
 
@@ -310,15 +308,15 @@ function onkeyupCerti(){
 		console.log("AuthCode != '' " + (certiNum != ''))
 		console.log("AuthCode ::" + certiNum)
 		if(certiNum != AuthCode){
-			addHtmlBelowInput("#AuthCode","인증번호가 일치하지 않습니다.","disable")
+			addValiHtml("#AuthCode","인증번호가 일치하지 않습니다.","disable")
 		}else{
 			console.log("ok")
-			addHtmlBelowInput("#AuthCode","인증번호가 일치합니다","enable")
+			addValiHtml("#AuthCode","인증번호가 일치합니다","enable")
 		}	
 	}else{
 		console.log("AuthCode != '' " + (certiNum != ''))
 		console.log("AuthCode ::" + certiNum)
-		addHtmlBelowInput("#certiNum","인증번호를 요청해주세요.","disable")
+		addValiHtml("#certiNum","인증번호를 요청해주세요.","disable")
 	}
 }
 

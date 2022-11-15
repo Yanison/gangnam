@@ -9,11 +9,9 @@
 	<link href="/resources/common/css/userAdmin.css" rel="stylesheet">
 </head>
 <body>
-<div class="userAdminDiv">
-	<div class="userDiv">user</div> 
-	<div class="adminDiv">Admin</div>
-</div>
-
-<P>  The time on the server is ${serverTime}. </P>
+	<div class="userAdminDiv">
+		<button onclick="goUser()">USER</button>
+		<button onclick="goAdmin()">ADMIN</button>
+	</div>
 </body>
 </html>

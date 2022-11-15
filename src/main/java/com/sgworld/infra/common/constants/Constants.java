@@ -26,6 +26,8 @@ public class Constants {
 	public static final String COOKIE_PATH = "/";
 	public static final String COOKIE_NAME_SEQ = "cookieSeq";
 	
-	//암호화
+	
+	public static final String URL_LOGINFORM = "/userLogin";
+	
 	public static final int SESSION_MINUTE = 30;
 }

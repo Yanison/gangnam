@@ -29,11 +29,11 @@ function userLogin(){
 				,"infrMmPw" : infrMmPw
 			}
 			,success: function(userLogin){
-				if(userLogin.infrMmId == infrMmId && userLogin.infrMmPw == infrMmPw){
-					alert("ok")
+				if(userLogin == "okay"){
+					alert("로그인되셨습니다.")
 					location.replace('../');
 				}else{
-					alert("nope")
+					alert("일치한 회원정보가 없습니다.")
 				}
 			}
 			,error : function(err){

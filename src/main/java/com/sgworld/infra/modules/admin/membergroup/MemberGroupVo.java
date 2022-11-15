@@ -47,4 +47,6 @@ public class MemberGroupVo extends BaseVo{
 	
 	
 	
+	
+	
 }

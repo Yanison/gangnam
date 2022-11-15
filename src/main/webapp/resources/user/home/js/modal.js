@@ -2,9 +2,7 @@ $(document).ready(function(){
 	
 })
 
-function showModal(){
-	
-}
+
 
 function pwAvailable(){
 	if($('input:checkbox[name="pwAvailable"]').is(':checked')){

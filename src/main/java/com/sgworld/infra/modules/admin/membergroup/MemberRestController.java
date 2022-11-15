@@ -1,17 +1,20 @@
 package com.sgworld.infra.modules.admin.membergroup;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 import javax.servlet.http.HttpSession;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sgworld.infra.common.MailService;
 import com.sgworld.infra.common.SMS;
+import com.sgworld.infra.common.constants.Constants;
 
 import net.nurigo.sdk.NurigoApp;
 import net.nurigo.sdk.message.model.Message;
@@ -36,27 +39,36 @@ public class MemberRestController {
 		
 		return "userSignIn";
 	}
-	
+	/*
 	@RequestMapping(value="userLogin")
-	public MemberGroup userLogin(MemberGroup dto,MemberGroupVo vo,HttpSession session)throws Exception{
+	public String userLogin(MemberGroup dto,MemberGroupVo vo,HttpSession session)throws Exception{
 		
 		MemberGroup user = mmService.selectUserLogin(dto);
 		
-		session.setAttribute("infrMmSeq", user.getInfrMmSeq());
-		session.setAttribute("infrMmId", user.getInfrMmId());
-		session.setAttribute("infrMmName", user.getInfrMmName());
-		Object infrMmSeq = session.getAttribute("infrMmSeq");
-		Object infrMmId = session.getAttribute("infrMmId");
-		Object infrMmName = session.getAttribute("infrMmName");
-		String mmSs = (String) session.getAttribute("infrMmSeq");
-		vo.setMmSsSeq(mmSs);
+		if(user.getCount() == 1) {
+			
+			session.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE);
+			session.setAttribute("infrMmSeq", user.getInfrMmSeq());
+			session.setAttribute("infrMmId", user.getInfrMmId());
+			session.setAttribute("infrMmName", user.getInfrMmName());
+			Object infrMmSeq = session.getAttribute("infrMmSeq");
+			Object infrMmId = session.getAttribute("infrMmId");
+			Object infrMmName = session.getAttribute("infrMmName");
+			String mmSs = (String) session.getAttribute("infrMmSeq");
+			
+			vo.setMmSsSeq(mmSs);
+			
+			System.out.print(
+					"userLogin session infrMmSeq ::" + infrMmSeq + "\n "
+					+ "userLogin session infrMmId ::" + infrMmId + "\n "
+					+ "userLogin session infrMmName ::" + infrMmName + "\n "
+					+ "userLogin session infrMmName ::" + infrMmName + "\n "
+					);
+			return "okay";
+		}else {
+			return "nope";
+		}
 		
-		
-		System.out.println("userLogin session infrMmSeq ::" + infrMmSeq);
-		System.out.println("userLogin session infrMmId ::" + infrMmId);
-		System.out.println("userLogin session infrMmName ::" + infrMmName);
-		
-		return user;
 	}
 	
 	@RequestMapping(value="userLogOut")
@@ -66,6 +78,46 @@ public class MemberRestController {
 		
 		return "userLogOut";
 	}
+	*/
+	
+	@ResponseBody
+	@RequestMapping(value = "loginProc")
+	public Map<String, Object> loginProc(MemberGroup dto, HttpSession httpSession) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		MemberGroup rtMember = mmService.selectOneId(dto);
+		if (rtMember != null) {
+//			dto.setIfmmPassword(UtilSecurity.encryptSha256(dto.getIfmmPassword()));
+			MemberGroup rtMember2 = mmService.selectOneLogin(dto);
+
+			if (rtMember2 != null) {
+				
+				httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE); // 60second * 30 = 30minute
+				httpSession.setAttribute("sessSeq", rtMember2.getInfrMmSeq());
+				httpSession.setAttribute("sessId", rtMember2.getInfrMmId());
+				httpSession.setAttribute("sessName", rtMember2.getInfrMmName());
+
+				returnMap.put("rt", "success");
+			} else {
+				returnMap.put("rt", "fail");
+			}
+		} else {
+			returnMap.put("rt", "fail");
+		}
+		return returnMap;
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "logoutProc")
+	public Map<String, Object> logoutProc(HttpSession httpSession) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		//UtilCookie.deleteCookie();
+		httpSession.invalidate();
+		returnMap.put("rt", "success");
+		return returnMap;
+	}
+	 
 	@RequestMapping(value="getValidationOfDuple")
 	public int getValidationOfDuple(MemberGroup dto)throws Exception {
 		
@@ -74,6 +126,11 @@ public class MemberRestController {
 		return getValidationOfDuple;
 	}
 	
+	 public void session(MemberGroup dto, HttpSession httpSession) {
+	     httpSession.setAttribute("sessSeq", dto.getInfrMmSeq());    
+	     httpSession.setAttribute("sessEmail", dto.getInfrMmId());
+	     httpSession.setAttribute("sessName", dto.getInfrMmName());
+	 }
 	
 	/**
      * 휴대번호 인증
@@ -91,7 +148,11 @@ public class MemberRestController {
        // 발신번호 및 수신번호는 반드시 01012345678 형태로 입력되어야 합니다.
        message.setFrom("01031744295");
        message.setTo(sms.getToNum());
-       message.setText(randNum);
+       message.setText(
+    		   "싸게월드 휴대폰 인증번호 입니다." +
+    		   "<br><br>" 
+    		   + randNum
+    		   );
 
        SingleMessageSentResponse response 
        	= this.messageService.sendOne(new SingleMessageSendingRequest(message));

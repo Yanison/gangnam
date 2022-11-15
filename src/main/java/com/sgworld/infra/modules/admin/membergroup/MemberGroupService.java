@@ -15,6 +15,8 @@ public interface MemberGroupService {
 
 	//로그인
 	public MemberGroup selectUserLogin(MemberGroup dto) throws Exception;
+	public MemberGroup selectOneId(MemberGroup dto) throws Exception;
+	public MemberGroup selectOneLogin(MemberGroup dto) throws Exception;
 
 	//회원정보 수정
 	public int udptMmifo(MemberGroup dto)throws Exception;
