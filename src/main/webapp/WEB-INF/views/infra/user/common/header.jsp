@@ -17,7 +17,7 @@
 		<ul class="navBtn">
 			<li class="write"><a class="writeBtn" id="btnBoardRegForm" type="button">글쓰기</a></li>
 			<c:choose>
-				<c:when test="${empty sessSeq}">
+				<c:when test="${sessSeq eq null}">
 					<li class="last"><a href="http://127.0.0.1:8085/userLogin" type="button" id="">로그인</a></li>
 				</c:when>
 				<c:otherwise>
@@ -33,7 +33,6 @@
 		<input type="hidden" id="infrMmId" value="${infrMmId}" onchange="isSssValThere('#infrMmId')">
 		<input type="hidden" id="infrMmSeq" name="infrMmSeq" value="${infrMmSeq}" onchange="isSssValThere('infrMmSeq')">
 		<input type="hidden" id="infrMmName" value="${infrMmName}" onchange="isSssValThere('infrMmName')">
-		<input type="hidden" id="sessSeq" name="sessSeq" value="${sessSeq }">
 	</div>
 </nav>
 

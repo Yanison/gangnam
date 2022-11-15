@@ -14,6 +14,7 @@
 </head>
 <body>
 <form id="formLogin" name="formLogin" method="post">
+	<input type="hidden" id="sessSeq" name="sessSeq" value="${sessSeq }">
 	<header>
 		<%@ include file="../../common/header.jsp"%> 
 	</header>

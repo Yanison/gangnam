@@ -11,6 +11,7 @@
 	<script src="/resources/user/home/js/home.js"></script>
 </head>
 <body>
+	<input type="hidden" id="sessSeq" name="sessSeq" value="${sessSeq }">
 	<header>
 		<%@ include file="../../common/header.jsp"%> 
 	</header>
