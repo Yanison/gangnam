@@ -29,7 +29,7 @@
 	<select id="selectMmOne" resultMap="MemberGroup">
 		select * from infrMember
 		WHERE 1=1 
-		AND infrMmSeq = #{mmSsSeq}
+		AND infrMmSeq = #{infrMmSeq}
 	</select>
 	
 	<select id="selectUserLogin" resultMap="MemberGroup">

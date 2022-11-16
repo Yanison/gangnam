@@ -1,6 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
-
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
 <html>
 <head>
@@ -135,9 +133,13 @@
 		<%@include file="../../common/footer.jsp" %>
 	</footer>
 	
+<<<<<<< HEAD
+<%-- 	<div id="modalDiv" class="modalDiv"  style="display:block">
+=======
 	<div id="modalDiv" class="modalDiv"  style="display:none">
+>>>>>>> branch 'main' of https://github.com/Seonya/gangnam.git
 			<%@include file="./createOption.jsp" %>
-	</div>
+	</div> --%>
 
 	<script type="text/javascript">
 		var gorUrlBoardHome = "/board/boardList";

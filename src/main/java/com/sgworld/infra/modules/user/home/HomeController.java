@@ -26,11 +26,10 @@ public class HomeController {
 	
 	//메인페이지
 	@RequestMapping(value="/")
-	public String home(Model model,@ModelAttribute MemberGroup vo) {
+	public String home(Model model , HttpSession httpSession) {
 		
 		getSss(model);
-		System.out.println(vo.getSessSeq());
-		
+		System.out.println("sessSeqhome: " + httpSession.getAttribute("sessSeq"));
 		return "infra/user/modules/home/home";
 	}
 	

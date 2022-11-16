@@ -31,18 +31,18 @@
 			<section class="loginBody">
 				<article class="loginBox">
 						<div class="inputIdBox">
-							<input class="inputId inputLogin" id="infrMmId" name="infrMmId" type="text" placeholder="아이디">
+							<input class="inputId inputLogin" id="infrMmId" name="infrMmId" type="text" value="ghkdtjsdi878">
 						</div>
 						<div class="inputPwBox">
-							<input class="inputPw inputLogin" id="infrMmPw" name="infrMmPw" type="password" placeholder="비밀번호">
+							<input class="inputPw inputLogin" id="infrMmPw" name="infrMmPw" type="password" value="seon1011901!">
 						</div>
 						<div class="loignCheck">
 							<i class="fa-regular fa-circle-check" style="margin-right:10px;"></i>
 							<p>로그인 상태 유지</p>
 						</div>
 						<div class="loginBtnBox">
-							<!-- <button class="loginBtn" type="button" onClick="userLogin()">로그인</button> -->
-							<button class="loginBtn" type="button" id="btnLogin">로그인</button>
+							<button class="loginBtn" type="button" onClick="userLogin()">로그인</button> 
+							<!-- <button class="loginBtn" type="button" id="btnLogin">로그인</button> -->
 						</div>
 					<div>
 						<div class="easyLoginHead">
@@ -81,20 +81,21 @@
 	
 		var goUrlLogin = "/";
 		
-		$("#btnLogin").on("click", function(){
+/*  		$("#btnLogin").on("click", function(){
 			
 			$.ajax({
 				async: true 
 				,cache: false
-				,type: "post"
+				,type: "post" */
 				/* ,dataType:"json" */
-				,url: "/member/loginProc"
+				/* ,url: "/member/loginProc" */
 				/* ,data : $("#formLogin").serialize() */
 				//,data : { "infrMmId" : $("#infrMmId").val(), "infrMmPw" : $("#infrMmPw").val(), "autoLogin" : $("#autoLogin").is(":checked")}
-				,data : { "infrMmId" : $("article.loginBox #infrMmId").val(), "infrMmPw" : $("#infrMmPw").val()}
+/* 				,data : { "infrMmId" : $("article.loginBox #infrMmId").val(), "infrMmPw" : $("#infrMmPw").val()}
 				,success: function(response) {
 					if(response.rt == "success") {
 							location.href = goUrlLogin;
+							alert("로그인 성공")
 					} else {
 						alert("회원없음");
 					}
@@ -103,7 +104,7 @@
 					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
 				}
 			});
-		});
+		}); */ 
 	
 		
 	</script>
