@@ -2,6 +2,8 @@ package com.sgworld.infra.modules.user.member;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,9 +22,19 @@ public class MemberController {
 	@Autowired
 	MemberGroupServiceImpl service;
 	
+	@Autowired
+	HttpSession session;
+	
 	//내 정보 보기
 	@RequestMapping(value="memberView")
 	public String memberView(@ModelAttribute("vo") MemberGroupVo vo , Model model)throws Exception {
+		Object infrMmId = session.getAttribute("infrMmId");
+		Object infrMmName = session.getAttribute("infrMmName");
+		Object infrMmSeq = session.getAttribute("infrMmSeq");
+		model.addAttribute("infrMmSeq", infrMmSeq);
+		model.addAttribute("infrMmName", infrMmName);
+		model.addAttribute("infrMmId", infrMmId);
+		
 		MemberGroup item = service.selectMmOne(vo);
 		model.addAttribute("item", item);
 		return "infra/user/modules/member/memberView";
