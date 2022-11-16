@@ -128,7 +128,7 @@
 			,infrMmDelNy = #{infrMmDelNy}
 			,infrMmUseNy = #{infrMmUseNy}
 		WHERE 1=1
-			AND infrMmSeq = #{mmSsSeq}	
+			AND infrMmSeq = #{infrMmSeq}	
 	</update>
 	
 	<!-- user-admin uelete -->
@@ -187,4 +187,17 @@
 			AND a.infrMmId = #{infrMmId}
 			<if test="infrMmPw != null and !infrMmPw.equals('')">AND a.infrMmPw = #{infrMmPw}</if>
 	</select>
+	
+	<!-- 유저 회원정보 수정 -->
+	<update id="userUpdate">
+		UPDATE infrMember
+		SET
+			infrMmEmailId = #{infrMmEmailId}
+			,infrMmNickname = #{infrMmNickname}
+			,infrMmPhone = #{infrMmPhone}
+			,infrMmBod = #{infrMmBod}
+		WHERE 1=1
+			AND infrMmSeq = #{infrMmSeq}	
+	</update>
+	
 </mapper>

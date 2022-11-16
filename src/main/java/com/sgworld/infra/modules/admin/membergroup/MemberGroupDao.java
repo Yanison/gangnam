@@ -26,6 +26,11 @@ public class MemberGroupDao {
 		return sqlSession.selectOne(namespace +".selectMmOne", vo);
 	}
 	
+	//user_회원정보 수정
+	public int userUpdate(MemberGroup dto) {
+		return sqlSession.update(namespace + ".userUpdate", dto);
+	}
+	
 	public int insertMmSignIn (MemberGroup dto) {
 		return sqlSession.insert(namespace + ".insertMmSignIn", dto);
 	}
@@ -41,7 +46,6 @@ public class MemberGroupDao {
 		return sqlSession.selectOne(namespace + ".isduple", dto);
 	}
 	
-	//user_회원정보 수정
 	public int udptMmifo(MemberGroup dto) {
 		return sqlSession.update(namespace +".udptMmifo", dto);
 	}

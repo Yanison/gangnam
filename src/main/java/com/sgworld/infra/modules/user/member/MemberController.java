@@ -1,5 +1,7 @@
 package com.sgworld.infra.modules.user.member;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
+
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -42,8 +44,9 @@ public class MemberController {
 	
 	//내 정보 보기_정보 수정
 	@RequestMapping(value = "memberUpdt")
-	public String udptMmifo(MemberGroup dto , RedirectAttributes redirectAttributes)throws Exception{
-		service.udptMmifo(dto);
+	public String udptMmifo(MemberGroup dto , MemberGroupVo vo, RedirectAttributes redirectAttributes)throws Exception{
+		service.userUpdate(dto);
+		redirectAttributes.addFlashAttribute("vo", vo);
 		return "redirect:/member/memberView";
 	}
 	
