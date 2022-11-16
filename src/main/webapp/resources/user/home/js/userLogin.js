@@ -41,6 +41,4 @@ function userLogin(){
 			}
 		})	
 	}
-	
-	
 }

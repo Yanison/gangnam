@@ -134,7 +134,7 @@
 		<%@include file="../../common/footer.jsp" %>
 	</footer>
 	
-	<div id="modalDiv" class="modalDiv"  style="display:block">
+	<div id="modalDiv" class="modalDiv"  style="display:none">
 			<%@include file="./createOption.jsp" %>
 	</div>
 

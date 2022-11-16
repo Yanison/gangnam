@@ -15,13 +15,14 @@ function requestBuildSgw(){
 	var sgwMmNumber = $('#sgwMmNumber').val()
 	var sgwMap = $('input[name="sgwMap"]:checked').val()
 	var sgwAvatar = $('input[name="sgwAvatar"]:checked').val()
+	
 	console.log(
-		"inftMmSeq :: "  + infrMmSeq + "\n" +
+		"infrMmSeq :: "  + infrMmSeq + "\n" +
 		"sgwTitle :: "  + sgwTitle + "\n" +
 		"isHidden :: "  + isHidden + "\n" +
 		"sgwMmNumber :: "  + sgwMmNumber + "\n" +
 		"sgwMap :: "  + sgwMap + "\n" +
-		"sgwAvatar :: "  + sgwAvatar + "\n" 
+		"sgwAvatar :: "  + sgwAvatar + "\n"
 	)
 	
 	$.ajax({
@@ -32,16 +33,20 @@ function requestBuildSgw(){
 			,'sgwMmNumber':sgwMmNumber
 			,'sgwMap':sgwMap
 			,'sgwAvatar' : sgwAvatar
-			,'inftMmSeq' : infrMmSeq
+			,'infrMmSeq' : infrMmSeq
 		}
 		,method:'post'
-		,success:function(sccss){
-			if(sccss ="ok"){
-				goSgWorld();
+		,success:function(response){
+			if(response == "nope"){
+				confirm("이미 개설하셨습니다. 개설된 방으로 들어가시겠습니까?")
+				goMySgWorld(infrMmSeq)
+			}else{
+				console.log("response ::" + response)
+				goSgWorld(response,infrMmSeq)	
 			}
 		}
 		,err:function(err){
-			
+			alert("system Err")
 		}
 	})
 }
@@ -205,8 +210,43 @@ function closeModal(){
 	$('#modalDiv').fadeOut("fast")
 }
 
-function goSgWorld(){
-	location.href="http://127.0.0.1:8085/sgWorld"
+function goSgWorld(endPoint,mmSeq){
+	if(mmSeq != ""){
+		$.ajax({
+			url:'sgWorld/'+endPoint
+			,type:'get'
+			,data:{
+				'infrMmSeq':mmSeq
+			}
+			,success:function(){
+				location.href=sgwUrl
+			},error:function(){
+				
+			}
+		})
+	}else{
+		alert('확인되지 않은 회원입니다. 로그인을 해주세요')
+	}
+	
+}
+function goMySgWorld(infrMmSeq){
+	$.ajax({
+		url:'/sgwrold/goMySgw'
+		,type:'get'
+		,data:{'infrMmSeq':infrMmSeq
+		}
+		,success:function(response){
+			if(response == "nope"){
+				alert("개설한 방이 존재하지 않습니다.")
+//				location.href="/"
+			}else{
+				location.replace('/sgWorld/sgw/'+response);
+			}
+			
+		},error:function(){
+			
+		}
+	})
 }
 
 function isSssValThere2(){

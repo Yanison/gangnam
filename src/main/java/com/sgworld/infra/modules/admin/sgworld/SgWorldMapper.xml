@@ -3,4 +3,27 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.sgworld.infra.membergroup.ExchMapper"></mapper>
+<mapper namespace="com.sgworld.infra.membergroup.ExchMapper">
+	<resultMap id="sgwDto" type="com.sgworld.infra.modules.user.sgWorld.sgwdto.SgwDto">
+		<result property="infrMmSeq" column="regByMm"></result>
+	</resultMap>
+			
+	<select id="selectSgwOne" resultMap="sgwDto">
+		select 
+		sgwSeq
+		,sgwTitle
+		,sgwId
+		,isHidden
+		,sgwMmNumber
+		,sgwMap
+		,sgwLink
+		,regByMm
+		,infrMmNickname
+		,regDatetime
+		from Sgworld sgw 
+			left join infrMember mm on sgw.regByMm == mm.infrMmSeq
+		where 1=1
+			and sgwSeq = #{sgwSeq}
+	</select>
+
+</mapper>

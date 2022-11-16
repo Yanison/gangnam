@@ -4,7 +4,9 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sgworld.infra.modules.user.sgWorld.SgwMapper">
-	<resultMap id="SgwDto" type="com.sgworld.infra.modules.user.sgWorld.sgwdto.SgwDto"></resultMap>
+	<resultMap id="SgwDto" type="com.sgworld.infra.modules.user.sgWorld.sgwdto.SgwDto">
+		<result property="infrMmSeq" column="regByMm"></result>
+	</resultMap>
 	
 	<insert id="buildSgw">
 		insert into sgWorld
@@ -13,6 +15,7 @@
 		,isHidden
 		,sgwMmNumber
 		,sgwMap
+		,sgwLink
 		,regByMm
 		)
 		values(
@@ -20,7 +23,33 @@
 		,#{isHidden}
 		,#{sgwMmNumber}
 		,#{sgwMap}
-		,#{inftMmSeq}
+		,#{sgwLink}
+		,#{infrMmSeq}
 		)
 	</insert>
+	<select id="selectSgwOne" resultMap="SgwDto">
+		select * 
+		from sgWorld 
+		where 1=1
+		and 
+		order by sgwSeq limit 1;
+	</select>
+	<select id="goMySgw" resultMap="SgwDto">
+		select sgwLink
+		from sgWorld
+		where 1=1
+		and  regByMm = #{infrMmSeq}
+	</select>
+	<select id="isDupleLink" resultType="Integer">
+		select count(*)
+		from sgWorld
+		where 1=1
+		and  sgwLink = #{sgwLink}
+	</select>
+	<select id="doesHealreadyMakeSgw" resultType="Integer">
+		select count(*)
+		from sgWorld 
+		where 1=1
+		and  regByMm = #{infrMmSeq}
+	</select>
 </mapper>
