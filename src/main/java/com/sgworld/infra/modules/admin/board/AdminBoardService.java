@@ -16,6 +16,9 @@ public interface AdminBoardService {
 	public int selectOneCount(AdminBoardVo vo) throws Exception;
 	public AdminBoardDto selectOne(AdminBoardVo vo) throws Exception;
 	
+	//공통코드
+	public List<AdminBoardDto> ccNameList() throws Exception;
+	
 	List<AdminBoardDto> selectListUploaded(AdminBoardVo vo) throws Exception;
 	
 	//관리자 글쓰기

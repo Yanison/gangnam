@@ -2,6 +2,9 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
+
+<jsp:useBean id="AdminCodeServiceImpl" class="com.sgworld.infra.modules.admin.code.AdminCodeServiceImpl"/>
+
 <html>
 <head>
 	<title>게시판리스트</title>
@@ -96,6 +99,7 @@
 											</tr>
 										</thead>
 										<tbody>
+										<c:set var="listBoardDiv" value="${AdminCodeServiceImpl.selectListCachedCode('3')}"/>
 										<c:choose>
 											<c:when test="${fn:length(list) eq 0 }">
 											<tr>
@@ -109,7 +113,11 @@
 												<td class="tableHead1"><a href="javascript:goView(<c:out value="${list.bdSeq }" />)" style="text-decoration: none;"><c:out value="${list.bdSeq }" /></a></td>
 												<td class="tableHead"><c:out value="${list.infrMmNickname }" /></td>
 												<td class="tableHead"><c:out value="${list.bdTitle }" /></td>
-												<td class="tableHead"><c:out value="${list.bdDiv }" /></td>
+												<td class="tableHead">
+													<c:forEach items="${listBoardDiv }" var="listDiv" varStatus="statusDiv">
+														<c:if test="${list.bdDiv eq listDiv.infrCcSeq }"><c:out value="${listDiv.infrCcNameKor }" /></c:if>
+													</c:forEach>
+												</td>
 												<td class="tableHead"><c:out value="${list.regDatetime }" /></td>
 												<td class="tableHead">신고</td>
 												<td class="tableHead"><c:out value="${list.delNy }" /></td>

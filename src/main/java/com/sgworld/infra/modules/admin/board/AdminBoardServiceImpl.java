@@ -102,6 +102,12 @@ public class AdminBoardServiceImpl extends BaseServiceImpl implements AdminBoard
 		return item;
 	}
 	
+	//공통코드
+	@Override
+	public List<AdminBoardDto> ccNameList() throws Exception {
+		return dao.ccNameList();
+	}
+	
 	@Override
 	public int insert(AdminBoardDto dto) throws Exception { 
 		
@@ -167,5 +173,7 @@ public class AdminBoardServiceImpl extends BaseServiceImpl implements AdminBoard
 	public List<AdminBoardDto> selectListUploaded(AdminBoardVo vo) throws Exception {
 		return dao.selectListUploaed(vo);
 	}
+
+	
 
 }

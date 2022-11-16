@@ -31,6 +31,9 @@ public class AdminBoardDao {
 		return item;
 	}
 	
+	//공통코드
+	public List<AdminBoardDto> ccNameList() { return sqlSession.selectList(namespace + ".ccNameList", ""); }
+	
 	//관리자 글쓰기
 	public int insert(AdminBoardDto dto) { return sqlSession.insert(namespace + ".insert", dto); }
 	public int update(AdminBoardDto dto) { return sqlSession.update(namespace + ".update", dto); }
