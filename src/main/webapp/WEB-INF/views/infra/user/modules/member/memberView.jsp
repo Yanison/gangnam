@@ -13,12 +13,13 @@
 	
 </head>
 <body>
+	<form name="form" method="post">
 	<header>
 		<%@ include file="../../common/header.jsp"%> 
 	</header>
 		<!-- contend s -->
 	<div class="wrap">
-	<form name="form" method="post">
+	
 		<!-- header 넣을자리-->
 		<div class="contentWrap">
 			<span>My Page</span>

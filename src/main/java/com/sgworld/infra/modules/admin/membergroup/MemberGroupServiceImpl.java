@@ -21,6 +21,12 @@ public class MemberGroupServiceImpl implements MemberGroupService {
 	public MemberGroup selectMmOne(MemberGroupVo vo) throws Exception {
 		return mmDao.selectMmOne(vo);
 	}
+	
+	@Override
+	public int userUpdate(MemberGroup dto) throws Exception {
+		return mmDao.userUpdate(dto);
+	}
+
 
 	@Override
 	public int insertMmSignIn (MemberGroup dto) throws Exception{

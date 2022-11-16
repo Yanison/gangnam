@@ -9,11 +9,11 @@
 	<script src="/resources/user/home/js/home.js"></script>
 </head>
 <body>
-	<input type="hidden" id="sessSeq" name="sessSeq" value="${sessSeq }">
+	<form method="post" name="form">
 	<header>
 		<%@ include file="../../common/header.jsp"%> 
 	</header>
-
+	
 	<section class="bodyWrapper">
 		<article class="mySgWorld">
 			<button class="creatMySgWorld" id="creatMySgWorld" onclick="showModal()" rel="modal:open">
@@ -129,6 +129,7 @@
 			</div>
 		</article>
 	</section>
+	</form>
 	<footer>
 		<%@include file="../../common/footer.jsp" %>
 	</footer>
@@ -144,7 +145,9 @@
 	<script type="text/javascript">
 		var gorUrlBoardHome = "/board/boardList";
 		var goUrlBoardRegForm = "/board/boardWrite";
+		var goUrlMemberView = "/member/memberView";
 		
+		var seq = $("input:hidden[name=infrMmSeq]")
 		var form = $("form[name=form]");
 		
 		$("#btnBoardHome").on("click", function(){
@@ -154,6 +157,11 @@
 		$("#btnBoardRegForm").on("click", function(){
 			$(location).attr("href", goUrlBoardRegForm);
 		})
+		
+		goMemberView = function(seqValue){
+			seq.val(seqValue);
+			form.attr("action" , goUrlMemberView).submit();
+		};
 	</script>
 </body>
 </html>

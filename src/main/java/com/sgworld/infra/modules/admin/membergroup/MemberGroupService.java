@@ -9,6 +9,9 @@ public interface MemberGroupService {
 
 	//admin_내 정보 보기
 	public MemberGroup selectMmOne(MemberGroupVo vo) throws Exception;
+	
+	//user_내 정보 수정
+	public int userUpdate(MemberGroup dto)throws Exception;
 
 	//회원가입
 	public int insertMmSignIn (MemberGroup dto) throws Exception;
@@ -18,7 +21,6 @@ public interface MemberGroupService {
 	public MemberGroup selectOneId(MemberGroup dto) throws Exception;
 	public MemberGroup selectOneLogin(MemberGroup dto) throws Exception;
 
-	//회원정보 수정
 	public int udptMmifo(MemberGroup dto)throws Exception;
 
 	//중복확인
