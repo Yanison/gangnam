@@ -1,16 +1,21 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
+<%@ page import="com.sgworld.infra.common.constants.Constants" %>
 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
 <%@ page session="false" %>
 <html>
 <head>
 	<title>Home</title>
 	<%@ include file="../../../../rscs/basicRscs.jsp" %>
 	<link href="./resources/user/home/css/userLogin.css" rel="stylesheet">
-	<script src="./resources/user/home/js/userLogin.js"></script>
+	<script src="/resources/user/home/js/userLogin.js"></script>
 </head>
 <body>
+<form id="formLogin" name="formLogin" method="post">
+	<input type="hidden" id="sessSeq" name="sessSeq" value="${sessSeq }">
 	<header>
 		<%@ include file="../../common/header.jsp"%> 
 	</header>
@@ -36,7 +41,8 @@
 							<p>로그인 상태 유지</p>
 						</div>
 						<div class="loginBtnBox">
-							<button class="loginBtn" type="button" onClick="userLogin()">로그인</button>
+							<!-- <button class="loginBtn" type="button" onClick="userLogin()">로그인</button> -->
+							<button class="loginBtn" type="button" id="btnLogin">로그인</button>
 						</div>
 					<div>
 						<div class="easyLoginHead">
@@ -70,6 +76,37 @@
 	<footer>
 		<%@include file="../../common/footer.jsp" %>
 	</footer>
+</form>	
+	<script type="text/javascript">
+	
+		var goUrlLogin = "/";
+		
+		$("#btnLogin").on("click", function(){
+			
+			$.ajax({
+				async: true 
+				,cache: false
+				,type: "post"
+				/* ,dataType:"json" */
+				,url: "/member/loginProc"
+				/* ,data : $("#formLogin").serialize() */
+				//,data : { "infrMmId" : $("#infrMmId").val(), "infrMmPw" : $("#infrMmPw").val(), "autoLogin" : $("#autoLogin").is(":checked")}
+				,data : { "infrMmId" : $("article.loginBox #infrMmId").val(), "infrMmPw" : $("#infrMmPw").val()}
+				,success: function(response) {
+					if(response.rt == "success") {
+							location.href = goUrlLogin;
+					} else {
+						alert("회원없음");
+					}
+				}
+				,error : function(jqXHR, textStatus, errorThrown){
+					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+				}
+			});
+		});
+	
+		
+	</script>
 
 </body>
 </html>

@@ -27,13 +27,18 @@
                         </ol>
                         <form  method="post" name="mform">
                         <input type="hidden" name="infrMmSeq" value="<c:out value="${dto.infrMmSeq }"/>">
+						<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>">
+						<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow }"/>">
+						<input type="hidden" name="checkboxSeqArray">
 						<div class="col">
 							<div class="row">
 								<div class="col border me-4">
 									<div class="row  mt-2 mb-2">
 										<div class="col-2 p-1">
-											<select class="form-select">
-												<option>N</option>
+											<select class="form-select" id="shDelNy" name="shDelNy">
+												<option value="" selected<c:if test="${empty vo.shDelNy }">selected</c:if>>삭제여부</option>
+												<option value="1" <c:if test="${vo.shDelNy eq 1 }">selected</c:if>>N</option>
+												<option value="0" <c:if test="${vo.shDelNy eq 0 }">selected</c:if>>Y</option>
 											</select>
 										</div>
 										<div class="col-2 p-1">
@@ -51,15 +56,18 @@
 									<div class="row mb-2">
 										<div class="col-2 p-1">
 											<select class="form-select">
-												<option>검색구분</option>
+												<option value="">검색구분</option>
+												<option value="1" <c:if test="${vo.shOption eq 1 }">selected</c:if>>순서</option>
+												<option value="2" <c:if test="${vo.shOption eq 2 }">selected</c:if>>이름</option>
+												<option value="3" <c:if test="${vo.shOption eq 3 }">selected</c:if>>아이디</option>
 											</select>
 										</div>
 										<div class="col-2 p-1">
 											<input class="form-control" type="text" placeholder="검색어">
 										</div>
 										<div class="col-1 p-1">
-											<a class="btn btn-warning" href="#" role="button"><i class="fa-solid fa-magnifying-glass"></i></a>
-											<a class="btn btn-danger" href="#" role="button"><i class="fa-solid fa-arrow-rotate-right"></i></a>
+											<a class="btn btn-warning" role="button" id="btnSearch"><i class="fa-solid fa-magnifying-glass"></i></a>
+											<a class="btn btn-danger"  role="button" id="btnReset"><i class="fa-solid fa-arrow-rotate-right"></i></a>
 										</div>
 									</div>
 								</div>
@@ -67,7 +75,7 @@
 							<div class="row mt-3">
 								<div class="row">
 									<div class="col-11 p-0">
-										<span>Total: <c:out value="${dto.totalRows }"/></span>
+										<span>Total: <c:out value="${vo.totalRows }"/></span>
 									</div>
 									<div class="col-1 p-0">
 										<div class="col-12">
@@ -108,7 +116,7 @@
 														<td class="tableHead1"><input class="listCheck" type="checkbox"></td>
 														<td class="tableHead1"><c:out value="${list.infrMmSeq }" /></td>
 														<td class="tableHead"><c:out value="${list.infrMmId }" /></td>
-														<td class="tableHead"><a href="javascript:goView(<c:out value="${list.infrMmSeq }"/>)" class="text-decoration-none"><c:out value="${list.infrMmName }"/></td>
+														<td class="tableHead"><a href="javascript:goMemberView(<c:out value="${list.infrMmSeq }"/>)" class="text-decoration-none"><c:out value="${list.infrMmName }"/></td>
 														<td class="tableHead"><c:out value="${list.infrMmNickname }" /></td>
 														<td class="tableHead"><c:out value="${list.infrMmGender }" /></td>
 														<td class="tableHead"><c:out value="${list.infrMmBod }" /></td>
@@ -122,35 +130,9 @@
 										</tbody>
 									</table>
 								</div>
-								<div class="row mt-2 text-center">
-									<ul class="pagination" style="justify-content: center;">
-										<li class="page-item">
-											<a class="page-link" href="#" aria-label="Previous">
-												<span aria-hidden="true">&laquo;</span>
-											</a>
-										</li>
-										<li class="page-item">
-											<a class="page-link active" aria-current="page">1</a>
-										</li>
-										<li class="page-item">
-											<a class="page-link" href="#">2</a>
-										</li>
-										<li class="page-item">
-											<a class="page-link" href="#">3</a>
-										</li>
-										<li class="page-item">
-											<a class="page-link" href="#">4</a>
-										</li>
-										<li class="page-item">
-											<a class="page-link" href="#">5</a>
-										</li>
-										<li class="page-item">
-											<a class="page-link" href="#" aria-label="Next">
-												<span aria-hidden="true">&raquo;</span>
-											</a>
-										</li>
-									</ul>
-								</div>
+								<!-- pagination s -->
+								<%@include file="../common/pagination.jsp"%>
+								<!-- pagination e -->
 								<div class="row p-0">
 									<div class="col">
 										<button class="btn btn-danger" type="button" id="cglCancel"><i class="fa-duotone fa-x"></i></button>
@@ -180,8 +162,9 @@
         <script src="../../../admin/adminTemplate/js/datatables-simple-demo.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
         <script>
-        	var goUrlMemberForm = "/admin/memberGroup/infrMmForm"
-        	var goUrlView ="/admin/memberGroup/infrMmView"
+        	var goUrlMemberForm = "/admin/memberGroup/infrMmForm";
+        	var goUrlView ="/admin/memberGroup/infrMmView";
+        	var goUrlList = "/admin/memberGroup/infrMmList";
         	
        		var seq = $("input:hidden[name=infrMmSeq]");
         	var form = $("form[name=mform]");
@@ -190,10 +173,29 @@
        			$(location).attr("href",goUrlMemberForm);
        		});
         	
-        	goView = function(seqValue){
+       		$("#btnSearch").on("click",function(){
+        		form.attr("action", goUrlList).submit();
+        	});
+       		
+       		$("#btnReset").on("click",function(){
+       			$(location).attr("href",goUrlList);
+       		});
+       		
+        	goMemberView = function(seqValue){
         		seq.val(seqValue);
         		form.attr("action" , goUrlView).submit();
         	}
+        	
+        	goList = function(thisPage) {
+    			$("input:hidden[name=thisPage]").val(thisPage);
+    			form.attr("action", goUrlList).submit();
+    		}
+        	
+        	goView = function(keyValue) {
+    	    	/* if(keyValue != 0) seq.val(btoa(keyValue)); */
+    	    	seq.val(keyValue);
+    			form.attr("action", goUrlView).submit();
+    		}
         	
         </script>
 </body>

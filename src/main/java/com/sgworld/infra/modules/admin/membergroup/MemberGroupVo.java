@@ -4,6 +4,7 @@ import com.sgworld.infra.common.base.BaseVo;
 
 public class MemberGroupVo extends BaseVo{
 	private String shValue;
+	private Integer shDelNy;
 	private Integer shOption;
 	private String infrMmSeq;
 	
@@ -27,6 +28,14 @@ public class MemberGroupVo extends BaseVo{
 	}
 	
 	
+	public Integer getShDelNy() {
+		return shDelNy;
+	}
+	public void setShDelNy(Integer shDelNy) {
+		this.shDelNy = shDelNy;
+	}
+
+
 	private String mmSsSeq;
 
 	public String getMmSsSeq() {

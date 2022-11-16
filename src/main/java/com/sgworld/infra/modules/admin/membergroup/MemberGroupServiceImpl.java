@@ -28,21 +28,14 @@ public class MemberGroupServiceImpl implements MemberGroupService {
 	}
 	
 	@Override
-	public MemberGroup selectUserLogin(MemberGroup dto) throws Exception{
-		return mmDao.selectUserLogin(dto);
-	}
-	
-	@Override
 	public int isduple(MemberGroup dto) throws Exception{
 		return mmDao.isduple(dto);
 	}
-
 
 	@Override
 	public int udptMmifo(MemberGroup dto) throws Exception {
 		return mmDao.udptMmifo(dto);
 	}
-
 
 	@Override
 	public List<MemberGroup> selectListBoard(MemberGroupVo vo) throws Exception {
@@ -57,6 +50,22 @@ public class MemberGroupServiceImpl implements MemberGroupService {
 	@Override
 	public int selectOneCount(MemberGroupVo vo) throws Exception {
 		return mmDao.selectOneCount(vo);
+	}
+
+	//로그인
+	@Override
+	public MemberGroup selectUserLogin(MemberGroup dto) throws Exception {
+		return mmDao.selectUserLogin(dto);
+	}
+	
+	@Override
+	public MemberGroup selectOneId(MemberGroup dto) throws Exception {
+		return mmDao.selectOneId(dto);
+	}
+
+	@Override
+	public MemberGroup selectOneLogin(MemberGroup dto) throws Exception {
+		return mmDao.selectOneLogin(dto);
 	}
 	
 	

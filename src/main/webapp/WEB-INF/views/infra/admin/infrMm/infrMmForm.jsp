@@ -7,7 +7,7 @@
 	<title>맴버폼</title>
 	<%@ include file="../../../rscs/basicRscs.jsp" %>
 	<link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-    <link href="resources/admin/adminTemplate/css/styles.css" rel="stylesheet" />
+    <link href="/resources/admin/adminTemplate/css/styles.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/059fbc3cf8.js" crossorigin="anonymous"></script>
 </head>
 <body class="sb-nav-fixed">
@@ -25,14 +25,14 @@
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">회원목록</li>
                         </ol>
-                       	<form method="post" action="infrMmInsert" name="memberFormReg" id="memberFormReg" enctype="multipart/form-data">
+                       	<form method="post" action="infrMmInsert" name="memberFormReg" id="memberFormReg">
                         <div class="container">
 							<div class="row mb-4">
 		                        <div class="col-6">
 		                        	<label class="form-label">회원아이디</label>
 		                        	<input class="form-control" type="text" 
 		                        	placeholder="회원아이디" id="infrMmId" 
-		                        	name="infrMmId" 
+		                        	name="infrMmId" value="<c:out value="${dto.infrMmId }"/>"
 		                        	>
 		                        </div>
 		                        <div class="col">
@@ -161,6 +161,7 @@
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="../../../admin/adminTemplate/js/datatables-simple-demo.js"></script>
         <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 		<script>
 		    //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
 		    function sample4_execDaumPostcode() {
