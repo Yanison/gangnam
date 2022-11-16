@@ -133,7 +133,11 @@
 		<%@include file="../../common/footer.jsp" %>
 	</footer>
 	
+<<<<<<< HEAD
 <%-- 	<div id="modalDiv" class="modalDiv"  style="display:block">
+=======
+	<div id="modalDiv" class="modalDiv"  style="display:none">
+>>>>>>> branch 'main' of https://github.com/Seonya/gangnam.git
 			<%@include file="./createOption.jsp" %>
 	</div> --%>
 

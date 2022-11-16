@@ -1,5 +1,10 @@
 package com.sgworld.infra.modules.user.sgWorld.sgwdto;
 
+
+import java.sql.Date;
+
+import com.sgworld.infra.modules.user.sgWorld.sgwSocket.SgwWSController;
+
 public class SgwDto {
 	
 	/*
@@ -10,9 +15,17 @@ public class SgwDto {
 	private String sgwPw;
 	private Integer sgwMmNumber;
 	private Integer sgwMap;
+	private String sgwLink;
 	private Integer sgwAvatar;
 	private Integer isHidden;
+	private Date regDatetime;
 	
+	public Date getRegDatetime() {
+		return regDatetime;
+	}
+	public void setRegDatetime(Date regDatetime) {
+		this.regDatetime = regDatetime;
+	}
 	public String getSgwSeq() {
 		return sgwSeq;
 	}
@@ -43,6 +56,12 @@ public class SgwDto {
 	public void setSgwMap(Integer sgwMap) {
 		this.sgwMap = sgwMap;
 	}
+	public String getSgwLink() {
+		return sgwLink;
+	}
+	public void setSgwLink(String sgwLink) {
+		this.sgwLink = sgwLink;
+	}
 	public Integer getSgwAvatar() {
 		return sgwAvatar;
 	}
@@ -58,20 +77,32 @@ public class SgwDto {
 	}
 
 	// member
-	private String inftMmSeq;
-	private String inftMmNickname;
+	private String infrMmSeq;
+	private String infrMmNickname;
 
-	public String getInftMmSeq() {
-		return inftMmSeq;
+	public String getInfrMmSeq() {
+		return infrMmSeq;
 	}
-	public void setInftMmSeq(String inftMmSeq) {
-		this.inftMmSeq = inftMmSeq;
+	public void setInfrMmSeq(String infrMmSeq) {
+		this.infrMmSeq = infrMmSeq;
 	}
-	public String getInftMmNickname() {
-		return inftMmNickname;
+	public String getInfrMmNickname() {
+		return infrMmNickname;
 	}
-	public void setInftMmNickname(String inftMmNickname) {
-		this.inftMmNickname = inftMmNickname;
+	public void setInfrMmNickname(String infrMmNickname) {
+		this.infrMmNickname = infrMmNickname;
 	}
+	
+	private Integer webSocketEventSignal;
+	
+	public Integer getWebSocketEventSignal() {
+		return webSocketEventSignal;
+	}
+	public void setWebSocketEventSignal(Integer webSocketEventSignal)throws Exception {
+		System.out.println("@@@@ webSocketEventSignal @@@@");
+		this.webSocketEventSignal = webSocketEventSignal;
+	}
+	
+	
 	
 }
