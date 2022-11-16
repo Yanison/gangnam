@@ -276,6 +276,28 @@ public class MemberGroup extends Base{
 		this.sessId = sessId;
 	}
 	
+	//board
+	private String bdTitle;
 
+	public String getBdTitle() {
+		return bdTitle;
+	}
+	public void setBdTitle(String bdTitle) {
+		this.bdTitle = bdTitle;
+	}
+	
+	
+	//bdLike
+	private String bdLikeSeq;
+
+	public String getBdLikeSeq() {
+		return bdLikeSeq;
+	}
+	public void setBdLikeSeq(String bdLikeSeq) {
+		this.bdLikeSeq = bdLikeSeq;
+	}
+	
+	
+	
 	
 }

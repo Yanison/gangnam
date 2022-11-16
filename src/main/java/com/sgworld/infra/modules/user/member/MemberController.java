@@ -1,6 +1,5 @@
 package com.sgworld.infra.modules.user.member;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 
 import java.util.List;
 
@@ -52,13 +51,26 @@ public class MemberController {
 	
 	//내정보_아바타 수정
 	@RequestMapping(value="memberAvartar")
-	public String memberAvartar()throws Exception {
+	public String memberAvartar(Model model)throws Exception {
+		Object infrMmId = session.getAttribute("infrMmId");
+		Object infrMmName = session.getAttribute("infrMmName");
+		Object infrMmSeq = session.getAttribute("infrMmSeq");
+		model.addAttribute("infrMmSeq", infrMmSeq);
+		model.addAttribute("infrMmName", infrMmName);
+		model.addAttribute("infrMmId", infrMmId);
 		return "infra/user/modules/member/memberAvartar";
 	}
 		
 	//내정보_내 글 조회
 	@RequestMapping(value="memberPostComment")
 	public String memberPostComment(@ModelAttribute("vo") MemberGroupVo vo , Model model)throws Exception {
+		Object infrMmId = session.getAttribute("infrMmId");
+		Object infrMmName = session.getAttribute("infrMmName");
+		Object infrMmSeq = session.getAttribute("infrMmSeq");
+		model.addAttribute("infrMmSeq", infrMmSeq);
+		model.addAttribute("infrMmName", infrMmName);
+		model.addAttribute("infrMmId", infrMmId);
+		
 		List<MemberGroup>list = service.selectListBoard(vo);
 		model.addAttribute("list", list);
 		
@@ -67,7 +79,13 @@ public class MemberController {
 		
 	//내정보_회원탈퇴하기
 	@RequestMapping(value="memberWithdraw")
-	public String memberWithdraw()throws Exception {
+	public String memberWithdraw(Model model)throws Exception {
+		Object infrMmId = session.getAttribute("infrMmId");
+		Object infrMmName = session.getAttribute("infrMmName");
+		Object infrMmSeq = session.getAttribute("infrMmSeq");
+		model.addAttribute("infrMmSeq", infrMmSeq);
+		model.addAttribute("infrMmName", infrMmName);
+		model.addAttribute("infrMmId", infrMmId);
 		return "infra/user/modules/member/memberWithdraw";
 	}
 	

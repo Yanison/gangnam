@@ -12,6 +12,7 @@
 	<link href="../resources/user/home/css/footer.css" rel="stylesheet">
 </head>
 <body>
+	<form name="form" method="post">
 	<header>
 		<%@ include file="../../common/header.jsp"%> 
 	</header>
@@ -51,13 +52,13 @@
 					  				</c:when>
 					  				<c:otherwise> 
 										<c:forEach items="${list }" var="list" varStatus="status">	
-										<tr>
-											<td><input type="checkbox"></td>
-											<td><c:out value="${list.bdTitle }" /></td>
-											<td><c:out value="${list.regDatetime }" /></td>
-											<td>10<!-- ? --></td>
-											<td><c:out value="${list.bdLikeSeq }" /></td>
-										</tr>
+											<tr>
+												<td><input type="checkbox"></td>
+												<td><c:out value="${list.bdTitle }" /></td>
+												<td><c:out value="${list.regDatetime }" /><%-- <fmt:formatDate value="${list.regDatetime }" pattern="yyyy-MM-dd"/> --%></td>
+												<td>10<!-- ? --></td>
+												<td><c:out value="${list.bdLikeSeq }" /></td>
+											</tr>
 										</c:forEach>
 									</c:otherwise>
 								</c:choose>		
@@ -81,10 +82,41 @@
 				</section>
 			</div>	
 		</div><!-- contentWrap end -->
+	</form>	
 	</div><!-- wrap end -->
 	<footer>
 		<%@include file="../../common/footer.jsp" %>
 	</footer>
 
+<!-- jquery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script>
+	var goUrlMemberView = "/member/memberView";
+	var goUrlMemberAvartar = "/member/memberAvartar";
+	var goUrlMemberPostComment = "/member/memberPostComment";
+	var goUrlMemberWithdraw = "/member/memberWithdraw";
+	
+	var seq = $("input:hidden[name=infrMmSeq]");
+	var form = $("form[name=form]");
+	
+	goMemberView = function(seqValue){
+		seq.val(seqValue);
+		form.attr("action" , goUrlMemberView).submit();
+	};
+	
+	goMemberAvartar = function(seqValue){
+		seq.val(seqValue);
+		form.attr("action" , goUrlMemberAvartar).submit();
+	};
+	
+	goMemberPostComment = function(seqValue){
+		seq.val(seqValue);
+		form.attr("action" , goUrlMemberPostComment).submit();
+	};
+	
+	goMemberWithdraw = function(seqValue){
+		seq.val(seqValue);
+		form.attr("action" , goUrlMemberWithdraw).submit();
+	};
 </body>
 </html>

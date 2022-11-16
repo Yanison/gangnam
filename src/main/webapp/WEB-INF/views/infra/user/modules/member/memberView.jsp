@@ -71,9 +71,33 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script>
 	var goUrlMemberUpdate = "/member/memberUpdt";
+	var goUrlMemberView = "/member/memberView";
+	var goUrlMemberAvartar = "/member/memberAvartar";
+	var goUrlMemberPostComment = "/member/memberPostComment";
+	var goUrlMemberWithdraw = "/member/memberWithdraw";
 	
 	var seq = $("input:hidden[name=infrMmSeq]");
 	var form = $("form[name=form]");
+	
+	goMemberView = function(seqValue){
+		seq.val(seqValue);
+		form.attr("action" , goUrlMemberView).submit();
+	};
+	
+	goMemberAvartar = function(seqValue){
+		seq.val(seqValue);
+		form.attr("action" , goUrlMemberAvartar).submit();
+	};
+	
+	goMemberPostComment = function(seqValue){
+		seq.val(seqValue);
+		form.attr("action" , goUrlMemberPostComment).submit();
+	};
+	
+	goMemberWithdraw = function(seqValue){
+		seq.val(seqValue);
+		form.attr("action" , goUrlMemberWithdraw).submit();
+	};
 	
 	
 	$("#modifyBtn").on("click" , function(){

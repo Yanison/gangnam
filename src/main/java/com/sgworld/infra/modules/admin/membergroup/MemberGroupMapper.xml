@@ -153,7 +153,7 @@
 		FROM infrMember a
 		LEFT JOIN board b on b.infrMmSeq = a.infrMmSeq
 		WHERE 1=1
-			AND a.infrMmSeq = #{mmSsSeq}
+			AND a.infrMmSeq = #{infrMmSeq}
 			ORDER BY b.bdSeq DESC
 	</select>
 	
