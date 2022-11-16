@@ -5,7 +5,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.sgworld.infra.modules.admin.membergroup.MemberGroup;
 
 @Controller
 public class HomeController {
@@ -23,9 +26,10 @@ public class HomeController {
 	
 	//메인페이지
 	@RequestMapping(value="/")
-	public String home(Model model) {
+	public String home(Model model,@ModelAttribute MemberGroup vo) {
 		
 		getSss(model);
+		System.out.println(vo.getSessSeq());
 		
 		return "infra/user/modules/home/home";
 	}

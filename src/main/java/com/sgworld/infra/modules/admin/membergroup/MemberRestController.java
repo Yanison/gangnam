@@ -96,6 +96,7 @@ public class MemberRestController {
 				httpSession.setAttribute("sessSeq", rtMember2.getInfrMmSeq());
 				httpSession.setAttribute("sessId", rtMember2.getInfrMmId());
 				httpSession.setAttribute("sessName", rtMember2.getInfrMmName());
+				dto.setSessSeq((String) httpSession.getAttribute("sessSeq"));
 
 				returnMap.put("rt", "success");
 			} else {
