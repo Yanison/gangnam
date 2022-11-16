@@ -39,10 +39,10 @@ public class MemberRestController {
 		
 		return "userSignIn";
 	}
-	/*
+	
 	@RequestMapping(value="userLogin")
 	public String userLogin(MemberGroup dto,MemberGroupVo vo,HttpSession session)throws Exception{
-		
+		System.out.println("dd");
 		MemberGroup user = mmService.selectUserLogin(dto);
 		
 		if(user.getCount() == 1) {
@@ -78,34 +78,31 @@ public class MemberRestController {
 		
 		return "userLogOut";
 	}
-	*/
 	
-	@ResponseBody
-	@RequestMapping(value = "loginProc")
-	public Map<String, Object> loginProc(MemberGroup dto, HttpSession httpSession) throws Exception {
-		Map<String, Object> returnMap = new HashMap<String, Object>();
-		
-		MemberGroup rtMember = mmService.selectOneId(dto);
-		if (rtMember != null) {
-//			dto.setIfmmPassword(UtilSecurity.encryptSha256(dto.getIfmmPassword()));
-			MemberGroup rtMember2 = mmService.selectOneLogin(dto);
-
-			if (rtMember2 != null) {
-				
-				httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE); // 60second * 30 = 30minute
-				httpSession.setAttribute("sessSeq", rtMember2.getInfrMmSeq());
-				httpSession.setAttribute("sessId", rtMember2.getInfrMmId());
-				httpSession.setAttribute("sessName", rtMember2.getInfrMmName());
-
-				returnMap.put("rt", "success");
-			} else {
-				returnMap.put("rt", "fail");
-			}
-		} else {
-			returnMap.put("rt", "fail");
-		}
-		return returnMap;
-	}
+	
+	/*
+	 * @ResponseBody
+	 * 
+	 * @RequestMapping(value = "loginProc") public Map<String, Object>
+	 * loginProc(MemberGroup dto, HttpSession httpSession) throws Exception {
+	 * Map<String, Object> returnMap = new HashMap<String, Object>();
+	 * 
+	 * MemberGroup rtMember = mmService.selectOneId(dto); if (rtMember != null) { //
+	 * dto.setIfmmPassword(UtilSecurity.encryptSha256(dto.getIfmmPassword()));
+	 * MemberGroup rtMember2 = mmService.selectOneLogin(dto);
+	 * 
+	 * if (rtMember2 != null) {
+	 * 
+	 * httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE); //
+	 * 60second * 30 = 30minute httpSession.setAttribute("sessSeq",
+	 * rtMember2.getInfrMmSeq()); httpSession.setAttribute("sessId",
+	 * rtMember2.getInfrMmId()); httpSession.setAttribute("sessName",
+	 * rtMember2.getInfrMmName()); System.out.println("seq는 !!:" +
+	 * rtMember2.getInfrMmSeq()); System.out.println("sessSeq: " +
+	 * httpSession.getAttribute("sessSeq")); returnMap.put("rt", "success"); } else
+	 * { returnMap.put("rt", "fail"); } } else { returnMap.put("rt", "fail"); }
+	 * return returnMap; }
+	 */
 	
 	
 	@ResponseBody

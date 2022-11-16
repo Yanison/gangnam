@@ -1,6 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
-
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
 <html>
 <head>
@@ -135,9 +133,9 @@
 		<%@include file="../../common/footer.jsp" %>
 	</footer>
 	
-	<div id="modalDiv" class="modalDiv"  style="display:block">
+<%-- 	<div id="modalDiv" class="modalDiv"  style="display:block">
 			<%@include file="./createOption.jsp" %>
-	</div>
+	</div> --%>
 
 	<script type="text/javascript">
 		var gorUrlBoardHome = "/board/boardList";
