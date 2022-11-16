@@ -246,7 +246,7 @@ public class MemberGroup extends Base{
 	public void setShdelNy(Integer shdelNy) {
 		this.shdelNy = shdelNy;
 	}
-<<<<<<< HEAD
+
 	
 	private String mmSsSeq;
 
@@ -256,7 +256,7 @@ public class MemberGroup extends Base{
 	public void setMmSsSeq(String mmSsSeq) {
 		this.mmSsSeq = mmSsSeq;
 	}
-=======
+
 	public String getSessSeq() {
 		return sessSeq;
 	}
@@ -276,6 +276,6 @@ public class MemberGroup extends Base{
 		this.sessId = sessId;
 	}
 	
->>>>>>> branch 'main' of https://github.com/Seonya/gangnam.git
+
 	
 }
