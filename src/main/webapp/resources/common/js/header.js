@@ -1,11 +1,11 @@
 $(document).ready(function(){
-	var infrMmId = $('.hiddenGroup #infrMmId').val()
-	var infrMmSeq = $('.hiddenGroup #infrMmSeq').val()
-	var infrMmName = $('.hiddenGroup #infrMmName').val()
+	var sessMmId = $('.hiddenGroup #sessMmId').val()
+	var sessMmSeq = $('.hiddenGroup #sessMmSeq').val()
+	var sessMmName = $('.hiddenGroup #sessMmName').val()
 	
-	console.log("hiddenGroup infrMmId :: " + infrMmId)
-	console.log("hiddenGroup infrMmSeq :: " + infrMmSeq)
-	console.log("hiddenGroup infrMmName :: " + infrMmName)
+	console.log("hiddenGroup sessMmId :: " + sessMmId)
+	console.log("hiddenGroup sessMmSeq :: " + sessMmSeq)
+	console.log("hiddenGroup sessMmName :: " + sessMmName)
 	
 })
 
@@ -30,9 +30,9 @@ function userLogOut(){
 }
 
 function isSssValThere(str){
-	var infrMmId = $(str).val();
+	var sessMmId = $(str).val();
 	console.log(
-		str + " Session is:: " + infrMmId +"\n"
+		str + " Session is:: " + sessMmId +"\n"
 	)
 }
 

@@ -41,7 +41,7 @@ function requestBuildSgw(){
 				confirm("이미 개설하셨습니다. 개설된 방으로 들어가시겠습니까?")
 				goMySgWorld(infrMmSeq)
 			}else{
-				console.log("response ::" + response)
+				console.log("response :: OK")
 				goSgWorld(response,infrMmSeq)	
 			}
 		}
@@ -240,6 +240,7 @@ function goMySgWorld(infrMmSeq){
 				alert("개설한 방이 존재하지 않습니다.")
 //				location.href="/"
 			}else{
+				console.log("개설한 방으로 이동합니다")
 				location.replace('/sgWorld/sgw/'+response);
 			}
 			
