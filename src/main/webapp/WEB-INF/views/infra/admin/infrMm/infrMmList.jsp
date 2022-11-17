@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+
+<jsp:useBean id="AdminCodeServiceImpl" class="com.sgworld.infra.modules.admin.code.AdminCodeServiceImpl"/>
 <html>
 <head>
 	<title>맴버리스트</title>
@@ -25,7 +26,7 @@
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">회원목록</li>
                         </ol>
-                        <form  method="post" name="mform">
+                        <form  method="post" name="form">
                         <input type="hidden" name="infrMmSeq" value="<c:out value="${dto.infrMmSeq }"/>">
 						<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>">
 						<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow }"/>">
@@ -103,7 +104,8 @@
 										</thead>
 										<tbody>
 											<c:set var="listCodeGender" value="${AdminCodeServiceImpl.selectListCachedCode('2')}"/>
-					  						<c:set var="listCodePersonal" value="${AdminCodeServiceImpl.selectListCachedCode('3')}"/>
+					  						<c:set var="listCodeEmail" value="${AdminCodeServiceImpl.selectListCachedCode('1')}"/><!-- 이메일 -->
+											<c:set var="listCodePersonal" value="${AdminCodeServiceImpl.selectListCachedCode('1')}"/><!--  -->
 											<c:choose>
 												<c:when test="${fn:length(list) eq 0 }">
 													<tr>
@@ -118,9 +120,18 @@
 														<td class="tableHead"><c:out value="${list.infrMmId }" /></td>
 														<td class="tableHead"><a href="javascript:goMemberView(<c:out value="${list.infrMmSeq }"/>)" class="text-decoration-none"><c:out value="${list.infrMmName }"/></td>
 														<td class="tableHead"><c:out value="${list.infrMmNickname }" /></td>
-														<td class="tableHead"><c:out value="${list.infrMmGender }" /></td>
+														<td class="tableHead">
+															<c:forEach items="${listCodeGender }" var="listGender" varStatus="statusGender">
+																<c:if test="${list.infrMmGender eq listGender.infrCcSeq }"><c:out value="${listGender.infrCcNameKor }" /></c:if>	
+															</c:forEach>
+														</td>
 														<td class="tableHead"><c:out value="${list.infrMmBod }" /></td>
-														<td class="tableHead"><c:out value="${list.infrMmEmailId }" />@<c:out value="${list.infrMmEmailAddress }" /></td>
+														<td class="tableHead">
+															<c:out value="${list.infrMmEmailId }" />@
+															<c:forEach items="${listCodeEmail }" var="listEmail" varStatus="statusEmail">
+																<c:if test="${list.infrMmEmailAddress eq listEmail.infrCcSeq }"><c:out value="${listEmail.infrCcNameEng }" /></c:if>	
+															</c:forEach>
+														</td>
 														<td class="tableHead"><c:out value="${list.infrMmPhone }" /></td>
 														<td class="tableHead"><c:out value="${list.infrMmDelNy }" /></td>
 													</tr>
@@ -140,7 +151,7 @@
 									</div>
 									<div class="col" style="text-align: right;">
 										<button class="btn btn-success" type="button" id="cglExcel"><i class="fa-regular fa-file-excel"></i></button>
-										<button class="btn btn-primary" type="button" id="formBtn"><i class="fa-regular fa-plus"></i></button>
+										<button class="btn btn-primary" type="button" id="btnForm"><i class="fa-regular fa-plus"></i></button>
 									</div>
 								</div>
 							</div>
@@ -167,9 +178,9 @@
         	var goUrlList = "/admin/memberGroup/infrMmList";
         	
        		var seq = $("input:hidden[name=infrMmSeq]");
-        	var form = $("form[name=mform]");
+        	var form = $("form[name=form]");
         	
-       		$("#formBtn").on("click",function(){
+       		$("#btnForm").on("click",function(){
        			$(location).attr("href",goUrlMemberForm);
        		});
         	
