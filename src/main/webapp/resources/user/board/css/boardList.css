@@ -9,7 +9,7 @@
 .boarderTitle{
 	display: flex;
 	justify-content: center;
-	padding-right: 1000px;
+	padding-right: 850px;
 	padding-bottom: 50px;
 }
 .board{
@@ -21,7 +21,7 @@
 .post1{
 	border-bottom: 1px solid #DEDEDE;
 	box-sizing: border-box;
-	width: 500px;
+	width: 450px;
 	display: inline-block;
 }
 .state1{

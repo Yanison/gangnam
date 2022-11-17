@@ -112,7 +112,7 @@
 			,ext
 			,size
 			,delNy
-			<!-- <include refid="Base.insertRegColumn" /> -->
+			<include refid="Base.insertRegColumn" />
 			,pseq
 		) values (
 			#{type}
@@ -124,7 +124,7 @@
 			,#{ext}
 			,#{size}
 			,0
-			<!-- <include refid="Base.insertRegValue" /> -->
+			<include refid="Base.insertRegValue" />
 			,#{pseq}
 		)
 	</insert>

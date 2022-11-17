@@ -1,5 +1,7 @@
 package com.sgworld.infra.modules.user.board;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +27,14 @@ public class BoardController {
 	public String boardList(@ModelAttribute("vo") AdminBoardVo vo, Model model) throws Exception {
 		
 		vo.setParamsPaging(service.selectOneCount(vo));
-		
 		List<AdminBoardDto> list = service.selectList(vo);
 		model.addAttribute("list", list);
+		
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DAY_OF_MONTH, -1); //7일간 보이도록 하기위해서.
+        String nowday = format.format(cal.getTime());
+        model.addAttribute("nowday",nowday);
 		
 		return "infra/user/modules/board/boardHome";
 	}
@@ -38,14 +45,14 @@ public class BoardController {
 		
 		AdminBoardDto item = service.selectOne(vo);
 		model.addAttribute("item", item);
+		model.addAttribute("listUploaded", service.selectListUploaded(vo));
 		
 		return "infra/user/modules/board/boardView";
 	}
 	
-	//계시판 글쓰기
+	//게시판 글쓰기
 	@RequestMapping(value = "boardWrite")
 	public String boardWrite() {
-		
 		return "infra/user/modules/board/boardRegForm"; 
 	}
 

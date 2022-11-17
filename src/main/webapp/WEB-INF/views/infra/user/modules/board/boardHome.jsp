@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
 <html>
 <head> 
 	<meta charset="UTF-8">
@@ -20,7 +19,7 @@
 <form method="post" id="form" name="form">
 	<input type="hidden" name="bdSeq" value="${dto.bdSeq }">
 	<!-- contend s -->
-	<section class="boardBody">
+	<section class=" container boardBody">
 		<div class="boarderTitle">
 			<h2>자유게시판</h2> <!-- 게시판 타이틀 -->
 		</div>
@@ -36,7 +35,7 @@
 			<article class="board col-4">
 				<div class="post1" style="curcor: pointer;">
 					<div class="state1">
-						<span>NOW</span> <!-- 작성상태(최신글, 조회수 높은 글 등) -->
+						<c:if test="${resultInfo.frstRegisterPnttm>=nowday }"><span>NOW</span></c:if> <!-- 작성상태(최신글, 조회수 높은 글 등) -->
 					</div>
 					<div class="title1">
 						<a href="javascript:goBoardView(<c:out value="${list.bdSeq }" />)" style="text-decoration: none;"><c:out value="${list.bdTitle }" /></a> <!-- 글 제목 -->

@@ -137,7 +137,7 @@
 		SET
 			infrMmDelNy = 0
 		WHERE 
-			infrMmSeq = #{mmSsSeq}	
+			infrMmSeq = #{infrMmSeq}	
 	</update>
 	
 	<delete id="deleteMm">
