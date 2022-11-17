@@ -29,7 +29,6 @@ public class HomeController {
 	public String home(Model model , HttpSession httpSession) {
 		
 		getSss(model);
-		System.out.println("sessSeqhome: " + httpSession.getAttribute("sessSeq"));
 		return "infra/user/modules/home/home";
 	}
 	
