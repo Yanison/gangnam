@@ -25,7 +25,7 @@
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">회원목록</li>
                         </ol>
-                        <form  method="post" name="mform">
+                        <form  method="post" name="form">
                         <input type="hidden" name="infrMmSeq" value="<c:out value="${dto.infrMmSeq }"/>">
 						<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>">
 						<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow }"/>">
@@ -140,7 +140,7 @@
 									</div>
 									<div class="col" style="text-align: right;">
 										<button class="btn btn-success" type="button" id="cglExcel"><i class="fa-regular fa-file-excel"></i></button>
-										<button class="btn btn-primary" type="button" id="formBtn"><i class="fa-regular fa-plus"></i></button>
+										<button class="btn btn-primary" type="button" id="btnForm"><i class="fa-regular fa-plus"></i></button>
 									</div>
 								</div>
 							</div>
@@ -167,9 +167,9 @@
         	var goUrlList = "/admin/memberGroup/infrMmList";
         	
        		var seq = $("input:hidden[name=infrMmSeq]");
-        	var form = $("form[name=mform]");
+        	var form = $("form[name=form]");
         	
-       		$("#formBtn").on("click",function(){
+       		$("#btnForm").on("click",function(){
        			$(location).attr("href",goUrlMemberForm);
        		});
         	
