@@ -105,7 +105,7 @@
 										<tbody>
 											<c:set var="listCodeGender" value="${AdminCodeServiceImpl.selectListCachedCode('2')}"/>
 					  						<c:set var="listCodeEmail" value="${AdminCodeServiceImpl.selectListCachedCode('1')}"/><!-- 이메일 -->
-											<c:set var="listCodePersonal" value="${AdminCodeServiceImpl.selectListCachedCode('1')}"/><!--  -->
+											<c:set var="listCodePersonalState" value="${AdminCodeServiceImpl.selectListCachedCode('5')}"/><!--  -->
 											<c:choose>
 												<c:when test="${fn:length(list) eq 0 }">
 													<tr>
@@ -133,7 +133,11 @@
 															</c:forEach>
 														</td>
 														<td class="tableHead"><c:out value="${list.infrMmPhone }" /></td>
-														<td class="tableHead"><c:out value="${list.infrMmDelNy }" /></td>
+														<td class="tableHead">
+															<c:forEach items="${listCodePersonalState }" var="listState" varStatus="statusState">
+																<c:if test="${list.infrMmDelNy eq listState.infrCcSeq }"><c:out value="${listState.infrCcNameKor }" /></c:if>
+															</c:forEach>
+														</td>
 													</tr>
 												</c:forEach>
 												</c:otherwise>

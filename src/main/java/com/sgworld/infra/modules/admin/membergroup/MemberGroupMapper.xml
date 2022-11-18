@@ -225,7 +225,7 @@
 	<update id="adminUelete">
 		UPDATE infrMember
 		SET
-			infrMmDelNy = 0
+			infrMmDelNy = 16
 		WHERE 1=1
 			AND infrMmSeq = #{infrMmSeq}	
 	</update>
