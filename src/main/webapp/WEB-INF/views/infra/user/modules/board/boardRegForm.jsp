@@ -66,9 +66,7 @@
 						<input class="contentTitle" type="text" id="bdTitle" name="bdTitle" value="<c:out value="${dto.bdTitle }" />" placeholder="글 제목을 입력해 주세요.">
 					</div>
 					<div class="boardContent">
-						<textarea class="boardFormContent" id="summernote" name="editordata"></textarea>
-						<!-- <div class="boardFormContent" id="summernote"></div> -->
-						<%-- <textarea class="boardFormContent" id="bdContent" name="bdContent" placeholder="내용을 입력해 주세요."><c:out value="${dto.bdContent }" /></textarea> --%>
+						<div class="boardFormContent" id="summernote" name="editordata"><c:out value="${dto.bdContent }" /></div>
 					</div>
 				</div>
 				<%-- 
@@ -128,7 +126,7 @@
 	<!-- footer s -->
 	<%@ include file="../../common/footer.jsp" %>
 	<!-- footer e -->
-	<script src="/resources/common/js/upload.js"></script>
+	<!-- <script src="/resources/common/js/upload.js"></script> -->
 	<script src="/resources/user/common/js/commonUser.js"></script>
 	
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -200,21 +198,21 @@
 	        $('#summernote').summernote(setting);
         });
 		
-		function uploadSummernoteImageFile(file, el) {
-			data = new FormData();
-			data.append("file", file);
-			$.ajax({
-				data : data,
-				type : "POST",
-				url : "/admin/board/uploadSummernoteImageFile",
-				contentType : false,
-				enctype : 'multipart/form-data',
-				processData : false,
-				success : function(data) {
-					$(el).summernote('editor.insertImage', data.url);
-				}
-			});
-		}
+		 function uploadSummernoteImageFile(file, el) {
+				data = new FormData();
+				data.append("file", file);
+				$.ajax({
+					data : data,
+					type : "POST",
+					url : "/admin/board/uploadSummernoteImageFile",
+					contentType : false,
+					enctype : 'multipart/form-data',
+					processData : false,
+					success : function(data) {
+						$(el).summernote('editor.insertImage', data.url);
+					}
+				});
+			}
 		
 	</script>
 </body>
