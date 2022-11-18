@@ -52,4 +52,25 @@ public class MemberGroupController {
 		return "infra/admin/infrMm/infrMmView";
 	}
 	
+	//회원정보 수정
+	@RequestMapping(value = "update")
+	public String adminUpdate(MemberGroup dto)throws Exception{
+		service.adminUpdate(dto);
+		return "redirect:/admin/memberGroup/infrMmList";
+	}
+	
+	//회원정보 삭제여부 삭제
+	@RequestMapping(value = "uelete")
+	public String adminUelete(MemberGroup dto)throws Exception{
+		service.adminUelete(dto);
+		return "redirect:/admin/memberGroup/infrMmList";
+	}
+	
+	//회원정보 완전 삭제
+	@RequestMapping(value = "delete")
+	public String adminDelete(MemberGroupVo vo)throws Exception{
+		service.adminDelete(vo);
+		return "redircet:/admin/memberGroup/infrMmList";
+	}
+	
 }

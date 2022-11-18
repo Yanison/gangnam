@@ -73,6 +73,24 @@ public class MemberGroupServiceImpl implements MemberGroupService {
 	public MemberGroup selectOneLogin(MemberGroup dto) throws Exception {
 		return mmDao.selectOneLogin(dto);
 	}
+
+
+	@Override
+	public int adminUpdate(MemberGroup dto) throws Exception {
+		return mmDao.adminUpdate(dto);
+	}
+
+
+	@Override
+	public int adminUelete(MemberGroup dto) throws Exception {
+		return mmDao.adminUelete(dto);
+	}
+
+
+	@Override
+	public int adminDelete(MemberGroupVo vo) throws Exception {
+		return mmDao.adminDelete(vo);
+	}
 	
 	
 	

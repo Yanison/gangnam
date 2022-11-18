@@ -204,4 +204,34 @@
 			AND infrMmSeq = #{infrMmSeq}	
 	</update>
 	
+	<!-- admin 회원정보 수정 -->
+	<update id="adminUpdate">
+		UPDATE infrMember
+		SET
+			infrMmId = #{infrMmId}
+			,infrMmName = #{infrMmName}
+			,infrMmEmailId = #{infrMmEmailId}
+			,infrMmNickname = #{infrMmNickname}
+			,infrMmGender = #{infrMmGender}
+			,infrMmBod = #{infrMmBod}
+			,infrMmPhone = #{infrMmPhone}
+			,infrMmDelNy = #{infrMmDelNy}
+			,infrMmUseNy = #{infrMmUseNy}
+		WHERE 1=1
+			AND infrMmSeq = #{infrMmSeq} 	
+	</update>
+	
+	<!-- admin 삭제여부 업데이트 -->
+	<update id="adminUelete">
+		UPDATE infrMember
+		SET
+			infrMmDelNy = 0
+		WHERE 1=1
+			AND infrMmSeq = #{infrMmSeq}	
+	</update>
+	
+	<!-- admin 회원정보 완전 삭제 -->
+	<delete id="adminDelete">
+		DELETE FROM infrMember WHERE infrMmSeq = #{infrMmSeq}
+	</delete>
 </mapper>
