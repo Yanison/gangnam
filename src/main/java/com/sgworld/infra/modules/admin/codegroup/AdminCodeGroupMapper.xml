@@ -49,6 +49,23 @@
 		WHERE 1=1
 			AND infrCcgSeq = #{infrCcgSeq}
 	</select>
+	
+	<!-- admin ccg등록 -->
+	<insert id="insert">
+		INSERT INTO infrCodeGroup(
+			infrCcgNameKor
+			,infrCcgNameEng
+			,infrCcgUseNy
+			,infrCcgDelNy
+			,regDatetime
+		)VALUES(
+			#{infrCcgNameKor}
+			,#{infrCcgNameEng}
+			,#{infrCcgUseNy}
+			,#{infrCcgDelNy}
+			,now()
+		)
+	</insert>
 
 
 

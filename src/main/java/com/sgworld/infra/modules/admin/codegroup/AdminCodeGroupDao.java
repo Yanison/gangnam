@@ -30,4 +30,9 @@ public class AdminCodeGroupDao {
 		CodeGroupDto item = sqlSession.selectOne(namespace + ".selectOne", vo);
 		return item;
 	}
+	
+	//admin ccg등록
+	public int insert(CodeGroupDto dto) {
+		return sqlSession.insert(namespace + ".insert", dto);
+	}
 }

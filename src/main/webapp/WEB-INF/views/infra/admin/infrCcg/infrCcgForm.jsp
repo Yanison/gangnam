@@ -25,28 +25,34 @@
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">코드그룹</li>
                         </ol>
+                        <form name="ccgFormReg" method="post" action="insert" id="ccgFormReg">
                         <div class="container">
 	                        <div class="row mb-4">
 		                        <div class="col-6">
 		                        	<label class="form-label">코드그룹이름</label>
-		                        	<input class="form-control" type="text" id="infrCcgNameKor" name="infrCcgNameKor">
+		                        	<input class="form-control" type="text" 
+		                        	id="infrCcgNameKor" name="infrCcgNameKor"
+		                        	placeholder="코드그룹이름" value="<c:out value="${dto.infrCcgNameKor }"/>"
+		                        	>
 		                        </div>
 		                        <div class="col">
 		                        	<label class="form-label">코드그룹이름(영문)</label>
-		                        	<input class="form-control" type="text" id="infrCcgNameEng" name="infrCcgNameEng">
+		                        	<input class="form-control" type="text" 
+		                        	id="infrCcgNameEng" name="infrCcgNameEng"
+		                        	placeholder="코드그룹이름(영문)" value="<c:out value="${dto.infrCcgNameEng }"/>"
+		                        	>
 		                        </div>
 	                        </div>
 	                        <div class="row mb-4">
-		                        <div class="col-6">
+		                        <!-- <div class="col-6">
 		                        	<label class="form-label">순서</label>
 		                        	<input class="form-control" type="text">
-		                        </div>
-		                        <div class="col">
+		                        </div> -->
+		                        <div class="col-6">
 		                        	<label class="form-label">사용여부</label>
 		                        	<select class="form-select" id="infrCcgUseNy" name="infrCcgUseNy">
-		                        		<option>사용여부선택</option> 
-		                        		<option>N</option>
-		                        		<option>Y</option>
+		                        		<option value="1">N</option>
+		                        		<option value="0">Y</option>
 		                        	</select>
 		                        </div>
 	                        </div>
@@ -54,15 +60,14 @@
 		                        <div class="col-6">
 		                        	<label class="form-label">삭제여부</label>
 		                        	<select class="form-select" id="infrCcgDelNy" name="infrCcgDelNy">
-		                        		<option>삭제여부선택</option>
-		                        		<option>N</option>
-		                        		<option>Y</option>
+		                        		<option value="1">N</option>
+		                        		<option value="0">Y</option>
 		                        	</select>
 		                        </div>
-		                        <div class="col">
+		                        <!-- <div class="col">
 		                        	<label class="form-label">등록일</label>
 		                        	<input class="form-control" type="text" id="infrCcgOrder" name="infrCcgOrder">
-		                        </div>
+		                        </div> -->
 	                        </div>
 	                        <div class="row mb-4">
 	                        	<div class="col-6">
@@ -77,10 +82,11 @@
 								<div class="col" style="text-align: right;">
 									<button class="btn btn-danger" type="button" id="cglCancel"><i class="fa-duotone fa-x"></i></button>
 									<button class="btn btn-danger" type="button" id="cglDel"><i class="fa-regular fa-trash-can"></i></button>
-									<button class="btn btn-primary" type="button" id="cglPlus"><i class="fa-regular fa-plus"></i></button>
+									<button class="btn btn-primary" type="button" onclick="register()"><i class="fa-regular fa-plus"></i></button>
 								</div>
 							</div>
 						</div>
+						</form>
 					</div>
 				</main>
 			</div>
@@ -95,5 +101,11 @@
         <script src="/resources/admin/adminTemplate/assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="/resources/admin/adminTemplate/js/datatables-simple-demo.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+		<script>
+			function register(){
+		    	document.getElementById('ccgFormReg').submit();
+		    };
+		</script>
 </body>
 </html>

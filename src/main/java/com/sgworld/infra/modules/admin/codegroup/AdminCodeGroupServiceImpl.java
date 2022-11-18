@@ -26,4 +26,10 @@ public class AdminCodeGroupServiceImpl implements AdminCodeGroupService {
 	public CodeGroupDto selectOne(CodeGroupVo vo) throws Exception {
 		return dao.selectOne(vo);
 	}
+
+	@Override
+	public int insert(CodeGroupDto dto) throws Exception {
+		return dao.insert(dto);
+	}
+	
 }

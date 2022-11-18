@@ -37,4 +37,13 @@ public class AdminCodeGroupController {
 	public String infrCcgView() throws Exception {
 		return "infra/admin/infrCcg/infrCcgView";
 	}
+	
+	//admin ccg등록
+	@RequestMapping(value="insert")
+	public String insert(CodeGroupDto dto) throws Exception {
+		service.insert(dto);
+		return "redirect:/admin/codeGroup/infrCcgList";
+	}
+	
+	
 }
