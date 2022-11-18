@@ -1,7 +1,11 @@
 package com.sgworld.infra.modules.admin.codegroup;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -11,8 +15,16 @@ public class AdminCodeGroupController {
 	@Autowired
 	AdminCodeGroupServiceImpl service;
 	
+	public void setSearch(CodeGroupVo vo)throws Exception{
+		vo.setShDelNy(vo.getShDelNy() == null ? 1 : vo.getShDelNy());
+		vo.setParamsPaging(service.selectOneCount(vo));
+	}
+	
 	@RequestMapping(value="infrCcgList")
-	public String infrCcgList() throws Exception {
+	public String infrCcgList(@ModelAttribute("vo") CodeGroupVo vo , Model model) throws Exception {
+		setSearch(vo);
+		List<CodeGroupDto>list = service.selectList(vo);
+		model.addAttribute("list", list);
 		return "infra/admin/infrCcg/infrCcgList";
 	}
 	

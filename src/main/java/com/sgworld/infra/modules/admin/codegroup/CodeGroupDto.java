@@ -6,7 +6,7 @@ import com.sgworld.infra.common.base.Base;
 
 public class CodeGroupDto extends Base {
 	
-	private Integer infrCcgSeq;
+	private String infrCcgSeq;
 	private String infrCcgNameKor;
 	private String infrCcgNameEng;
 	private Integer infrCcgUseNy;
@@ -20,10 +20,10 @@ public class CodeGroupDto extends Base {
 	private String infrCodeGroupSeq;
 	private Integer infrCcCount;
 //////////////////////////////////////////////////////
-	public Integer getInfrCcgSeq() {
+	public String getInfrCcgSeq() {
 		return infrCcgSeq;
 	}
-	public void setInfrCcgSeq(Integer infrCcgSeq) {
+	public void setInfrCcgSeq(String infrCcgSeq) {
 		this.infrCcgSeq = infrCcgSeq;
 	}
 	public String getInfrCcgNameKor() {

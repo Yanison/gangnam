@@ -31,7 +31,7 @@
 				,a.regBy
 				,a.modDatetime
 				,a.modBy
-				,(select count(aa.infrCodeGroupSeq) from infrCode aa where 1=1 and aa.infrCcDelNy = 0 and aa.infrCodeGroupSeq = a.infrCcgSeq) as infrCcCount
+				,(select count(aa.infrCodeGroupSeq) from infrCode aa where 1=1 and aa.infrCcDelNy = 1 and aa.infrCodeGroupSeq = a.infrCcgSeq) as infrCcCount
 			<include refid="selectCommon" />
 			ORDER BY a.infrCcgSeq DESC
 		<include refid="Base.selectListLowerForMysql" />
