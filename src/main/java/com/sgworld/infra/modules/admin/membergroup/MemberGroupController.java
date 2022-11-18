@@ -17,10 +17,15 @@ public class MemberGroupController {
 	@Autowired
 	MemberGroupServiceImpl service;
 	
+	public void setSearch(MemberGroupVo vo)throws Exception{
+		vo.setShDelNy(vo.getShDelNy() == null ? 1 : vo.getShDelNy());
+		vo.setParamsPaging(service.selectOneCount(vo));
+	}
+	
 	//회원관리 리스트
 	@RequestMapping(value = "infrMmList")
 	public String infrCcList(@ModelAttribute("vo") MemberGroupVo vo , Model model) throws Exception {
-		vo.setParamsPaging(service.selectOneCount(vo));
+		setSearch(vo);
 		List<MemberGroup>list = service.selectMmList(vo);
 		model.addAttribute("list", list);
 		return "infra/admin/infrMm/infrMmList";

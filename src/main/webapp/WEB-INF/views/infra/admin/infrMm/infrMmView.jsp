@@ -41,9 +41,18 @@
 		                        	<label class="form-label">비밀번호</label>
 		                        	<input class="form-control" type="password" placeholder="비밀번호" id="infrMmPw" name="infrMmPw" value="<c:out value="${item.infrMmPw }"/>">
 		                        </div>
-		                        <div class="col">
+		                        <div class="col-3">
 		                        	<label class="form-label">이메일</label>
-		                        	<input class="form-control" type="text" placeholder="이메일" id="infrMmEmailId" name="infrMmEmailId" value="<c:out value="${item.infrMmEmailId }"/>">
+		                        	<input class="form-control" type="text" placeholder="이메일" id="infrMmEmailId" name="infrMmEmailId" value="<c:out value="${item.infrMmEmailId }"/>">@
+		                        	
+		                        </div>
+		                        <div class="col">
+		                        	<select class="form-control">
+		                        		<option>naver.com</option>
+		                        		<option>gmail.com</option>
+		                        		<option>daum.net</option>
+		                        		<option>nate.com</option>
+		                        	</select>
 		                        </div>
 	                        </div>
 	                        <div class="row mb-4" style="height: 70px;">

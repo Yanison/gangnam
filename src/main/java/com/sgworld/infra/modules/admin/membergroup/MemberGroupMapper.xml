@@ -22,8 +22,12 @@
 	
 	
 	<select id="selectMmList" resultMap="MemberGroup">
-		select * from infrMember
-		ORDER BY infrMmSeq DESC
+		<include refid="Base.selectListUpperForMysql" />
+			SELECT
+				a.*
+			<include refid="selectCommon" />
+			ORDER BY infrMmSeq DESC
+		<include refid="Base.selectListLowerForMysql" />	
 	</select>
 	
 	<select id="selectMmOne" resultMap="MemberGroup">
