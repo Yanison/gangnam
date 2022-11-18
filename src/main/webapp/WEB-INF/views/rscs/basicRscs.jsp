@@ -55,7 +55,6 @@
 <!-- commonCSS -->
 <link href="/resources/common/css/common.css" rel="stylesheet">
 
-
 <!-- JavaScript Bundle with Popper -->
 
 <!-- sockJS -->

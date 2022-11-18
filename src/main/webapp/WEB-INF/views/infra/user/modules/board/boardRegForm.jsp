@@ -14,13 +14,17 @@
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
 	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
 	
-	<!-- include summernote css/js-->
-	<!-- <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet"> -->
-	<!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script> -->
-	
 	<link href="/resources/user/board/css/boardForm.css" rel="stylesheet">
 	<link href="/resources/user/home/css/header.css" rel="stylesheet">
 	<link href="/resources/user/home/css/footer.css" rel="stylesheet">
+	
+	<!-- include libraries(jQuery, bootstrap) -->
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+	
+	<!-- include summernote css/js -->
+	<!-- <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet"> -->
+	<link href="/resources/summernote/summernote-lite.css" rel="stylesheet">
+	
 	
 </head>
 <body>
@@ -62,10 +66,12 @@
 						<input class="contentTitle" type="text" id="bdTitle" name="bdTitle" value="<c:out value="${dto.bdTitle }" />" placeholder="글 제목을 입력해 주세요.">
 					</div>
 					<div class="boardContent">
-						<!-- <div class="boardFormContent" id="summernote"> -->
-						<textarea class="boardFormContent" id="bdContent" name="bdContent" placeholder="내용을 입력해 주세요."><c:out value="${dto.bdContent }" /></textarea>
+						<textarea class="boardFormContent" id="summernote" name="editordata"></textarea>
+						<!-- <div class="boardFormContent" id="summernote"></div> -->
+						<%-- <textarea class="boardFormContent" id="bdContent" name="bdContent" placeholder="내용을 입력해 주세요."><c:out value="${dto.bdContent }" /></textarea> --%>
 					</div>
 				</div>
+				<%-- 
 				<div class="boardFooter">
 					<div class="boardIcon">
 						<div class="icon">
@@ -113,6 +119,7 @@
 						</div>
 					</div>
 				</div>
+				 --%>
 			</article>
 		</section>
 	</section>
@@ -123,6 +130,12 @@
 	<!-- footer e -->
 	<script src="/resources/common/js/upload.js"></script>
 	<script src="/resources/user/common/js/commonUser.js"></script>
+	
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<!-- <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script> -->
+	<script src="/resources/summernote/summernote-lite.js"></script>
+	<script src="/resources/summernote/lang/summernote-ko-KR.js"></script>
 	<script type="text/javascript">
 		var goUrlBoardInst = "/board/boardInst";
 		var goUrlList = "/board/boardList";
@@ -142,14 +155,67 @@
    			form.attr("action", goUrlList).submit();
    		});
 		
-		/*
+		// summernote 부분 
 		$(document).ready(function() {
-		  $('#summernote').summernote({
-			  height: 450,
-			  width: 860,
-		  });
-		});
-		*/
+
+		var toolbar = [
+			    // 글꼴 설정
+			    ['fontname', ['fontname']],
+			    // 글자 크기 설정
+			    ['fontsize', ['fontsize']],
+			    // 굵기, 기울임꼴, 밑줄,취소 선, 서식지우기
+			    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+			    // 글자색
+			    ['color', ['forecolor','color']],
+			    // 표만들기
+			    ['table', ['table']],
+			    // 글머리 기호, 번호매기기, 문단정렬
+			    ['para', ['ul', 'ol', 'paragraph']],
+			    // 줄간격
+			    ['height', ['height']],
+			    // 그림첨부, 링크만들기, 동영상첨부
+			    ['insert',['picture','link','video']],
+			    // 코드보기, 확대해서보기, 도움말
+			    ['view', ['codeview','fullscreen', 'help']]
+			  ];
+	
+		var setting = {
+	            height : 450,
+	            width: 860,
+	            minHeight : null,
+	            maxHeight : null,
+	            focus : true,
+	            lang : 'ko-KR',
+	            toolbar : toolbar,
+	            callbacks : //여기 부분이 이미지를 첨부하는 부분
+            	{ onImageUpload :
+            		function(files, editor, welEditable) {
+			            for (var i = files.length - 1; i >= 0; i--) {
+			            uploadSummernoteImageFile(files[i], this);
+	            		}
+            		}
+            	}
+	         };
+	
+	        $('#summernote').summernote(setting);
+        });
+		
+		function uploadSummernoteImageFile(file, el) {
+			data = new FormData();
+			data.append("file", file);
+			$.ajax({
+				data : data,
+				type : "POST",
+				url : "/admin/board/uploadSummernoteImageFile",
+				contentType : false,
+				enctype : 'multipart/form-data',
+				processData : false,
+				success : function(data) {
+					$(el).summernote('editor.insertImage', data.url);
+				}
+			});
+		}
+		
 	</script>
 </body>
 </html>
