@@ -10,4 +10,12 @@ public interface AdminCodeGroupService {
 	
 	//admin ccg등록
 	public int insert(CodeGroupDto dto)throws Exception;
+	
+	public int update(CodeGroupDto dto)throws Exception;
+
+	public int uelete(CodeGroupDto dto)throws Exception;
+
+	public int delete(CodeGroupVo vo)throws Exception;
+
+
 }

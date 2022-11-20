@@ -31,5 +31,22 @@ public class AdminCodeGroupServiceImpl implements AdminCodeGroupService {
 	public int insert(CodeGroupDto dto) throws Exception {
 		return dao.insert(dto);
 	}
+
+	@Override
+	public int update(CodeGroupDto dto) throws Exception {
+		return dao.update(dto);
+	}
+
+	@Override
+	public int uelete(CodeGroupDto dto) throws Exception {
+		return dao.uelete(dto);
+	}
+
+	@Override
+	public int delete(CodeGroupVo vo) throws Exception {
+		return dao.delete(vo);
+	}
+	
+	
 	
 }

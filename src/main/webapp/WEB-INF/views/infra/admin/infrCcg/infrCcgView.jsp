@@ -26,6 +26,7 @@
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">코드그룹</li>
                         </ol>
+                        <form method="post" id="form" name="form">
                         <div class="container">
 	                        <div class="row mb-4">
 		                        <div class="col-6">
@@ -45,8 +46,8 @@
 		                        <div class="col-6">
 		                        	<label class="form-label">사용여부</label>
 		                        	<select class="form-select" name="infrCcgUseNy" id="infrCcgUseNy">
-		                        		<option value="1">N</option>
-		                        		<option value="0">Y</option>
+		                        		<option value="1"<c:if test="${item.infrCcgUseNy eq 1}">selected</c:if>>N</option>
+		                        		<option value="0"<c:if test="${item.infrCcgUseNy eq 0}">selected</c:if>>Y</option>
 		                        	</select>
 		                        </div>
 	                        </div>
@@ -54,8 +55,8 @@
 		                        <div class="col-6">
 		                        	<label class="form-label">삭제여부</label>
 		                        	<select class="form-select" id="infrCcgDelNy" name="infrCcgDelNy">
-		                        		<option value="1">N</option>
-		                        		<option value="0">Y</option>
+		                        		<option value="1"<c:if test="${item.infrCcgDelNy eq 1}">selected</c:if>>N</option>
+		                        		<option value="0"<c:if test="${item.infrCcgDelNy eq 0}">selected</c:if>>Y</option>
 		                        	</select>
 		                        </div>
 		                        <div class="col">
@@ -84,6 +85,7 @@
 								</div>
 							</div>
 						</div>
+						</form>						
 					</div>
 				</main>
 			</div>
@@ -98,5 +100,10 @@
         <script src="/resources/admin/adminTemplate/assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="/resources/admin/adminTemplate/js/datatables-simple-demo.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <script>
+        
+        </script>
+        
 </body>
 </html>
