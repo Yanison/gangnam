@@ -5,7 +5,7 @@
 <html>
 <head>
 	<title>Home</title>
-	<%@ include file="../../../../rscs/basicRscs.jsp" %>
+	<%@ include file="../../../rscs/basicRscs.jsp" %>
 	<link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
     <link href="/resources/admin/adminTemplate/css/styles.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/059fbc3cf8.js" crossorigin="anonymous"></script>
@@ -30,39 +30,37 @@
 	                        <div class="row mb-4">
 		                        <div class="col-6">
 		                        	<label class="form-label">코드그룹이름</label>
-		                        	<input class="form-control" type="text">
+		                        	<input class="form-control" type="text" value="${item.infrCcgNameKor }">
 		                        </div>
 		                        <div class="col">
 		                        	<label class="form-label">코드그룹이름(영문)</label>
-		                        	<input class="form-control" type="text">
+		                        	<input class="form-control" type="text" value="${item.infrCcgNameEng }">
 		                        </div>
 	                        </div>
 	                        <div class="row mb-4">
-		                        <div class="col-6">
+		                        <!-- <div class="col-6">
 		                        	<label class="form-label">순서</label>
 		                        	<input class="form-control" type="text">
-		                        </div>
-		                        <div class="col">
+		                        </div> -->
+		                        <div class="col-6">
 		                        	<label class="form-label">사용여부</label>
-		                        	<select class="form-select">
-		                        		<option>사용여부선택</option>
-		                        		<option>N</option>
-		                        		<option>Y</option>
+		                        	<select class="form-select" name="infrCcgUseNy" id="infrCcgUseNy">
+		                        		<option value="1">N</option>
+		                        		<option value="0">Y</option>
 		                        	</select>
 		                        </div>
 	                        </div>
 	                        <div class="row mb-4">
 		                        <div class="col-6">
 		                        	<label class="form-label">삭제여부</label>
-		                        	<select class="form-select">
-		                        		<option>삭제여부선택</option>
-		                        		<option>N</option>
-		                        		<option>Y</option>
+		                        	<select class="form-select" id="infrCcgDelNy" name="infrCcgDelNy">
+		                        		<option value="1">N</option>
+		                        		<option value="0">Y</option>
 		                        	</select>
 		                        </div>
 		                        <div class="col">
 		                        	<label class="form-label">등록일</label>
-		                        	<input class="form-control" type="text">
+		                        	<input class="form-control" type="text" name="regDatetime" value="<fmt:formatDate value="${item.regDatetime }" pattern="yyyy-MM-dd" />">
 		                        </div>
 	                        </div>
 	                        <div class="row mb-4">
@@ -72,7 +70,7 @@
 								</div>
 								<div class="col">
 		                        	<label class="form-label">수정일</label>
-		                        	<input class="form-control" type="text">
+		                        	<input class="form-control" type="text" name="modDatetime" value="<fmt:formatDate value="${list.modDatetime }" pattern="yyyy-MM-dd" />">
 		                        </div>
 	                        </div>
 							<div class="row p-0">

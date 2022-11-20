@@ -113,7 +113,7 @@
 														<td class="tableHead1"><input class="listCheck" type="checkbox"></td>
 														<td class="tableHead1"><c:out value="${list.infrCcgSeq }"/></td>
 														<td>코드그룹 코드</td>
-														<td><c:out value="${list.infrCcgNameKor }"/></td>
+														<td><a href="javascript:goCcgView(<c:out value="${list.infrCcgSeq }"/>)" class="text-decoration-none"><c:out value="${list.infrCcgNameKor }"/></td>
 														<td><c:out value="${list.infrCcgNameEng }"/></td>
 														<td><c:out value="${list.infrCcCount }"/></td>
 														<td><fmt:formatDate value="${list.regDatetime }" pattern="yyyy-MM-dd" /></td>
@@ -175,6 +175,11 @@
 	    	$("#btnForm").on("click",function(){
        			$(location).attr("href",goUrlForm);
        		});
+	    	
+	    	goCcgView = function(keyValue) {
+    	    	seq.val(keyValue);
+    			form.attr("action", goUrlView).submit();
+    		}
         </script>
 </body>
 </html>

@@ -34,7 +34,9 @@ public class AdminCodeGroupController {
 	}
 	
 	@RequestMapping(value="infrCcgView")
-	public String infrCcgView() throws Exception {
+	public String infrCcgView(@ModelAttribute("vo")CodeGroupVo vo , Model model) throws Exception {
+		CodeGroupDto item = service.selectOne(vo);
+		model.addAttribute("item", item);
 		return "infra/admin/infrCcg/infrCcgView";
 	}
 	
