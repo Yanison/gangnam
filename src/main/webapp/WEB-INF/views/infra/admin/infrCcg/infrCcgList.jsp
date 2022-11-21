@@ -117,7 +117,7 @@
 														<td><c:out value="${list.infrCcgNameEng }"/></td>
 														<td><c:out value="${list.infrCcCount }"/></td>
 														<td><fmt:formatDate value="${list.regDatetime }" pattern="yyyy-MM-dd" /></td>
-														<td><c:out value="${list.modDatetime }"/></td>
+														<td><%-- <fmt:formatDate value="${list.modDatetime }" pattern="yyyy-MM-dd"/> --%></td>
 													</tr>
 												</c:forEach>
 												</c:otherwise>

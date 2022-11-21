@@ -14,7 +14,7 @@ public class CodeGroupDto extends Base {
 	private Integer infrCcgOrder;
 	private Date regDatetime;
 	private String regBy;
-	private Date modDatetime;
+	/* private Date modDatetime; */
 	private String modBy;
 	private Integer infrCcDelNy;
 	private String infrCodeGroupSeq;
@@ -68,12 +68,11 @@ public class CodeGroupDto extends Base {
 	public void setRegBy(String regBy) {
 		this.regBy = regBy;
 	}
-	public Date getModDatetime() {
-		return modDatetime;
-	}
-	public void setModDatetime(Date modDatetime) {
-		this.modDatetime = modDatetime;
-	}
+
+	/*
+	 * public Date getModDatetime() { return modDatetime; } public void
+	 * setModDatetime(Date modDatetime) { this.modDatetime = modDatetime; }
+	 */
 	public String getModBy() {
 		return modBy;
 	}

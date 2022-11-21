@@ -79,7 +79,7 @@
 			,infrCcgNameEng = #{infrCcgNameEng}
 			,infrCcgUseNy = #{infrCcgUseNy}
 			,infrCcgDelNy = #{infrCcgDelNy}
-			<!-- 수정시간 어떻게 하지? -->
+			<!-- ,modDatetime = now() -->
 		WHERE 1=1
 			AND infrCcgSeq = #{infrCcgSeq}	
 	</update>
