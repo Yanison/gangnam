@@ -6,7 +6,17 @@
 <mapper namespace="com.sgworld.infra.modules.admin.code.AdminCodeMapper">
 
 	 <resultMap id="resultMapObj" type="com.sgworld.infra.modules.admin.code.CodeDto"></resultMap>
-
+	
+	<sql id ="selectCommon">
+		FROM infrCode a
+		WHERE 1=1
+			<if test="shDelNy != null and !shDelNy.equals('')">AND infrCcDelNy = #{shDelNy}</if>
+			<choose>
+				<when test="shOption == 1">AND infrCcSeq = #{shValue}</when>
+				<when test="shOption == 2">AND infrCcNameKor LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption == 3">AND infrCcNameEng LIKE CONCAT('%',#{shValue},'%')</when>
+			</choose>
+	</sql>
 
 	<select id="selectListCachedCodeArrayList" resultMap="resultMapObj">
 		SELECT 
@@ -20,6 +30,22 @@
 		WHERE 1=1
 			AND infrCcDelNy = 1
 		    AND infrCcUseNy = 0
+    </select>
+    
+    <!-- admin cc리스트 -->
+    <select id="selectList" resultMap="resultMapObj">
+    	<include refid="Base.selectListUpperForMysql" />
+	    	SELECT
+	    		a.infrCcSeq
+	    		,(SELECT infrCcgNameKor FROM infrCodeGroup aa WHERE 1=1 AND aa.infrCcgSeq = a.infrCodeGroupSeq)as infrCcgNaemKor
+	    		,a.infrCcNameKor
+	    		,a.infrCcNameEng
+	    		,a.infrCcUseNy
+	    		,a.infrCcDelNy
+	    		,a.regDatetime
+	    <include refid="selectCommon" />
+		    ORDER BY a.infrCcSeq DESC		
+    	<include refid="Base.selectListLowerForMysql" />
     </select>
 
 </mapper>

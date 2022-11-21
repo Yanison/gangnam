@@ -17,5 +17,9 @@ public class AdminCodeDao {
 	
 	private static String namespace = "com.sgworld.infra.modules.admin.code.AdminCodeMapper";
 	// for cache
-		public List<CodeDto> selectListCachedCodeArrayList(){ return sqlSession.selectList(namespace + ".selectListCachedCodeArrayList", null); }
+	public List<CodeDto> selectListCachedCodeArrayList(){ return sqlSession.selectList(namespace + ".selectListCachedCodeArrayList", null); }
+		
+	public List<CodeDto>selectList(CodeVo vo){
+		return sqlSession.selectList(namespace + ".selectList", vo);
+	}
 }

@@ -1,23 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
 <html>
 <head>
 	<title>코드리스트</title>
-	<%@ include file="rscs/basicRscs.jsp" %>
+	<%@ include file="../../../rscs/basicRscs.jsp" %>
 	<link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-    <link href="../../../admin/adminTemplate/css/styles.css" rel="stylesheet" />
+    <link href="/resources/admin/adminTemplate/css/styles.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/059fbc3cf8.js" crossorigin="anonymous"></script>
     <link href="../css/list.css" rel="stylesheet">
 </head>
 <body class="sb-nav-fixed">
 	<!-- top banner s-->
-	<%@ include file="common/header.jsp"%>   
+	<%@ include file="../common/header.jsp"%>   
 	<!-- top banner e-->
         <div id="layoutSidenav">
         	<!-- sidebar s-->
-            <%@ include file="common/sidebar.jsp"%> 
+            <%@ include file="../common/sidebar.jsp"%> 
             <!-- sidebar e-->
             <div id="layoutSidenav_content">
                 <main>
@@ -87,156 +86,35 @@
 												<td class="tableHead">코드 이름 (한글)</td>
 												<td class="tableHead">코드 이름 (영문)</td>
 												<td class="tableHead">사용여부</td>
-												<td class="tableHead">순서</td>
 												<td class="tableHead">삭제여부</td>
 												<td class="tableHead">등록일</td>
 												<td class="tableHead">수정일</td>
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<td class="tableHead1"><input class="listCheck" type="checkbox"></td>
-												<td class="tableHead1">#</td>
-												<td>1</td>
-												<td>통신사</td>
-												<td></td>
-												<td>SKT</td>
-												<td>Y</td>
-												<td>1</td>
-												<td>N</td>
-												<td>2022-10-11</td>
-												<td>2022-10-20</td>
-											</tr>
-											<tr>
-												<td class="tableHead1"><input class="listCheck" type="checkbox"></td>
-												<td class="tableHead1">#</td>
-												<td>1</td>
-												<td>통신사</td>
-												<td></td>
-												<td>KT</td>
-												<td>Y</td>
-												<td>1</td>
-												<td>N</td>
-												<td>2022-10-11</td>
-												<td>2022-10-20</td>
-											</tr>
-											<tr>
-												<td class="tableHead1"><input class="listCheck" type="checkbox"></td>
-												<td class="tableHead1">#</td>
-												<td>1</td>
-												<td>통신사</td>
-												<td></td>
-												<td>LGU+</td>
-												<td>Y</td>
-												<td>1</td>
-												<td>N</td>
-												<td>2022-10-11</td>
-												<td>2022-10-20</td>
-											</tr>
-											<tr>
-												<td class="tableHead1"><input class="listCheck" type="checkbox"></td>
-												<td class="tableHead1">#</td>
-												<td>1</td>
-												<td>통신사</td>
-												<td>알뜰폰</td>
-												<td></td>
-												<td>Y</td>
-												<td>1</td>
-												<td>N</td>
-												<td>2022-10-11</td>
-												<td>2022-10-20</td>
-											</tr>
-											<tr>
-												<td class="tableHead1"><input class="listCheck" type="checkbox"></td>
-												<td class="tableHead1">#</td>
-												<td>1</td>
-												<td>통신사</td>
-												<td></td>
-												<td>SKT</td>
-												<td>Y</td>
-												<td>1</td>
-												<td>N</td>
-												<td>2022-10-11</td>
-												<td>2022-10-20</td>
-											</tr>
-											<tr>
-												<td class="tableHead1"><input class="listCheck" type="checkbox"></td>
-												<td class="tableHead1">#</td>
-												<td>1</td>
-												<td>통신사</td>
-												<td></td>
-												<td>SKT</td>
-												<td>Y</td>
-												<td>1</td>
-												<td>N</td>
-												<td>2022-10-11</td>
-												<td>2022-10-20</td>
-											</tr>
-											<tr>
-												<td class="tableHead1"><input class="listCheck" type="checkbox"></td>
-												<td class="tableHead1">#</td>
-												<td>1</td>
-												<td>통신사</td>
-												<td></td>
-												<td>SKT</td>
-												<td>Y</td>
-												<td>1</td>
-												<td>N</td>
-												<td>2022-10-11</td>
-												<td>2022-10-20</td>
-											</tr>
-											<tr>
-												<td class="tableHead1"><input class="listCheck" type="checkbox"></td>
-												<td class="tableHead1">#</td>
-												<td>1</td>
-												<td>통신사</td>
-												<td></td>
-												<td>SKT</td>
-												<td>Y</td>
-												<td>1</td>
-												<td>N</td>
-												<td>2022-10-11</td>
-												<td>2022-10-20</td>
-											</tr>
-											<tr>
-												<td class="tableHead1"><input class="listCheck" type="checkbox"></td>
-												<td class="tableHead1">#</td>
-												<td>1</td>
-												<td>통신사</td>
-												<td></td>
-												<td>SKT</td>
-												<td>Y</td>
-												<td>1</td>
-												<td>N</td>
-												<td>2022-10-11</td>
-												<td>2022-10-20</td>
-											</tr>
-											<tr>
-												<td class="tableHead1"><input class="listCheck" type="checkbox"></td>
-												<td class="tableHead1">#</td>
-												<td>1</td>
-												<td>통신사</td>
-												<td></td>
-												<td>SKT</td>
-												<td>Y</td>
-												<td>1</td>
-												<td>N</td>
-												<td>2022-10-11</td>
-												<td>2022-10-20</td>
-											</tr>
-											<tr>
-												<td class="tableHead1"><input class="listCheck" type="checkbox"></td>
-												<td class="tableHead1">#</td>
-												<td>1</td>
-												<td>통신사</td>
-												<td></td>
-												<td>SKT</td>
-												<td>Y</td>
-												<td>1</td>
-												<td>N</td>
-												<td>2022-10-11</td>
-												<td>2022-10-20</td>
-											</tr>
+											<c:choose>
+												<c:when test="${fn:length(list) eq 0 }">
+													<tr>	
+														<td class="text-center" colspan="10">There is no data!</td>
+													</tr>
+												</c:when>
+												<c:otherwise>
+												<c:forEach items="${list }" var="list" varStatus="status">	
+													<tr>
+														<td class="tableHead1"><input class="listCheck" type="checkbox"></td>
+														<td class="tableHead1"><c:out value="${list.infrCcSeq }"/></td>
+														<td></td>
+														<td><c:out value="${list.infrCcgNameKor }"/></td>
+														<td><c:out value="${list.infrCcNameKor }"/></td>
+														<td><c:out value="${list.infrCcNameEng }"/></td>
+														<td><c:out value="${list.infrCcUseNy }"/></td>
+														<td><c:out value="${list.infrCcDelNy }"/></td>
+														<td></td>
+														<td></td>
+													</tr>
+												</c:forEach>	
+												</c:otherwise>
+											</c:choose>	
 										</tbody>
 									</table>
 								</div>
@@ -286,7 +164,7 @@
 			</div>
 		</div>
         <!-- footer s -->
-        <%@ include file="common/footer.jsp"%> 
+        <%@ include file="../common/footer.jsp"%> 
         <!-- footer s -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="../../../admin/adminTemplate/js/scripts.js"></script>

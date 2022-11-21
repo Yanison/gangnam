@@ -53,4 +53,13 @@ public class AdminCodeServiceImpl implements AdminCodeService {
 	public static void clear() throws Exception {
 		CodeDto.cachedCodeArrayList.clear();
 	}
+
+	@Override
+	public List<CodeDto> selectList(CodeVo vo) throws Exception {
+		return dao.selectList(vo);
+	}
+	
+	
+	
+	
 }
