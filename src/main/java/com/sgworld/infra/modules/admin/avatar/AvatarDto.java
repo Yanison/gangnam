@@ -1,15 +1,17 @@
 package com.sgworld.infra.modules.admin.avatar;
 
-public class AvatarDto {
-	private Integer avatarSeq;
+import com.sgworld.infra.common.base.Base;
+
+public class AvatarDto extends Base {
+	private String avatarSeq;
 	private Integer ifnrMmSeq;
 	private Integer sgwSeq;
 	private Integer defaultNy;
 	
-	public Integer getAvatarSeq() {
+	public String getAvatarSeq() {
 		return avatarSeq;
 	}
-	public void setAvatarSeq(Integer avatarSeq) {
+	public void setAvatarSeq(String avatarSeq) {
 		this.avatarSeq = avatarSeq;
 	}
 	public Integer getIfnrMmSeq() {

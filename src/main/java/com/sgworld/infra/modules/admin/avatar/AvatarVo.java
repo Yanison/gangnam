@@ -1,5 +1,7 @@
 package com.sgworld.infra.modules.admin.avatar;
 
-public class AvatarVo {
+import com.sgworld.infra.common.base.BaseVo;
+
+public class AvatarVo extends BaseVo {
 
 }

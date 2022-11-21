@@ -39,9 +39,7 @@
 				</div>
 				<div class="boarderBody">
 					<div class="content">
-						<p>
-							<c:out value="${item.bdContent }"/>
-						</p> <!-- 게시글 내용 -->
+						<p><c:out value="${item.bdContent }"/></p><!-- 게시글 내용 -->
 					</div>
 					<div class="icon">
 						<i class="fa-regular fa-thumbs-up"> 99</i>

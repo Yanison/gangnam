@@ -73,7 +73,7 @@
 			,delNy
 		)
 		VALUES (
-			"1"
+			#{infrMmSeq}
 			,#{bdDiv}
 			,#{bdTitle}
 			,#{bdContent}
