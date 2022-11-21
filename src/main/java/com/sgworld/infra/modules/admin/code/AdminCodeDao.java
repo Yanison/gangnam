@@ -22,4 +22,8 @@ public class AdminCodeDao {
 	public List<CodeDto>selectList(CodeVo vo){
 		return sqlSession.selectList(namespace + ".selectList", vo);
 	}
+	
+	public int selectOneCount(CodeVo vo) {
+		return sqlSession.selectOne(namespace +".selectOneCount", vo);
+	}
 }

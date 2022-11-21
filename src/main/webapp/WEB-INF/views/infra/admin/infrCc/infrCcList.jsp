@@ -65,7 +65,7 @@
 							<div class="row mt-3">
 								<div class="row">
 									<div class="col-11 p-0">
-										<span>Total: 42</span>
+										<span>Total:<c:out value="${vo.totalRows }"/></span>
 									</div>
 									<div class="col-1 p-0">
 										<div class="col-12">

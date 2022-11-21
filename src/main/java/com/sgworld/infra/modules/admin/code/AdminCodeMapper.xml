@@ -34,18 +34,24 @@
     
     <!-- admin cc리스트 -->
     <select id="selectList" resultMap="resultMapObj">
-    	<include refid="Base.selectListUpperForMysql" />
+    	<include refid="Base.selectListUpperForMysql" /> 
 	    	SELECT
-	    		a.infrCcSeq
-	    		,(SELECT infrCcgNameKor FROM infrCodeGroup aa WHERE 1=1 AND aa.infrCcgSeq = a.infrCodeGroupSeq)as infrCcgNaemKor
+				a.infrCcSeq
+				,(SELECT infrCcgNameKor FROM infrCodeGroup aa WHERE 1=1 AND aa.infrCcgSeq = a.infrCodeGroupSeq)as infrCcgNameKor
 	    		,a.infrCcNameKor
 	    		,a.infrCcNameEng
-	    		,a.infrCcUseNy
 	    		,a.infrCcDelNy
+	    		,a.infrCcUseNy
 	    		,a.regDatetime
-	    <include refid="selectCommon" />
-		    ORDER BY a.infrCcSeq DESC		
+	    <include refid="selectCommon" /> 
+		    ORDER BY a.infrCcSeq DESC 		
     	<include refid="Base.selectListLowerForMysql" />
+    </select>
+    
+    <!-- admin cc count -->
+    <select id="selectOneCount" resultType="Integer">
+    	SELECT COUNT(*)
+    	<include refid="selectCommon" />
     </select>
 
 </mapper>

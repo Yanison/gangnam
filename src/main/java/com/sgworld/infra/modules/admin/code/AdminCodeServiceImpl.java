@@ -58,6 +58,12 @@ public class AdminCodeServiceImpl implements AdminCodeService {
 	public List<CodeDto> selectList(CodeVo vo) throws Exception {
 		return dao.selectList(vo);
 	}
+
+	@Override
+	public int selectOneCount(CodeVo vo) throws Exception {
+		return dao.selectOneCount(vo);
+	}
+	
 	
 	
 	

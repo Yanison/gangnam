@@ -15,14 +15,15 @@ public class AdminCodeController {
 	@Autowired
 	AdminCodeServiceImpl service;
 
-	/*
-	 * public void setSearch(CodeVo vo)throws Exception{
-	 * vo.setShDelNy(vo.getShDelNy() == null ? 1 : vo.getShDelNy());
-	 * vo.setParamsPaging(service.selectOneCount(vo)); }
-	 */
+	
+	  public void setSearch(CodeVo vo)throws Exception{
+	  vo.setShDelNy(vo.getShDelNy() == null ? 1 : vo.getShDelNy());
+	  vo.setParamsPaging(service.selectOneCount(vo)); }
+	 
 	
 	@RequestMapping(value="infrCcList")
 	public String infrCcList(@ModelAttribute("vo") CodeVo vo, Model model) throws Exception {
+		
 		List<CodeDto>list =service.selectList(vo);
 		model.addAttribute("list", list);
 		return "infra/admin/infrCc/infrCcList";
