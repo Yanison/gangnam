@@ -30,9 +30,10 @@
 		</ul>
 	</div>
 	<div class="hiddenGroup" style="none">
-		<input type="hidden" id="sessMmId" value="${infrMmId}" onchange="isSssValThere('#infrMmId')">
-		<input type="hidden" id="sessMmSeq" name="infrMmSeq" value="${infrMmSeq}" onchange="isSssValThere('infrMmSeq')">
-		<input type="hidden" id="sessMmName" value="${infrMmName}" onchange="isSssValThere('infrMmName')"> 
+		<input type="hidden" id="sessMmId" value="${infrMmId}" onchange="isSssValThere('#sessMmId')">
+		<input type="hidden" id="sessMmSeq" name="infrMmSeq" value="${infrMmSeq}" onchange="isSssValThere('#sessMmSeq')">
+		<input type="hidden" id="sessMmName" value="${infrMmName}" onchange="isSssValThere('#sessMmName')">
+		<input type="hidden" id="sessSgw"  value="${sessSgw}" onchange="isSssValThere('#sessSgw')"> 
 	</div>
 </nav>
 

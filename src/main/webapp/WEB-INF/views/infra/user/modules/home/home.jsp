@@ -15,9 +15,18 @@
 	
 	<section class="bodyWrapper">
 		<article class="mySgWorld">
-			<button class="creatMySgWorld" id="creatMySgWorld" onclick="showModal()" rel="modal:open">
-				Create SgWorld
-			</button>
+			<c:choose>
+				<c:when test="${sessSgw eq infrMmSeq}">
+					<button class="creatMySgWorld" id="goMySgWorld" onclick="goMySgwolrd($('#sessMmSeq').val())">
+						Get in SgWorld
+					</button>
+				</c:when>
+				<c:otherwise>
+					<button class="creatMySgWorld" id="creatMySgWorld" onclick="showModal()" rel="modal:open">
+						Create SgWorld
+					</button>
+				</c:otherwise>
+			</c:choose>
 		</article>
 		<article class="onLiveSgWorld">
 			<h1 class="onLiveSgWorldTitle">OnLive</h1>

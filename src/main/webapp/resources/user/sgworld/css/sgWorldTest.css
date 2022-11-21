@@ -141,11 +141,14 @@ div, span, ul, li, a {
 }
 .inputMsgDiv{
 	width:260px;
-	height:90px;
+	height:150px;
 	position:absolute;
 	bottom:0;
 	border-top:1px solid #3b405c;
 	padding:10px 0;
+}
+.inputMsgDiv button{
+	
 }
 
 .msgTo{

@@ -8,7 +8,7 @@ function gohome(){
 }
 
 function showModal(){
-	var infrMmSeq = $('#infrMmSeq').val();
+	var infrMmSeq = $('#sessMmSeq').val();
 	if(infrMmSeq == ""){
 		alert('로그인이 필요한 서비스입니다.')
 	}else{

@@ -1,5 +1,4 @@
 $(document).ready(function(){
-	
 })
 
 
@@ -9,7 +8,7 @@ function buildSgwBtn(){
 }
 
 function requestBuildSgw(){
-	var infrMmSeq = $('#infrMmSeq').val();
+	var infrMmSeq = $('#sessMmSeq').val();
 	var sgwTitle = $('#sgwTitle').val()
 	var isHidden = $('#isHidden').val()
 	var sgwMmNumber = $('#sgwMmNumber').val()
@@ -26,7 +25,7 @@ function requestBuildSgw(){
 	)
 	
 	$.ajax({
-		url:'/sgwrold/buildSgw'
+		url:'/sgWorld/buildSgw'
 		,data:{
 			'sgwTitle':sgwTitle
 			,'isHidden':isHidden
@@ -35,14 +34,23 @@ function requestBuildSgw(){
 			,'sgwAvatar' : sgwAvatar
 			,'infrMmSeq' : infrMmSeq
 		}
-		,method:'post'
-		,success:function(response){
-			if(response == "nope"){
-				confirm("이미 개설하셨습니다. 개설된 방으로 들어가시겠습니까?")
-				goMySgWorld(infrMmSeq)
+		,method:'get'
+		,success:function(rp){
+			console.log(rp)
+			if(rp == "nope"){
+				console.log(rp)
+				if(confirm("이미 개설하셨습니다. 개설된 방으로 들어가시겠습니까?")){
+					goMySgwolrd(infrMmSeq)
+				}else{
+					location.replace('./')
+				}
 			}else{
-				console.log("response :: OK")
-				goSgWorld(response,infrMmSeq)	
+				if(confirm("개설된 방으로 입장합니다.")){
+					console.log(rp)
+					location.href='/sgWorld/join/'+rp
+				}else{
+					location.replace('./')
+				}
 			}
 		}
 		,err:function(err){
@@ -50,6 +58,51 @@ function requestBuildSgw(){
 		}
 	})
 }
+
+function goMySgwolrd(infrMmSeq){
+	$.ajax({
+		url:'/sgWorld/findSgwbyMmSeq'
+		,data:{
+			'infrMmSeq' : infrMmSeq
+		},method:'get'
+		,success:function(response){
+			var sgwUrl = '/sgWorld/join/'+response.sgwLink
+			if(confirm("개설된 방으로 입장합니다.")){
+				location.replace(sgwUrl)
+			}
+		}
+		,err:function(err){
+			alert("system Err")
+		}
+	})
+}
+
+function checkSgwolrd(infrMmSeq){
+	$.ajax({
+		url:'/sgWorld/findSgwbyMmSeq'
+		,data:{
+			'infrMmSeq' : infrMmSeq
+		},method:'get'
+		,success:function(response){
+			var sessSgw = response.infrMmSeq
+			if(sessSgw == infrMmSeq){
+				console.log('there is sessSgw')
+				$('#creatMySgWorld').hide();
+				$('#goMySgWorld').show();
+			}else{
+				console.log('there is not sessSgw')
+				$('#goMySgWorld').hide();
+				$('#creatMySgWorld').show();
+				
+			}
+		}
+		,err:function(err){
+			alert("system Err")
+		}
+	})
+}
+
+
 function valiForBuildingSgw(){
 	
 	var inputArrStr = [
@@ -78,9 +131,11 @@ function valiForBuildingSgw(){
 	if($('input:checkbox[name="pwAvailable"]').is(':checked')){
 		console.log('pwAvailable :checked // enable ::' + enable)
 		if(enable == 5){
-			alert("싸게월들을 개설합니다!")
-			goSgWorld()
-//			requestBuildSgw()
+			if(confirm("싸게월들을 개설합니다!")){
+				requestBuildSgw()
+			}else{
+				location.replace('./')
+			}
 		}else{
 			alert("올바른 정보를 입력해주세요")
 			return false;
@@ -88,9 +143,11 @@ function valiForBuildingSgw(){
 	}else{
 		console.log('pwAvailable :unChecked // enable ::' + enable)
 		if(enable == 4){
-			alert("싸게월들을 개설합니다!")
-			requestBuildSgw()
-			
+			if(confirm("싸게월들을 개설합니다!")){
+				requestBuildSgw()
+			}else{
+				location.replace('./')
+			}
 		}else{
 			alert("올바른 정보를 입력해주세요")
 			return false;
@@ -208,46 +265,6 @@ function McheckedRadio(){
 }
 function closeModal(){
 	$('#modalDiv').fadeOut("fast")
-}
-
-function goSgWorld(endPoint,mmSeq){
-	if(mmSeq != ""){
-		$.ajax({
-			url:'sgWorld/'+endPoint
-			,type:'get'
-			,data:{
-				'infrMmSeq':mmSeq
-			}
-			,success:function(){
-				location.href=sgwUrl
-			},error:function(){
-				
-			}
-		})
-	}else{
-		alert('확인되지 않은 회원입니다. 로그인을 해주세요')
-	}
-	
-}
-function goMySgWorld(infrMmSeq){
-	$.ajax({
-		url:'/sgwrold/goMySgw'
-		,type:'get'
-		,data:{'infrMmSeq':infrMmSeq
-		}
-		,success:function(response){
-			if(response == "nope"){
-				alert("개설한 방이 존재하지 않습니다.")
-//				location.href="/"
-			}else{
-				console.log("개설한 방으로 이동합니다")
-				location.replace('/sgWorld/sgw/'+response);
-			}
-			
-		},error:function(){
-			
-		}
-	})
 }
 
 function isSssValThere2(){

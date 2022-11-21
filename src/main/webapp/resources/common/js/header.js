@@ -2,10 +2,11 @@ $(document).ready(function(){
 	var sessMmId = $('.hiddenGroup #sessMmId').val()
 	var sessMmSeq = $('.hiddenGroup #sessMmSeq').val()
 	var sessMmName = $('.hiddenGroup #sessMmName').val()
-	
+	var sessSgw = $('.hiddenGroup #sessSgw').val()
 	console.log("hiddenGroup sessMmId :: " + sessMmId)
 	console.log("hiddenGroup sessMmSeq :: " + sessMmSeq)
 	console.log("hiddenGroup sessMmName :: " + sessMmName)
+	console.log("hiddenGroup sessSgw :: " + sessSgw)
 	
 })
 
@@ -28,6 +29,9 @@ function userLogOut(){
 	}
 	
 }
+
+
+
 
 function isSssValThere(str){
 	var sessMmId = $(str).val();

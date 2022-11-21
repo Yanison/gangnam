@@ -5,37 +5,60 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.sgworld.infra.modules.admin.membergroup.MemberGroup;
+import com.sgworld.infra.modules.user.sgWorld.SgwSerivceImpl;
+import com.sgworld.infra.modules.user.sgWorld.sgwdto.SgwDto;
 
 @Controller
 public class HomeController {
 	@Autowired
 	HttpSession session;
+	@Autowired
+	SgwSerivceImpl sgwService;
 	
-	public void getSss(Model model) {
+	public void getSss(Model model,SgwDto sgwDto) {
 		Object infrMmId = session.getAttribute("infrMmId");
 		Object infrMmName = session.getAttribute("infrMmName");
-		Object infrMmSeq = session.getAttribute("infrMmSeq");
+		String infrMmSeq = (String) session.getAttribute("infrMmSeq");
 		model.addAttribute("infrMmSeq", infrMmSeq);
 		model.addAttribute("infrMmName", infrMmName);
 		model.addAttribute("infrMmId", infrMmId);
+		
+		
+		try {
+			if(infrMmSeq != null) {
+				sgwDto.setInfrMmSeq(infrMmSeq);
+				SgwDto findSgwbyMmSeq = sgwService.findSgwbyMmSeq(sgwDto);
+				String sessSgw = findSgwbyMmSeq.getRegByMm();
+				System.out.println("infrMmSeq != null :: " + (infrMmSeq != null));
+				if(sessSgw != null) {
+					System.out.println("sessSgw != null :: " + (sessSgw != null));
+					System.out.println("sessSgw :: "+sessSgw);
+					System.out.println("infrMmSeq :: "+infrMmSeq);
+					model.addAttribute("sessSgw", sessSgw);
+				}else {
+					System.out.println("sessSgw != null :: " + (sessSgw != null));
+					model.addAttribute("sessSgw", null);
+				}
+			}else {
+				System.out.println("infrMmSeq != null :: " + (infrMmSeq != null));
+				model.addAttribute("sessSgw", null);
+			}
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	//메인페이지
 	@RequestMapping(value="/")
-	public String home(Model model , HttpSession httpSession) {
+	public String home(SgwDto sgwDto,Model model)throws Exception {
 		
-		getSss(model);
+		
+		getSss(model,sgwDto);
 		return "infra/user/modules/home/home";
-	}
-	
-	//매타버스 실행
-	@RequestMapping(value="sgWorld")
-	public String sgWorld() {
-		return "infra/user/modules/sgWorld/sgWorld";
 	}
 	//로그인 화면
 	@RequestMapping(value="userLogin")
