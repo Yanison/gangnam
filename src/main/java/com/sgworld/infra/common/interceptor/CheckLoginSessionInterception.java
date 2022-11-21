@@ -13,7 +13,7 @@ public class CheckLoginSessionInterception extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		if (request.getSession().getAttribute("sessSeq") != null) {
+		if (request.getSession().getAttribute("infrMmSeq") != null) {
 		} else {
 			response.sendRedirect(Constants.URL_LOGINFORM);
 			return false;

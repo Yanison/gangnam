@@ -44,3 +44,12 @@
 	margin-bottom: 20px;
 	color: #9D9D9D;
 }
+.post1 .contentBox > p{
+	float: left;
+}
+p > img{
+	width: 150px !important;
+	object-fit: cover;
+}
+
+

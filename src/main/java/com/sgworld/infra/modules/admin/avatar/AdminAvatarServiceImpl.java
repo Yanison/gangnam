@@ -115,7 +115,57 @@ public class AdminAvatarServiceImpl extends BaseServiceImpl implements AdminAvat
 	}
 
 	@Override
-	public List<AvatarDto> selectListUploaded(AvatarDto vo) throws Exception {
+	public List<AvatarDto> selectListUploaded(AvatarVo vo) throws Exception {
 		return dao.selectListUploaed(vo);
 	}
+
+	@Override
+	public List<AvatarDto> selectList(AvatarVo vo) throws Exception {
+		List<AvatarDto> list = dao.selectList(vo);
+		return list;
+	}
+
+	@Override
+	public int selectOneCount(AvatarVo vo) throws Exception { return dao.selectOneCount(vo); }
+		
+	
+
+	@Override
+	public AvatarDto selectOne(AvatarVo vo) throws Exception {
+		AvatarDto item = dao.selectOne(vo);
+		return item;
+	}
+
+	@Override
+	public int insert(AvatarDto dto) throws Exception {
+		setRegMod(dto);
+		dao.insert(dto);
+		uploadFiles(dto.getUploadImgProfile(), dto, "sgWorldMapUploaded", dto.getUploadImgProfileType(), dto.getUploadImgProfileMaxNumber());
+		return 1;
+	}
+
+	@Override
+	public int update(AvatarDto dto) throws Exception {
+		setRegMod(dto);
+		dao.update(dto);
+		
+		if(!dto.getUploadImgProfile()[0].isEmpty()) {
+			deleteFiles(dto.getUploadImgProfileDeleteSeq(), dto.getUploadImgProfileDeletePathFile(), dto, "sgWorldMapUploaded");
+			uploadFiles(dto.getUploadImgProfile(), dto, "sgWorldMapUploaded", dto.getUploadImgProfileType(), dto.getUploadImgProfileMaxNumber());
+		} else {
+			// by pass : empty
+		}
+		return 1;
+	}
+
+	@Override
+	public int uelete(AvatarDto dto) throws Exception {
+		setRegMod(dto);
+		return dao.uelete(dto);
+	}
+
+	@Override
+	public int delete(AvatarVo vo) throws Exception { return dao.delete(vo); }
+		
+		
 }

@@ -40,11 +40,11 @@
 					<div class="title1">
 						<a href="javascript:goBoardView(<c:out value="${list.bdSeq }" />)" style="text-decoration: none;"><c:out value="${list.bdTitle }" /></a> <!-- 글 제목 -->
 					</div>
-					<div>
-						<p><c:out value="${list.bdContent }" /></p> <!-- 글 내용(게시판 리스트에 보이는 글자 수 제한 둘 것) -->
+					<div class="contentBox">
+						<div>${list.bdContent }</div> <!-- 글 내용(게시판 리스트에 보이는 글자 수 제한 둘 것) -->
 					</div>
 					<div>
-						<p><c:out value="${list.infrMmNickname }" /></p> <!-- 작성자 닉네임 -->
+						<p><c:out value="${list.infrMmNickname }" /></p><!-- 작성자 닉네임 -->
 					</div>
 					<div class="icon">
 						<i class="fa-solid fa-eye"> 99</i> <!-- 조회수 -->

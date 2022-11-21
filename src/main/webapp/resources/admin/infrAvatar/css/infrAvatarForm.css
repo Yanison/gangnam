@@ -10,6 +10,10 @@
 }
  	
 .input-file-button{
+	padding: 4px 25px;
+	background-color: #434A72;
+	border-radius: 4px;
+	color: white;
 	cursor: pointer;
 }
 .inputBox{
