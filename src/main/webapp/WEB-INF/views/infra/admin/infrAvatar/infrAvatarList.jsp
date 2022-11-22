@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+
 <html>
 <head>
 	<title>AvatarList</title>
@@ -62,8 +62,8 @@
 												<input class="form-control" type="text" placeholder="검색어">
 											</div>
 											<div class="col-1 p-1">
-												<a class="btn btn-warning" href="#" role="button"><i class="fa-solid fa-magnifying-glass"></i></a>
-												<a class="btn btn-danger" href="#" role="button"><i class="fa-solid fa-arrow-rotate-right"></i></a>
+												<a class="btn btn-warning" id="btnSearch" type="button"><i class="fa-solid fa-magnifying-glass"></i></a>
+												<a class="btn btn-danger" id="btnReset" type="button"><i class="fa-solid fa-arrow-rotate-right"></i></a>
 											</div>
 										</div>
 									</div>
@@ -103,14 +103,12 @@
 													<td class="text-center" colspan="8">There is no data!</td>
 												</tr>
 												</c:when>
-												<c:otherWise>
+												<c:otherwise>
 													<c:forEach items="${list }" var="list" varStatus="status">
 												<tr style="cursor: pointer;">
 													<td class="tableHead1"><input class="listCheck" type="checkbox"></td>
 													<td class="tableHead1"><c:out value="${list.avatarSeq }" /></td>
-													<td class="tableHead">
-														<img src="../../user/image/profil3.png">
-													</td>
+													<td class="tableHead"><img src="../../user/image/profil3.png"></td>
 													<td class="tableHead"><c:out value="${list.regBy }" /></td>
 													<td class="tableHead"><c:out value="${list.avatarName }" /></td>
 													<td class="tableHead">
@@ -125,7 +123,7 @@
 													<td class="tableHead"><c:out value="${list.delNy }" /></td>
 												</tr>
 													</c:forEach>
-												</c:otherWise>
+												</c:otherwise>
 											</c:choose>
 											</tbody>
 										</table>
@@ -140,7 +138,7 @@
 										</div>
 										<div class="col" style="text-align: right;">
 											<button class="btn btn-success" type="button" id="cglExcel"><i class="fa-regular fa-file-excel"></i></button>
-											<button class="btn btn-primary" type="button" id="cglPlus"><i class="fa-regular fa-plus"></i></button>
+											<button class="btn btn-primary" type="button" id="btnPlus"><i class="fa-regular fa-plus"></i></button>
 										</div>
 									</div>
 								</div>
@@ -160,5 +158,50 @@
         <script src="/resources/admin/adminTemplate/assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="/resources/admin/adminTemplate/js/datatables-simple-demo.js"></script>
+        <script type="text/javascript">
+	        var goUrlList = "/admin/avatar/infrAvatarList";
+			var goUrlForm = "/admin/avatar/infrAvatarForm";
+			var goUrlView = "/admin/avatar/infrAvatarView";
+			var goUrlInst = "/admin/avatar/infrAvatarInst";
+			var goUrlUpdt = "/admin/avatar/infrAvatarUpdt";
+			var goUrlUele = "/admin/avatar/infrAvatarUele";
+			var goUrlDele = "/admin/avatar/infrAvatarDele";
+	
+			var form = $("form[name=form]");
+	
+			$("#btnSearch").on("click", function() {
+				form.attr("action", goUrlList).submit();
+			});
+			
+			$("#btnList").on("click", function(){
+				form.attr("action", goUrlList).submit();
+			});
+	
+			$("#btnReset").on("click", function() {
+				$(location).attr("href", goUrlList);
+			});
+			
+			$("#btnPlus").on("click", function(){
+				$(location).attr("href", goUrlForm);
+			});
+	
+			goList = function(thisPage) {
+				$("input:hidden[name=thisPage]").val(thisPage);
+				form.attr("action", goUrlList).submit();
+			}
+			
+			var seq = $("input:hidden[name=avatarSeq]");
+			
+			goForm = function(keyValue) {
+				seq.val(keyValue);
+				form.attr("action", goUrlForm).submit();
+			}
+			
+			goView = function(keyValue) {
+		    	/* if(keyValue != 0) seq.val(btoa(keyValue)); */
+		    	seq.val(keyValue);
+				form.attr("action", goUrlView).submit();
+			}
+        </script>
 </body>
 </html>

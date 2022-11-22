@@ -140,7 +140,7 @@ public class AdminAvatarServiceImpl extends BaseServiceImpl implements AdminAvat
 	public int insert(AvatarDto dto) throws Exception {
 		setRegMod(dto);
 		dao.insert(dto);
-		uploadFiles(dto.getUploadImgProfile(), dto, "sgWorldMapUploaded", dto.getUploadImgProfileType(), dto.getUploadImgProfileMaxNumber());
+		uploadFiles(dto.getUploadImg(), dto, "sgWorldMapUploaded", dto.getUploadImgType(), dto.getUploadImgMaxNumber());
 		return 1;
 	}
 
@@ -149,12 +149,9 @@ public class AdminAvatarServiceImpl extends BaseServiceImpl implements AdminAvat
 		setRegMod(dto);
 		dao.update(dto);
 		
-		if(!dto.getUploadImgProfile()[0].isEmpty()) {
-			deleteFiles(dto.getUploadImgProfileDeleteSeq(), dto.getUploadImgProfileDeletePathFile(), dto, "sgWorldMapUploaded");
-			uploadFiles(dto.getUploadImgProfile(), dto, "sgWorldMapUploaded", dto.getUploadImgProfileType(), dto.getUploadImgProfileMaxNumber());
-		} else {
-			// by pass : empty
-		}
+		deleteFiles(dto.getUploadImgDeleteSeq(), dto.getUploadImgDeletePathFile(), dto, "sgWorldMapUploaded");
+		uploadFiles(dto.getUploadImg(), dto, "sgWorldMapUploaded", dto.getUploadImgType(), dto.getUploadImgMaxNumber());
+		
 		return 1;
 	}
 

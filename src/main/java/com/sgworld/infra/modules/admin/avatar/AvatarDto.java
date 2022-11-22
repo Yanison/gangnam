@@ -19,11 +19,11 @@ public class AvatarDto extends Base {
 	private String modBy;
 	private Date modDatetime;
 	
-	private MultipartFile[] uploadImgProfile;
-	private Integer uploadImgProfileType;	
-	private Integer uploadImgProfileMaxNumber;
-	private String[] uploadImgProfileDeleteSeq;
-	private String[] uploadImgProfileDeletePathFile;	
+	private MultipartFile[] uploadImg;
+	private Integer uploadImgType;	
+	private Integer uploadImgMaxNumber;
+	private String[] uploadImgDeleteSeq;
+	private String[] uploadImgDeletePathFile;
 	
 ///////////////////////////////////////////////////////
 	
@@ -75,36 +75,6 @@ public class AvatarDto extends Base {
 	public void setRegDatetime(Date regDatetime) {
 		this.regDatetime = regDatetime;
 	}
-	public MultipartFile[] getUploadImgProfile() {
-		return uploadImgProfile;
-	}
-	public void setUploadImgProfile(MultipartFile[] uploadImgProfile) {
-		this.uploadImgProfile = uploadImgProfile;
-	}
-	public Integer getUploadImgProfileType() {
-		return uploadImgProfileType;
-	}
-	public void setUploadImgProfileType(Integer uploadImgProfileType) {
-		this.uploadImgProfileType = uploadImgProfileType;
-	}
-	public Integer getUploadImgProfileMaxNumber() {
-		return uploadImgProfileMaxNumber;
-	}
-	public void setUploadImgProfileMaxNumber(Integer uploadImgProfileMaxNumber) {
-		this.uploadImgProfileMaxNumber = uploadImgProfileMaxNumber;
-	}
-	public String[] getUploadImgProfileDeleteSeq() {
-		return uploadImgProfileDeleteSeq;
-	}
-	public void setUploadImgProfileDeleteSeq(String[] uploadImgProfileDeleteSeq) {
-		this.uploadImgProfileDeleteSeq = uploadImgProfileDeleteSeq;
-	}
-	public String[] getUploadImgProfileDeletePathFile() {
-		return uploadImgProfileDeletePathFile;
-	}
-	public void setUploadImgProfileDeletePathFile(String[] uploadImgProfileDeletePathFile) {
-		this.uploadImgProfileDeletePathFile = uploadImgProfileDeletePathFile;
-	}
 	public String getRegBy() {
 		return regBy;
 	}
@@ -122,6 +92,36 @@ public class AvatarDto extends Base {
 	}
 	public void setModDatetime(Date modDatetime) {
 		this.modDatetime = modDatetime;
+	}
+	public MultipartFile[] getUploadImg() {
+		return uploadImg;
+	}
+	public void setUploadImg(MultipartFile[] uploadImg) {
+		this.uploadImg = uploadImg;
+	}
+	public Integer getUploadImgType() {
+		return uploadImgType;
+	}
+	public void setUploadImgType(Integer uploadImgType) {
+		this.uploadImgType = uploadImgType;
+	}
+	public Integer getUploadImgMaxNumber() {
+		return uploadImgMaxNumber;
+	}
+	public void setUploadImgMaxNumber(Integer uploadImgMaxNumber) {
+		this.uploadImgMaxNumber = uploadImgMaxNumber;
+	}
+	public String[] getUploadImgDeleteSeq() {
+		return uploadImgDeleteSeq;
+	}
+	public void setUploadImgDeleteSeq(String[] uploadImgDeleteSeq) {
+		this.uploadImgDeleteSeq = uploadImgDeleteSeq;
+	}
+	public String[] getUploadImgDeletePathFile() {
+		return uploadImgDeletePathFile;
+	}
+	public void setUploadImgDeletePathFile(String[] uploadImgDeletePathFile) {
+		this.uploadImgDeletePathFile = uploadImgDeletePathFile;
 	}
 	
 	

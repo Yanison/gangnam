@@ -18,7 +18,7 @@ public class AdminAvatarController {
 	
 	@RequestMapping(value="infrAvatarList")
 	public String infrAvatarList(@ModelAttribute("vo") AvatarVo vo, Model model) throws Exception {
-		//vo.setParamsPaging(service.selectOneCount(vo));
+		vo.setParamsPaging(service.selectOneCount(vo));
 		
 		List<AvatarDto> list = service.selectList(vo);
 		model.addAttribute("list", list);
