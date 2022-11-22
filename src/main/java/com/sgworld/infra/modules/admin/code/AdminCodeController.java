@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+
 @Controller
 @RequestMapping(value="/admin/code/")
 public class AdminCodeController {
@@ -40,7 +41,7 @@ public class AdminCodeController {
 	@RequestMapping(value="insert")
 	public String insert(CodeDto dto) throws Exception {
 		service.insert(dto);
-		return "infra/admin/infrCc/infrCcForm";
+		return "redirect:/admin/infrCc/infrCcList";
 	}
 	
 	@RequestMapping(value="infrCcView")

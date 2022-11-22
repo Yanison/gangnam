@@ -62,14 +62,14 @@
     		,infrCcUseNy
     		,infrCcDelNy
     		,regDatetime
-    		<!-- ,infrCcgNameKor -->
+    		,infrCodeGroupSeq
     	)VALUES(
     		#{infrCcNameKor}
     		,#{infrCcNameEng}
     		,#{infrCcUseNy}
     		,#{infrCcDelNy}
     		,now()
-    		<!-- ,infrCcgNameKor -->
+    		,#{infrCodeGroupSeq}
     	)
     	<selectKey resultType="String" keyProperty="infrCcSeq" order="AFTER">
 			SELECT last_insert_id()
@@ -79,7 +79,8 @@
     <!-- admin ccg한글이름 불러오기 -->
     <select id="viewList" resultMap="resultMapObj">
     	SELECT
-    		infrCcgNameKor
+    		infrCcgSeq
+    		,infrCcgNameKor
     	FROM infrCodeGroup	
     </select>
 

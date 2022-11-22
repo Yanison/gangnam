@@ -30,11 +30,14 @@
 							<div class="row mb-4">
 								<div class="col-6">
 									<!-- forEach문으로 코드그릅 리스트 뿌리기 -->
-									<label class="form-label">코드그룹</label> <select
-										class="form-select" id="infrCcDelNy" name="infrCcDelNy">
+									<label class="form-label">코드그룹</label> 
+										<select
+										class="form-select" id="infrCodeGroupSeq" name="infrCodeGroupSeq" 
+										>
 										<option>코드그룹선택</option>
-										<option>통신사</option>
-										<option>이메일주소</option>
+										<c:forEach items="${view }" var="view" varStatus="status">
+											<option value="${view.infrCcgSeq }"><c:out value="${view.infrCcgNameKor }"/></option>
+										</c:forEach>
 									</select>
 								</div>
 							</div>
@@ -42,43 +45,40 @@
 								<div class="col-6">
 									<label class="form-label">코드 이름 (한글)</label> <input
 										class="form-control" type="text" id="infrCcNameKor"
-										name="infrCcNameKor">
+										name="infrCcNameKor" value="${dto.infrCcNameKor }">
 								</div>
 								<div class="col">
 									<label class="form-label">코드 이름 (영문)</label> <input
 										class="form-control" type="text" id="infrCcNameEng"
-										name="infrCcNameEng">
+										name="infrCcNameEng" value="${dto.infrCcNameEng }">
 								</div>
 							</div>
 							<div class="row mb-4">
-								<div class="col-6">
+								<!-- <div class="col-6">
 									<label class="form-label">순서</label> <input
 										class="form-control" type="text" id="infrCcOrder"
 										name="infrCcOrder">
-								</div>
-								<div class="col">
+								</div> -->
+								<div class="col-6">
 									<label class="form-label">사용여부</label> <select
 										class="form-select" id="infrCcUseNy" name="infrCcUseNy">
-										<option>사용여부선택</option>
-										<option>N</option>
-										<option>Y</option>
+										<option value="1">N</option>
+										<option value="0">Y</option>
 									</select>
 								</div>
-							</div>
-							<div class="row mb-4">
+							
 								<div class="col-6">
 									<label class="form-label">삭제여부</label> <select
 										class="form-select" id="infrCcDelNy" name="infrCcDelNy">
-										<option>삭제여부선택</option>
-										<option>N</option>
-										<option>Y</option>
+										<option value="1">N</option>
+										<option value="0">Y</option>
 									</select>
 								</div>
-								<div class="col">
+							</div>	
+								<!-- <div class="col">
 									<label class="form-label">등록일</label> <input
 										class="form-control" type="text">
-								</div>
-							</div>
+								</div> -->
 							<div class="row mb-4">
 								<div class="col-6">
 									<label class="form-label">설명</label>
@@ -93,13 +93,13 @@
 									</button>
 								</div>
 								<div class="col" style="text-align: right;">
-									<button class="btn btn-danger" type="button" id="cglCancel">
+									<!-- <button class="btn btn-danger" type="button" id="cglCancel">
 										<i class="fa-duotone fa-x"></i>
 									</button>
 									<button class="btn btn-danger" type="button" id="cglDel">
 										<i class="fa-regular fa-trash-can"></i>
-									</button>
-									<button class="btn btn-primary" type="button" id="cglPlus">
+									</button> -->
+									<button class="btn btn-primary" type="button" onclick="register()">
 										<i class="fa-regular fa-plus"></i>
 									</button>
 								</div>
@@ -120,5 +120,11 @@
         <script src="../../../admin/adminTemplate/assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="../../../admin/adminTemplate/js/datatables-simple-demo.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+		<script>
+			function register(){
+		    	document.getElementById('ccFormReg').submit();
+		    };
+		</script>
 </body>
 </html>
