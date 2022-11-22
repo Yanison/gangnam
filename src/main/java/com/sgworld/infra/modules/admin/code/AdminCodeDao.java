@@ -26,4 +26,14 @@ public class AdminCodeDao {
 	public int selectOneCount(CodeVo vo) {
 		return sqlSession.selectOne(namespace +".selectOneCount", vo);
 	}
+	
+	//admin cc등록
+	public int insert(CodeDto dto) {
+		return sqlSession.insert(namespace +".insert", dto);
+	}
+	
+	//admin ccg리스트 띄우기
+	public List<CodeDto>viewList(){
+		return sqlSession.selectList(namespace +".viewList", "");
+	}
 }

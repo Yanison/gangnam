@@ -53,5 +53,34 @@
     	SELECT COUNT(*)
     	<include refid="selectCommon" />
     </select>
+    
+    <!-- admin cc등록 -->
+    <insert id="insert">
+    	INSERT INTO infrCode(
+    		infrCcNameKor
+    		,infrCcNameEng
+    		,infrCcUseNy
+    		,infrCcDelNy
+    		,regDatetime
+    		<!-- ,infrCcgNameKor -->
+    	)VALUES(
+    		#{infrCcNameKor}
+    		,#{infrCcNameEng}
+    		,#{infrCcUseNy}
+    		,#{infrCcDelNy}
+    		,now()
+    		<!-- ,infrCcgNameKor -->
+    	)
+    	<selectKey resultType="String" keyProperty="infrCcSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+    </insert>
+    
+    <!-- admin ccg한글이름 불러오기 -->
+    <select id="viewList" resultMap="resultMapObj">
+    	SELECT
+    		infrCcgNameKor
+    	FROM infrCodeGroup	
+    </select>
 
 </mapper>

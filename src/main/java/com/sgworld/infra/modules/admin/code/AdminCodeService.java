@@ -9,5 +9,11 @@ public interface AdminCodeService {
 	
 	//admin cc카운트
 	public int selectOneCount(CodeVo vo)throws Exception;
+	
+	//admin cc등록
+	public int insert(CodeDto dto)throws Exception;
+	
+	//admin ccg리스트 띄우기
+	public List<CodeDto>viewList()throws Exception;
 
 }

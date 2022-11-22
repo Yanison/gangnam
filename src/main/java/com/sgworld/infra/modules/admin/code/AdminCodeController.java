@@ -24,13 +24,22 @@ public class AdminCodeController {
 	@RequestMapping(value="infrCcList")
 	public String infrCcList(@ModelAttribute("vo") CodeVo vo, Model model) throws Exception {
 		
+		/* setSearch(vo); */
 		List<CodeDto>list =service.selectList(vo);
 		model.addAttribute("list", list);
 		return "infra/admin/infrCc/infrCcList";
 	}
 	
 	@RequestMapping(value="infrCcForm")
-	public String infrCcForm() throws Exception {
+	public String infrCcForm(Model model) throws Exception {
+		List<CodeDto> view = service.viewList();
+		model.addAttribute("view", view);
+		return "infra/admin/infrCc/infrCcForm";
+	}
+	
+	@RequestMapping(value="insert")
+	public String insert(CodeDto dto) throws Exception {
+		service.insert(dto);
 		return "infra/admin/infrCc/infrCcForm";
 	}
 	

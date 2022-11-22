@@ -63,6 +63,16 @@ public class AdminCodeServiceImpl implements AdminCodeService {
 	public int selectOneCount(CodeVo vo) throws Exception {
 		return dao.selectOneCount(vo);
 	}
+
+	@Override
+	public int insert(CodeDto dto) throws Exception {
+		return dao.insert(dto);
+	}
+
+	@Override
+	public List<CodeDto> viewList() throws Exception {
+		return dao.viewList();
+	}
 	
 	
 	
