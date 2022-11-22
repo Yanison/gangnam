@@ -83,5 +83,18 @@
     		,infrCcgNameKor
     	FROM infrCodeGroup	
     </select>
-
+    
+    <!-- admin view -->	
+	<select id="selectOne" resultMap="resultMapObj">
+		SELECT
+			infrCcNameKor
+			,infrCcNameEng
+			,infrCcUseNy
+			,infrCcDelNy
+			,regDateTime
+			,infrCodeGroupSeq
+		FROM infrCode
+		WHERE 1=1
+			AND infrCcSeq = #{infrCcSeq}	
+	</select>
 </mapper>

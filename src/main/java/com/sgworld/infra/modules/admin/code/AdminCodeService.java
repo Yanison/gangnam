@@ -15,5 +15,8 @@ public interface AdminCodeService {
 	
 	//admin ccg리스트 띄우기
 	public List<CodeDto>viewList()throws Exception;
+	
+	//admin cc view
+	public CodeDto selectOne(CodeVo vo)throws Exception;
 
 }

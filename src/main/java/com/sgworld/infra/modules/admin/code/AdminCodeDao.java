@@ -36,4 +36,9 @@ public class AdminCodeDao {
 	public List<CodeDto>viewList(){
 		return sqlSession.selectList(namespace +".viewList", "");
 	}
+	
+	//admin view 띄우기
+	public CodeDto selectOne(CodeVo vo) {
+		return sqlSession.selectOne(namespace +".selectOne", vo);
+	}
 }

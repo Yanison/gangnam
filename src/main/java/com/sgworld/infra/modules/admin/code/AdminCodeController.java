@@ -45,7 +45,9 @@ public class AdminCodeController {
 	}
 	
 	@RequestMapping(value="infrCcView")
-	public String infrCcView() throws Exception {
+	public String infrCcView(@ModelAttribute("vo") CodeVo vo , Model model) throws Exception {
+		CodeDto item = service.selectOne(vo);
+		model.addAttribute("item", item);
 		return "infra/admin/infrCc/infrCcView";
 	}
 }

@@ -115,7 +115,7 @@
 														<td class="tableHead1"><c:out value="${list.infrCcSeq }"/></td>
 														<td></td>
 														<td><c:out value="${list.infrCcgNameKor }"/></td>
-														<td><c:out value="${list.infrCcNameKor }"/></td>
+														<td><a href="javascript:goView(<c:out value="${list.infrCcSeq }"/>)" class="text-decoration-none"><c:out value="${list.infrCcNameKor }"/></td>
 														<td><c:out value="${list.infrCcNameEng }"/></td>
 														<td><c:out value="${list.infrCcUseNy }"/></td>
 														<td><c:out value="${list.infrCcDelNy }"/></td>
@@ -178,6 +178,11 @@
     	$("#btnForm").on("click",function(){
    			$(location).attr("href",goUrlForm);
    		});
+    	
+    	goView = function(keyValue){
+    		seq.val(keyValue);
+    		form.attr("action" , goUrlView).submit();
+    	}
     	
     	
 	 	</script>

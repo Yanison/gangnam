@@ -5,18 +5,18 @@
 <html>
 <head>
 	<title>코드뷰</title>
-	<%@ include file="rscs/basicRscs.jsp" %>
+	<%@ include file="../../../rscs/basicRscs.jsp" %>
 	<link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-    <link href="../../../admin/adminTemplate/css/styles.css" rel="stylesheet" />
+    <link href="/resources/admin/adminTemplate/css/styles.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/059fbc3cf8.js" crossorigin="anonymous"></script>
 </head>
 <body class="sb-nav-fixed">
 	<!-- top banner s-->
-	<%@ include file="common/header.jsp"%>   
+	<%@ include file="../common/header.jsp"%>   
 	<!-- top banner e-->
         <div id="layoutSidenav">
         	<!-- sidebar s-->
-            <%@ include file="common/sidebar.jsp"%> 
+            <%@ include file="../common/sidebar.jsp"%> 
             <!-- sidebar e-->
             <div id="layoutSidenav_content">
                 <main>
@@ -29,34 +29,36 @@
 	                        <div class="row mb-4">
 		                        <div class="col-6"> <!-- forEach문으로 코드그릅 리스트 뿌리기 -->
 		                        	<label class="form-label">코드그룹</label>
-		                        	<select class="form-select" id="infrCcDelNy" name="infrCcDelNy">
+		                        	<select class="form-select" id="infrCodeGroupSeq" name="infrCodeGroupSeq">
 		                        		<option>코드그룹선택</option>
-		                        		<option>통신사</option>
-		                        		<option>이메일주소</option>
+		                        		<c:forEach items="${view}" var="view" varStatus="status">
+									  		<option value="${ view.infrCcgSeq}" <c:if test="${item.infrCodeGroupSeq eq view.infrCcgSeq }">selected</c:if>>
+									  			<c:out value="${ view.infrCcgNameKor}"/>
+									  		</option>
+							  			</c:forEach>
 		                        	</select>
 		                        </div>
 	                        </div>
 	                        <div class="row mb-4">
 		                        <div class="col-6">
 		                        	<label class="form-label">코드 이름 (한글)</label>
-		                        	<input class="form-control" type="text" id="infrCcNameKor" name="infrCcNameKor">
+		                        	<input class="form-control" type="text" id="infrCcNameKor" name="infrCcNameKor" value="${item.infrCcNameKor} ">
 		                        </div>
 		                        <div class="col">
 		                        	<label class="form-label">코드 이름 (영문)</label>
-		                        	<input class="form-control" type="text" id="infrCcNameEng" name="infrCcNameEng">
+		                        	<input class="form-control" type="text" id="infrCcNameEng" name="infrCcNameEng" value="${item.infrCcNameEng }">
 		                        </div>
 	                        </div>
 	                        <div class="row mb-4">
-		                        <div class="col-6">
+		                        <!-- <div class="col-6">
 		                        	<label class="form-label">순서</label>
 		                        	<input class="form-control" type="text" id="infrCcOrder" name="infrCcOrder">
-		                        </div>
-		                        <div class="col">
+		                        </div> -->
+		                        <div class="col-6">
 		                        	<label class="form-label">사용여부</label>
 		                        	<select class="form-select" id="infrCcUseNy" name="infrCcUseNy">
-		                        		<option>사용여부선택</option> 
-		                        		<option>N</option>
-		                        		<option>Y</option>
+		                        		<option value="0">Y</option>
+		                        		<option value="1">N</option>
 		                        	</select>
 		                        </div>
 	                        </div>
@@ -64,9 +66,8 @@
 		                        <div class="col-6">
 		                        	<label class="form-label">삭제여부</label>
 		                        	<select class="form-select" id="infrCcDelNy" name="infrCcDelNy">
-		                        		<option>삭제여부선택</option>
-		                        		<option>N</option>
-		                        		<option>Y</option>
+		                        		<option value="1">N</option>
+		                        		<option value="0">Y</option>
 		                        	</select>
 		                        </div>
 		                        <div class="col">
@@ -100,7 +101,7 @@
 			</div>
 		</div>
         <!-- footer s -->
-        <%@ include file="common/footer.jsp"%> 
+        <%@ include file="../common/footer.jsp"%> 
         <!-- footer s -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="../../../admin/adminTemplate/js/scripts.js"></script>
