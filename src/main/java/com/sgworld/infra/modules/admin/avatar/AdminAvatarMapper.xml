@@ -67,7 +67,7 @@
 			,1
 			,0
 		)
-			<selectKey resultType="String" keyProperty="bdSeq" order="AFTER">
+			<selectKey resultType="String" keyProperty="avatarSeq" order="AFTER">
 				SELECT last_insert_id()
 			</selectKey>
 	</insert>

@@ -43,6 +43,7 @@ public class AdminAvatarController {
 	@SuppressWarnings(value = {"all"})
 	@RequestMapping(value = "infrAvatarInst")
 	public String infrAvatarInst(AvatarVo vo, AvatarDto dto, RedirectAttributes redirectAttributes) throws Exception {
+		System.out.println("까꿍");
 		service.insert(dto);
 		vo.setAvatarSeq(dto.getAvatarSeq());
 		

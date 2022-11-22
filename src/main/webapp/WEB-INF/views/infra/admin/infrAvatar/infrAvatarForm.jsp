@@ -20,7 +20,7 @@
 	        <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                    	<form encoding="mutipart/form-data">
+                    	<form method="post" name="form" id="form" autocomplete="off" enctype="multipart/form-data">
 	                        <h3 class="mt-4">싸게월드 아바타 업로드</h3>
 	                        <div class="text-center">
 	                        	<c:set var="type" value="2"/>		<!-- #-> -->
@@ -43,8 +43,8 @@
 								<label for="uploadImg" class="form-label input-file-button">이미지첨부</label>
 	                        </div>
 	                        <div class="inputBox">
-	                        	<input type="text" class="form-control" placeholder="아바타 이름 입력">
-	                        	<button type="button" id="" class="button" >업로드</button>
+	                        	<input type="text" class="form-control" value="<c:out value="${dto.avatarName }" />" placeholder="아바타 이름 입력">
+	                        	<button type="button" id="btnSave" class="button" >업로드</button>
 	                        </div>	
                         </form>
 					</div>
@@ -63,5 +63,21 @@
         <script src="/resources/admin/adminTemplate/js/datatables-simple-demo.js"></script>
        	<script src="/resources/common/js/upload.js"></script>
        	<script src="/resources/common/js/commonAdmin.js"></script>
+       	
+       	<script type="text/javascript">
+       		var goUrlList = "/admin/avatar/infrAvatarList";
+	       	var goUrlInst = "/admin/avatar/infrAvatarInst";
+	       	
+	       	var form = $("form[name=form]");
+	       	var seq = $("input:hidden[name=avatarSeq]");
+	       	
+	       	$("#btnSave").on("click", function(){
+    	   		form.attr("action", goUrlInst).submit();
+    		});
+	       	
+	       	$("#btnList").on("click", function(){
+    			form.attr("action", goUrlList).submit();
+    		});
+       	</script>
 </body>
 </html>

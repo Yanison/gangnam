@@ -162,7 +162,6 @@
 	        var goUrlList = "/admin/avatar/infrAvatarList";
 			var goUrlForm = "/admin/avatar/infrAvatarForm";
 			var goUrlView = "/admin/avatar/infrAvatarView";
-			var goUrlInst = "/admin/avatar/infrAvatarInst";
 			var goUrlUpdt = "/admin/avatar/infrAvatarUpdt";
 			var goUrlUele = "/admin/avatar/infrAvatarUele";
 			var goUrlDele = "/admin/avatar/infrAvatarDele";
