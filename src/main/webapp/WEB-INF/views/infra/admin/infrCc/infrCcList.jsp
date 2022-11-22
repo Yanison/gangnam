@@ -63,7 +63,7 @@
 											</select>
 										</div>
 										<div class="col-2 p-1">
-											<input class="form-control" type="text" placeholder="검색어">
+											<input class="form-control" type="text" placeholder="검색어" id="shValue" name="shValue" value="<c:out value="${vo.shValue }"/>">
 										</div>
 										<div class="col-1 p-1">
 											<a class="btn btn-warning" role="button" id="btnSearch"><i class="fa-solid fa-magnifying-glass"></i></a>
@@ -184,6 +184,10 @@
     		form.attr("action" , goUrlView).submit();
     	}
     	
+    	goList = function(thisPage){
+    		$("input:hidden[name=thisPage]").val(thisPage);
+    		form.attr("action" , goUrlList).submit();
+    	}
     	
 	 	</script>
 </body>

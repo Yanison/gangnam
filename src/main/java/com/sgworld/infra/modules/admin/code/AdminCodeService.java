@@ -18,5 +18,14 @@ public interface AdminCodeService {
 	
 	//admin cc view
 	public CodeDto selectOne(CodeVo vo)throws Exception;
+	
+	//admin 수정
+	public int update(CodeDto dto)throws Exception;
+	
+	//admin 부분삭제
+	public int uelete(CodeDto dto)throws Exception;
+	
+	//admin 완전삭제
+	public int delete(CodeVo vo)throws Exception;
 
 }

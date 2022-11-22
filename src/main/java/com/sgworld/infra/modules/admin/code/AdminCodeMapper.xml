@@ -87,7 +87,8 @@
     <!-- admin view -->	
 	<select id="selectOne" resultMap="resultMapObj">
 		SELECT
-			infrCcNameKor
+			infrCcSeq
+			,infrCcNameKor
 			,infrCcNameEng
 			,infrCcUseNy
 			,infrCcDelNy
@@ -97,4 +98,32 @@
 		WHERE 1=1
 			AND infrCcSeq = #{infrCcSeq}	
 	</select>
+	
+	<!-- admin cc수정 -->
+	<update id="update">
+		UPDATE infrCode
+		SET
+			infrCcNameKor = #{infrCcNameKor}
+			,infrCcNameEng = #{infrCcNameEng}
+			,infrCcUseNy = #{infrCcUseNy}
+			,infrCcDelNy = #{infrCcDelNy}
+			,infrCodeGroupSeq = #{infrCodeGroupSeq}
+		WHERE 1=1
+			AND infrCcSeq = #{infrCcSeq}	
+	</update>
+	
+	<!-- admin cc부분삭제 -->
+	<update id="uelete">
+		UPDATE infrCode
+		SET
+			infrCcDelNy = 0
+		WHERE 1=1
+			AND infrCcSeq = #{infrCcSeq}	
+	</update>
+	
+	<!-- admin cc완전삭제 -->
+	<delete id="delete">
+		DELETE FROM infrCode WHERE infrCcSeq=#{infrCcSeq}
+	</delete>
+	
 </mapper>

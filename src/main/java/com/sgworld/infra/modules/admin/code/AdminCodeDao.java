@@ -41,4 +41,19 @@ public class AdminCodeDao {
 	public CodeDto selectOne(CodeVo vo) {
 		return sqlSession.selectOne(namespace +".selectOne", vo);
 	}
+	
+	//admin 수정
+	public int update(CodeDto dto) {
+		return sqlSession.update(namespace + ".update", dto);
+	}
+	
+	//admin 부분삭제
+	public int uelete(CodeDto dto) {
+		return sqlSession.update(namespace + ".uelete", dto);
+	}
+	
+	//admin 완전삭제
+	public int delete(CodeVo vo) {
+		return sqlSession.delete(namespace +".delete", vo);
+	}
 }

@@ -78,6 +78,25 @@ public class AdminCodeServiceImpl implements AdminCodeService {
 	public CodeDto selectOne(CodeVo vo) throws Exception {
 		return dao.selectOne(vo);
 	}
+
+	@Override
+	public int update(CodeDto dto) throws Exception {
+		return dao.update(dto);
+	}
+
+	@Override
+	public int uelete(CodeDto dto) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.uelete(dto);
+	}
+
+	@Override
+	public int delete(CodeVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.delete(vo);
+	}
+	
+	
 	
 	
 	

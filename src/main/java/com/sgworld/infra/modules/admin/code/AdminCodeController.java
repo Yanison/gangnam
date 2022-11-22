@@ -25,7 +25,7 @@ public class AdminCodeController {
 	@RequestMapping(value="infrCcList")
 	public String infrCcList(@ModelAttribute("vo") CodeVo vo, Model model) throws Exception {
 		
-		/* setSearch(vo); */
+		setSearch(vo); 
 		List<CodeDto>list =service.selectList(vo);
 		model.addAttribute("list", list);
 		return "infra/admin/infrCc/infrCcList";
@@ -41,13 +41,35 @@ public class AdminCodeController {
 	@RequestMapping(value="insert")
 	public String insert(CodeDto dto) throws Exception {
 		service.insert(dto);
-		return "redirect:/admin/infrCc/infrCcList";
+		return "redirect:/admin/code/infrCcList";
 	}
 	
 	@RequestMapping(value="infrCcView")
 	public String infrCcView(@ModelAttribute("vo") CodeVo vo , Model model) throws Exception {
+		
+		List<CodeDto> view = service.viewList();
+		model.addAttribute("view", view);
+		
 		CodeDto item = service.selectOne(vo);
 		model.addAttribute("item", item);
 		return "infra/admin/infrCc/infrCcView";
+	}
+	
+	@RequestMapping(value="update")
+	public String update(CodeDto dto) throws Exception {
+		service.update(dto);
+		return "redirect:/admin/code/infrCcList";
+	}
+	
+	@RequestMapping(value="uelete")
+	public String uelete(CodeDto dto) throws Exception {
+		service.uelete(dto);
+		return "redirect:/admin/code/infrCcList";
+	}
+	
+	@RequestMapping(value="delete")
+	public String delete(CodeVo vo) throws Exception {
+		service.delete(vo);
+		return "redirect:/admin/code/infrCcList";
 	}
 }
