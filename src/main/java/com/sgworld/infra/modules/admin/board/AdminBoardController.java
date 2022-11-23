@@ -39,7 +39,7 @@ public class AdminBoardController {
 		
 		AdminBoardDto item = service.selectOne(vo);
 		model.addAttribute("item", item);
-		model.addAttribute("listUploaded", service.selectListUploaded(vo));
+		//model.addAttribute("listUploaded", service.selectListUploaded(vo));
 		return "infra/admin/infrBd/infrBdView";
 	}
 	

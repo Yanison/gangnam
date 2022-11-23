@@ -9,6 +9,12 @@
 	<link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
     <link href="/resources/admin/adminTemplate/css/styles.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/059fbc3cf8.js" crossorigin="anonymous"></script>
+    
+    <!-- summernote -->
+	<script src="/resources/summernote/summernote-lite.js"></script>
+	<script src="/resources/summernote/lang/summernote-ko-KR.js"></script>
+	<link rel="stylesheet" href="/resources/summernote/summernote-lite.css">
+	
     <style type="text/css">
 		
 	.addScroll{
@@ -74,54 +80,10 @@
 	                        </div>
 	                        <div class="row mb-4">
 		                        <div class="col-12">
-		                        	<label class="form-label">내용</label>
-									<textarea class="form-control" id="bdContent" name="bdContent" style="resize: none; height: 150px;"><c:out value="${item.bdContent }" /></textarea>
+		                        	<label class="form-label" for="bdContent">내용</label>
+									<textarea class="boardFormContent summerNote" id="bdContent" name="bdContent">${item.bdContent }</textarea>
 		                        </div>
-		                    </div>    
-		                    <div class="row mb-4">    
-		                        <div class="col-6">
-						        	<c:set var="type" value="2"/>		<!-- #-> -->
-						        	<c:set var="name" value="uploadImg"/>		<!-- #-> -->
-						        	<input type="hidden" id="<c:out value="${name }"/>Type" name="<c:out value="${name }"/>Type" value="<c:out value="${type }"/>"/>
-						        	<input type="hidden" id="<c:out value="${name }"/>MaxNumber" name="<c:out value="${name }"/>MaxNumber" value="0"/>
-						        	<input type="hidden" id="<c:out value="${name }"/>DeleteSeq" name="<c:out value="${name }"/>DeleteSeq"/>
-						        	<input type="hidden" id="<c:out value="${name }"/>DeletePathFile" name="<c:out value="${name }"/>DeletePathFile"/>
-						            <label for="uploadImg" class="form-label input-file-button">이미지첨부</label>
-						 			<input class="form-control form-control-sm" id="<c:out value="${name }"/>" name="<c:out value="${name }"/>" type="file" multiple="multiple" style="display: none;" onChange="upload('<c:out value="${name }"/>', <c:out value="${type }"/>, 0, 1, 0, 0, 1);">
-									<div id="<c:out value="${name }"/>Preview" class="addScroll">
-										<c:forEach items="${listUploaded}" var="listUploaded" varStatus="statusUploaded">
-											<c:if test="${listUploaded.type eq type }">
-												<div id="imgDiv_<c:out value="${type }"/>_<c:out value="${listUploaded.sort }"/>" style="display: inline-block; height: 95px;">
-													<img src="<c:out value="${listUploaded.path }"/><c:out value="${listUploaded.uuidName }"/>" class="rounded" width= "85px" height="85px" style="cursor:pointer;" onClick="openViewer(<c:out value="${listUploaded.type }"/>, <c:out value="${listUploaded. sort }"/>);">
-													<div style="position: relative; top:-85px; left:5px"><span style="color: red; cursor:pointer;" onClick="delImgDiv('<c:out value="${name }"/>', <c:out value="${type }"/>,<c:out value="${listUploaded.sort }"/>, <c:out value="${listUploaded.seq }"/>, '<c:out value="${listUploaded.path }"/><c:out value="${listUploaded.uuidName }"/>')">X</span></div>
-												</div>
-											</c:if>
-										</c:forEach>
-									</div>
-						        </div>
-						        <div class="col-6">
-						        	<c:set var="type" value="3"/>		<!-- #-> -->
-						        	<c:set var="name" value="uploadFile"/>		<!-- #-> -->
-						        	<input type="hidden" id="<c:out value="${name }"/>Type" name="<c:out value="${name }"/>Type" value="<c:out value="${type }"/>"/>
-						        	<input type="hidden" id="<c:out value="${name }"/>MaxNumber" name="<c:out value="${name }"/>MaxNumber" value="0"/>
-						        	<input type="hidden" id="<c:out value="${name }"/>DeleteSeq" name="<c:out value="${name }"/>DeleteSeq"/>
-						        	<input type="hidden" id="<c:out value="${name }"/>DeletePathFile" name="<c:out value="${name }"/>DeletePathFile"/>   	
-									<label for="uploadFile" class="form-label input-file-button">파일첨부</label>
-									<input class="form-control form-control-sm" id="<c:out value="${name }"/>" name="<c:out value="${name }"/>" type="file" multiple="multiple" style="display: none;" onChange="upload('<c:out value="${name }"/>', <c:out value="${type }"/>, 0, 2, 0, 0, 2);" >
-									<div class="addScroll">
-										<ul id="<c:out value="${name }"/>Preview" class="list-group">
-											<c:forEach items="${listUploaded}" var="listUploaded" varStatus="statusUploaded">
-												<c:if test="${listUploaded.type eq type }">
-													<li id="li_<c:out value="${type }"/>_<c:out value="${listUploaded.sort }"/>" class="list-group-item d-flex justify-content-between align-items-center">
-													<a href="<c:out value="${listUploaded.path }"/><c:out value="${listUploaded.uuidName }"/>" download="<c:out value="${listUploaded.originalName }"/>" class="text-decoration-none"><c:out value="${listUploaded.originalName }"/></a>
-													<span class="badge bg-danger rounded-pill" onClick="delLi('<c:out value="${name }"/>', <c:out value="${type }"/>,<c:out value="${listUploaded.sort }"/>, <c:out value="${listUploaded.seq }"/>, '<c:out value="${listUploaded.path }"/><c:out value="${listUploaded.uuidName }"/>')"><i class="fa-solid fa-x" style="cursor: pointer;"></i></span>
-													</li>
-												</c:if>
-											</c:forEach>				
-										</ul>
-									</div>
-						        </div>
-	                        </div>
+		                    </div>   
 							<div class="row p-0">
 								<div class="col">
 									<button class="btn btn-secondary" type="button" id="btnList"><i class="fa-sharp fa-solid fa-bars"></i></button>
@@ -148,7 +110,7 @@
         <script src="/resources/admin/adminTemplate/js/scripts.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="/resources/admin/adminTemplate/js/datatables-simple-demo.js"></script>
-        <script src="/resources/common/js/boardUpload.js"></script>
+        <!-- <script src="/resources/common/js/boardUpload.js"></script> -->
         <script src="/resources/common/js/commonAdmin.js"></script>
         <script type="text/javascript">
         	var goUrlList = "/admin/board/infrBdList";
@@ -177,6 +139,47 @@
 			$("#btnDelete").on("click", function(){
 				formVo.attr("action", goUrlDele).submit();
 			});
+			
+			// summernote 부분 
+    		// 툴바생략
+    		$(document).ready(function(){
+    			 var toolbar = [
+    				    // 글꼴 설정
+    				    ['fontname', ['fontname']],
+    				    // 글자 크기 설정
+    				    ['fontsize', ['fontsize']],
+    				    // 굵기, 기울임꼴, 밑줄,취소 선, 서식지우기
+    				    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+    				    // 글자색
+    				    ['color', ['forecolor', 'color']],	
+    				    // 글머리 기호, 번호매기기, 문단정렬
+    				    ['para', ['paragraph']],
+    				    // 줄간격
+    				    ['height', ['height']],
+    				    // 그림첨부, 링크만들기, 동영상첨부
+    				    ['insert',['picture','link']],
+    				  ],
+    				  // 추가한 글꼴
+    				fontNames = ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋음체','바탕체'],
+    				 // 추가한 폰트사이즈
+    				fontSizes = ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72']
+    	
+    			var setting = {
+    		            height : 600,
+    		            width: 860,
+    		            minHeight : null,
+    		            maxHeight : null,
+    		            focus : false, 
+    		            lang : 'ko-KR',
+    		            toolbar : toolbar
+    		            //콜백 함수
+    		           
+    		         };
+    			 
+    		        $('.summerNote').summernote(setting);
+    		        
+    		        $('#bdContent').summernote('editor.insertText', "${board_data.BOARD_CONTENT}")
+    		})
         </script>
 </body>
 </html>
