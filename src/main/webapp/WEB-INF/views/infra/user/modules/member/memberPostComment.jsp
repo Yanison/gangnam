@@ -67,7 +67,7 @@
 								<button type="button" class="btnModify">수정</button>
 							</div>
 							<!-- pagination s -->
-							<%@include file="../common/userPagination.jsp"%>
+							<%@include file="../../common/userPagination.jsp"%>
 							<!-- pagination e -->	
 					</article>
 				</section>
