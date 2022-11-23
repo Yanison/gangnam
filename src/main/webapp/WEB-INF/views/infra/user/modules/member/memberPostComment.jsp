@@ -15,6 +15,9 @@
 	<header>
 		<%@ include file="../../common/header.jsp"%> 
 	</header>
+	<input type="hidden" name="bdSeq" value="<c:out value="${dto.bdSeq }"/>">
+	<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>">
+	<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow }"/>">
 	<div class="wrap">
 		<!-- header 넣을자리-->
 		<div class="contentWrap">
@@ -35,6 +38,7 @@
 								<li>댓글단 글
 								<li>좋아요 글
 							</ul>
+							<%-- <c:out value="${vo.totalRows }"/> --%>
 							<table>
 								<tr>
 									<th><input type="checkbox"></td>
@@ -109,5 +113,10 @@
 		seq.val(seqValue);
 		form.attr("action" , goUrlMemberWithdraw).submit();
 	};
+	
+	goList = function(thisPage){
+		$("input:hidden[name=thisPage]").val(thisPage);
+		form.attr("action" , goUrlMemberPostComment).submit();
+	}	
 </body>
 </html>

@@ -65,5 +65,9 @@ public class MemberGroupDao {
 		return sqlSession.selectOne(namespace + ".selectOneCount", vo);
 	}
 	
+	public int selectCount(MemberGroupVo vo) {
+		return sqlSession.selectOne(namespace +".selectCount", vo);
+	}
+	
 	
 }

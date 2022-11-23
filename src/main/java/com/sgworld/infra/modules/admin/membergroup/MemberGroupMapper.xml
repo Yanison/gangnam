@@ -200,4 +200,12 @@
 			AND infrMmSeq = #{infrMmSeq}	
 	</update>
 	
+	<!-- user 댓글 카운트세기 -->
+	<select id="selectCount" resultType="Integer">
+		SELECT COUNT(*) FROM board
+			WHERE 1=1 	
+				AND infrMmSeq = #{infrMmSeq}
+	</select>
+	
+	
 </mapper>

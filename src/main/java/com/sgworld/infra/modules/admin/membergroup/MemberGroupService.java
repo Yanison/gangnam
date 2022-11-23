@@ -35,4 +35,6 @@ public interface MemberGroupService {
 	//admin count조회
 	public int selectOneCount(MemberGroupVo vo)throws Exception;
 	
+	public int selectCount(MemberGroupVo vo)throws Exception;
+	
 }

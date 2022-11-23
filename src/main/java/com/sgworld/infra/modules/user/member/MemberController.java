@@ -53,6 +53,7 @@ public class MemberController {
 	@RequestMapping(value="memberPostComment")
 	public String memberPostComment(@ModelAttribute("vo") MemberGroupVo vo , Model model)throws Exception {
 		
+		vo.setParamsPaging(service.selectCount(vo));
 		List<MemberGroup>list = service.selectListBoard(vo);
 		model.addAttribute("list", list);
 		

@@ -73,6 +73,14 @@ public class MemberGroupServiceImpl implements MemberGroupService {
 	public MemberGroup selectOneLogin(MemberGroup dto) throws Exception {
 		return mmDao.selectOneLogin(dto);
 	}
+
+
+	@Override
+	public int selectCount(MemberGroupVo vo) throws Exception {
+		return mmDao.selectCount(vo);
+	}
+	
+	
 	
 	
 	
