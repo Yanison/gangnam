@@ -108,15 +108,17 @@
 												<tr style="cursor: pointer;">
 													<td class="tableHead1"><input class="listCheck" type="checkbox"></td>
 													<td class="tableHead1"><c:out value="${list.avatarSeq }" /></td>
-													<td class="tableHead"><img src="../../user/image/profil3.png"></td>
+													<td class="tableHead">
+														<a href="javascript:goView(<c:out value="${list.avatarSeq }" />)" class="text-decoration-none"><img style="width: 60px; height: 60px;" src="<c:out value="${list.path }"/><c:out value="${list.uuidName }"/>"></a>
+													</td>
 													<td class="tableHead"><c:out value="${list.regBy }" /></td>
 													<td class="tableHead"><c:out value="${list.avatarName }" /></td>
 													<td class="tableHead">
 														<div>
-															<span><c:out value="${list.regDatetime }" /></span>
+															<span>등록일: <c:out value="${list.regDatetime }" /></span>
 														</div>
 														<div>
-															<span><c:out value="${list.modDatetime }" /></span>
+															<span>수정일: <c:out value="${list.modDatetime }" /></span>
 														</div>
 													</td>
 													<td class="tableHead"><c:out value="${list.useNy }" /></td>

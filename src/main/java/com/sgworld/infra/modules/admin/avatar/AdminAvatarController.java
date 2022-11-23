@@ -22,7 +22,7 @@ public class AdminAvatarController {
 		
 		List<AvatarDto> list = service.selectList(vo);
 		model.addAttribute("list", list);
-		
+		model.addAttribute("listUploadded", service.selectListUploaded(vo));
 		return "infra/admin/infrAvatar/infrAvatarList";
 	}
 	

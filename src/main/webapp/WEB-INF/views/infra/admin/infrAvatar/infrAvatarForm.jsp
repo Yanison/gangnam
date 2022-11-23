@@ -43,7 +43,7 @@
 								<label for="uploadImg" class="form-label input-file-button">이미지첨부</label>
 	                        </div>
 	                        <div class="inputBox">
-	                        	<input type="text" class="form-control" value="<c:out value="${dto.avatarName }" />" placeholder="아바타 이름 입력">
+	                        	<input type="text" class="form-control" id="avatarName" name="avatarName" value="<c:out value="${dto.avatarName }" />" placeholder="아바타 이름 입력">
 	                        	<button type="button" id="btnSave" class="button" >업로드</button>
 	                        </div>	
                         </form>

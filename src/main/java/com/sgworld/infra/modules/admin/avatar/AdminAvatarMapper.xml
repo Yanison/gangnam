@@ -33,7 +33,10 @@
 				,a.modDatetime
 				,a.delNy
 				,a.regBy
+				,b.path
+				,b.uuidName
 			FROM sgWorldAvatar a
+			LEFT JOIN sgWorldMapUploaded b on a.avatarSeq = b.pseq
 			WHERE 1=1
 			ORDER BY a.avatarSeq DESC
 		<include refid="Base.selectListLowerForMysql" />
