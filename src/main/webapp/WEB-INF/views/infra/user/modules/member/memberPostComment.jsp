@@ -58,7 +58,7 @@
 											<tr>
 												<td><input type="checkbox"></td>
 												<td><c:out value="${list.bdTitle }" /></td>
-												<td><c:out value="${list.regDatetime }" /><%-- <fmt:formatDate value="${list.regDatetime }" pattern="yyyy-MM-dd"/> --%></td>
+												<td><%-- <c:out value="${list.regDatetime }" /> --%><fmt:formatDate value="${list.regDatetime }" pattern="yyyy-MM-dd"/></td>
 												<td>10<!-- ? --></td>
 												<td><c:out value="${list.bdLikeSeq }" /></td>
 											</tr>
@@ -67,8 +67,8 @@
 								</c:choose>		
 							</table>
 							<div class="button">
-								<button type="button" class="btnDelete">삭제</button>
-								<button type="button" class="btnModify">수정</button>
+								<button type="button" class="btnDelete" onclick="ready()">삭제</button>
+								<button type="button" class="btnModify" onclick="ready()">수정</button>
 							</div>
 							<!-- pagination s -->
 							<%@include file="../../common/userPagination.jsp"%>
@@ -118,5 +118,10 @@
 		$("input:hidden[name=thisPage]").val(thisPage);
 		form.attr("action" , goUrlMemberPostComment).submit();
 	}	
+	
+	function ready(){
+		alert("준비중입니다")
+	};
+</script>	
 </body>
 </html>
