@@ -34,9 +34,9 @@
 						<b>내글 조회</b>
 							<ul class="rightUl">
 								<li style="color:#8F8CFF ">작성글
-								<li>댓글
-								<li>댓글단 글
-								<li>좋아요 글
+								<li onclick="ready()">댓글
+								<li onclick="ready()">댓글단 글
+								<li onclick="ready()">좋아요 글
 							</ul>
 							<%-- <c:out value="${vo.totalRows }"/> --%>
 							<table>

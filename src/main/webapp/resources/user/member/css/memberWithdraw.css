@@ -51,17 +51,17 @@ section > b{
 
 .rightContentWrap{
 	margin-top: 150px;
-	text-align: center;
 }
 
 .txt{
-	width: 550px;
+	width: 600px; 
 	margin-top: 20px;
+	height: 32.5px;
 }
 
 .txt1{
-	width: 559px;
-	height: 24px;
+	width: 600px;
+	height: 32.5px;
 	margin-top: 30px;
 }
 
@@ -79,4 +79,8 @@ section > b{
 
 input{
 	height: 20px;
+}
+
+h5 > div{
+	text-align: center;
 }
