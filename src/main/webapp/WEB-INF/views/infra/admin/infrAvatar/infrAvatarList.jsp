@@ -36,34 +36,40 @@
 									<div class="col border me-4">
 										<div class="row  mt-2 mb-2">
 											<div class="col-2 p-1">
-												<select class="form-select">
-													<option>N</option>
+												<select id="shDelNy" name="shDelNy" class="form-select">
+													<option value="" <c:if test="${empty vo.shDelNy }">selected</c:if> selected>삭제구분</option>
+													<option value="0" <c:if test="${vo.shDelNy eq 0 }">selected</c:if>>N</option>
+													<option value="1" <c:if test="${vo.shDelNy eq 1 }">selected</c:if>>Y</option>
 												</select>
 											</div>
 											<div class="col-2 p-1">
-												<select class="form-select">
-													<option>수정일</option>
+												<select class="form-select" name="shOptionDate">
+													<option value="" <c:if test="${empty vo.shOptionDate }">selected</c:if>>날짜선택</option>
+													<option value="1" <c:if test="${vo.shOptionDate eq 1 }">selected</c:if>>등록일</option>
+													<option value="2" <c:if test="${vo.shOptionDate eq 2 }">selected</c:if>>수정일</option>
 												</select>
 											</div>
 											<div class="col-2 p-1">
-												<input class="form-control" type="text" placeholder="시작일">
+												<input class="form-control" type="text" id="shDateStart" name="shDateStart" value="${vo.shDateStart }" placeholder="시작일">
 											</div>
 											<div class="col-2 p-1">
-												<input class="form-control" type="text" placeholder="종료일">
+												<input class="form-control" type="text" id="shDateEnd" name="shDateEnd" value="${vo.shDateEnd }" placeholder="종료일">
 											</div>
 										</div>
 										<div class="row mb-2">
 											<div class="col-2 p-1">
-												<select class="form-select">
-													<option>검색구분</option>
+												<select class="form-select" id="shOption" name="shOption">
+													<option value="" <c:if test="${empty vo.shOption }">selected</c:if>>검색구분</option>
+													<option value="1" <c:if test="${vo.shOption eq 1 }">selected</c:if>>아바타 작성자</option>
+													<option value="2" <c:if test="${vo.shOption eq 2 }">selected</c:if>>아바타 이름</option>
 												</select>
 											</div>
 											<div class="col-2 p-1">
-												<input class="form-control" type="text" placeholder="검색어">
+												<input id="shValue" name="shValue" value="<c:out value="${vo.shValue }"/>" class="form-control" type="search" placeholder="검색어">
 											</div>
 											<div class="col-1 p-1">
-												<a class="btn btn-warning" id="btnSearch" type="button"><i class="fa-solid fa-magnifying-glass"></i></a>
-												<a class="btn btn-danger" id="btnReset" type="button"><i class="fa-solid fa-arrow-rotate-right"></i></a>
+												<button class="btn btn-warning" id="btnSearch" type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
+												<button class="btn btn-danger" id="btnReset" type="button"><i class="fa-solid fa-arrow-rotate-right"></i></button>
 											</div>
 										</div>
 									</div>
@@ -109,10 +115,10 @@
 													<td class="tableHead1"><input class="listCheck" type="checkbox"></td>
 													<td class="tableHead1"><c:out value="${list.avatarSeq }" /></td>
 													<td class="tableHead">
-														<a href="javascript:goView(<c:out value="${list.avatarSeq }" />)" class="text-decoration-none"><img style="width: 60px; height: 60px;" src="<c:out value="${list.path }"/><c:out value="${list.uuidName }"/>"></a>
+														<img style="width: 60px; height: 60px;" src="<c:out value="${list.path }"/><c:out value="${list.uuidName }"/>">
 													</td>
 													<td class="tableHead"><c:out value="${list.regBy }" /></td>
-													<td class="tableHead"><c:out value="${list.avatarName }" /></td>
+													<td class="tableHead"><a href="javascript:goView(<c:out value="${list.avatarSeq }" />)" class="text-decoration-none"><c:out value="${list.avatarName }" /></a></td>
 													<td class="tableHead">
 														<div>
 															<span>등록일: <c:out value="${list.regDatetime }" /></span>
@@ -155,9 +161,6 @@
         <!-- footer e-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="/resources/admin/adminTemplate/js/scripts.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="/resources/admin/adminTemplate/assets/demo/chart-area-demo.js"></script>
-        <script src="/resources/admin/adminTemplate/assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="/resources/admin/adminTemplate/js/datatables-simple-demo.js"></script>
         <script type="text/javascript">

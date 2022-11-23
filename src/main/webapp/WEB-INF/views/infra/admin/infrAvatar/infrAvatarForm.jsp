@@ -39,13 +39,18 @@
 					        	<input type="hidden" id="<c:out value="${name }"/>MaxNumber" name="<c:out value="${name }"/>MaxNumber" value="0"/>
 					        	<input type="hidden" id="<c:out value="${name }"/>DeleteSeq" name="<c:out value="${name }"/>DeleteSeq"/>
 					        	<input type="hidden" id="<c:out value="${name }"/>DeletePathFile" name="<c:out value="${name }"/>DeletePathFile"/>
-					 			<input class="form-control form-control-sm" id="<c:out value="${name }"/>" name="<c:out value="${name }"/>" type="file" multiple="multiple" style="display: none;" onChange="upload('<c:out value="${name }"/>', <c:out value="${type }"/>, 0, 1, 0, 0, 1);">
+					 			<input class="form-control form-control-sm" id="<c:out value="${name }"/>" name="<c:out value="${name }"/>" type="file" style="display: none;" onChange="upload('<c:out value="${name }"/>', <c:out value="${type }"/>, 0, 1, 0, 0, 1);">
 								<label for="uploadImg" class="form-label input-file-button">이미지첨부</label>
 	                        </div>
 	                        <div class="inputBox">
 	                        	<input type="text" class="form-control" id="avatarName" name="avatarName" value="<c:out value="${dto.avatarName }" />" placeholder="아바타 이름 입력">
 	                        	<button type="button" id="btnSave" class="button" >업로드</button>
 	                        </div>	
+	                        <div class="row p-0">
+								<div class="col">
+									<button class="btn btn-secondary" type="button" id="btnList"><i class="fa-sharp fa-solid fa-bars"></i></button>
+								</div>
+							</div>	
                         </form>
 					</div>
 				</main>
@@ -56,9 +61,6 @@
         <!-- footer e-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="/resources/admin/adminTemplate/js/scripts.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="/resources/admin/adminTemplate/assets/demo/chart-area-demo.js"></script>
-        <script src="/resources/admin/adminTemplate/assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="/resources/admin/adminTemplate/js/datatables-simple-demo.js"></script>
        	<script src="/resources/common/js/upload.js"></script>
