@@ -66,17 +66,9 @@
 								<button type="button" class="btnDelete">삭제</button>
 								<button type="button" class="btnModify">수정</button>
 							</div>
-							<div class="pagination">
-								<ul class="paginationUl">
-									<li><
-									<li>1
-									<li>2
-									<li>3
-									<li>4
-									<li>5
-									<li>>
-								</ul>
-							</div>	
+							<!-- pagination s -->
+							<%@include file="../common/userPagination.jsp"%>
+							<!-- pagination e -->	
 					</article>
 				</section>
 			</div>	
