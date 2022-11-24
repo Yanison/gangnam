@@ -32,6 +32,7 @@
 			<exclude-mapping path="/resources/**" />
 			<exclude-mapping path="/userAdmin" />
 			<exclude-mapping path="/userLogin" />
+			<exclude-mapping path="/userAdmin" />
 			<exclude-mapping path="/member/**" />
 			<exclude-mapping path="/board/**" />
 			<exclude-mapping path="/sgworld/**" />

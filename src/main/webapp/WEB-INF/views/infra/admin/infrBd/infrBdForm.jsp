@@ -38,6 +38,7 @@
 	<%@ include file="../common/header.jsp"%>   
 	<!-- top banner e-->
 	<form method="post" id="bdForm" name="bdForm" autocomplete="off" enctype="multipart/form-data">
+	<input type="hidden" id="infrMmSeq" name="infrMmSeq" value="${infrMmSeq}">
         <div id="layoutSidenav">
         	<!-- sidebar s-->
             <%@ include file="../common/sidebar.jsp"%> 

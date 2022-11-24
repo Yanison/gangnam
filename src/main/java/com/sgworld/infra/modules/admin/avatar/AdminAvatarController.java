@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.sgworld.infra.modules.admin.board.AdminBoardDto;
-import com.sgworld.infra.modules.admin.board.AdminBoardVo;
 
 @Controller
 @RequestMapping(value="/admin/avatar/")
