@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
 <html>
 <head>
 	<meta charset="UTF-8">
@@ -40,9 +39,7 @@
 				</div>
 				<div class="boarderBody">
 					<div class="content">
-						<p>
-							<c:out value="${item.bdContent }"/>
-						</p> <!-- 게시글 내용 -->
+						${item.bdContent }<!-- 게시글 내용 -->
 					</div>
 					<div class="icon">
 						<i class="fa-regular fa-thumbs-up"> 99</i>
@@ -61,30 +58,6 @@
 					<div id="writeDiv" class="writeDiv">
 						<textarea style="width: 735px; height: 70px; resize: none;"></textarea>
 					</div>
-				<c:choose>
-					<c:when test="${fn:length(list) eq 0 }">
-						<div>
-							<p>댓글이 없습니다. 댓글을 남겨주세요.</p>
-						</div>
-					</c:when>
-					<c:otherwise>
-						<c:forEach items="${list }" var="list" varStatus="status">
-					<div class="commentBody">
-						<div>
-							<p><c:out value="${list.infrMmNickname }" /></p>
-						</div>
-						<div>
-							<p><c:out value="${list.content }" /></p>
-						</div>
-						<div class="iconComment">
-							<i class="fa-regular fa-clock"> <c:out value="${list.regDatetime }" /></i>
-							<i class="fa-regular fa-thumbs-up"> 13</i>
-							<i class="fa-regular fa-message"> 10</i>
-						</div>
-					</div>
-						</c:forEach>
-					</c:otherwise>
-				</c:choose>
 				</div>
 			</article>
 		</section>

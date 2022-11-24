@@ -18,8 +18,8 @@ public interface MemberGroupService {
 
 	//로그인
 	public MemberGroup selectUserLogin(MemberGroup dto) throws Exception;
-	public MemberGroup selectOneId(MemberGroup dto) throws Exception;
-	public MemberGroup selectOneLogin(MemberGroup dto) throws Exception;
+	public MemberGroup selectOneXdminId(MemberGroup dto) throws Exception;
+	public MemberGroup selectOneXdminLogin(MemberGroup dto) throws Exception;
 
 	public int udptMmifo(MemberGroup dto)throws Exception;
 
@@ -35,6 +35,9 @@ public interface MemberGroupService {
 	//admin count조회
 	public int selectOneCount(MemberGroupVo vo)throws Exception;
 	
+
+	public int selectCount(MemberGroupVo vo)throws Exception;
+
 	//admin 회원정보 수정
 	public int adminUpdate(MemberGroup dto)throws Exception;
 	

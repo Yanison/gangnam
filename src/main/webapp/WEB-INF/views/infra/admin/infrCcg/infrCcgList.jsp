@@ -55,15 +55,24 @@
 									</div>
 									<div class="row mb-2">
 										<div class="col-2 p-1">
+
 											<select class="form-select" name="shOption">
 												<option value="" selected<c:if test="${empty vo.shOption}">selected</c:if>>검색구분</option>
+
+											<select class="form-select" id="shOption" name="shOption">
+												<option value="">검색구분</option>
+
 												<option value="1" <c:if test="${vo.shOption eq 1 }">selected</c:if>>순서</option>
 												<option value="2" <c:if test="${vo.shOption eq 2 }">selected</c:if>>이름(한글)</option>
 												<option value="3" <c:if test="${vo.shOption eq 3 }">selected</c:if>>이름(영문)</option>
 											</select>
 										</div>
 										<div class="col-2 p-1">
+
 											<input class="form-control" type="text" placeholder="검색어" id="shValue" name="shValue" value="<c:out value="${vo.shValue }"/>">
+
+											<input class="form-control" type="text" placeholder="검색어" id="shValue" name="shValue"  value="<c:out value="${vo.shValue }"/>">
+
 										</div>
 										<div class="col-1 p-1">
 											<a class="btn btn-warning" role="button" id="btnSearch"><i class="fa-solid fa-magnifying-glass"></i></a>
@@ -129,11 +138,11 @@
 								<!-- pagination e -->
 								<div class="row p-0">
 									<div class="col">
-										<button class="btn btn-danger" type="button" id="cglCancel"><i class="fa-duotone fa-x"></i></button>
-										<button class="btn btn-danger" type="button" id="cglDel"><i class="fa-regular fa-trash-can"></i></button>
+										<button class="btn btn-danger" type="button" onclick="ready()"><i class="fa-duotone fa-x"></i></button>
+										<button class="btn btn-danger" type="button" onclick="ready()"><i class="fa-regular fa-trash-can"></i></button>
 									</div>
 									<div class="col" style="text-align: right;">
-										<button class="btn btn-success" type="button" id="cglExcel"><i class="fa-regular fa-file-excel"></i></button>
+										<button class="btn btn-success" type="button" onclick="ready()"><i class="fa-regular fa-file-excel"></i></button>
 										<button class="btn btn-primary" type="button" id="btnForm"><i class="fa-regular fa-plus"></i></button>
 									</div>
 								</div>
@@ -180,10 +189,16 @@
     			form.attr("action", goUrlView).submit();
     		}
 	    	
+
 	    	goList = function(thisPage){
 	    		$("input:hidden[name=thisPage]").val(thisPage);
 	    		form.attr("action" , goUrlList).submit();
 	    	}
+
+	    	function ready(){
+	    		alert("준비중입니다")
+	    	};
+
         </script>
 </body>
 </html>

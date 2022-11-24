@@ -46,7 +46,7 @@
 			from infrMember
 		where 1=1
 		and infrMmId = #{infrMmId}
-		and infrMmPw = MD5(#{infrMmPw})
+		and infrMmPw = #{infrMmPw}
 	</select>
 	
 	<select id="isduple" resultType="Integer">
@@ -123,11 +123,9 @@
 		SET
 			infrMmId = #{infrMmId}
 			,infrMmName = #{infrMmName}
-			,infrMmPw = #{infrMmPw}
 			,infrMmEmailId = #{infrMmEmailId}
 			,infrMmNickname = #{infrMmNickname}
 			,infrMmGender = #{infrMmGender}
-			,infrMmBod = #{infrMmBod}
 			,infrMmPhone = #{infrMmPhone}
 			,infrMmDelNy = #{infrMmDelNy}
 			,infrMmUseNy = #{infrMmUseNy}
@@ -147,7 +145,7 @@
 	<delete id="deleteMm">
 	</delete>
 	
-	<!-- user_계시판 리스트 띠우기 -->
+	<!-- user_게시판 리스트 띠우기 -->
 	<select id="selectListBoard" resultMap="MemberGroup">
 		SELECT
 			a.infrMmSeq
@@ -169,7 +167,7 @@
 	
 	
 	<!-- 로그인 -->
-	<select id="selectOneId" resultMap="MemberGroup">
+	<select id="selectOneXdminId" resultMap="MemberGroup">
 		SELECT
 			a.infrMmSeq
 			,a.infrMmId
@@ -177,10 +175,11 @@
 			infrMember a
 		WHERE 1=1
 			AND a.infrMmId = #{infrMmId}
+			AND a.infrMmDiv = 0
 	</select>
 	
 	
-	<select id="selectOneLogin" resultMap="MemberGroup">
+	<select id="selectOneXdminLogin" resultMap="MemberGroup">
 		SELECT
 			a.infrMmSeq
 			,a.infrMmId
@@ -204,6 +203,14 @@
 			AND infrMmSeq = #{infrMmSeq}	
 	</update>
 	
+	<!-- user 댓글 카운트세기 -->
+	<select id="selectCount" resultType="Integer">
+		SELECT COUNT(*) FROM board
+			WHERE 1=1 	
+				AND infrMmSeq = #{infrMmSeq}
+	</select>
+	
+	
 	<!-- admin 회원정보 수정 -->
 	<update id="adminUpdate">
 		UPDATE infrMember
@@ -225,7 +232,7 @@
 	<update id="adminUelete">
 		UPDATE infrMember
 		SET
-			infrMmDelNy = 16
+			infrMmDelNy = 0
 		WHERE 1=1
 			AND infrMmSeq = #{infrMmSeq}	
 	</update>

@@ -1,11 +1,15 @@
 package com.sgworld.infra.modules.user.sgWorld.Controller;
 
+import java.util.HashMap;
 import java.util.Random;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sgworld.infra.modules.user.sgWorld.SgwSerivceImpl;
@@ -13,20 +17,23 @@ import com.sgworld.infra.modules.user.sgWorld.sgwdto.SgwDto;
 
 
 @RestController
-@RequestMapping(value="/sgwrold/")
+@RequestMapping(value="/sgWorld/")
 public class SgwRestController {
 	@Autowired
 	SgwSerivceImpl sgwService;
 
-	@PostMapping(value="buildSgw")
-	public String buildSgw(SgwDto sgwDto)throws Exception {
-		System.out.println(
-				"SgwRestController.buildSgw() sgworld 개설 요청을 받았습니다. 고유 url 생성을 시작합니다."
-				);
-		String randStringForEndPoint;
-		int doesHealreadyMakeSgw = sgwService.doesHealreadyMakeSgw(sgwDto);
+	@GetMapping(value="buildSgw")
+	public String buildSgw(SgwDto sgwDto,HttpSession session)throws Exception {
+		System.out.println("SgwRestController.buildSgw()");
 		
-		if(doesHealreadyMakeSgw == 0 ){
+		System.out.println(
+				"SgwRestController.buildSgw() sgworld 개설 요청을 받았습니다. 고유 url 생성을 시작합니다."+sgwDto.getInfrMmSeq()
+				);
+		
+		String randStringForEndPoint;
+		int doesHeAlreadyMakeSgw = sgwService.doesHeAlreadyMakeSgw(sgwDto);
+		
+		if(doesHeAlreadyMakeSgw == 0 ){
 			while(true) {
 				int isDupleLink = sgwService.isDupleLink(sgwDto);
 				String generateEndpoint = randStringForEndPoint();
@@ -47,6 +54,17 @@ public class SgwRestController {
 		}
 	}
 	
+	@GetMapping(value="findSgwbyMmSeq")
+	public HashMap<String, String> findSgwbyMmSeq(SgwDto sgwDto)throws Exception {
+		SgwDto findSgwbyMmSeq = sgwService.findSgwbyMmSeq(sgwDto);
+		
+		HashMap<String,String> rp = new HashMap<String,String>();
+		rp.put("sgwLink", findSgwbyMmSeq.getSgwLink());
+		rp.put("infrMmSeq", findSgwbyMmSeq.getRegByMm());
+		rp.put("sgwTitle", findSgwbyMmSeq.getSgwTitle());
+		
+		return rp;
+	}
 	 public String randStringForEndPoint() {
 	    int leftLimit = 48; // numeral '0'
 	    int rightLimit = 122; // letter 'z'
@@ -61,18 +79,13 @@ public class SgwRestController {
 	    return generatedString;
 	  }
 	 
-	 
-	 @RequestMapping(value="goMySgw")
-	 public String goMySgw(SgwDto sgwDto)throws Exception {
-		 sgwService.goMySgw(sgwDto);
-		 SgwDto mySgwEndpoint = sgwService.goMySgw(sgwDto);
+	 @GetMapping(value="findMm")
+	 @ResponseBody
+	 public SgwDto findMm(SgwDto sgwDto)throws Exception {
+		 System.out.println("멤버 정보를 찾아옵니다. 찾을 대상 시퀀스 :: " + sgwDto.getInfrMmSeq());
 		 
-		 System.out.println("SgwRestController.goMySgw():: mySgwEndpoint 는 " + mySgwEndpoint.getSgwLink());
-		 if(mySgwEndpoint.getSgwLink() != "") {
-			 return mySgwEndpoint.getSgwLink();
-		 }else {
-			 return "nope";
-		 }
-		
+		 SgwDto findMm = sgwService.findMm(sgwDto);
+		 
+		 return findMm;
 	 }
 }

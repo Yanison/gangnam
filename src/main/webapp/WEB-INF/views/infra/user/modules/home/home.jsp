@@ -8,16 +8,25 @@
 	<script src="/resources/user/home/js/home.js"></script>
 </head>
 <body>
-	<form method="post" name="form">
+	
 	<header>
 		<%@ include file="../../common/header.jsp"%> 
 	</header>
 	
 	<section class="bodyWrapper">
 		<article class="mySgWorld">
-			<button class="creatMySgWorld" id="creatMySgWorld" onclick="showModal()" rel="modal:open">
-				Create SgWorld
-			</button>
+			<c:choose>
+				<c:when test="${not empty sessSgw}">
+					<button class="creatMySgWorld" id="goMySgWorld" onclick="goMySgwolrd($('#sessMmSeq').val())">
+						Get in SgWorld 
+					</button>
+				</c:when>
+				<c:otherwise>
+					<button class="creatMySgWorld" id="creatMySgWorld" onclick="showModal()" rel="modal:open">
+						Create SgWorld
+					</button>
+				</c:otherwise>
+			</c:choose>
 		</article>
 		<article class="onLiveSgWorld">
 			<h1 class="onLiveSgWorldTitle">OnLive</h1>
@@ -128,39 +137,11 @@
 			</div>
 		</article>
 	</section>
-	</form>
 	<footer>
 		<%@include file="../../common/footer.jsp" %>
 	</footer>
-	
-<<<<<<< HEAD
-<%-- 	<div id="modalDiv" class="modalDiv"  style="display:block">
-=======
 	<div id="modalDiv" class="modalDiv"  style="display:none">
->>>>>>> branch 'main' of https://github.com/Seonya/gangnam.git
 			<%@include file="./createOption.jsp" %>
-	</div> --%>
-
-	<script type="text/javascript">
-		var gorUrlBoardHome = "/board/boardList";
-		var goUrlBoardRegForm = "/board/boardWrite";
-		var goUrlMemberView = "/member/memberView";
-		
-		var seq = $("input:hidden[name=infrMmSeq]")
-		var form = $("form[name=form]");
-		
-		$("#btnBoardHome").on("click", function(){
-			$(location).attr("href", gorUrlBoardHome);
-		})
-		
-		$("#btnBoardRegForm").on("click", function(){
-			$(location).attr("href", goUrlBoardRegForm);
-		})
-		
-		goMemberView = function(seqValue){
-			seq.val(seqValue);
-			form.attr("action" , goUrlMemberView).submit();
-		};
-	</script>
+	</div>
 </body>
 </html>

@@ -65,13 +65,13 @@ public class MemberGroupServiceImpl implements MemberGroupService {
 	}
 	
 	@Override
-	public MemberGroup selectOneId(MemberGroup dto) throws Exception {
-		return mmDao.selectOneId(dto);
+	public MemberGroup selectOneXdminId(MemberGroup dto) throws Exception {
+		return mmDao.selectOneXdminId(dto);
 	}
 
 	@Override
-	public MemberGroup selectOneLogin(MemberGroup dto) throws Exception {
-		return mmDao.selectOneLogin(dto);
+	public MemberGroup selectOneXdminLogin(MemberGroup dto) throws Exception {
+		return mmDao.selectOneXdminLogin(dto);
 	}
 
 
@@ -91,6 +91,14 @@ public class MemberGroupServiceImpl implements MemberGroupService {
 	public int adminDelete(MemberGroupVo vo) throws Exception {
 		return mmDao.adminDelete(vo);
 	}
+
+
+	@Override
+	public int selectCount(MemberGroupVo vo) throws Exception {
+		return mmDao.selectCount(vo);
+	}
+	
+	
 	
 	
 	

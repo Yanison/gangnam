@@ -20,7 +20,7 @@ function goUser(){
 	//  onclick="goUser()"
 }
 function goAdmin(){
-	location.href="../../../admin/adminHome"
+	location.href="../../../admin/adminLogin"
 	//  onclick="goAdmin()"
 }
 

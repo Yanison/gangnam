@@ -5,18 +5,19 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sgworld.infra.modules.user.sgWorld.SgwMapper">
 	<resultMap id="SgwDto" type="com.sgworld.infra.modules.user.sgWorld.sgwdto.SgwDto">
-		<result property="infrMmSeq" column="regByMm"></result>
 	</resultMap>
 	
 	<insert id="buildSgw">
-		insert into sgWorld
+		insert into 
+			(select * from sgWorld sg left join sgWorldRoom sgr on sg.sgwSeq = sgr.sgwRSeq)
 		(
-		sgwTitle
-		,isHidden
-		,sgwMmNumber
-		,sgwMap
-		,sgwLink
-		,regByMm
+		sg.sgwTitle
+		,sgisHidden
+		,sg.sgwMmNumber
+		,sg.sgwMap
+		,sg.sgwLink
+		,sg.regByMm
+		,sgr.sgwSeq
 		)
 		values(
 		#{sgwTitle}
@@ -25,20 +26,14 @@
 		,#{sgwMap}
 		,#{sgwLink}
 		,#{infrMmSeq}
+		,#{sgwSeq}
 		)
 	</insert>
-	<select id="selectSgwOne" resultMap="SgwDto">
+	<select id="findSgwbyMmSeq" resultMap="SgwDto">
 		select * 
 		from sgWorld 
 		where 1=1
-		and 
-		order by sgwSeq limit 1;
-	</select>
-	<select id="goMySgw" resultMap="SgwDto">
-		select sgwLink
-		from sgWorld
-		where 1=1
-		and  regByMm = #{infrMmSeq}
+		and regByMm = #{infrMmSeq}
 	</select>
 	<select id="isDupleLink" resultType="Integer">
 		select count(*)
@@ -51,5 +46,13 @@
 		from sgWorld 
 		where 1=1
 		and  regByMm = #{infrMmSeq}
+	</select>
+	<select id="findMm" resultMap="SgwDto">
+		select * from infrMember
+		where infrMmSeq = #{infrMmSeq}
+	</select>
+	
+	<select id="loadRoomInfo">
+	
 	</select>
 </mapper>

@@ -54,21 +54,22 @@ public class MemberGroupController {
 	
 	//회원정보 수정
 	@RequestMapping(value = "update")
-	public String adminUpdate(MemberGroup dto)throws Exception{
-		service.adminUpdate(dto);
+	public String adminUpdate(MemberGroup dto,RedirectAttributes redirectAttributes)throws Exception{
+		int result = service.adminUpdate(dto);
+		System.out.println("컨트롤 result" + result);
 		return "redirect:/admin/memberGroup/infrMmList";
 	}
 	
 	//회원정보 삭제여부 삭제
 	@RequestMapping(value = "uelete")
-	public String adminUelete(MemberGroup dto)throws Exception{
+	public String adminUelete(MemberGroup dto ,RedirectAttributes redirectAttributes)throws Exception{
 		service.adminUelete(dto);
 		return "redirect:/admin/memberGroup/infrMmList";
 	}
 	
 	//회원정보 완전 삭제
 	@RequestMapping(value = "delete")
-	public String adminDelete(MemberGroupVo vo)throws Exception{
+	public String adminDelete(MemberGroupVo vo ,RedirectAttributes redirectAttributes)throws Exception{
 		service.adminDelete(vo);
 		return "redircet:/admin/memberGroup/infrMmList";
 	}

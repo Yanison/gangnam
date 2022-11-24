@@ -2,8 +2,10 @@ package com.sgworld.infra.modules.user.sgWorld.sgwdto;
 
 
 import java.sql.Date;
+import java.util.HashSet;
+import java.util.Set;
 
-import com.sgworld.infra.modules.user.sgWorld.sgwSocket.SgwWSController;
+import org.springframework.web.socket.WebSocketSession;
 
 public class SgwDto {
 	
@@ -19,12 +21,26 @@ public class SgwDto {
 	private Integer sgwAvatar;
 	private Integer isHidden;
 	private Date regDatetime;
+	private String regByMm;
+	private Set<WebSocketSession> sessions = new HashSet<>();
 	
 	public Date getRegDatetime() {
 		return regDatetime;
 	}
 	public void setRegDatetime(Date regDatetime) {
 		this.regDatetime = regDatetime;
+	}
+	public String getRegByMm() {
+		return regByMm;
+	}
+	public void setRegByMm(String regByMm) {
+		this.regByMm = regByMm;
+	}
+	public Set<WebSocketSession> getSessions() {
+		return sessions;
+	}
+	public void setSessions(Set<WebSocketSession> sessions) {
+		this.sessions = sessions;
 	}
 	public String getSgwSeq() {
 		return sgwSeq;
@@ -92,17 +108,4 @@ public class SgwDto {
 	public void setInfrMmNickname(String infrMmNickname) {
 		this.infrMmNickname = infrMmNickname;
 	}
-	
-	private Integer webSocketEventSignal;
-	
-	public Integer getWebSocketEventSignal() {
-		return webSocketEventSignal;
-	}
-	public void setWebSocketEventSignal(Integer webSocketEventSignal)throws Exception {
-		System.out.println("@@@@ webSocketEventSignal @@@@");
-		this.webSocketEventSignal = webSocketEventSignal;
-	}
-	
-	
-	
 }
