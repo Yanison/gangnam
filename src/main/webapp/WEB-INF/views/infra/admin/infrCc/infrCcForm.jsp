@@ -36,7 +36,7 @@
 										>
 										<option>코드그룹선택</option>
 										<c:forEach items="${view }" var="view" varStatus="status">
-											<option value="${view.infrCcgSeq }"><c:out value="${view.infrCcgNameKor }"/></option>
+											<option  value="${view.infrCcgSeq }"><c:out value="${view.infrCcgNameKor }"/></option>
 										</c:forEach>
 									</select>
 								</div>
@@ -88,7 +88,7 @@
 							</div>
 							<div class="row p-0">
 								<div class="col">
-									<button class="btn btn-secondary" type="button" id="cglCancel">
+									<button class="btn btn-secondary" type="button" id="btnList">
 										<i class="fa-sharp fa-solid fa-bars"></i>
 									</button>
 								</div>
@@ -122,7 +122,30 @@
         <script src="../../../admin/adminTemplate/js/datatables-simple-demo.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 		<script>
-			function register(){
+		var goUrlList = "/admin/code/infrCcList";
+		
+		$("#btnList").on("click",function(){
+   			$(location).attr("href",goUrlList);
+   		});
+		
+		function register(){
+			if(document.getElementById('infrCodeGroupSeq').value == '' || document.getElementById('infrCodeGroupSeq').value == null){
+				alert("코드그룹을 선택해주세요")
+				return false;
+			}
+			if(document.getElementById('infrCcNameKor').value == '' || document.getElementById('infrCcNameKor').value == null){
+				alert("코드이름(한글)을 입력해주세요")
+				document.getElementById('infrCcNameKor').value="";
+				document.getElementById('infrCcNameKor').focus();
+				return false;
+			}
+			if(document.getElementById('infrCcNameEng').value == '' || document.getElementById('infrCcNameEng').value == null){
+				alert("코드이름(영문)을 입력해주세요")
+				document.getElementById('infrCcNameEng').value="";
+				document.getElementById('infrCcNameEng').focus();
+				return false;
+			}
+			
 		    	document.getElementById('ccFormReg').submit();
 		    };
 		</script>

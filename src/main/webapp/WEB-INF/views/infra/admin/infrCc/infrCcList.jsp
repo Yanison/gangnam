@@ -133,11 +133,11 @@
 								<!-- pagination e -->
 								<div class="row p-0">
 									<div class="col">
-										<button class="btn btn-danger" type="button" id="cglCancel"><i class="fa-duotone fa-x"></i></button>
-										<button class="btn btn-danger" type="button" id="cglDel"><i class="fa-regular fa-trash-can"></i></button>
+										<button class="btn btn-danger" type="button" onclick="ready()"><i class="fa-duotone fa-x"></i></button>
+										<button class="btn btn-danger" type="button" onclick="ready()"><i class="fa-regular fa-trash-can"></i></button>
 									</div>
 									<div class="col" style="text-align: right;">
-										<button class="btn btn-success" type="button" id="cglExcel"><i class="fa-regular fa-file-excel"></i></button>
+										<button class="btn btn-success" type="button" onclick="ready()"><i class="fa-regular fa-file-excel"></i></button>
 										<button class="btn btn-primary" type="button" id="btnForm"><i class="fa-regular fa-plus"></i></button>
 									</div>
 								</div>
@@ -187,6 +187,10 @@
     	goList = function(thisPage){
     		$("input:hidden[name=thisPage]").val(thisPage);
     		form.attr("action" , goUrlList).submit();
+    	}
+    	
+    	function ready(){
+    		alert("준비중입니다")
     	}
     	
 	 	</script>

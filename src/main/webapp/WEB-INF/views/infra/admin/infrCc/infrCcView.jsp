@@ -163,10 +163,6 @@
 		$("#btnList").on("click",function(){
    			$(location).attr("href",goUrlList);
    		});
-		
-        $("#btnModify").on("click",function(){
-       		form.attr("action", goUrlUpdt).submit();
-       	});
         
     	$("#btnUele").on("click",function(){
    			form.attr("action", goUrlUele).submit();
@@ -175,6 +171,23 @@
     	$("#btnDelete").on("click", function(){
    			form.attr("action", goUrlDele).submit();
     	});
+    	
+    	$("#btnModify").on("click",function(){
+    		if(document.getElementById('infrCcNameKor').value == '' || document.getElementById('infrCcNameKor').value == null){
+				alert("코드이름(한글)을 입력해주세요")
+				document.getElementById('infrCcNameKor').value="";
+				document.getElementById('infrCcNameKor').focus();
+				return false;
+			}
+			if(document.getElementById('infrCcNameEng').value == '' || document.getElementById('infrCcNameEng').value == null){
+				alert("코드이름(영문)을 입력해주세요")
+				document.getElementById('infrCcNameEng').value="";
+				document.getElementById('infrCcNameEng').focus();
+				return false;
+			}
+    		
+    		form.attr("action", goUrlUpdt).submit();
+       	});
 		</script> 
 </body>
 </html>
