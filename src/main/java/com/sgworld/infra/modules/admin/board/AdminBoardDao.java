@@ -52,4 +52,7 @@ public class AdminBoardDao {
 		List<AdminBoardDto> list = sqlSession.selectList(namespace + ".selectCommentList", vo);
 		return list;
 	}
+	
+	//조회수
+	public int boardViewCount(AdminBoardDto dto) { return sqlSession.update(namespace + ".boardViewCount", dto); }
 }

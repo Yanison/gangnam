@@ -169,6 +169,12 @@ public class AdminBoardServiceImpl extends BaseServiceImpl implements AdminBoard
 		return dao.selectListUploaed(vo);
 	}
 
+	//조회수
+	@Override
+	public int boardViewCount(AdminBoardDto dto) throws Exception {
+		return dao.boardViewCount(dto);
+	}
+
 	
 
 }
