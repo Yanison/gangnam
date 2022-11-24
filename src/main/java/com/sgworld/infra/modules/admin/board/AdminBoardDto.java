@@ -18,6 +18,7 @@ public class AdminBoardDto extends Base{
 	private String modBy;
 	private	Integer delNy;
 	private String infrMmNickname;
+	private Integer viewCount;
 	
 	//업로드관련
 	private MultipartFile[] uploadImg;
@@ -31,6 +32,8 @@ public class AdminBoardDto extends Base{
 	private Integer uploadFileMaxNumber;
 	private String[] uploadFileDeleteSeq;
 	private String[] uploadFileDeletePathFile;
+	
+	
 ///////////////////////////////////////////////////	
 	
 	public String getBdSeq() {
@@ -158,6 +161,12 @@ public class AdminBoardDto extends Base{
 	}
 	public void setUploadFileDeletePathFile(String[] uploadFileDeletePathFile) {
 		this.uploadFileDeletePathFile = uploadFileDeletePathFile;
+	}
+	public Integer getViewCount() {
+		return viewCount;
+	}
+	public void setViewCount(Integer viewCount) {
+		this.viewCount = viewCount;
 	}
 	
 	

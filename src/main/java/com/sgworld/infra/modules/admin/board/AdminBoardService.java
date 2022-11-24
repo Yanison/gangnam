@@ -29,4 +29,7 @@ public interface AdminBoardService {
 	
 	//댓글
 	public List<AdminBoardDto> selectCommentList(AdminBoardVo vo) throws Exception;
+	
+	//조회수
+	public int boardViewCount(AdminBoardDto dto) throws Exception;
 }

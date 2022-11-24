@@ -41,8 +41,9 @@ public class BoardController {
 	
 	//게시글 보기
 	@RequestMapping(value = "boardView")
-	public String boardView(@ModelAttribute("vo") AdminBoardVo vo, Model model) throws Exception {
+	public String boardView(@ModelAttribute("vo") AdminBoardVo vo, AdminBoardDto dto, Model model) throws Exception {
 		
+		service.boardViewCount(dto);
 		AdminBoardDto item = service.selectOne(vo);
 		model.addAttribute("item", item);
 		model.addAttribute("listUploaded", service.selectListUploaded(vo));

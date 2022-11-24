@@ -35,6 +35,7 @@
 				,a.bdDiv
 				,a.regDatetime
 				,a.delNy
+				,a.viewCount
 			<include refid="selectCommon" />
 			ORDER BY a.bdSeq DESC
 		<include refid="Base.selectListLowerForMysql" />
@@ -127,6 +128,17 @@
 		ORDER BY
 			type, sort
 	</select>
+	
+	<!-- 조회수 -->
+	<update id="boardViewCount">
+		UPDATE board
+		SET
+			viewCount = viewCount + 1
+		WHERE 1=1
+			AND bdSeq = #{bdSeq}	
+	</update>
+	
+	<!-- 추천 -->
 	
  	<!-- 댓글 -->
  	<select id="selectCommentList" resultMap="resultMapCommnet">
