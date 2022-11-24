@@ -8,7 +8,7 @@
 	<script src="/resources/user/home/js/home.js"></script>
 </head>
 <body>
-	
+	<form name="form" method="post">
 	<header>
 		<%@ include file="../../common/header.jsp"%> 
 	</header>
@@ -140,6 +140,7 @@
 	<footer>
 		<%@include file="../../common/footer.jsp" %>
 	</footer>
+	</form>
 	<div id="modalDiv" class="modalDiv"  style="display:none">
 			<%@include file="./createOption.jsp" %>
 	</div>
