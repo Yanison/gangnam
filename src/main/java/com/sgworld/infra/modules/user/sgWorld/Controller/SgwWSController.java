@@ -1,6 +1,7 @@
 package com.sgworld.infra.modules.user.sgWorld.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
@@ -39,12 +40,13 @@ public class SgwWSController {
 	 
 	 @MessageMapping(value = "/sgWorld/msgTo/{endPoint}/")
 	  public void msg(
+			  @DestinationVariable String endPoint,
 			  SgwChat msg,
 			  SgwDto sgwDto)throws Exception {
 		
 		 System.out.println("endPoint :: " + msg.getEndPoint());
 		 System.out.println(msg.getChatMsg());
 		 
-	     template.convertAndSend("/topic/sgWorld/sendMessage/" + msg.getEndPoint(), msg.getChatMsg());
+	     template.convertAndSend("/topic/sgWorld/sendMessage/" + endPoint, msg.getChatMsg());
 	 }
 }

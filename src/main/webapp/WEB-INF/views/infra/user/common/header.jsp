@@ -18,7 +18,7 @@
 			<li class="write"><a class="writeBtn" id="btnBoardRegForm" type="button">글쓰기</a></li>
 			<c:choose>
 				<c:when test="${infrMmSeq eq null}">
-					<li class="last"><a href="http://127.0.0.1:8085/userLogin" type="button" id="">로그인</a></li>
+					<li class="last"><a href="/userLogin" type="button" id="">로그인</a></li>
 				</c:when>
 				<c:otherwise>
 					<li class="logedIn" style="margin-left:20px"><span style="font-weight:600;"><c:out value="${infrMmName}"/></span> 님</li>

@@ -16,9 +16,9 @@
 	<section class="bodyWrapper">
 		<article class="mySgWorld">
 			<c:choose>
-				<c:when test="${sessSgw eq infrMmSeq}">
+				<c:when test="${not empty sessSgw}">
 					<button class="creatMySgWorld" id="goMySgWorld" onclick="goMySgwolrd($('#sessMmSeq').val())">
-						Get in SgWorld
+						Get in SgWorld 
 					</button>
 				</c:when>
 				<c:otherwise>

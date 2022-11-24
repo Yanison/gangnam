@@ -47,13 +47,13 @@ function connect() {
         
         var endPoint = $('#endPoint').val()
         stompClient.subscribe('/topic/sgWorld/chatroom/'+endPoint, function (msgObjFromServer) {
-			var msgObj = JSON.parse(msgObjFromServer.body)
+			 var msgObj = JSON.stringify(msgObjFromServer.body)
 			 console.log("topic/sgWorld/chatroom"+ msgObj)
             showMsg(msgObj);
         });
         
          stompClient.subscribe('/topic/sgWorld/sendMessage/'+endPoint, function (msgObjFromServer) {
-            var msgObj = JSON.parse(msgObjFromServer.body)
+            var msgObj = JSON.parse(msgObjFromServer.body).chatMsg
             console.log("topic/sgWorld/sendMessage"+msgObj)
             showMsg(msgObj);
         });
@@ -62,19 +62,20 @@ function connect() {
 
 
 function sendMsg(f) {
-	var endPoint = $('#endPoint').val()
-	if(f.keyCode == 13){ //javascript에서는 13이 enter키를 의미함
-	    stompClient.send("/app/sgWorld/msgTo/"+endPoint+"/",
-	    {}, 
-	    JSON.stringify(
-				{
+				var chatmsg = {
 					chatMsg : $('input[name="msg"]').val(),
 					infrMmSeq : $('#infrMmSeq').val(),
-					endPoint:$('#endPoint').val()
 				}
-			)
+	
+	var endPoint = $('#endPoint').val()
+	if(f.keyCode == 13){ //javascript에서는 13이 enter키를 의미함
+	    
+	    stompClient.send(
+		"/app/sgWorld/msgTo/"+endPoint+"/",
+	    {}, 
+	    JSON.stringify(chatmsg)
 	    );
-	    $('#inputMsg').text('');
+	    $('#inputMsg').val('');
     }
 	
    
@@ -89,7 +90,7 @@ function showMsg(message) {
 	html += 	'</div>'	
 	html += 	'<div class="msgBody">'	
 	html += 		'<p class="magTextarea" id="magTextarea">'	
-	html += 			message	
+	html += 			message
 	html += 		'</p>'	
 	html += 	'</div>'
 	html += '</div>'

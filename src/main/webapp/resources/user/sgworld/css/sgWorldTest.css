@@ -147,8 +147,8 @@ div, span, ul, li, a {
 	border-top:1px solid #3b405c;
 	padding:10px 0;
 }
-.inputMsgDiv button{
-	
+.inputMsg{
+	color:#fff;
 }
 
 .msgTo{
