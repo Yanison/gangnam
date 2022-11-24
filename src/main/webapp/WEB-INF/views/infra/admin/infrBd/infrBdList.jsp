@@ -190,6 +190,11 @@
     			form.attr("action", goUrlList).submit();
     		}
         	
+        	goForm = function(keyValue) {
+    			seq.val(keyValue);
+    			form.attr("action", goUrlForm).submit();
+    		}
+        	
         	goView = function(keyValue) {
     	    	/* if(keyValue != 0) seq.val(btoa(keyValue)); */
     	    	seq.val(keyValue);
