@@ -3,4 +3,112 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.sgworld.infra.membergroup.ExchMapper"></mapper>
+<mapper namespace="com.sgworld.infra.modules.admin.avatar.AdminAvatarMapper">
+	<resultMap id="resultMapObj" type="com.sgworld.infra.modules.admin.avatar.AvatarDto"></resultMap>
+	<sql id="selectCommon">
+		FROM sgWorldAvatar a
+		LEFT JOIN sgWorldMapUploaded b on a.avatarSeq = b.pseq
+		WHERE 1=1
+			<if test="shDelNy != null and !shDelNy.equals('')">AND a.delNy = #{shDelNy}</if>
+			<choose>
+				<when test="shOptionDate == 1">AND a.regDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+				<when test="shOptionDate == 2">AND a.modDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+			</choose>
+			<choose>
+				<when test="shOption == 1">AND a.regBy LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption == 2">AND a.avatarName LIKE CONCAT('%',#{shValue},'%')</when>
+			</choose>
+	</sql>
+	 
+	<select id="selectList" resultMap="resultMapObj">
+		<include refid="Base.selectListUpperForMysql" />
+			SELECT
+				a.avatarSeq
+				,a.avatarName
+				,a.useNy
+				,a.regDatetime
+				,a.modDatetime
+				,a.delNy
+				,a.regBy
+				,b.path
+				,b.uuidName
+			<include refid="selectCommon" />
+			ORDER BY a.avatarSeq DESC
+		<include refid="Base.selectListLowerForMysql" />
+	</select>
+	
+	<select id="selectOneCount" resultType="Integer">
+		SELECT COUNT(*)
+		FROM sgWorldAvatar a
+		WHERE 1=1
+	</select>
+	
+	<select id="selectOne" resultMap="resultMapObj">
+		SELECT		
+			a.*
+		FROM sgWorldAvatar a
+		WHERE 1=1
+			AND avatarSeq = #{avatarSeq}
+	</select>
+	
+	<!-- 관리자 아바타 등록 -->
+	<insert id="insert">
+		INSERT INTO sgWorldAvatar (
+			avatarName
+			,regDatetime
+			,delNy
+			,useNy
+		)
+		VALUES (
+			#{avatarName}
+			,now()
+			,1
+			,0
+		)
+			<selectKey resultType="String" keyProperty="avatarSeq" order="AFTER">
+				SELECT last_insert_id()
+			</selectKey>
+	</insert>
+	
+	<update id="update">
+		UPDATE sgWorldAvatar
+		SET
+			avatarName = #{avatarName}
+			,useNy = 1
+			,delNy = 0
+		WHERE 1=1
+			AND avatarSeq = #{avatarSeq}
+	</update>
+	
+	<update id="uelete">
+		UPDATE sgWorldAvatar
+		SET
+			delNy = 0
+		WHERE 1=1
+			AND avatarSeq = #{avatarSeq}
+	</update>
+ 
+ 	<delete id="delete">
+ 		DELETE FROM sgWorldAvatar 
+ 		WHERE 1=1
+ 			AND avatarSeq = #{avatarSeq}
+ 	</delete>
+	
+	<!-- 업로드 관련 -->
+ 	<select id="selectListUploaded" resultMap="resultMapObj">
+		SELECT 
+			seq
+			,type
+			,defaultNy
+			,sort
+			,path
+			,originalName
+			,uuidName
+		FROM sgworld.sgWorldMapUploaded
+		WHERE 1=1
+			AND delNy = 0
+			AND pseq = #{avatarSeq}
+		ORDER BY
+			type, sort
+	</select>
+</mapper>

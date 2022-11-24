@@ -41,6 +41,7 @@
 	</interceptors>	
 	<!-- session interceptor e 2022.03.13 for logincheck -->
 	
+	
 	<!-- fileUpload s 2022.03.30 --> 
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="defaultEncoding" value="UTF-8"/>
