@@ -65,5 +65,20 @@ public class MemberGroupDao {
 		return sqlSession.selectOne(namespace + ".selectOneCount", vo);
 	}
 	
+	//admin 회원정보 수정
+	public int adminUpdate(MemberGroup dto) {
+		return sqlSession.update(namespace + ".adminUpdate", dto);
+	}
+	
+	//admin 회원정보 삭제여부삭제
+	public int adminUelete(MemberGroup dto) {
+		return sqlSession.update(namespace + ".adminUelete", dto);
+	}
+	
+	//admin 회원정보 완전삭제
+	public int adminDelete(MemberGroupVo vo) {
+		return sqlSession.delete(namespace + ".adminDelete", vo);
+	}
+	
 	
 }
