@@ -143,7 +143,7 @@
 	<delete id="deleteMm">
 	</delete>
 	
-	<!-- user_계시판 리스트 띠우기 -->
+	<!-- user_게시판 리스트 띠우기 -->
 	<select id="selectListBoard" resultMap="MemberGroup">
 		SELECT
 			a.infrMmSeq
@@ -165,7 +165,7 @@
 	
 	
 	<!-- 로그인 -->
-	<select id="selectOneId" resultMap="MemberGroup">
+	<select id="selectOneXdminId" resultMap="MemberGroup">
 		SELECT
 			a.infrMmSeq
 			,a.infrMmId
@@ -173,10 +173,11 @@
 			infrMember a
 		WHERE 1=1
 			AND a.infrMmId = #{infrMmId}
+			AND a.infrMmDiv = 0
 	</select>
 	
 	
-	<select id="selectOneLogin" resultMap="MemberGroup">
+	<select id="selectOneXdminLogin" resultMap="MemberGroup">
 		SELECT
 			a.infrMmSeq
 			,a.infrMmId
