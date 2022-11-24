@@ -35,4 +35,13 @@ public interface MemberGroupService {
 	//admin count조회
 	public int selectOneCount(MemberGroupVo vo)throws Exception;
 	
+	//admin 회원정보 수정
+	public int adminUpdate(MemberGroup dto)throws Exception;
+	
+	//admin 회원정보 삭제여부 삭제
+	public int adminUelete(MemberGroup dto)throws Exception;
+	
+	//admin 회원정보 완전 삭제
+	public int adminDelete(MemberGroupVo vo)throws Exception;
+	
 }
