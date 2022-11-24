@@ -65,6 +65,10 @@ public class MemberGroupDao {
 		return sqlSession.selectOne(namespace + ".selectOneCount", vo);
 	}
 	
+
+	public int selectCount(MemberGroupVo vo) {
+		return sqlSession.selectOne(namespace +".selectCount", vo);
+
 	//admin 회원정보 수정
 	public int adminUpdate(MemberGroup dto) {
 		return sqlSession.update(namespace + ".adminUpdate", dto);

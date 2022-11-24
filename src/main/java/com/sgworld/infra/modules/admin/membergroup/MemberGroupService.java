@@ -35,6 +35,9 @@ public interface MemberGroupService {
 	//admin count조회
 	public int selectOneCount(MemberGroupVo vo)throws Exception;
 	
+
+	public int selectCount(MemberGroupVo vo)throws Exception;
+
 	//admin 회원정보 수정
 	public int adminUpdate(MemberGroup dto)throws Exception;
 	
