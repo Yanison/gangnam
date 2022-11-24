@@ -29,12 +29,6 @@ public class MemberController {
 	//내 정보 보기
 	@RequestMapping(value="memberView")
 	public String memberView(@ModelAttribute("vo") MemberGroupVo vo , Model model)throws Exception {
-		Object infrMmId = session.getAttribute("infrMmId");
-		Object infrMmName = session.getAttribute("infrMmName");
-		Object infrMmSeq = session.getAttribute("infrMmSeq");
-		model.addAttribute("infrMmSeq", infrMmSeq);
-		model.addAttribute("infrMmName", infrMmName);
-		model.addAttribute("infrMmId", infrMmId);
 		
 		MemberGroup item = service.selectMmOne(vo);
 		model.addAttribute("item", item);
@@ -51,25 +45,13 @@ public class MemberController {
 	
 	//내정보_아바타 수정
 	@RequestMapping(value="memberAvartar")
-	public String memberAvartar(Model model)throws Exception {
-		Object infrMmId = session.getAttribute("infrMmId");
-		Object infrMmName = session.getAttribute("infrMmName");
-		Object infrMmSeq = session.getAttribute("infrMmSeq");
-		model.addAttribute("infrMmSeq", infrMmSeq);
-		model.addAttribute("infrMmName", infrMmName);
-		model.addAttribute("infrMmId", infrMmId);
+	public String memberAvartar()throws Exception {
 		return "infra/user/modules/member/memberAvartar";
 	}
 		
 	//내정보_내 글 조회
 	@RequestMapping(value="memberPostComment")
 	public String memberPostComment(@ModelAttribute("vo") MemberGroupVo vo , Model model)throws Exception {
-		Object infrMmId = session.getAttribute("infrMmId");
-		Object infrMmName = session.getAttribute("infrMmName");
-		Object infrMmSeq = session.getAttribute("infrMmSeq");
-		model.addAttribute("infrMmSeq", infrMmSeq);
-		model.addAttribute("infrMmName", infrMmName);
-		model.addAttribute("infrMmId", infrMmId);
 		
 		List<MemberGroup>list = service.selectListBoard(vo);
 		model.addAttribute("list", list);
@@ -79,21 +61,17 @@ public class MemberController {
 		
 	//내정보_회원탈퇴하기
 	@RequestMapping(value="memberWithdraw")
-	public String memberWithdraw(Model model)throws Exception {
-		Object infrMmId = session.getAttribute("infrMmId");
-		Object infrMmName = session.getAttribute("infrMmName");
-		Object infrMmSeq = session.getAttribute("infrMmSeq");
-		model.addAttribute("infrMmSeq", infrMmSeq);
-		model.addAttribute("infrMmName", infrMmName);
-		model.addAttribute("infrMmId", infrMmId);
+	public String memberWithdraw()throws Exception {
+
 		return "infra/user/modules/member/memberWithdraw";
 	}
 	
 	// user,admin 회원탈퇴 실행 이거 좀더 고민해봐야겠습니다
 	@RequestMapping(value = "ueleteMm")
-	public String ueleteMm(MemberGroup dto)throws Exception {
+	public String ueleteMm(MemberGroup dto , RedirectAttributes redirectAttributes)throws Exception {
 		service.ueleteMm(dto);
-		return "";
+		session.invalidate();
+		return "redirect:/";
 	}
 	
 	//아이디/비번 찾기

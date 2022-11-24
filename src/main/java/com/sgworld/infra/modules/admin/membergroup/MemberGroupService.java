@@ -5,7 +5,7 @@ import java.util.List;
 public interface MemberGroupService {
 
 	//유저 리스트
-	public List<MemberGroup> selectMmList(MemberGroup dto) throws Exception;
+	public List<MemberGroup> selectMmList(MemberGroupVo vo) throws Exception;
 
 	//admin_내 정보 보기
 	public MemberGroup selectMmOne(MemberGroupVo vo) throws Exception;

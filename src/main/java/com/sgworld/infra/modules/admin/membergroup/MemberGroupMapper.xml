@@ -42,7 +42,7 @@
 			from infrMember
 		where 1=1
 		and infrMmId = #{infrMmId}
-		and infrMmPw = MD5(#{infrMmPw})
+		and infrMmPw = #{infrMmPw}
 	</select>
 	
 	<select id="isduple" resultType="Integer">
@@ -137,7 +137,7 @@
 		SET
 			infrMmDelNy = 0
 		WHERE 
-			infrMmSeq = #{mmSsSeq}	
+			infrMmSeq = #{infrMmSeq}	
 	</update>
 	
 	<delete id="deleteMm">

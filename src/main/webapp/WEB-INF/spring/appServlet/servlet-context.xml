@@ -26,7 +26,7 @@
 	<context:component-scan base-package="com.sgworld.*" />
 	
 	<!-- session interceptor s 2022.03.13 for logincheck -->
-	<interceptors>
+	<!-- <interceptors>
 		<interceptor>
 			<mapping path="/**"/>
 			<exclude-mapping path="/resources/**" />
@@ -36,10 +36,12 @@
 			<exclude-mapping path="/board/**" />
 			<exclude-mapping path="/sgworld/**" />
 			<exclude-mapping path="/admin/**" />
+			<exclude-mapping path="/chat/**" />
+			<exclude-mapping path="/userAdmin/**" />
 			<exclude-mapping path="/" />
 			<beans:bean id="checkLoginSessionInterception" class="com.sgworld.infra.common.interceptor.CheckLoginSessionInterception"/>
 		</interceptor>
-	</interceptors>	
+	</interceptors>	 -->
 	<!-- session interceptor e 2022.03.13 for logincheck -->
 	
 	

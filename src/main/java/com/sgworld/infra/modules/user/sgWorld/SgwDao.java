@@ -1,5 +1,7 @@
 package com.sgworld.infra.modules.user.sgWorld;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.inject.Inject;
 
@@ -32,7 +34,7 @@ public class SgwDao {
 		return sqlSession.insert(namespace + ".buildSgw", sgwDto);
 	}
 	
-	public SgwDto selectSgwOne(SgwDto sgwDto) {
+	public SgwDto findSgwbyMmSeq(SgwDto sgwDto) {
 		System.out.println(
 				"SgwDao.selectSgwOne :: 최근 개설된 Sgworld 하나를 불러옵니다." + "\n"+
 				"개설된 Sgworld 정보는 다음과 같습니다."+ "\n" +
@@ -45,18 +47,17 @@ public class SgwDao {
 				"방장 시퀀스//닉네임 :: "+sgwDto.getInfrMmSeq()+" // " +sgwDto.getInfrMmNickname()+ "\n" +
 				"방 생성시간 :: " + "\n" + ""
 				);
-		return sqlSession.selectOne(namespace + ".selectSgwOne", sgwDto);
+		return sqlSession.selectOne(namespace + ".findSgwbyMmSeq", sgwDto);
 	}
-	
 	public int isDupleLink(SgwDto sgwDto){
 		return sqlSession.selectOne(namespace+".isDupleLink", sgwDto);
 	}
 	
-	public int doesHealreadyMakeSgw(SgwDto sgwDto){
+	public int doesHeAlreadyMakeSgw(SgwDto sgwDto){
 		return sqlSession.selectOne(namespace+".doesHealreadyMakeSgw", sgwDto);
 	}
-	public SgwDto goMySgw(SgwDto sgwDto){
-		return sqlSession.selectOne(namespace+".goMySgw", sgwDto);
-	}
 	
+	public SgwDto findMm(SgwDto sgwDto) {
+		return sqlSession.selectOne(namespace+".findMm", sgwDto);
+	}
 }

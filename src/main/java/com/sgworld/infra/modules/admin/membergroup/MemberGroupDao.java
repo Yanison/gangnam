@@ -17,8 +17,8 @@ public class MemberGroupDao {
 	
 	public static String namespace = "com.sgworld.infra.modules.admin.membergroup.MemberGroupMapper";
 	
-	public List<MemberGroup> selectMmList(MemberGroup dto){
-		return sqlSession.selectList(namespace + ".selectMmList", dto);
+	public List<MemberGroup> selectMmList(MemberGroupVo vo){
+		return sqlSession.selectList(namespace + ".selectMmList", vo);
 	}
 	
 	//user_회원정보 보기

@@ -12,8 +12,8 @@ public class MemberGroupServiceImpl implements MemberGroupService {
 	MemberGroupDao mmDao;
 	
 	@Override
-	public List<MemberGroup> selectMmList(MemberGroup dto) throws Exception{
-		return mmDao.selectMmList(dto);
+	public List<MemberGroup> selectMmList(MemberGroupVo vo) throws Exception{
+		return mmDao.selectMmList(vo);
 	}
 	
 	
