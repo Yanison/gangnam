@@ -15,6 +15,7 @@
 </head>
 <body>
 	<form name="form" method="post">
+	<input type="hidden" id="infrMmSeq" name="infrMmSeq" value="${infrMmSeq}">
 	<header>
 		<%@ include file="../../common/header.jsp"%> 
 	</header>

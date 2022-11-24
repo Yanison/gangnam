@@ -31,8 +31,6 @@ function userLogOut(){
 }
 
 
-
-
 function isSssValThere(str){
 	var sessMmId = $(str).val();
 	console.log(
@@ -40,4 +38,20 @@ function isSssValThere(str){
 	)
 }
 
+function gohome(){
+	location.href="http://127.0.0.1:8085"
+}
 
+function goboard(){
+	location.href="http://127.0.0.1:8085/board/boardList"
+}
+
+
+var goUrlView = "/member/memberView";
+var form = $("form[name=form]");
+var seq = $("input:hidden[name=infrMmSeq]");
+
+goMemberView = function(keyValue) {
+	seq.val(keyValue);
+	form.attr("action", goUrlView).submit();
+}

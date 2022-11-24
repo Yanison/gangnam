@@ -9,7 +9,7 @@
 		</div>
 		<ul class="navMenu">
 			<li><a href="#" onclick="gohome()">홈</a></li>
-			<li><a type="button" id="btnBoardHome">게시글</a></li>
+			<li><a href="#" onclick="goboard()">게시글</a></li>
 			<li><a href="#">싸게월드</a></li>
 		</ul>
 	</div> 

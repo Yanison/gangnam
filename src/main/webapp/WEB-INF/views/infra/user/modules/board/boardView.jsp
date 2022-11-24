@@ -17,6 +17,8 @@
 	<%@ include file="../../common/header.jsp" %>
 	<!-- header e -->
 	<form id="form" name="form" autocomplete="off" enctype="multipart/form-data">
+	<input type="hidden" id="infrMmSeq" name="infrMmSeq" value="${infrMmSeq}">
+	<input type="hidden" id="bdSeq" name="bdSeq" value="${item.bdSeq}">
 	<!-- contend s -->
 	<section>
 		<div class="boarderTitle">
@@ -33,7 +35,7 @@
 					</div>
 					<div class="icon">
 						<i class="fa-regular fa-clock"> 10-19</i>
-						<i class="fa-solid fa-eye"> 990</i>
+						<i class="fa-solid fa-eye"> <c:out value="${item.viewCount }" /></i>
 						<i class="fa-regular fa-message"> 200</i>
 					</div>
 				</div>

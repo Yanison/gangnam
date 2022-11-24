@@ -46,7 +46,6 @@ public class BoardController {
 		service.boardViewCount(dto);
 		AdminBoardDto item = service.selectOne(vo);
 		model.addAttribute("item", item);
-		model.addAttribute("listUploaded", service.selectListUploaded(vo));
 		
 		return "infra/user/modules/board/boardView";
 	}

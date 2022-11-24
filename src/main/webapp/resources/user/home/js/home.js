@@ -3,10 +3,6 @@ $(document).ready(function(){
 //connect()
 })
 
-function gohome(){
-	location.href="http://127.0.0.1:8085"
-}
-
 function showModal(){
 	var infrMmSeq = $('#sessMmSeq').val();
 	if(infrMmSeq == ""){
