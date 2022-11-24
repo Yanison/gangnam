@@ -64,7 +64,7 @@
 											</select>
 										</div>
 										<div class="col-2 p-1">
-											<input class="form-control" type="text" placeholder="검색어" id="shValue" value="<c:out value="${vo.shValue }"/>">
+											<input class="form-control" type="text" placeholder="검색어" id="shValue" name="shValue" value="<c:out value="${vo.shValue }"/>">
 										</div>
 										<div class="col-1 p-1">
 											<a class="btn btn-warning" role="button" id="btnSearch"><i class="fa-solid fa-magnifying-glass"></i></a>
