@@ -94,14 +94,14 @@
 	                        <div class="row mb-4">
 		                        <div class="col-6">
 		                        	<label class="form-label">삭제여부</label>
-									<select class="form-select">
-		                        		<option>N</option>
-		                        		<option>Y</option>
+									<select class="form-select" id="infrMmDelNy" name="infrMmDelNy">
+		                        		<option value="1">N</option>
+		                        		<option value="0">Y</option>
 		                        	</select>
 		                        </div>
 		                        <div class="col">
 		                        	<label class="form-label">사용여부</label>
-									<select class="form-select" id="infrMmDelNy" name="infrMmDelNy">
+									<select class="form-select" id="infrMmUseNy" name="infrMmUseNy">
 		                        		<option value="1">N</option>
 		                        		<option value="0">Y</option>
 		                        	</select>
