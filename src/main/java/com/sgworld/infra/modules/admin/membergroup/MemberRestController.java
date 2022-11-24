@@ -51,13 +51,14 @@ public class MemberRestController {
 			session.setAttribute("infrMmSeq", user.getInfrMmSeq());
 			session.setAttribute("infrMmId", user.getInfrMmId());
 			session.setAttribute("infrMmName", user.getInfrMmName());
+			
 			Object infrMmSeq = session.getAttribute("infrMmSeq");
 			Object infrMmId = session.getAttribute("infrMmId");
 			Object infrMmName = session.getAttribute("infrMmName");
 			String mmSs = (String) session.getAttribute("infrMmSeq");
+			session.setAttribute("infrMmSeqNum"+mmSs,mmSs);
 			
 			vo.setMmSsSeq(mmSs);
-			
 			System.out.print(
 					"userLogin session infrMmSeq ::" + infrMmSeq + "\n "
 					+ "userLogin session infrMmId ::" + infrMmId + "\n "

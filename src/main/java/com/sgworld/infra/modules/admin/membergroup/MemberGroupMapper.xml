@@ -42,7 +42,7 @@
 			from infrMember
 		where 1=1
 		and infrMmId = #{infrMmId}
-		and infrMmPw = MD5(#{infrMmPw})
+		and infrMmPw = #{infrMmPw}
 	</select>
 	
 	<select id="isduple" resultType="Integer">
