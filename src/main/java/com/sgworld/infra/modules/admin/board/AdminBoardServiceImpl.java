@@ -111,15 +111,10 @@ public class AdminBoardServiceImpl extends BaseServiceImpl implements AdminBoard
 	@Override
 	public int insert(AdminBoardDto dto) throws Exception { 
 		
-		setRegMod(dto);
+		//setRegMod(dto);
 		dao.insert(dto);
-		System.out.print(
-				"who?" + "\n"
-						+"getUploadImg: " + dto.getUploadImg() +"\n" 
-						+ "getUploadImgType: " + dto.getUploadImgType() + "\n"
-						+ "getUploadImgMaxNumber: " + dto.getUploadImgMaxNumber());
-		uploadFiles(dto.getUploadImg(), dto, "boardUploaded", dto.getUploadImgType(), dto.getUploadImgMaxNumber());
-		uploadFiles(dto.getUploadFile(), dto, "boardUploaded", dto.getUploadFileType(), dto.getUploadFileMaxNumber());
+		//uploadFiles(dto.getUploadImg(), dto, "boardUploaded", dto.getUploadImgType(), dto.getUploadImgMaxNumber());
+		//uploadFiles(dto.getUploadFile(), dto, "boardUploaded", dto.getUploadFileType(), dto.getUploadFileMaxNumber());
 		return 1; 
 	}
 		

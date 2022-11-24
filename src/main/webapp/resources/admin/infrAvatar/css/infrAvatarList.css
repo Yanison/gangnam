@@ -3,6 +3,7 @@ table{
 }
 th, td{
 	align-items: center;
+	vertical-align: middle;
 }
 img{
 	width: 60px;

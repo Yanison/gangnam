@@ -18,8 +18,8 @@ public interface MemberGroupService {
 
 	//로그인
 	public MemberGroup selectUserLogin(MemberGroup dto) throws Exception;
-	public MemberGroup selectOneId(MemberGroup dto) throws Exception;
-	public MemberGroup selectOneLogin(MemberGroup dto) throws Exception;
+	public MemberGroup selectOneXdminId(MemberGroup dto) throws Exception;
+	public MemberGroup selectOneXdminLogin(MemberGroup dto) throws Exception;
 
 	public int udptMmifo(MemberGroup dto)throws Exception;
 
