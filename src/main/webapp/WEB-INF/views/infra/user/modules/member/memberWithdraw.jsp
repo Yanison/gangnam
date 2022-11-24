@@ -29,11 +29,11 @@
 					<article class="rightContent">
 						<div class="rightContentWrap">
 							<h5>회원탈퇴를 원하시면 아래의 텍스트를 입력해주세요.</h5>
-							<div>
-								<input type="text" placeholder="회원탈퇴" class="txt" id="withdrawText">
+							<div style="margin: auto">
+								<input type="text" placeholder="회원탈퇴" class="txt form-control" id="withdrawText">
 							</div>	
 							<div>	
-								<select class="txt1">
+								<select class="form-select txt1">
 									<option>탈퇴사유</option>
 									<option>이용하고 싶은 서비스가 없어요.</option>
 									<option>서비스 퀄리티가 낮아요.</option>

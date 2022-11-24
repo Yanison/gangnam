@@ -9,6 +9,8 @@
 	<link href="/resources/user/member/css/memberView.css" rel="stylesheet">
 	<link href="../resources/user/home/css/header.css" rel="stylesheet">
 	<link href="../resources/user/home/css/footer.css" rel="stylesheet">
+	<!-- bootstrap --> 
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 	
 </head>
 <body>
@@ -31,27 +33,27 @@
 					<article class="rightContent">
 						<div class="inputBox">
 							<label class="label">이메일</label>
-							<input type="text" class="txt" id="infrMmEmailId"
-							 name="infrMmEmailId" value="<c:out value="${item.infrMmEmailId }"/>"
+							 <input class="form-control" type="text"
+							 id="infrMmEmailId"  value="<c:out value="${item.infrMmEmailId }"/>"
 							 >
 						</div>
 						<div class="inputBox">
 							<label class="label">닉네임</label>
-							<input type="text" class="txt" id="infrMmNickname"
-							name="infrMmNickname" value="<c:out value="${item.infrMmNickname}"/>"
-							>
+							<input class="form-control" type="text"
+							 id="infrMmNickname"  value="<c:out value="${item.infrMmNickname }"/>"
+							 >
 						</div>
 						<div class="inputBox">
 							<label class="label">휴대폰</label>
-							<input type="text" class="txt" id="infrMmPhone"
-							name="infrMmPhone" value="<c:out value="${item.infrMmPhone }"/>"							
-							>
+							<input class="form-control" type="text"
+							 id="infrMmPhone"  value="<c:out value="${item.infrMmPhone }"/>"
+							 >
 						</div>
 						<div class="inputBox">
 							<label class="label">생년월일</label>
-							<input type="text" class="txt" id="infrMmBod"
-							name="infrMmBod" value="<c:out value="${item.infrMmBod }"/>"
-							>
+							<input class="form-control" type="text"
+							 id="infrMmBod"  value="<c:out value="${item.infrMmBod }"/>"
+							 >
 						</div>
 						<button type="button" class="modifyBtn" id="modifyBtn">수정하기</button>					
 					</article>

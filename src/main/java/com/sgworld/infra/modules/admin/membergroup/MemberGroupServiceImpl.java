@@ -91,6 +91,14 @@ public class MemberGroupServiceImpl implements MemberGroupService {
 	public int adminDelete(MemberGroupVo vo) throws Exception {
 		return mmDao.adminDelete(vo);
 	}
+
+
+	@Override
+	public int selectCount(MemberGroupVo vo) throws Exception {
+		return mmDao.selectCount(vo);
+	}
+	
+	
 	
 	
 	
