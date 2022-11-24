@@ -51,8 +51,6 @@
  	 </script>   -->  
 </head>
 <body class="sb-nav-fixed">
-	<form name="form" method="post">
-	<input type="hidden" name="infrMmSeq" value="${item.infrMmSeq }">
 	<!-- top banner s-->
 	<%@ include file="../common/header.jsp"%>   
 	<!-- top banner e-->
@@ -67,6 +65,8 @@
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">회원목록</li>
                         </ol>
+                        <form name="form" method="post">
+                        <input type="hidden" name="infrMmSeq" value="${item.infrMmSeq }">
                         <div class="container">
 							<div class="row mb-4">
 		                        <div class="col-6">
@@ -92,8 +92,8 @@
 		                        <div class="col mb-4">
 		                        	<label class="form-label">성별</label>
 		                        	<select class="form-select" id="infrMmGender" name="infrMmGender">
-		                        		<option value="5">남자</option>
-		                        		<option value="6">여자</option>
+		                        		<option value="5"<c:if test="${item.infrMmGender eq 5 }">selected</c:if>>남자</option>
+		                        		<option value="6"<c:if test="${item.infrMmGender eq 6 }">selected</c:if>>여자</option>
 		                        	</select>
 		                        </div>
 	                        </div>
@@ -111,15 +111,15 @@
 		                        <div class="col-6">
 		                        	<label class="form-label">삭제여부</label>
 									<select class="form-select" id="infrMmDelNy" name="infrMmDelNy">
-		                        		<option value="1">N</option>
-		                        		<option value="0">Y</option>
+		                        		<option value="1"<c:if test="${item.infrMmDelNy eq 1 }">selected</c:if>>N</option>
+		                        		<option value="0"<c:if test="${item.infrMmDelNy eq 0 }">selected</c:if>>Y</option>
 		                        	</select>
 		                        </div>
 		                        <div class="col">
 		                        	<label class="form-label">사용여부</label>
 									<select class="form-select" id="infrMmUseNy" name="infrMmUseNy">
-		                        		<option value="1">N</option>
-		                        		<option value="0">Y</option>
+		                        		<option value="1"<c:if test="${item.infrMmUseNy eq 1 }">selected</c:if>>N</option>
+		                        		<option value="0"<c:if test="${item.infrMmUseNy eq 0 }">selected</c:if>>Y</option>
 		                        	</select>
 		                        </div>
 	                        </div>
@@ -131,7 +131,8 @@
 		                        	<label class="form-label"></label>
 		                        </div>
 	                        </div>
-                      	</div>  
+                      	</div>
+                      	</form>	  
 							<div class="row p-0">
 								<div class="col">
 									<button class="btn btn-secondary" type="button" id="btnList"><i class="fa-sharp fa-solid fa-bars"></i></button>
@@ -147,7 +148,7 @@
 				</main>
 			</div>
 		</div>
-	</form>	
+	
     <!-- footer s -->
     <%@ include file="../common/footer.jsp"%> 
     <!-- footer s -->
@@ -208,6 +209,7 @@
 	
 	var seq = $("input:hidden[name=infrMmSeq]");
     var form = $("form[name=form]");
+    
    	$("#btnList").on("click",function(){
    		$(location).attr("href",goUrlList);
    	});

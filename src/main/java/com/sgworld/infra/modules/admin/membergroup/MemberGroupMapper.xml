@@ -123,11 +123,9 @@
 		SET
 			infrMmId = #{infrMmId}
 			,infrMmName = #{infrMmName}
-			,infrMmPw = #{infrMmPw}
 			,infrMmEmailId = #{infrMmEmailId}
 			,infrMmNickname = #{infrMmNickname}
 			,infrMmGender = #{infrMmGender}
-			,infrMmBod = #{infrMmBod}
 			,infrMmPhone = #{infrMmPhone}
 			,infrMmDelNy = #{infrMmDelNy}
 			,infrMmUseNy = #{infrMmUseNy}
