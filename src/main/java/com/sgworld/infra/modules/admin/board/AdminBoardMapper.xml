@@ -49,11 +49,8 @@
 		SELECT		
 			a.*
 			,b.infrMmNickname
-			,c.path
-			,c.uuidName
 		FROM board a
 		JOIN infrMember b on a.infrMmSeq = b.infrMmSeq
-		LEFT JOIN boardUploaded c on a.bdSeq = c.pSeq
 		WHERE 1=1
 			AND bdSeq = #{bdSeq}
 	</select>
@@ -76,7 +73,7 @@
 			,delNy
 		)
 		VALUES (
-			"1"
+			#{infrMmSeq}
 			,#{bdDiv}
 			,#{bdTitle}
 			,#{bdContent}

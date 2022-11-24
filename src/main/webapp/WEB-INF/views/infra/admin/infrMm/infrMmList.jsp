@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+
+<jsp:useBean id="AdminCodeServiceImpl" class="com.sgworld.infra.modules.admin.code.AdminCodeServiceImpl"/>
 <html>
 <head>
 	<title>맴버리스트</title>
@@ -25,7 +26,7 @@
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">회원목록</li>
                         </ol>
-                        <form  method="post" name="mform">
+                        <form  method="post" name="form">
                         <input type="hidden" name="infrMmSeq" value="<c:out value="${dto.infrMmSeq }"/>">
 						<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>">
 						<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow }"/>">
@@ -55,7 +56,7 @@
 									</div>
 									<div class="row mb-2">
 										<div class="col-2 p-1">
-											<select class="form-select">
+											<select class="form-select" id="shOption" name="shOption">
 												<option value="">검색구분</option>
 												<option value="1" <c:if test="${vo.shOption eq 1 }">selected</c:if>>순서</option>
 												<option value="2" <c:if test="${vo.shOption eq 2 }">selected</c:if>>이름</option>
@@ -63,7 +64,7 @@
 											</select>
 										</div>
 										<div class="col-2 p-1">
-											<input class="form-control" type="text" placeholder="검색어">
+											<input class="form-control" type="text" placeholder="검색어" id="shValue" name="shValue" value="<c:out value="${vo.shValue }"/>">
 										</div>
 										<div class="col-1 p-1">
 											<a class="btn btn-warning" role="button" id="btnSearch"><i class="fa-solid fa-magnifying-glass"></i></a>
@@ -103,11 +104,12 @@
 										</thead>
 										<tbody>
 											<c:set var="listCodeGender" value="${AdminCodeServiceImpl.selectListCachedCode('2')}"/>
-					  						<c:set var="listCodePersonal" value="${AdminCodeServiceImpl.selectListCachedCode('3')}"/>
+					  						<c:set var="listCodeEmail" value="${AdminCodeServiceImpl.selectListCachedCode('1')}"/><!-- 이메일 -->
+											<c:set var="listCodePersonalState" value="${AdminCodeServiceImpl.selectListCachedCode('5')}"/><!--  -->
 											<c:choose>
 												<c:when test="${fn:length(list) eq 0 }">
 													<tr>
-														<td class="text-center" colspan="10"></td>
+														<td class="text-center" colspan="10">There is no data!</td>
 													</tr>
 												</c:when>
 												<c:otherwise>
@@ -118,11 +120,24 @@
 														<td class="tableHead"><c:out value="${list.infrMmId }" /></td>
 														<td class="tableHead"><a href="javascript:goMemberView(<c:out value="${list.infrMmSeq }"/>)" class="text-decoration-none"><c:out value="${list.infrMmName }"/></td>
 														<td class="tableHead"><c:out value="${list.infrMmNickname }" /></td>
-														<td class="tableHead"><c:out value="${list.infrMmGender }" /></td>
+														<td class="tableHead">
+															<c:forEach items="${listCodeGender }" var="listGender" varStatus="statusGender">
+																<c:if test="${list.infrMmGender eq listGender.infrCcSeq }"><c:out value="${listGender.infrCcNameKor }" /></c:if>	
+															</c:forEach>
+														</td>
 														<td class="tableHead"><c:out value="${list.infrMmBod }" /></td>
-														<td class="tableHead"><c:out value="${list.infrMmEmailId }" />@<c:out value="${list.infrMmEmailAddress }" /></td>
+														<td class="tableHead">
+															<c:out value="${list.infrMmEmailId }" />@
+															<c:forEach items="${listCodeEmail }" var="listEmail" varStatus="statusEmail">
+																<c:if test="${list.infrMmEmailAddress eq listEmail.infrCcSeq }"><c:out value="${listEmail.infrCcNameEng }" /></c:if>	
+															</c:forEach>
+														</td>
 														<td class="tableHead"><c:out value="${list.infrMmPhone }" /></td>
-														<td class="tableHead"><c:out value="${list.infrMmDelNy }" /></td>
+														<td class="tableHead">
+															<c:forEach items="${listCodePersonalState }" var="listState" varStatus="statusState">
+																<c:if test="${list.infrMmDelNy eq listState.infrCcSeq }"><c:out value="${listState.infrCcNameKor }" /></c:if>
+															</c:forEach>
+														</td>
 													</tr>
 												</c:forEach>
 												</c:otherwise>
@@ -135,12 +150,12 @@
 								<!-- pagination e -->
 								<div class="row p-0">
 									<div class="col">
-										<button class="btn btn-danger" type="button" id="cglCancel"><i class="fa-duotone fa-x"></i></button>
-										<button class="btn btn-danger" type="button" id="cglDel"><i class="fa-regular fa-trash-can"></i></button>
+										<button class="btn btn-danger" type="button" onclick="ready()"><i class="fa-duotone fa-x"></i></button>
+										<button class="btn btn-danger" type="button" onclick="ready()"><i class="fa-regular fa-trash-can"></i></button>
 									</div>
 									<div class="col" style="text-align: right;">
-										<button class="btn btn-success" type="button" id="cglExcel"><i class="fa-regular fa-file-excel"></i></button>
-										<button class="btn btn-primary" type="button" id="formBtn"><i class="fa-regular fa-plus"></i></button>
+										<button class="btn btn-success" type="button" onclick="ready()"><i class="fa-regular fa-file-excel"></i></button>
+										<button class="btn btn-primary" type="button" id="btnForm"><i class="fa-regular fa-plus"></i></button>
 									</div>
 								</div>
 							</div>
@@ -154,12 +169,12 @@
         <%@ include file="../common/footer.jsp"%> 
         <!-- footer s -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="../../../admin/adminTemplate/js/scripts.js"></script>
+        <script src="../../../../../resources/admin/adminTemplate/js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="../../../admin/adminTemplate/assets/demo/chart-area-demo.js"></script>
-        <script src="../../../admin/adminTemplate/assets/demo/chart-bar-demo.js"></script>
+        <!-- <script src="../../../../resources/admin/adminTemplate/chart-area-demo.js"></script> -->
+        <!-- <script src="../../../admin/adminTemplate/assets/demo/chart-bar-demo.js"></script> -->
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-        <script src="../../../admin/adminTemplate/js/datatables-simple-demo.js"></script>
+        <!-- <script src="../../../admin/adminTemplate/js/datatables-simple-demo.js"></script> -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
         <script>
         	var goUrlMemberForm = "/admin/memberGroup/infrMmForm";
@@ -167,9 +182,9 @@
         	var goUrlList = "/admin/memberGroup/infrMmList";
         	
        		var seq = $("input:hidden[name=infrMmSeq]");
-        	var form = $("form[name=mform]");
+        	var form = $("form[name=form]");
         	
-       		$("#formBtn").on("click",function(){
+       		$("#btnForm").on("click",function(){
        			$(location).attr("href",goUrlMemberForm);
        		});
         	
@@ -196,6 +211,10 @@
     	    	seq.val(keyValue);
     			form.attr("action", goUrlView).submit();
     		}
+        	
+        	function ready(){
+        		alert("준비중입니다")
+        	};
         	
         </script>
 </body>

@@ -99,7 +99,7 @@ upload = function(objName, seq, allowedMaxTotalFileNumber, allowedExtdiv, allowe
 
 			var divImage = "";
 			divImage += '<div id="imgDiv_'+type+'_'+ sort +'" style="display: inline-block; height: 95px;">';
-			divImage += '	<img src="'+ imageFile.result +'" class="rounded" width= "85px" height="85px">';
+			divImage += '	<img src="'+ imageFile.result +'" class="rounded" width= "580px" height="450px">';
 			divImage += '	<div style="position: relative; top:-85px; left:5px"><span style="color: red; cursor:pointer;" onClick="delImgDiv(0,' + type +','+ sort +')">X</span></div>';
 			divImage += '</div> ';
 			

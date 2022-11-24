@@ -22,8 +22,12 @@
 	
 	
 	<select id="selectMmList" resultMap="MemberGroup">
-		select * from infrMember
-		ORDER BY infrMmSeq DESC
+		<include refid="Base.selectListUpperForMysql" />
+			SELECT
+				a.*
+			<include refid="selectCommon" />
+			ORDER BY infrMmSeq DESC
+		<include refid="Base.selectListLowerForMysql" />	
 	</select>
 	
 	<select id="selectMmOne" resultMap="MemberGroup">
@@ -42,7 +46,7 @@
 			from infrMember
 		where 1=1
 		and infrMmId = #{infrMmId}
-		and infrMmPw = MD5(#{infrMmPw})
+		and infrMmPw = #{infrMmPw}
 	</select>
 	
 	<select id="isduple" resultType="Integer">
@@ -119,11 +123,9 @@
 		SET
 			infrMmId = #{infrMmId}
 			,infrMmName = #{infrMmName}
-			,infrMmPw = #{infrMmPw}
 			,infrMmEmailId = #{infrMmEmailId}
 			,infrMmNickname = #{infrMmNickname}
 			,infrMmGender = #{infrMmGender}
-			,infrMmBod = #{infrMmBod}
 			,infrMmPhone = #{infrMmPhone}
 			,infrMmDelNy = #{infrMmDelNy}
 			,infrMmUseNy = #{infrMmUseNy}
@@ -143,7 +145,7 @@
 	<delete id="deleteMm">
 	</delete>
 	
-	<!-- user_계시판 리스트 띠우기 -->
+	<!-- user_게시판 리스트 띠우기 -->
 	<select id="selectListBoard" resultMap="MemberGroup">
 		SELECT
 			a.infrMmSeq
@@ -165,7 +167,7 @@
 	
 	
 	<!-- 로그인 -->
-	<select id="selectOneId" resultMap="MemberGroup">
+	<select id="selectOneXdminId" resultMap="MemberGroup">
 		SELECT
 			a.infrMmSeq
 			,a.infrMmId
@@ -173,10 +175,11 @@
 			infrMember a
 		WHERE 1=1
 			AND a.infrMmId = #{infrMmId}
+			AND a.infrMmDiv = 0
 	</select>
 	
 	
-	<select id="selectOneLogin" resultMap="MemberGroup">
+	<select id="selectOneXdminLogin" resultMap="MemberGroup">
 		SELECT
 			a.infrMmSeq
 			,a.infrMmId
@@ -208,4 +211,34 @@
 	</select>
 	
 	
+	<!-- admin 회원정보 수정 -->
+	<update id="adminUpdate">
+		UPDATE infrMember
+		SET
+			infrMmId = #{infrMmId}
+			,infrMmName = #{infrMmName}
+			,infrMmEmailId = #{infrMmEmailId}
+			,infrMmNickname = #{infrMmNickname}
+			,infrMmGender = #{infrMmGender}
+			,infrMmBod = #{infrMmBod}
+			,infrMmPhone = #{infrMmPhone}
+			,infrMmDelNy = #{infrMmDelNy}
+			,infrMmUseNy = #{infrMmUseNy}
+		WHERE 1=1
+			AND infrMmSeq = #{infrMmSeq} 	
+	</update>
+	
+	<!-- admin 삭제여부 업데이트 -->
+	<update id="adminUelete">
+		UPDATE infrMember
+		SET
+			infrMmDelNy = 0
+		WHERE 1=1
+			AND infrMmSeq = #{infrMmSeq}	
+	</update>
+	
+	<!-- admin 회원정보 완전 삭제 -->
+	<delete id="adminDelete">
+		DELETE FROM infrMember WHERE infrMmSeq = #{infrMmSeq}
+	</delete>
 </mapper>

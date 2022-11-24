@@ -5,7 +5,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
-<%@ page session="false" %>
 <html>
 <head>
 	<title>Home</title>
@@ -77,37 +76,6 @@
 		<%@include file="../../common/footer.jsp" %>
 	</footer>
 </form>	
-	<script type="text/javascript">
-	
-		var goUrlLogin = "/";
-		
-/*  		$("#btnLogin").on("click", function(){
-			
-			$.ajax({
-				async: true 
-				,cache: false
-				,type: "post" */
-				/* ,dataType:"json" */
-				/* ,url: "/member/loginProc" */
-				/* ,data : $("#formLogin").serialize() */
-				//,data : { "infrMmId" : $("#infrMmId").val(), "infrMmPw" : $("#infrMmPw").val(), "autoLogin" : $("#autoLogin").is(":checked")}
-/* 				,data : { "infrMmId" : $("article.loginBox #infrMmId").val(), "infrMmPw" : $("#infrMmPw").val()}
-				,success: function(response) {
-					if(response.rt == "success") {
-							location.href = goUrlLogin;
-							alert("로그인 성공")
-					} else {
-						alert("회원없음");
-					}
-				}
-				,error : function(jqXHR, textStatus, errorThrown){
-					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
-				}
-			});
-		}); */ 
-	
-		
-	</script>
 
 </body>
 </html>

@@ -59,7 +59,7 @@ $(document).ready(function(){
 					console.log("@@"+roadAddr)
 					// 주소로 좌표를 검색
 					geocoder.addressSearch(roadAddr, function(result, status) {
-						 
+				
 					// 정상적으로 검색이 완료됐으면,
 					if (status == daum.maps.services.Status.OK) {
 						var lat = result[0].y;
