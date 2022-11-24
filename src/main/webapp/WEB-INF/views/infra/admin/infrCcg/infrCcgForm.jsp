@@ -77,7 +77,7 @@
 	                        </div>
 							<div class="row p-0">
 								<div class="col">
-									<button class="btn btn-secondary" type="button" id="cglCancel"><i class="fa-sharp fa-solid fa-bars"></i></button>
+									<button class="btn btn-secondary" type="button" id="btnList"><i class="fa-sharp fa-solid fa-bars"></i></button>
 								</div>
 								<div class="col" style="text-align: right;">
 									<button class="btn btn-danger" type="button" id="cglCancel"><i class="fa-duotone fa-x"></i></button>
@@ -103,7 +103,26 @@
         <script src="/resources/admin/adminTemplate/js/datatables-simple-demo.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 		<script>
+			var goUrlList = "/admin/codeGroup/infrCcgList";
+			
+			$("#btnList").on("click",function(){
+       			$(location).attr("href",goUrlList);
+       		});
+			
 			function register(){
+				if(document.getElementById('infrCcgNameKor').value == '' || document.getElementById('infrCcgNameKor').value == null){
+					alert("코드그룹이름(한글) 입력해주십쇼")
+					document.getElementById('infrCcgNameKor').value="";
+					document.getElementById('infrCcgNameKor').focus();
+					return false;
+				}
+				if(document.getElementById('infrCcgNameEng').value == '' || document.getElementById('infrCcgNameEng').value == null){
+					alert("코드그룹이름(영문) 입력해주십쇼")
+					document.getElementById('infrCcgNameEng').value="";
+					document.getElementById('infrCcgNameEng').focus();
+					return false;
+				}
+				
 		    	document.getElementById('ccgFormReg').submit();
 		    };
 		</script>

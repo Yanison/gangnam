@@ -27,15 +27,16 @@
                             <li class="breadcrumb-item active">코드그룹</li>
                         </ol>
                         <form method="post" id="form" name="form">
+                        <input type="hidden" name="infrCcgSeq" value="${item.infrCcgSeq }">
                         <div class="container">
 	                        <div class="row mb-4">
 		                        <div class="col-6">
 		                        	<label class="form-label">코드그룹이름</label>
-		                        	<input class="form-control" type="text" value="${item.infrCcgNameKor }">
+		                        	<input class="form-control" type="text" name="infrCcgNameKor" id="infrCcgNameKor" value="${item.infrCcgNameKor }">
 		                        </div>
 		                        <div class="col">
 		                        	<label class="form-label">코드그룹이름(영문)</label>
-		                        	<input class="form-control" type="text" value="${item.infrCcgNameEng }">
+		                        	<input class="form-control" type="text" name="infrCcgNameEng" id="infrCcgNameEng" value="${item.infrCcgNameEng }">
 		                        </div>
 	                        </div>
 	                        <div class="row mb-4">
@@ -61,7 +62,7 @@
 		                        </div>
 		                        <div class="col">
 		                        	<label class="form-label">등록일</label>
-		                        	<input class="form-control" type="text" name="regDatetime" value="<fmt:formatDate value="${item.regDatetime }" pattern="yyyy-MM-dd" />">
+		                        	<input class="form-control" type="text" value="<fmt:formatDate value="${item.regDatetime }" pattern="yyyy-MM-dd" />">
 		                        </div>
 	                        </div>
 	                        <div class="row mb-4">
@@ -76,7 +77,7 @@
 	                        </div>
 							<div class="row p-0">
 								<div class="col">
-									<button class="btn btn-secondary" type="button" id="cglCancel"><i class="fa-sharp fa-solid fa-bars"></i></button>
+									<button class="btn btn-secondary" type="button" id="btnList"><i class="fa-sharp fa-solid fa-bars"></i></button>
 								</div>
 								<div class="col" style="text-align: right;">
 									<button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#deleModal"><i class="fa-duotone fa-x"></i></button>
@@ -151,7 +152,23 @@
         var form = $("form[name=form]");
         var formVo = $("form[name=formVo]");
         
+        $("#btnList").on("click",function(){
+   			$(location).attr("href",goUrlList);
+   		});
+        
         $("#btnModify").on("click",function(){
+        	 if(document.getElementById('infrCcgNameKor').value == '' || document.getElementById('infrCcgNameKor').value == null){
+				alert("코드그룹이름(한글) 입력해주십쇼")
+				document.getElementById('infrCcgNameKor').value="";
+				document.getElementById('infrCcgNameKor').focus();
+				return false;
+			}
+			if(document.getElementById('infrCcgNameEng').value == '' || document.getElementById('infrCcgNameEng').value == null){
+				alert("코드그룹이름(영문) 입력해주십쇼")
+				document.getElementById('infrCcgNameEng').value="";
+				document.getElementById('infrCcgNameEng').focus();
+				return false;
+			} 
        		form.attr("action", goUrlUpdt).submit();
        	});
         
