@@ -44,28 +44,28 @@ public class AdminCodeGroupController {
 	@RequestMapping(value="insert")
 	public String insert(CodeGroupDto dto) throws Exception {
 		service.insert(dto);
-		return "redirect:/admin/codeGroup/infrCcgList";
+		return "redirect:/admin/infrCcg/infrCcgList";
 	}
 	
 	//admin ccg수정
 	@RequestMapping(value="update")
 	public String update(CodeGroupDto dto) throws Exception {
 		service.update(dto);
-		return "redirect:/admin/codeGroup/infrCcgList";
+		return "redirect:/admin/infrCcg/infrCcgList";
 	}
 	
 	//admin ccg부분삭제
 	@RequestMapping(value="uelete")
 	public String uelete(CodeGroupDto dto) throws Exception {
 		service.uelete(dto);
-		return "redirect:/admin/codeGroup/infrCcgList";
+		return "redirect:/admin/infrCcg/infrCcgList";
 	}
 	
 	//admin ccg완전삭제
 	@RequestMapping(value="delete")
 	public String delete(CodeGroupVo vo) throws Exception {
 		service.delete(vo);
-		return "redirect:/admin/codeGroup/infrCcgList";
+		return "redirect:/admin/infrCcg/infrCcgList";
 	}
 	
 }

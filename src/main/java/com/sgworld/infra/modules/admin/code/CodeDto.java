@@ -20,8 +20,15 @@ public class CodeDto {
 	private String modBy;
 	
 	private String infrCcgSeq;
+	private String infrCcgNameKor;
 //////////////////////////////////////////////////////////	
 	
+	public String getInfrCcgNameKor() {
+		return infrCcgNameKor;
+	}
+	public void setInfrCcgNameKor(String infrCcgNameKor) {
+		this.infrCcgNameKor = infrCcgNameKor;
+	}
 	//for cache
 	public static List<CodeDto> cachedCodeArrayList = new ArrayList<CodeDto>();
 	

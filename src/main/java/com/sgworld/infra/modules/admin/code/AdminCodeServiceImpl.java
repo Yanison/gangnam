@@ -53,4 +53,53 @@ public class AdminCodeServiceImpl implements AdminCodeService {
 	public static void clear() throws Exception {
 		CodeDto.cachedCodeArrayList.clear();
 	}
+
+	@Override
+	public List<CodeDto> selectList(CodeVo vo) throws Exception {
+		return dao.selectList(vo);
+	}
+
+	@Override
+	public int selectOneCount(CodeVo vo) throws Exception {
+		return dao.selectOneCount(vo);
+	}
+
+	@Override
+	public int insert(CodeDto dto) throws Exception {
+		return dao.insert(dto);
+	}
+
+	@Override
+	public List<CodeDto> viewList() throws Exception {
+		return dao.viewList();
+	}
+
+	@Override
+	public CodeDto selectOne(CodeVo vo) throws Exception {
+		return dao.selectOne(vo);
+	}
+
+	@Override
+	public int update(CodeDto dto) throws Exception {
+		return dao.update(dto);
+	}
+
+	@Override
+	public int uelete(CodeDto dto) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.uelete(dto);
+	}
+
+	@Override
+	public int delete(CodeVo vo) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.delete(vo);
+	}
+	
+	
+	
+	
+	
+	
+	
 }
