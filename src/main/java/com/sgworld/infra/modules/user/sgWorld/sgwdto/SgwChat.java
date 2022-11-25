@@ -5,6 +5,7 @@ public class SgwChat {
 	private String sgwTitle;
 	private String chatMsg;
 	private String infrMmSeq;
+	private String imfrNickname;
 	private String endPoint;
 	
 	public String getEndPoint() {
@@ -31,6 +32,13 @@ public class SgwChat {
 	public void setInfrMmSeq(String infrMmSeq) {
 		this.infrMmSeq = infrMmSeq;
 	}
+	public String getImfrNickname() {
+		return imfrNickname;
+	}
+	public void setImfrNickname(String imfrNickname) {
+		this.imfrNickname = imfrNickname;
+	}
+	
 	
 	
 	

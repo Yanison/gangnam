@@ -20,6 +20,20 @@ function selectSgworldInfo(){
 			alert('selectSgworldInfo err')
 		}
 	})
+	
+	$.ajax({
+		url:'/sgWorld/findMm'
+		,type:'get'
+		,data:{
+			'infrMmSeq': infrMmSeq
+		}
+		,success:function(rp){
+			console.log(JSON.stringify(rp))
+		}
+		,error:function(rp){
+			alert('selectSgworldInfo err')
+		}
+	})
 }
 
 
@@ -53,8 +67,7 @@ function connect() {
         });
         
          stompClient.subscribe('/topic/sgWorld/sendMessage/'+endPoint, function (msgObjFromServer) {
-            var msgObj = JSON.parse(msgObjFromServer.body).chatMsg
-            console.log("topic/sgWorld/sendMessage"+msgObj)
+            var msgObj = JSON.parse(msgObjFromServer.body)
             showMsg(msgObj);
         });
     });
@@ -81,16 +94,15 @@ function sendMsg(f) {
    
 }
 function showMsg(message) {
-	console.log("message.chatMsg :: "+message)
 	var html =''
 	html += '<div class="msgDiv">'
 	html += 	'<div class="msgHeader">'
 	html += 		'<i id="exitSgWorld"class="fa-solid fa-user"></i>'	
-	html += 		'<p>'+new Date()+'</p>'	
+	html += 		'<p>'+message.datetime+'</p>'	
 	html += 	'</div>'	
 	html += 	'<div class="msgBody">'	
 	html += 		'<p class="magTextarea" id="magTextarea">'	
-	html += 			message
+	html += 			message.chatMsg
 	html += 		'</p>'	
 	html += 	'</div>'
 	html += '</div>'

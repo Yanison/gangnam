@@ -33,7 +33,7 @@
 							<input class="inputId inputLogin" id="infrMmId" name="infrMmId" type="text" value="ghkdtjsdi878">
 						</div>
 						<div class="inputPwBox">
-							<input class="inputPw inputLogin" id="infrMmPw" name="infrMmPw" type="password" value="seon1011901!">
+							<input class="inputPw inputLogin" id="infrMmPw" name="infrMmPw" type="password" value="123123">
 						</div>
 						<div class="loignCheck">
 							<i class="fa-regular fa-circle-check" style="margin-right:10px;"></i>
