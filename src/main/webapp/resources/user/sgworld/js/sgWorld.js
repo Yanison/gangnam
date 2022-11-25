@@ -1,8 +1,12 @@
-const canvas = document.getElementById('canvas');
+var infrMmSeq = $('#infrMmSeq').val()
+
+
+
+const canvas = document.getElementById('canvas'+infrMmSeq);
 const ctx = canvas.getContext('2d');
 
 var mtAvatar = new Image();
-mtAvatar.src = "./resources/common/images/pepe.png"
+mtAvatar.src = "../../resources/user/sgworld/images/pepeCrying.png"
 
 const player = {
   w: 10,
@@ -89,4 +93,4 @@ const keyUp = e => {
 
 update();
 document.addEventListener('keydown', keyDown);
-document.addEventListener('keyup', keyUp);
+document.addEventListener('keyup', keyUp);	

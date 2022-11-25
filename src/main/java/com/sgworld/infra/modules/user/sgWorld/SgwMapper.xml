@@ -80,7 +80,7 @@
 	
 	<select id="onLoadUserInfoSgw" resultMap="SgwDto">
 		select
-		  r.sgwSeq
+		  s.sgwSeq
 		  ,m.infrMmSeq
 		  ,m.infrMmNickname
 		  ,a.avatarSeq
@@ -89,7 +89,7 @@
 		  left join sgWorldRoom r 
 		    on s.sgwSeq = r.sgwSeq
 		  left join infrMember m 
-		    on r.infrMmSeq = m.infrMmSeq
+		    on s.regByMm = m.infrMmSeq
 		  left join sgWorldAvatar a
 		    on r.avatarSeq = a.avatarSeq
 		  where 1=1

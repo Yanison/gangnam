@@ -19,6 +19,8 @@ public class SgWorldController {
 	
 	@Autowired
 	SgwSerivceImpl sgwService;
+	@Autowired
+	SgwWSController sgwWSController;
 	
 	private void setOnliveNy(SgwDto sgwDto,HttpSession session,Model model,String manInCharge,String endPoint){
 		 
@@ -66,14 +68,22 @@ public class SgWorldController {
 		System.out.println("manInCharge :: " + onLoadInfoSgw.getRegByMm());
 		setOnliveNy(sgwDto,session,model,onLoadInfoSgw.getRegByMm(),endPoint);
 		
+		sgwDto.setInfrMmSeq(infrMmSeq);
 		SgwDto onLoadUserInfoSgw = sgwService.onLoadUserInfoSgw(sgwDto);
-		model.addAttribute("onLoadUserInfoSgw", onLoadUserInfoSgw);
+		System.out.println(onLoadUserInfoSgw.getInfrMmNickname()+ "님이 입장합니다. :: ");
+		sgwWSController.requestAvatar(onLoadUserInfoSgw, endPoint);
 		/*
 		  * 방장이 들어오면 방의 활성화 여부를 결정함.
 		  * 활성화 여부는 세션값으로 남김. 
 		  */
+		
+		
+		
+		
 		return "infra/user/modules/sgWorld/sgWorld";
 	}
+	
+	
 	
 	
 	

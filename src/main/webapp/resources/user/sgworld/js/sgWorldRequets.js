@@ -37,7 +37,6 @@ function selectSgworldInfo(){
 
 }
 
-
 var stompClient = null;
 	
 function setConnected(connected) {
@@ -71,26 +70,33 @@ function connect() {
             var msgObj = JSON.parse(msgObjFromServer.body)
             showMsg(msgObj);
         });
+        
+        
+        stompClient.subscribe('/topic/sgWorld/requestAvatar/'+endPoint, function (requestAvatar) {
+            var requestAvatar = JSON.parse(requestAvatar.body)
+            console.log(JSON.parse(requestAvatar.body));
+            createAvatar(requestAvatar);
+        });
     });
 }
 
 
 function sendMsg(f) {
-				var chatmsg = {
-					chatMsg : $('input[name="msg"]').val(),
-					infrMmSeq : $('#infrMmSeq').val(),
-				}
-	
-	var endPoint = $('#endPoint').val()
-	if(f.keyCode == 13){ //javascript에서는 13이 enter키를 의미함
-	    
-	    stompClient.send(
-		"/app/sgWorld/msgTo/"+endPoint,
-	    {}, 
-	    JSON.stringify(chatmsg)
-	    );
-	    $('#inputMsg').val('');
-    }
+	var chatmsg = {
+		chatMsg : $('input[name="msg"]').val(),
+		infrMmSeq : $('#infrMmSeq').val(),
+	}
+
+var endPoint = $('#endPoint').val()
+if(f.keyCode == 13){ //javascript에서는 13이 enter키를 의미함
+    
+    stompClient.send(
+	"/app/sgWorld/msgTo/"+endPoint,
+    {}, 
+    JSON.stringify(chatmsg)
+    );
+    $('#inputMsg').val('');
+}
 	
    
 }
@@ -118,3 +124,16 @@ function disconnect() {
     setConnected(false);
     console.log("Disconnected");
 }
+
+
+
+
+function createAvatar(userIdx){
+	console.log('reQeust createAvatar')
+	var canvasHtml = "";
+	//canvasHtml += 	'<input type="hidden" name="useridx'+userIdx+'">'
+	canvasHtml += '<canvas class="canvas" id="canvas'+userIdx+'">'
+	canvasHtml += '</canvas>'
+	$('article.canvasDiv').html(canvasHtml);
+}
+

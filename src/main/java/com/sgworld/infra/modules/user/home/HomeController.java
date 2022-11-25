@@ -30,12 +30,11 @@ public class HomeController {
 		model.addAttribute("infrMmSeq", infrMmSeq);
 		model.addAttribute("infrMmName", infrMmName);
 		model.addAttribute("infrMmId", infrMmId);
-		
-		
 		try {
 			if(infrMmSeq != null) {
 				sgwDto.setInfrMmSeq(infrMmSeq);
 				String sessSgw = sgwService.findSgwbyMmSeq(sgwDto).getRegByMm();
+				System.out.println("sessSgw ::" + sessSgw);
 				if(sessSgw != null) {
 					System.out.println("sessSgw != null :: " + (sessSgw != null));
 					System.out.println("sessSgw :: "+sessSgw);
@@ -60,7 +59,7 @@ public class HomeController {
 	@RequestMapping(value="/")
 	public String home(SgwDto sgwDto,Model model)throws Exception {
 		
-//		getSss(model,sgwDto);
+		getSss(model,sgwDto);
 		
 		List<SgwDto> sgwList = homeSerive.selectSgwList(sgwDto);
 		model.addAttribute("sgwList", sgwList);

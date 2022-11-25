@@ -51,7 +51,7 @@ public class MemberRestController {
 			session.setAttribute("infrMmSeq", user.getInfrMmSeq());
 			session.setAttribute("infrMmId", user.getInfrMmId());
 			session.setAttribute("infrMmName", user.getInfrMmName());
-			
+			session.setMaxInactiveInterval(0);
 			Object infrMmSeq = session.getAttribute("infrMmSeq");
 			Object infrMmId = session.getAttribute("infrMmId");
 			Object infrMmName = session.getAttribute("infrMmName");
