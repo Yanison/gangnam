@@ -59,8 +59,8 @@
 												<td><input type="checkbox"></td>
 												<td><c:out value="${list.bdTitle }" /></td>
 												<td><%-- <c:out value="${list.regDatetime }" /> --%><fmt:formatDate value="${list.regDatetime }" pattern="yyyy-MM-dd"/></td>
-												<td>10<!-- ? --></td>
-												<td><c:out value="${list.bdLikeSeq }" /></td>
+												<td><c:out value="${list.viewCount }"/></td>
+												<td><%-- <c:out value="${list.bdLikeSeq }" /> --%></td>
 											</tr>
 										</c:forEach>
 									</c:otherwise>

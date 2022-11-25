@@ -2,6 +2,9 @@ package com.sgworld.infra.modules.admin.membergroup;
 
 import java.util.List;
 
+
+
+
 public interface MemberGroupService {
 
 	//유저 리스트
@@ -47,4 +50,5 @@ public interface MemberGroupService {
 	//admin 회원정보 완전 삭제
 	public int adminDelete(MemberGroupVo vo)throws Exception;
 	
+
 }

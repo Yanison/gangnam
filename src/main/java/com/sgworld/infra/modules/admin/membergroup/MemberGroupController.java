@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
+
 @Controller
 @RequestMapping(value = "/admin/memberGroup/")
 public class MemberGroupController {
@@ -73,5 +74,17 @@ public class MemberGroupController {
 		service.adminDelete(vo);
 		return "redircet:/admin/memberGroup/infrMmList";
 	}
+	
+	/*
+	 * @SuppressWarnings(value = {"all"})
+	 * 
+	 * @RequestMapping(value = "infrAvatarInst") public String
+	 * infrAvatarInst(AvatarVo vo, AvatarDto dto, RedirectAttributes
+	 * redirectAttributes) throws Exception { System.out.println("까꿍");
+	 * service.insert(dto); vo.setAvatarSeq(dto.getAvatarSeq());
+	 * 
+	 * redirectAttributes.addFlashAttribute("vo", vo); return
+	 * "redirect:/admin/avatar/infrAvatarList"; }
+	 */
 	
 }
