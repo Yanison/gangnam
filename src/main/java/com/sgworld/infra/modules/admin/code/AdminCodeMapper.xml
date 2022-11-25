@@ -6,7 +6,17 @@
 <mapper namespace="com.sgworld.infra.modules.admin.code.AdminCodeMapper">
 
 	 <resultMap id="resultMapObj" type="com.sgworld.infra.modules.admin.code.CodeDto"></resultMap>
-
+	
+	<sql id ="selectCommon">
+		FROM infrCode a
+		WHERE 1=1
+			<if test="shDelNy != null and !shDelNy.equals('')">AND infrCcDelNy = #{shDelNy}</if>
+			<choose>
+				<when test="shOption == 1">AND infrCcSeq = #{shValue}</when>
+				<when test="shOption == 2">AND infrCcNameKor LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption == 3">AND infrCcNameEng LIKE CONCAT('%',#{shValue},'%')</when>
+			</choose>
+	</sql>
 
 	<select id="selectListCachedCodeArrayList" resultMap="resultMapObj">
 		SELECT 
@@ -21,5 +31,99 @@
 			AND infrCcDelNy = 1
 		    AND infrCcUseNy = 0
     </select>
-
+    
+    <!-- admin cc리스트 -->
+    <select id="selectList" resultMap="resultMapObj">
+    	<include refid="Base.selectListUpperForMysql" /> 
+	    	SELECT
+				a.infrCcSeq
+				,(SELECT infrCcgNameKor FROM infrCodeGroup aa WHERE 1=1 AND aa.infrCcgSeq = a.infrCodeGroupSeq)as infrCcgNameKor
+	    		,a.infrCcNameKor
+	    		,a.infrCcNameEng
+	    		,a.infrCcDelNy
+	    		,a.infrCcUseNy
+	    		,a.regDatetime
+	    <include refid="selectCommon" /> 
+		    ORDER BY a.infrCcSeq DESC 		
+    	<include refid="Base.selectListLowerForMysql" />
+    </select>
+    
+    <!-- admin cc count -->
+    <select id="selectOneCount" resultType="Integer">
+    	SELECT COUNT(*)
+    	<include refid="selectCommon" />
+    </select>
+    
+    <!-- admin cc등록 -->
+    <insert id="insert">
+    	INSERT INTO infrCode(
+    		infrCcNameKor
+    		,infrCcNameEng
+    		,infrCcUseNy
+    		,infrCcDelNy
+    		,regDatetime
+    		,infrCodeGroupSeq
+    	)VALUES(
+    		#{infrCcNameKor}
+    		,#{infrCcNameEng}
+    		,#{infrCcUseNy}
+    		,#{infrCcDelNy}
+    		,now()
+    		,#{infrCodeGroupSeq}
+    	)
+    	<selectKey resultType="String" keyProperty="infrCcSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+    </insert>
+    
+    <!-- admin ccg한글이름 불러오기 -->
+    <select id="viewList" resultMap="resultMapObj">
+    	SELECT
+    		infrCcgSeq
+    		,infrCcgNameKor
+    	FROM infrCodeGroup	
+    </select>
+    
+    <!-- admin view -->	
+	<select id="selectOne" resultMap="resultMapObj">
+		SELECT
+			infrCcSeq
+			,infrCcNameKor
+			,infrCcNameEng
+			,infrCcUseNy
+			,infrCcDelNy
+			,regDateTime
+			,infrCodeGroupSeq
+		FROM infrCode
+		WHERE 1=1
+			AND infrCcSeq = #{infrCcSeq}	
+	</select>
+	
+	<!-- admin cc수정 -->
+	<update id="update">
+		UPDATE infrCode
+		SET
+			infrCcNameKor = #{infrCcNameKor}
+			,infrCcNameEng = #{infrCcNameEng}
+			,infrCcUseNy = #{infrCcUseNy}
+			,infrCcDelNy = #{infrCcDelNy}
+			,infrCodeGroupSeq = #{infrCodeGroupSeq}
+		WHERE 1=1
+			AND infrCcSeq = #{infrCcSeq}	
+	</update>
+	
+	<!-- admin cc부분삭제 -->
+	<update id="uelete">
+		UPDATE infrCode
+		SET
+			infrCcDelNy = 0
+		WHERE 1=1
+			AND infrCcSeq = #{infrCcSeq}	
+	</update>
+	
+	<!-- admin cc완전삭제 -->
+	<delete id="delete">
+		DELETE FROM infrCode WHERE infrCcSeq=#{infrCcSeq}
+	</delete>
+	
 </mapper>

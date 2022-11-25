@@ -5,18 +5,19 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sgworld.infra.modules.user.sgWorld.SgwMapper">
 	<resultMap id="SgwDto" type="com.sgworld.infra.modules.user.sgWorld.sgwdto.SgwDto">
-		<result property="infrMmSeq" column="regByMm"></result>
 	</resultMap>
 	
 	<insert id="buildSgw">
-		insert into sgWorld
+		insert into 
+			(select * from sgWorld sg left join sgWorldRoom sgr on sg.sgwSeq = sgr.sgwRSeq)
 		(
-		sgwTitle
-		,isHidden
-		,sgwMmNumber
-		,sgwMap
-		,sgwLink
-		,regByMm
+		sg.sgwTitle
+		,sgisHidden
+		,sg.sgwMmNumber
+		,sg.sgwMap
+		,sg.sgwLink
+		,sg.regByMm
+		,sgr.sgwSeq
 		)
 		values(
 		#{sgwTitle}
@@ -25,21 +26,16 @@
 		,#{sgwMap}
 		,#{sgwLink}
 		,#{infrMmSeq}
+		,#{sgwSeq}
 		)
 	</insert>
-	<select id="selectSgwOne" resultMap="SgwDto">
+	<select id="findSgwbyMmSeq" resultMap="SgwDto">
 		select * 
 		from sgWorld 
 		where 1=1
-		and 
-		order by sgwSeq limit 1;
+		and regByMm = #{infrMmSeq}
 	</select>
-	<select id="goMySgw" resultMap="SgwDto">
-		select sgwLink
-		from sgWorld
-		where 1=1
-		and  regByMm = #{infrMmSeq}
-	</select>
+	
 	<select id="isDupleLink" resultType="Integer">
 		select count(*)
 		from sgWorld
@@ -51,5 +47,57 @@
 		from sgWorld 
 		where 1=1
 		and  regByMm = #{infrMmSeq}
+	</select>
+	<select id="findMm" resultMap="SgwDto">
+		select * from infrMember
+		where infrMmSeq = #{infrMmSeq}
+	</select>
+	
+	<select id="onLoadInfoSgw" resultMap="SgwDto">
+		select
+		  s.sgwSeq
+		  ,s.sgwTitle
+		  ,s.sgwMap
+		  ,s.sgwMmNumber
+		  ,s.isHidden
+		  ,s.sgwLink
+		  ,s.regDateTime
+		  ,s.regByMm
+		from sgWorld s
+		where 1=1
+		and s.sgwLink = #{sgwLink}
+	</select>
+	
+	<select id="onLoadUserInfoSgw" resultMap="SgwDto">
+		select
+		  r.sgwSeq
+		  ,m.infrMmSeq
+		  ,m.infrMmNickname
+		  ,a.avatarSeq
+		  ,a.avatarName
+		from sgWorld s 
+		  left join sgWorldRoom r 
+		    on s.sgwSeq = r.sgwSeq
+		  left join infrMember m 
+		    on r.infrMmSeq = m.infrMmSeq
+		  left join sgWorldAvatar a
+		    on r.sgwAvatar = a.avatarSeq
+		  where 1=1
+		  and s.sgwLink = #{sgwLink}
+	</select>
+	
+	<insert id="addUserSgwRoom">
+		insert into sgwRoom(
+			infrMmSeq
+			sgwAvatarSeq
+		)values(
+			#{infrMmSeq},
+			#{sgwAvatarSeq}
+			where 1=1
+			and s.sgwLink = #{sgwLink}
+		)
+	</insert>
+	<select id="selectUserinfo">
+		select infrMmSeq,infrMmNickname,avatarSeq
 	</select>
 </mapper>

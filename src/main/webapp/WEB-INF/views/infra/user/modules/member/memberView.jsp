@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
 <html>
 <head>
 	<title>SGWorld</title>
@@ -10,10 +9,13 @@
 	<link href="/resources/user/member/css/memberView.css" rel="stylesheet">
 	<link href="../resources/user/home/css/header.css" rel="stylesheet">
 	<link href="../resources/user/home/css/footer.css" rel="stylesheet">
+	<!-- bootstrap --> 
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 	
 </head>
 <body>
 	<form name="form" method="post">
+	<input type="hidden" id="infrMmSeq" name="infrMmSeq" value="${infrMmSeq}">
 	<header>
 		<%@ include file="../../common/header.jsp"%> 
 	</header>
@@ -32,27 +34,27 @@
 					<article class="rightContent">
 						<div class="inputBox">
 							<label class="label">이메일</label>
-							<input type="text" class="txt" id="infrMmEmailId"
-							 name="infrMmEmailId" value="<c:out value="${item.infrMmEmailId }"/>"
+							 <input class="form-control" type="text"
+							 id="infrMmEmailId"  value="<c:out value="${item.infrMmEmailId }"/>"
 							 >
 						</div>
 						<div class="inputBox">
 							<label class="label">닉네임</label>
-							<input type="text" class="txt" id="infrMmNickname"
-							name="infrMmNickname" value="<c:out value="${item.infrMmNickname}"/>"
-							>
+							<input class="form-control" type="text"
+							 id="infrMmNickname"  value="<c:out value="${item.infrMmNickname }"/>"
+							 >
 						</div>
 						<div class="inputBox">
 							<label class="label">휴대폰</label>
-							<input type="text" class="txt" id="infrMmPhone"
-							name="infrMmPhone" value="<c:out value="${item.infrMmPhone }"/>"							
-							>
+							<input class="form-control" type="text"
+							 id="infrMmPhone"  value="<c:out value="${item.infrMmPhone }"/>"
+							 >
 						</div>
 						<div class="inputBox">
 							<label class="label">생년월일</label>
-							<input type="text" class="txt" id="infrMmBod"
-							name="infrMmBod" value="<c:out value="${item.infrMmBod }"/>"
-							>
+							<input class="form-control" type="text"
+							 id="infrMmBod"  value="<c:out value="${item.infrMmBod }"/>"
+							 >
 						</div>
 						<button type="button" class="modifyBtn" id="modifyBtn">수정하기</button>					
 					</article>
@@ -70,39 +72,9 @@
 <!-- jquery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script>
-	var goUrlMemberUpdate = "/member/memberUpdt";
-	var goUrlMemberView = "/member/memberView";
-	var goUrlMemberAvartar = "/member/memberAvartar";
-	var goUrlMemberPostComment = "/member/memberPostComment";
-	var goUrlMemberWithdraw = "/member/memberWithdraw";
-	
-	var seq = $("input:hidden[name=infrMmSeq]");
-	var form = $("form[name=form]");
-	
-	goMemberView = function(seqValue){
-		seq.val(seqValue);
-		form.attr("action" , goUrlMemberView).submit();
-	};
-	
-	goMemberAvartar = function(seqValue){
-		seq.val(seqValue);
-		form.attr("action" , goUrlMemberAvartar).submit();
-	};
-	
-	goMemberPostComment = function(seqValue){
-		seq.val(seqValue);
-		form.attr("action" , goUrlMemberPostComment).submit();
-	};
-	
-	goMemberWithdraw = function(seqValue){
-		seq.val(seqValue);
-		form.attr("action" , goUrlMemberWithdraw).submit();
-	};
-	
-	
 	$("#modifyBtn").on("click" , function(){
 		form.attr("action" ,goUrlMemberUpdate).submit();
-	});		
+	});	
 </script>
 
 

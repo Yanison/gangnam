@@ -113,13 +113,8 @@ public class AdminBoardServiceImpl extends BaseServiceImpl implements AdminBoard
 		
 		//setRegMod(dto);
 		dao.insert(dto);
-		System.out.print(
-				"who?" + "\n"
-						+"getUploadImg: " + dto.getUploadImg() +"\n" 
-						+ "getUploadImgType: " + dto.getUploadImgType() + "\n"
-						+ "getUploadImgMaxNumber: " + dto.getUploadImgMaxNumber());
-		uploadFiles(dto.getUploadImg(), dto, "boardUploaded", dto.getUploadImgType(), dto.getUploadImgMaxNumber());
-		uploadFiles(dto.getUploadFile(), dto, "boardUploaded", dto.getUploadFileType(), dto.getUploadFileMaxNumber());
+		//uploadFiles(dto.getUploadImg(), dto, "boardUploaded", dto.getUploadImgType(), dto.getUploadImgMaxNumber());
+		//uploadFiles(dto.getUploadFile(), dto, "boardUploaded", dto.getUploadFileType(), dto.getUploadFileMaxNumber());
 		return 1; 
 	}
 		
@@ -173,6 +168,36 @@ public class AdminBoardServiceImpl extends BaseServiceImpl implements AdminBoard
 	public List<AdminBoardDto> selectListUploaded(AdminBoardVo vo) throws Exception {
 		return dao.selectListUploaed(vo);
 	}
+
+	//조회수
+	@Override
+	public int boardViewCount(AdminBoardDto dto) throws Exception {
+		return dao.boardViewCount(dto);
+	}
+
+	@Override
+	public int boardLikeCount(AdminBoardVo vo) throws Exception {
+		return dao.boardLikeCount(vo);
+	}
+	
+	@Override
+	public AdminBoardDto boardLiked(AdminBoardVo vo) throws Exception {
+		return dao.boardLiked(vo);
+	}
+
+	@Override
+	public int insertLike(AdminBoardDto dto) throws Exception {
+		return dao.insertLike(dto);
+	}
+
+	@Override
+	public int deleteLike(AdminBoardVo vo) throws Exception {
+		return dao.deleteLike(vo);
+	}
+
+	
+
+	
 
 	
 

@@ -6,7 +6,7 @@ import com.sgworld.infra.common.base.Base;
 
 public class CodeGroupDto extends Base {
 	
-	private Integer infrCcgSeq;
+	private String infrCcgSeq;
 	private String infrCcgNameKor;
 	private String infrCcgNameEng;
 	private Integer infrCcgUseNy;
@@ -14,16 +14,16 @@ public class CodeGroupDto extends Base {
 	private Integer infrCcgOrder;
 	private Date regDatetime;
 	private String regBy;
-	private Date modDatetime;
+	/* private Date modDatetime; */
 	private String modBy;
 	private Integer infrCcDelNy;
 	private String infrCodeGroupSeq;
 	private Integer infrCcCount;
 //////////////////////////////////////////////////////
-	public Integer getInfrCcgSeq() {
+	public String getInfrCcgSeq() {
 		return infrCcgSeq;
 	}
-	public void setInfrCcgSeq(Integer infrCcgSeq) {
+	public void setInfrCcgSeq(String infrCcgSeq) {
 		this.infrCcgSeq = infrCcgSeq;
 	}
 	public String getInfrCcgNameKor() {
@@ -68,12 +68,11 @@ public class CodeGroupDto extends Base {
 	public void setRegBy(String regBy) {
 		this.regBy = regBy;
 	}
-	public Date getModDatetime() {
-		return modDatetime;
-	}
-	public void setModDatetime(Date modDatetime) {
-		this.modDatetime = modDatetime;
-	}
+
+	/*
+	 * public Date getModDatetime() { return modDatetime; } public void
+	 * setModDatetime(Date modDatetime) { this.modDatetime = modDatetime; }
+	 */
 	public String getModBy() {
 		return modBy;
 	}

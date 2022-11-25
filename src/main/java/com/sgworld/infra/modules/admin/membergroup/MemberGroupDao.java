@@ -17,8 +17,8 @@ public class MemberGroupDao {
 	
 	public static String namespace = "com.sgworld.infra.modules.admin.membergroup.MemberGroupMapper";
 	
-	public List<MemberGroup> selectMmList(MemberGroup dto){
-		return sqlSession.selectList(namespace + ".selectMmList", dto);
+	public List<MemberGroup> selectMmList(MemberGroupVo vo){
+		return sqlSession.selectList(namespace + ".selectMmList", vo);
 	}
 	
 	//user_회원정보 보기
@@ -39,8 +39,8 @@ public class MemberGroupDao {
 	public MemberGroup selectUserLogin(MemberGroup dto) {
 		return sqlSession.selectOne(namespace + ".selectUserLogin", dto);
 	}
-	public MemberGroup selectOneId(MemberGroup dto) { return sqlSession.selectOne(namespace + ".selectOneId", dto); }
-	public MemberGroup selectOneLogin(MemberGroup dto) { return sqlSession.selectOne(namespace + ".selectOneLogin", dto); }
+	public MemberGroup selectOneXdminId(MemberGroup dto) { return sqlSession.selectOne(namespace + ".selectOneXdminId", dto); }
+	public MemberGroup selectOneXdminLogin(MemberGroup dto) { return sqlSession.selectOne(namespace + ".selectOneXdminLogin", dto); }
 	
 	public int isduple(MemberGroup dto) {
 		return sqlSession.selectOne(namespace + ".isduple", dto);
@@ -63,6 +63,26 @@ public class MemberGroupDao {
 	//admin count조회
 	public int selectOneCount(MemberGroupVo vo) {
 		return sqlSession.selectOne(namespace + ".selectOneCount", vo);
+	}
+	
+
+	public int selectCount(MemberGroupVo vo) {
+		return sqlSession.selectOne(namespace +".selectCount", vo);
+	}
+	
+	//admin 회원정보 수정
+	public int adminUpdate(MemberGroup dto) {
+		return sqlSession.update(namespace + ".adminUpdate", dto);
+	}
+	
+	//admin 회원정보 삭제여부삭제
+	public int adminUelete(MemberGroup dto) {
+		return sqlSession.update(namespace + ".adminUelete", dto);
+	}
+	
+	//admin 회원정보 완전삭제
+	public int adminDelete(MemberGroupVo vo) {
+		return sqlSession.delete(namespace + ".adminDelete", vo);
 	}
 	
 	

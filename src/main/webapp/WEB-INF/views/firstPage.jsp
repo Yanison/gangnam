@@ -4,7 +4,7 @@
 <%@ page session="false" %>
 <html>
 <head>
-	<title>Home</title>
+	<title>sgworld-select</title>
 	<%@ include file="rscs/basicRscs.jsp" %>
 	<link href="/resources/common/css/userAdmin.css" rel="stylesheet">
 </head>

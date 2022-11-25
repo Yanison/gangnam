@@ -16,8 +16,8 @@
                 </a>
                 <div class="collapse" id="collapseLayouts1" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="layout-static.html">코드그룹관리</a>
-                        <a class="nav-link" href="layout-sidenav-light.html">코드</a>
+                        <a class="nav-link" onclick="goAdminCodeGroupList()" style="cursor: pointer;">코드그룹관리</a>
+                        <a class="nav-link" onclick = "goAdminCodeList()" style="cursor: pointer;">코드</a>
                     </nav>
                 </div>
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts2" aria-expanded="false" aria-controls="collapseLayouts">
@@ -51,7 +51,7 @@
                         <a class="nav-link" onclick="goAdminAvartForm()">goAdminAvartForm</a>
                     </nav>
                 </div>
-                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts4" aria-expanded="false" aria-controls="collapseLayouts">
+                <a class="nav-link collapsed" onclick = "goAdminMemberList()" style="cursor: pointer;">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     	회원관리
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
@@ -76,3 +76,8 @@
         </div>
     </nav>
 </div>
+
+<script>
+
+
+</script>

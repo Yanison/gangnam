@@ -5,7 +5,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
-<%@ page session="false" %>
 <html>
 <head>
 	<title>Home</title>
@@ -34,7 +33,7 @@
 							<input class="inputId inputLogin" id="infrMmId" name="infrMmId" type="text" value="ghkdtjsdi878">
 						</div>
 						<div class="inputPwBox">
-							<input class="inputPw inputLogin" id="infrMmPw" name="infrMmPw" type="password" value="seon1011901!">
+							<input class="inputPw inputLogin" id="infrMmPw" name="infrMmPw" type="password" value="123123">
 						</div>
 						<div class="loignCheck">
 							<i class="fa-regular fa-circle-check" style="margin-right:10px;"></i>
@@ -77,37 +76,6 @@
 		<%@include file="../../common/footer.jsp" %>
 	</footer>
 </form>	
-	<script type="text/javascript">
-	
-		var goUrlLogin = "/";
-		
-/*  		$("#btnLogin").on("click", function(){
-			
-			$.ajax({
-				async: true 
-				,cache: false
-				,type: "post" */
-				/* ,dataType:"json" */
-				/* ,url: "/member/loginProc" */
-				/* ,data : $("#formLogin").serialize() */
-				//,data : { "infrMmId" : $("#infrMmId").val(), "infrMmPw" : $("#infrMmPw").val(), "autoLogin" : $("#autoLogin").is(":checked")}
-/* 				,data : { "infrMmId" : $("article.loginBox #infrMmId").val(), "infrMmPw" : $("#infrMmPw").val()}
-				,success: function(response) {
-					if(response.rt == "success") {
-							location.href = goUrlLogin;
-							alert("로그인 성공")
-					} else {
-						alert("회원없음");
-					}
-				}
-				,error : function(jqXHR, textStatus, errorThrown){
-					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
-				}
-			});
-		}); */ 
-	
-		
-	</script>
 
 </body>
 </html>
