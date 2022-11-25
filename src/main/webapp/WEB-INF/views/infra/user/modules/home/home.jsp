@@ -29,7 +29,7 @@
 			</c:choose>
 		</article>
 		<article class="onLiveSgWorld">
-			<h1 class="onLiveSgWorldTitle">OnLive</h1>
+			<h1 class="onLiveSgWorldTitle">폼으로 html 다 감싸주지 말아주세요 버튼이 안눌립니다..(Onlive)</h1>
 			<div class="onSgWorldListDiv">
 				<!-- forEach로 데이터 뿌려주세요 -->
 				<div class="onSgWorldList onSgWorldList1">
