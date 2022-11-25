@@ -48,10 +48,10 @@
 							<c:otherwise>
 							<c:choose>
 							<c:when test="${like.infrMmSeq eq null }">
-							<a id="likeBtn" class="likeBtnDiv" name="likedBtn" type="button"><i class="fa-regular fa-heart"></i> ${likeCount }</a>
+							<div id="likeBtnATag" class="likeBtnDiv" name="likeBtnATag"><a id="likeBtn" type="button"><i class="fa-regular fa-heart"></i></a> ${likeCount }</div>
 							</c:when>
 							<c:otherwise>
-							<a id="likedBtn" name="likedBtn" type="button"><i class="fa-sharp fa-solid fa-heart"></i> ${likeCount }</a>
+							<a id="likeBtnATag" class="likeBtnDiv" name="likedBtnATag"><i class="fa-solid fa-heart" style="color: #E95721;"></i> ${likeCount }</a>
 							</c:otherwise>
 							</c:choose>
 							</c:otherwise>
@@ -83,7 +83,7 @@
 	
 	<script type="text/javascript">
 		
-		function overlap(){
+		function unlike(){
 			$.ajax({
 				async: true 
 				,cache: false
@@ -94,10 +94,10 @@
 					if(response.rt == "success") {
 						var str = "";
 						$(".likeBtnDiv").empty();
-		   				str += '<a id="likeBtn" name="likedBtn" type="button">';
+		   				str += '<a id="likeBtn" type="button" onclick="like();">';
 		   				str += '<i class="fa-regular fa-heart"></i> ' + response.likedCount;
 		   				str += '</a>';	   		
-		   				document.getElementById("likedBtn").innerHTML = str;
+		   				document.getElementById("likeBtnATag").innerHTML = str;
 					} else {
 					}
 				}
@@ -107,12 +107,7 @@
 			});
 		};
 		
-		$("#likedBtn").on("click", function(){
-			overlap();
-		});
-		
-		
-		$("#likeBtn").on("click", function(){
+		function like(){
 			$.ajax({
 				async: true 
 				,cache: false
@@ -123,10 +118,10 @@
 					if(response.rt == "success") {
 						var str = "";
 						$(".likeBtnDiv").empty();
-		   				str += '<a id="likedBtn" name="likedBtn" type="button" onclick="overlap();">';
+		   				str += '<a id="likedBtn" name="likedBtn" type="button" onclick="unlike();">';
 		   				str += '<i class="fa-solid fa-heart" style="color: #E95721;"></i> ' + response.likedCount;
 		   				str += '</a>';	   		
-		   				document.getElementById("likeBtn").innerHTML = str;
+		   				document.getElementById("likeBtnATag").innerHTML = str;
 					} else{
 						
 					}
@@ -135,6 +130,15 @@
 					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
 				}
 			});
+		}
+		
+		$("#likedBtn").on("click", function(){
+			unlike();
+		});
+		
+		
+		$("#likeBtn").on("click", function(){
+			like();
 		});
 	</script>
 </body>
