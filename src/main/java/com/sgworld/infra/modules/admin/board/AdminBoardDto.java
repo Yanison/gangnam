@@ -19,6 +19,14 @@ public class AdminBoardDto extends Base{
 	private	Integer delNy;
 	private String infrMmNickname;
 	private Integer viewCount;
+	private Integer likeCount;
+	
+	//게시글 좋아요
+	private String bdLikeSeq;
+	private Integer	likeNy;
+	
+	//댓글 좋아요
+	private Integer cmSeq;
 	
 	//업로드관련
 	private MultipartFile[] uploadImg;
@@ -167,6 +175,30 @@ public class AdminBoardDto extends Base{
 	}
 	public void setViewCount(Integer viewCount) {
 		this.viewCount = viewCount;
+	}
+	public Integer getLikeCount() {
+		return likeCount;
+	}
+	public void setLikeCount(Integer likeCount) {
+		this.likeCount = likeCount;
+	}
+	public String getBdLikeSeq() {
+		return bdLikeSeq;
+	}
+	public void setBdLikeSeq(String bdLikeSeq) {
+		this.bdLikeSeq = bdLikeSeq;
+	}
+	public Integer getLikeNy() {
+		return likeNy;
+	}
+	public void setLikeNy(Integer likeNy) {
+		this.likeNy = likeNy;
+	}
+	public Integer getCmSeq() {
+		return cmSeq;
+	}
+	public void setCmSeq(Integer cmSeq) {
+		this.cmSeq = cmSeq;
 	}
 	
 	

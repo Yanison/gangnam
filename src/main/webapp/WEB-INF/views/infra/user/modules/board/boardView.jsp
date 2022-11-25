@@ -1,13 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
 	<meta charset="UTF-8">
 	<meta name=viewport"" content="width=device-width, initial-scale=1.0">
 	<title>sgworld | 싸게월드</title>
 	<%@ include file="../../../../rscs/basicRscs.jsp" %>
-	<script src="https://kit.fontawesome.com/059fbc3cf8.js" crossorigin="anonymous"></script>
 	<link href="/resources/user/board/css/boardView.css" rel="stylesheet">
 	<link href="/resources/user/home/css/header.css" rel="stylesheet">
 	<link href="/resources/user/home/css/footer.css" rel="stylesheet">
@@ -44,13 +42,26 @@
 						${item.bdContent }<!-- 게시글 내용 -->
 					</div>
 					<div class="icon">
-						<i class="fa-regular fa-thumbs-up"> 99</i>
+						<c:choose>
+							<c:when test="${infrMmSeq eq null }">
+							</c:when>
+							<c:otherwise>
+							<c:choose>
+							<c:when test="${like.infrMmSeq eq null }">
+							<a id="likeBtn" class="likeBtnDiv" name="likedBtn" type="button"><i class="fa-regular fa-heart"></i> ${likeCount }</a>
+							</c:when>
+							<c:otherwise>
+							<a id="likedBtn" name="likedBtn" type="button"><i class="fa-sharp fa-solid fa-heart"></i> ${likeCount }</a>
+							</c:otherwise>
+							</c:choose>
+							</c:otherwise>
+						</c:choose>
 						<i class="fa-regular fa-message"> 200</i>
 					</div>
 				</div>
 				<div>
 					<div class="boarderFooter">
-						<div>
+						<div>		
 							<p>전체댓글수 200</p>
 						</div>
 						<div class="commentHead">
@@ -71,9 +82,60 @@
 	<!-- footer e -->
 	
 	<script type="text/javascript">
-		$(document).ready(function(){
-			
-		})
+		
+		function overlap(){
+			$.ajax({
+				async: true 
+				,cache: false
+				,type: "post"
+				,url: "/board/boardUnLike"
+				,data : { "bdSeq" : $("#bdSeq").val(), "infrMmSeq" : $("#infrMmSeq").val() }
+				,success: function(response) {
+					if(response.rt == "success") {
+						var str = "";
+						$(".likeBtnDiv").empty();
+		   				str += '<a id="likeBtn" name="likedBtn" type="button">';
+		   				str += '<i class="fa-regular fa-heart"></i> ' + response.likedCount;
+		   				str += '</a>';	   		
+		   				document.getElementById("likedBtn").innerHTML = str;
+					} else {
+					}
+				}
+				,error : function(jqXHR, textStatus, errorThrown){
+					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+				}
+			});
+		};
+		
+		$("#likedBtn").on("click", function(){
+			overlap();
+		});
+		
+		
+		$("#likeBtn").on("click", function(){
+			$.ajax({
+				async: true 
+				,cache: false
+				,type: "post"
+				,url: "/board/boardLike"
+				,data : { "bdSeq" : $("#bdSeq").val(), "infrMmSeq" : $("#infrMmSeq").val() }
+				,success: function(response) {
+					if(response.rt == "success") {
+						var str = "";
+						$(".likeBtnDiv").empty();
+		   				str += '<a id="likedBtn" name="likedBtn" type="button" onclick="overlap();">';
+		   				str += '<i class="fa-solid fa-heart" style="color: #E95721;"></i> ' + response.likedCount;
+		   				str += '</a>';	   		
+		   				document.getElementById("likeBtn").innerHTML = str;
+					} else{
+						
+					}
+				}
+				,error : function(jqXHR, textStatus, errorThrown){
+					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+				}
+			});
+		});
 	</script>
 </body>
 </html>

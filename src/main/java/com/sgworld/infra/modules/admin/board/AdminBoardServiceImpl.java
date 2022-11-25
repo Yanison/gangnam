@@ -175,6 +175,30 @@ public class AdminBoardServiceImpl extends BaseServiceImpl implements AdminBoard
 		return dao.boardViewCount(dto);
 	}
 
+	@Override
+	public int boardLikeCount(AdminBoardVo vo) throws Exception {
+		return dao.boardLikeCount(vo);
+	}
+	
+	@Override
+	public AdminBoardDto boardLiked(AdminBoardVo vo) throws Exception {
+		return dao.boardLiked(vo);
+	}
+
+	@Override
+	public int insertLike(AdminBoardDto dto) throws Exception {
+		return dao.insertLike(dto);
+	}
+
+	@Override
+	public int deleteLike(AdminBoardVo vo) throws Exception {
+		return dao.deleteLike(vo);
+	}
+
+	
+
+	
+
 	
 
 }
