@@ -7,6 +7,27 @@
 	<resultMap id="SgwDto" type="com.sgworld.infra.modules.user.sgWorld.sgwdto.SgwDto">
 	</resultMap>
 	
+	
+	<!-- 
+	@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+	@@@@ Sgworld 
+	@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+	-->
+	
+	<select id="didHeAlreadyMadeSgw" resultType="Integer">
+		select count(*)
+		from sgWorld 
+		where 1=1
+		and  regByMm = #{infrMmSeq}
+	</select>
+	
+	<select id="isDupleLink" resultType="Integer">
+		select count(*)
+		from sgWorld
+		where 1=1
+		and  sgwLink = #{sgwLink}
+	</select>
+	
 	<insert id="buildSgw">
 		insert into 
 			(select * from sgWorld sg left join sgWorldRoom sgr on sg.sgwSeq = sgr.sgwRSeq)
@@ -29,29 +50,18 @@
 		,#{sgwSeq}
 		)
 	</insert>
-	<select id="findSgwbyMmSeq" resultMap="SgwDto">
-		select * 
-		from sgWorld 
-		where 1=1
-		and regByMm = #{infrMmSeq}
-	</select>
 	
-	<select id="isDupleLink" resultType="Integer">
-		select count(*)
-		from sgWorld
-		where 1=1
-		and  sgwLink = #{sgwLink}
-	</select>
-	<select id="doesHealreadyMakeSgw" resultType="Integer">
-		select count(*)
-		from sgWorld 
-		where 1=1
-		and  regByMm = #{infrMmSeq}
-	</select>
-	<select id="findMm" resultMap="SgwDto">
-		select * from infrMember
-		where infrMmSeq = #{infrMmSeq}
-	</select>
+	<insert id="addUserSgwRoom">
+	    insert into sgWorldRoom(
+	      sgwSeq,
+				infrMmSeq
+				,avatarSeq
+			)values(
+	     (select sgwSeq from sgWorld where 1=1 and sgwLink = #{sgwLink}),
+				#{infrMmSeq},
+				#{avatarSeq}
+	    )
+	</insert>
 	
 	<select id="onLoadInfoSgw" resultMap="SgwDto">
 		select
@@ -86,18 +96,27 @@
 		  and s.sgwLink = #{sgwLink}
 	</select>
 	
-	<insert id="addUserSgwRoom">
-		insert into sgwRoom(
-			infrMmSeq
-			sgwAvatarSeq
-		)values(
-			#{infrMmSeq},
-			#{sgwAvatarSeq}
-			where 1=1
-			and s.sgwLink = #{sgwLink}
-		)
-	</insert>
-	<select id="selectUserinfo">
-		select infrMmSeq,infrMmNickname,avatarSeq
+	
+	<update id="onLiveNy">
+		update sgWorld set onLiveNy = #{onLiveNy}
+		where 1=1
+		and sgwLink = #{sgwLink}
+	</update>
+	<!-- 
+	@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+	@@@@ User
+	@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+	-->
+	<select id="findSgwbyMmSeq" resultMap="SgwDto">
+		select * 
+		from sgWorld 
+		where 1=1
+		and regByMm = #{infrMmSeq}
+	</select>
+	
+	
+	<select id="findMm" resultMap="SgwDto">
+		select * from infrMember
+		where infrMmSeq = #{infrMmSeq}
 	</select>
 </mapper>

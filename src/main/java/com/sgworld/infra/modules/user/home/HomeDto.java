@@ -1,17 +1,8 @@
-package com.sgworld.infra.modules.user.sgWorld.sgwdto;
-
+package com.sgworld.infra.modules.user.home;
 
 import java.sql.Date;
-import java.util.HashSet;
-import java.util.Set;
 
-import org.springframework.web.socket.WebSocketSession;
-
-public class SgwDto {
-	
-	/*
-	 * sgwRoom
-	 */
+public class HomeDto {
 	private String sgwSeq;
 	private String sgwTitle;
 	private String sgwPw;
@@ -22,26 +13,8 @@ public class SgwDto {
 	private Integer isHidden;
 	private Date regDatetime;
 	private String regByMm;
-	private Set<WebSocketSession> sessions = new HashSet<>();
+	private int limitNum;
 	
-	public Date getRegDatetime() {
-		return regDatetime;
-	}
-	public void setRegDatetime(Date regDatetime) {
-		this.regDatetime = regDatetime;
-	}
-	public String getRegByMm() {
-		return regByMm;
-	}
-	public void setRegByMm(String regByMm) {
-		this.regByMm = regByMm;
-	}
-	public Set<WebSocketSession> getSessions() {
-		return sessions;
-	}
-	public void setSessions(Set<WebSocketSession> sessions) {
-		this.sessions = sessions;
-	}
 	public String getSgwSeq() {
 		return sgwSeq;
 	}
@@ -84,38 +57,29 @@ public class SgwDto {
 	public void setSgwAvatar(Integer sgwAvatar) {
 		this.sgwAvatar = sgwAvatar;
 	}
-	
 	public Integer getIsHidden() {
 		return isHidden;
 	}
 	public void setIsHidden(Integer isHidden) {
 		this.isHidden = isHidden;
 	}
-
-	// member
-	private String infrMmSeq;
-	private String infrMmNickname;
-
-	public String getInfrMmSeq() {
-		return infrMmSeq;
+	public Date getRegDatetime() {
+		return regDatetime;
 	}
-	public void setInfrMmSeq(String infrMmSeq) {
-		this.infrMmSeq = infrMmSeq;
+	public void setRegDatetime(Date regDatetime) {
+		this.regDatetime = regDatetime;
 	}
-	public String getInfrMmNickname() {
-		return infrMmNickname;
+	public String getRegByMm() {
+		return regByMm;
 	}
-	public void setInfrMmNickname(String infrMmNickname) {
-		this.infrMmNickname = infrMmNickname;
+	public void setRegByMm(String regByMm) {
+		this.regByMm = regByMm;
 	}
-	
-	private Integer onLiveNy;
-
-	public Integer getOnLiveNy() {
-		return onLiveNy;
+	public int getLimitNum() {
+		return limitNum;
 	}
-	public void setOnLiveNy(Integer onLiveNy) {
-		this.onLiveNy = onLiveNy;
+	public void setLimitNum(int limitNum) {
+		this.limitNum = limitNum;
 	}
 	
 	

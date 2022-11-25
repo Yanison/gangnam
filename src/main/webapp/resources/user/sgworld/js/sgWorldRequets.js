@@ -8,7 +8,7 @@ function selectSgworldInfo(){
 	console.log("infrMmSeq :: "+ infrMmSeq)
 	
 	$.ajax({
-		url:'/sgWorld/findMm'
+		url:'/sgWorld/onLoadUserInfoSgw'
 		,type:'get'
 		,data:{
 			'infrMmSeq': infrMmSeq
@@ -21,19 +21,20 @@ function selectSgworldInfo(){
 		}
 	})
 	
-	$.ajax({
-		url:'/sgWorld/findMm'
-		,type:'get'
-		,data:{
-			'infrMmSeq': infrMmSeq
-		}
-		,success:function(rp){
-			console.log(JSON.stringify(rp))
-		}
-		,error:function(rp){
-			alert('selectSgworldInfo err')
-		}
-	})
+//	$.ajax({
+//		url:'/sgWorld/findMm'
+//		,type:'get'
+//		,data:{
+//			'infrMmSeq': infrMmSeq
+//		}
+//		,success:function(rp){
+//			console.log(JSON.stringify(rp))
+//		}
+//		,error:function(rp){
+//			alert('selectSgworldInfo err')
+//		}
+//	})
+
 }
 
 

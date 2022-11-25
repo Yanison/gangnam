@@ -1,5 +1,7 @@
 package com.sgworld.infra.modules.user.home;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +16,9 @@ import com.sgworld.infra.modules.user.sgWorld.sgwdto.SgwDto;
 public class HomeController {
 	@Autowired
 	HttpSession session;
+	private SgwSerivceImpl sgwService;
 	@Autowired
-	SgwSerivceImpl sgwService;
+	HomeServiceImpl homeSerive;
 	
 	public void getSss(Model model,SgwDto sgwDto) {
 		Object infrMmId = session.getAttribute("infrMmId");
@@ -56,6 +59,8 @@ public class HomeController {
 	@RequestMapping(value="/")
 	public String home(SgwDto sgwDto,Model model)throws Exception {
 		
+		List<SgwDto> sgwList = homeSerive.selectSgwList(sgwDto);
+		model.addAttribute("sgwList", sgwList);
 		
 		getSss(model,sgwDto);
 		return "infra/user/modules/home/home";

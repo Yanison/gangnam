@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com/sgworld/infra/modules/user/home/HomeMapper">
+	<resultMap id="homeDto" type="com.sgworld.infra.modules.user.home.HomeDto">
+	</resultMap>
+	<select id="selectSgwList" resultMap="homeDto">
+		select
+		  s.sgwSeq
+		  ,s.sgwTitle
+		  ,s.sgwMap
+		  ,s.sgwMmNumber
+		  ,s.isHidden
+		  ,s.sgwLink
+		  ,s.regDateTime
+		  ,s.regByMm
+		from sgWorld s
+		where 1=1
+		and onLiveNy = 1
+		order by sgwSeq
+		limit 3
+	</select>
+
+</mapper>
+
+

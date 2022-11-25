@@ -39,6 +39,27 @@ public class SgwDao {
 	public SgwDto onLoadInfoSgw(SgwDto sgwDto) {
 		return sqlSession.selectOne(namespace+".onLoadInfoSgw", sgwDto);
 	}
+	public SgwDto onLoadUserInfoSgw(SgwDto sgwDto) {
+		
+		return sqlSession.selectOne(namespace+".onLoadUserInfoSgw", sgwDto);
+	}
+	
+	public int onLiveNy(SgwDto sgwDto) {
+		return sqlSession.update(namespace+".onLiveNy",sgwDto);
+	}
+	
+	public int addUserSgwRoom(SgwDto sgwDto) {
+		return sqlSession.insert(namespace+".addUserSgwRoom", sgwDto);
+	}
+
+	public int didHeAlreadyMadeSgw(SgwDto sgwDto){
+		return sqlSession.selectOne(namespace+".didHeAlreadyMadeSgw", sgwDto);
+	}
+	
+	public int isDupleLink(SgwDto sgwDto){
+		return sqlSession.selectOne(namespace+".isDupleLink", sgwDto);
+	}
+	
 	/* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 	 * @@@@@@ user
 	 * @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -58,18 +79,6 @@ public class SgwDao {
 				);
 		return sqlSession.selectOne(namespace + ".findSgwbyMmSeq", sgwDto);
 	}
-	public SgwDto onLoadUserInfoSgw(SgwDto sgwDto) {
-		
-		return sqlSession.selectOne(namespace+".onLoadUserInfoSgw", sgwDto);
-	}
-	public int isDupleLink(SgwDto sgwDto){
-		return sqlSession.selectOne(namespace+".isDupleLink", sgwDto);
-	}
-	
-	public int doesHeAlreadyMakeSgw(SgwDto sgwDto){
-		return sqlSession.selectOne(namespace+".doesHealreadyMakeSgw", sgwDto);
-	}
-	
 	public SgwDto findMm(SgwDto sgwDto) {
 		return sqlSession.selectOne(namespace+".findMm", sgwDto);
 	}

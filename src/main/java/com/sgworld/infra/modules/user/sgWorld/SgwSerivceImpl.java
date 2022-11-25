@@ -24,10 +24,17 @@ public class SgwSerivceImpl implements SgwSerivce {
 		return sgwDao.buildSgw(sgwDto);
 	}
 	@Override
-	public SgwDto onLoadUserInfoSgw(SgwDto sgwDto)throws Exception{
+	public SgwDto onLoadInfoSgw(SgwDto sgwDto)throws Exception{
 		return sgwDao.onLoadInfoSgw(sgwDto);
 	}
-	
+	@Override
+	public int onLiveNy(SgwDto sgwDto)throws Exception{
+		return sgwDao.onLiveNy(sgwDto);
+	}
+	@Override
+	public int addUserSgwRoom(SgwDto sgwDto) throws Exception{
+		return sgwDao.addUserSgwRoom(sgwDto);
+	}
 	/* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 	 * @@@@@@ user
 	 * @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -37,8 +44,8 @@ public class SgwSerivceImpl implements SgwSerivce {
 		return sgwDao.isDupleLink(sgwDto);
 	}
 	@Override
-	public int doesHeAlreadyMakeSgw(SgwDto sgwDto)throws Exception{
-		return sgwDao.doesHeAlreadyMakeSgw(sgwDto);
+	public int didHeAlreadyMadeSgw(SgwDto sgwDto)throws Exception{
+		return sgwDao.didHeAlreadyMadeSgw(sgwDto);
 	}
 	
 	@Override
@@ -50,11 +57,13 @@ public class SgwSerivceImpl implements SgwSerivce {
 	public SgwDto findMm(SgwDto sgwDto)throws Exception{
 		return sgwDao.findMm(sgwDto);
 	}
-	
+
 	@Override
-	public SgwDto onLoadInfoSgw(SgwDto sgwDto)throws Exception{
+	public SgwDto onLoadUserInfoSgw(SgwDto sgwDto)throws Exception{
 		return sgwDao.onLoadUserInfoSgw(sgwDto);
 	}
+	
+	
 	
 	
 	

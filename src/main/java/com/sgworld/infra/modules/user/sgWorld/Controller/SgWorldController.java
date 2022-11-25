@@ -19,13 +19,34 @@ public class SgWorldController {
 	
 	@Autowired
 	SgwSerivceImpl sgwService;
+	
+	private void setOnliveNy(SgwDto sgwDto,HttpSession session,Model model,String manInCharge,String endPoint){
+		 
+		try {
+			if( manInCharge != null) {
+				 
+				 sgwDto.setOnLiveNy(1);
+				 sgwDto.setSgwLink(endPoint);
+				 sgwService. onLiveNy(sgwDto);
+				 session.setAttribute(endPoint, sgwDto.getOnLiveNy());
+			 }else {
+				 sgwDto.setOnLiveNy(0);
+				 sgwDto.setSgwLink(endPoint);
+				 session.invalidate();
+			 }
+			session.getAttribute(endPoint);
+			model.addAttribute(endPoint, sgwDto.getOnLiveNy());
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+	}
 
 	//매타버스 실행
 	@GetMapping("join/{endPoint}")
 	public String sgWorld(
 			@PathVariable("endPoint") String endPoint,
 			SgwDto sgwDto,
-			SgwVo sgwVo,
 			Model model,
 			HttpSession session)throws Exception {
 		
@@ -34,13 +55,16 @@ public class SgWorldController {
 		System.out.println("this MmSess is ::" + infrMmSeq);
 		model.addAttribute("infrMmSeq",infrMmSeq);
 		model.addAttribute("endPoint",endPoint);
-		
+		sgwService.onLiveNy()
 		/*
 		 * 페이지 온로드시 클라이언트로 전달될 정보들
 		 */
+		sgwDto.setSgwLink(endPoint);
 		SgwDto onLoadInfoSgw = sgwService.onLoadInfoSgw(sgwDto);
-		SgwDto onLoadUserInfoSgw = sgwService.onLoadUserInfoSgw(sgwDto);
+		String manInCharge = onLoadInfoSgw.getRegByMm();
 		model.addAttribute("onLoadInfoSgw", onLoadInfoSgw);
+		
+		SgwDto onLoadUserInfoSgw = sgwService.onLoadUserInfoSgw(sgwDto);
 		model.addAttribute("onLoadUserInfoSgw", onLoadUserInfoSgw);
 		
 		
@@ -49,16 +73,16 @@ public class SgWorldController {
 		  * 방장이 들어오면 방의 활성화 여부를 결정함.
 		  * 활성화 여부는 세션값으로 남김. 
 		  */
-		 if(onLoadInfoSgw.getRegByMm() != null) {
-			 sgwVo.setOnLiveNy(1);
-			 session.setAttribute("onliveNy", sgwVo.getOnLiveNy());
-		 }else {
-			 sgwVo.setOnLiveNy(0);
-			 session.invalidate();
-		 }
-		 session.getAttribute("onliveNy");
-		 model.addAttribute("onliveNy", sgwVo.getOnLiveNy());
+		System.out.println("manInCharge :: " + manInCharge);
+		setOnliveNy(sgwDto,session,model,manInCharge,endPoint);
+		
 		
 		return "infra/user/modules/sgWorld/sgWorld";
 	}
+	
+	
+	
 }
+
+
+
