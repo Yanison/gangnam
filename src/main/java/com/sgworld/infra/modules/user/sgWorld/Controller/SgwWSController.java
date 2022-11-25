@@ -4,15 +4,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -21,13 +17,13 @@ import com.sgworld.infra.modules.user.sgWorld.sgwdto.SgwChat;
 import com.sgworld.infra.modules.user.sgWorld.sgwdto.SgwDto;
 import com.sgworld.infra.modules.user.sgWorld.sgwdto.SgwVo;
 
+
 @Controller
 public class SgwWSController {
 	@Autowired
 	SgwSerivceImpl sgwService;
 	
 	private SimpMessagingTemplate template;
-	private SgwVo sgwVo;
 	
 	@Autowired
 	public SgwWSController(SimpMessagingTemplate template) {
@@ -47,13 +43,12 @@ public class SgwWSController {
 	     template.convertAndSend("/topic/sgWorld/chatroom/" + endPoint, msg);
 	 }
 	 
-	 @MessageMapping(value = "/sgWorld/msgTo/{endPoint}/")
+
+	 @MessageMapping(value = "/sgWorld/msgTo/{endPoint}")
 	  public void msg(
 			  @DestinationVariable String endPoint,
 			  SgwChat msg,
-			  SgwDto sgwDto,
-			  Model model,
-			  HttpSession session)throws Exception {
+			  SgwDto sgwDto)throws Exception {
 		 System.out.println("endPoint :: " + msg.getEndPoint());
 		 System.out.println("msg.getChatMsg() :: "+msg.getChatMsg());
 		 

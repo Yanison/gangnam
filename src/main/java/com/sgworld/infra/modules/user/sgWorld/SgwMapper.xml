@@ -91,9 +91,9 @@
 		  left join infrMember m 
 		    on r.infrMmSeq = m.infrMmSeq
 		  left join sgWorldAvatar a
-		    on r.sgwAvatar = a.avatarSeq
+		    on r.avatarSeq = a.avatarSeq
 		  where 1=1
-		  and s.sgwLink = #{sgwLink}
+		  and m.infrMmSeq = #{infrMmSeq}
 	</select>
 	
 	
@@ -108,7 +108,9 @@
 	@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 	-->
 	<select id="findSgwbyMmSeq" resultMap="SgwDto">
-		select * 
+		select 
+			regByMm
+			,sgwLink
 		from sgWorld 
 		where 1=1
 		and regByMm = #{infrMmSeq}

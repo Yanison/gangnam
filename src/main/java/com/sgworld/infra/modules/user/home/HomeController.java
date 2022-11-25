@@ -1,3 +1,5 @@
+
+
 package com.sgworld.infra.modules.user.home;
 
 import java.util.List;
@@ -16,7 +18,8 @@ import com.sgworld.infra.modules.user.sgWorld.sgwdto.SgwDto;
 public class HomeController {
 	@Autowired
 	HttpSession session;
-	private SgwSerivceImpl sgwService;
+	@Autowired
+	SgwSerivceImpl sgwService;
 	@Autowired
 	HomeServiceImpl homeSerive;
 	
@@ -32,9 +35,7 @@ public class HomeController {
 		try {
 			if(infrMmSeq != null) {
 				sgwDto.setInfrMmSeq(infrMmSeq);
-				SgwDto findSgwbyMmSeq = sgwService.findSgwbyMmSeq(sgwDto);
-				String sessSgw = findSgwbyMmSeq.getRegByMm();
-				System.out.println("infrMmSeq != null :: " + (infrMmSeq != null));
+				String sessSgw = sgwService.findSgwbyMmSeq(sgwDto).getRegByMm();
 				if(sessSgw != null) {
 					System.out.println("sessSgw != null :: " + (sessSgw != null));
 					System.out.println("sessSgw :: "+sessSgw);
@@ -59,10 +60,11 @@ public class HomeController {
 	@RequestMapping(value="/")
 	public String home(SgwDto sgwDto,Model model)throws Exception {
 		
+//		getSss(model,sgwDto);
+		
 		List<SgwDto> sgwList = homeSerive.selectSgwList(sgwDto);
 		model.addAttribute("sgwList", sgwList);
 		
-		getSss(model,sgwDto);
 		return "infra/user/modules/home/home";
 	}
 	//로그인 화면

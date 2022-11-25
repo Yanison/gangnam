@@ -118,5 +118,22 @@ public class SgwDto {
 		this.onLiveNy = onLiveNy;
 	}
 	
+	private Integer avatarSeq;
+	private String avatarName;
+
+	public Integer getAvatarSeq() {
+		return avatarSeq;
+	}
+	public void setAvatarSeq(Integer avatarSeq) {
+		this.avatarSeq = avatarSeq;
+	}
+	public String getAvatarName() {
+		return avatarName;
+	}
+	public void setAvatarName(String avatarName) {
+		this.avatarName = avatarName;
+	}
+	
+	
 	
 }

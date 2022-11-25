@@ -16,11 +16,12 @@
 		  ,s.sgwLink
 		  ,s.regDateTime
 		  ,s.regByMm
+		  ,s.onLiveNy
 		from sgWorld s
 		where 1=1
 		and onLiveNy = 1
 		order by sgwSeq
-		limit 3
+		limit 6
 	</select>
 
 </mapper>

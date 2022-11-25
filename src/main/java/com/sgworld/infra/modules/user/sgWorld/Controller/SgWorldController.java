@@ -27,7 +27,7 @@ public class SgWorldController {
 				 
 				 sgwDto.setOnLiveNy(1);
 				 sgwDto.setSgwLink(endPoint);
-				 sgwService. onLiveNy(sgwDto);
+				 sgwService.onLiveNy(sgwDto);
 				 session.setAttribute(endPoint, sgwDto.getOnLiveNy());
 			 }else {
 				 sgwDto.setOnLiveNy(0);
@@ -55,28 +55,23 @@ public class SgWorldController {
 		System.out.println("this MmSess is ::" + infrMmSeq);
 		model.addAttribute("infrMmSeq",infrMmSeq);
 		model.addAttribute("endPoint",endPoint);
-		sgwService.onLiveNy()
+		
 		/*
 		 * 페이지 온로드시 클라이언트로 전달될 정보들
 		 */
 		sgwDto.setSgwLink(endPoint);
 		SgwDto onLoadInfoSgw = sgwService.onLoadInfoSgw(sgwDto);
-		String manInCharge = onLoadInfoSgw.getRegByMm();
 		model.addAttribute("onLoadInfoSgw", onLoadInfoSgw);
+		
+		System.out.println("manInCharge :: " + onLoadInfoSgw.getRegByMm());
+		setOnliveNy(sgwDto,session,model,onLoadInfoSgw.getRegByMm(),endPoint);
 		
 		SgwDto onLoadUserInfoSgw = sgwService.onLoadUserInfoSgw(sgwDto);
 		model.addAttribute("onLoadUserInfoSgw", onLoadUserInfoSgw);
-		
-		
-		
 		/*
 		  * 방장이 들어오면 방의 활성화 여부를 결정함.
 		  * 활성화 여부는 세션값으로 남김. 
 		  */
-		System.out.println("manInCharge :: " + manInCharge);
-		setOnliveNy(sgwDto,session,model,manInCharge,endPoint);
-		
-		
 		return "infra/user/modules/sgWorld/sgWorld";
 	}
 	

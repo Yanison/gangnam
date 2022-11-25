@@ -62,7 +62,7 @@ function connect() {
         
         var endPoint = $('#endPoint').val()
         stompClient.subscribe('/topic/sgWorld/chatroom/'+endPoint, function (msgObjFromServer) {
-			 var msgObj = JSON.stringify(msgObjFromServer.body)
+			 var msgObj = JSON.parse(msgObjFromServer.body)
 			 console.log("topic/sgWorld/chatroom"+ msgObj)
             showMsg(msgObj);
         });
@@ -85,7 +85,7 @@ function sendMsg(f) {
 	if(f.keyCode == 13){ //javascript에서는 13이 enter키를 의미함
 	    
 	    stompClient.send(
-		"/app/sgWorld/msgTo/"+endPoint+"/",
+		"/app/sgWorld/msgTo/"+endPoint,
 	    {}, 
 	    JSON.stringify(chatmsg)
 	    );

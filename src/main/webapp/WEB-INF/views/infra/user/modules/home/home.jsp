@@ -32,41 +32,37 @@
 			<h1 class="onLiveSgWorldTitle">OnLive</h1>
 			<div class="onSgWorldListDiv">
 				<!-- forEach로 데이터 뿌려주세요 -->
-				<div class="onSgWorldList onSgWorldList1">
-					<div>
-						<a class="SgWorldPreview">
-							<img scr="/resources/common/images/pepe.png">
-						</a>
-						<div class="sgwTitle">
-							<div>
-								<i class="fa-solid fa-circle"></i>
-								<span>title</span>
-							</div>
-							<div>
-								<i class="fa-solid fa-eye"></i>
-								<em>num</em>
+				<c:forEach items="${sgwList}" var="sl" varStatus="status">
+					<div class="container text-center">
+					  <div class="row row-cols-3">
+					    <div class="col">
+						    <div class="SgWorldPreviewDiv">
+								<a class="SgWorldPreview" href="./sgWorld/join/${sl.sgwLink}">
+									<img scr="/resources/common/images/pepe.png">
+								</a>
+								<div class="sgwTitle">
+									<div>
+										<i class="fa-solid fa-circle"></i>
+										<span>${sl.sgwTitle}</span>
+									</div>
+									<div>
+										<i class="fa-solid fa-eye"></i>
+										<em>num</em>
+									</div>
+								</div>
 							</div>
 						</div>
+					  </div>
 					</div>
+				</c:forEach>
+				
+				<div class="onSgWorldList onSgWorldList1">
+					
 				</div>
 				<!-- forEach로 데이터 뿌려주세요 -->
 				<!-- forEach로 데이터 뿌려주세요 -->
 				<div class="onSgWorldList onSgWorldList2">
-					<div>
-						<a class="SgWorldPreview">
-							<img scr="/resources/common/images/pepe.png">
-						</a>
-						<div class="sgwTitle">
-							<div>
-								<i class="fa-solid fa-circle"></i>
-								<span>title</span>
-							</div>
-							<div>
-								<i class="fa-solid fa-eye"></i>
-								<em>num</em>
-							</div>
-						</div>
-					</div>
+					
 				</div>
 				<!-- forEach로 데이터 뿌려주세요 -->
 			</div>

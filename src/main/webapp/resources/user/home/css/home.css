@@ -61,6 +61,10 @@ section.bodyWrapper article{
 	border:1px solid #dedede;
 	border-radius:10px;
 }
+
+.SgWorldPreviewDiv{
+	width:190px !important;
+}
 .sgwTitle{
 	width:100%;
 	display:flex;
