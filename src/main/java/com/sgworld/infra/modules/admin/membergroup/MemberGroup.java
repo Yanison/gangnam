@@ -278,6 +278,7 @@ public class MemberGroup extends Base{
 	
 	//board
 	private String bdTitle;
+	private Integer viewCount;
 
 	public String getBdTitle() {
 		return bdTitle;
@@ -285,8 +286,13 @@ public class MemberGroup extends Base{
 	public void setBdTitle(String bdTitle) {
 		this.bdTitle = bdTitle;
 	}
-	
-	
+	public Integer getViewCount() {
+		return viewCount;
+	}
+	public void setViewCount(Integer viewCount) {
+		this.viewCount = viewCount;
+	}
+
 	//bdLike
 	private String bdLikeSeq;
 
