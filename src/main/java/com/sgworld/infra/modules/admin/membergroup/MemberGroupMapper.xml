@@ -151,6 +151,7 @@
 			a.infrMmSeq
 			,b.bdTitle
 			,b.regDatetime
+			,b.viewCount
 			,(SELECT COUNT(aa.bdLikeSeq) FROM bdLike aa where 1=1 AND aa.bdSeq = b.bdSeq)as bdLikeSeq
 		FROM infrMember a
 		LEFT JOIN board b on b.infrMmSeq = a.infrMmSeq
