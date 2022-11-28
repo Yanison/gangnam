@@ -1,5 +1,7 @@
 package com.sgworld.infra.modules.user.member;
 
-public class MemberVO {
+import com.sgworld.infra.common.base.BaseVo;
+
+public class MemberVO  extends BaseVo{
 
 }

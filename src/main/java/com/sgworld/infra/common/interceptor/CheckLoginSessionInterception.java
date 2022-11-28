@@ -9,14 +9,15 @@ import com.sgworld.infra.common.constants.Constants;
 
 
 public class CheckLoginSessionInterception extends HandlerInterceptorAdapter {
-
+	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		if (request.getSession().getAttribute("infrMmSeq") != null) {
-		} else {
+		if (request.getSession().getAttribute("infrMmSeq") == null) {
 			response.sendRedirect(Constants.URL_LOGINFORM);
 			return false;
+		} else {
+			
 		}
 		return super.preHandle(request, response, handler);
 	}

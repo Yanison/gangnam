@@ -31,7 +31,7 @@
 				,a.regBy
 				,a.modDatetime
 				,a.modBy
-				,(select count(aa.infrCodeGroupSeq) from infrCode aa where 1=1 and aa.infrCcDelNy = 0 and aa.infrCodeGroupSeq = a.infrCcgSeq) as infrCcCount
+				,(select count(aa.infrCodeGroupSeq) from infrCode aa where 1=1 and aa.infrCcDelNy = 1 and aa.infrCodeGroupSeq = a.infrCcgSeq) as infrCcCount
 			<include refid="selectCommon" />
 			ORDER BY a.infrCcgSeq DESC
 		<include refid="Base.selectListLowerForMysql" />
@@ -49,6 +49,52 @@
 		WHERE 1=1
 			AND infrCcgSeq = #{infrCcgSeq}
 	</select>
+	
+	<!-- admin ccg등록 -->
+	<insert id="insert">
+		INSERT INTO infrCodeGroup(
+			infrCcgNameKor
+			,infrCcgNameEng
+			,infrCcgUseNy
+			,infrCcgDelNy
+			,regDatetime
+		)VALUES(
+			#{infrCcgNameKor}
+			,#{infrCcgNameEng}
+			,#{infrCcgUseNy}
+			,#{infrCcgDelNy}
+			,now()
+		)
+		
+		<selectKey resultType="String" keyProperty="infrCcgSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
+	
+	<!-- admin ccg수정 -->
+	<update id="update">
+		UPDATE infrCodeGroup
+		SET
+			infrCcgNameKor = #{infrCcgNameKor}
+			,infrCcgNameEng = #{infrCcgNameEng}
+			,infrCcgUseNy = #{infrCcgUseNy}
+			,infrCcgDelNy = #{infrCcgDelNy}
+			<!-- ,modDatetime = now() -->
+		WHERE 1=1
+			AND infrCcgSeq = #{infrCcgSeq}	
+	</update>
+	
+	<update id="uelete">
+		UPDATE infrCodeGroup
+		SET
+			infrCcgDelNy = 0
+		WHERE 1=1
+			AND infrCcgSeq = #{infrCcgSeq} 	
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM infrCodeGroup WHERE infrCcgSeq=#{infrCcgSeq}
+	</delete>
 
 
 

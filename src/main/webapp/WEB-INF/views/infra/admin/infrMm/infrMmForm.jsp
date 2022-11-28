@@ -94,14 +94,14 @@
 	                        <div class="row mb-4">
 		                        <div class="col-6">
 		                        	<label class="form-label">삭제여부</label>
-									<select class="form-select">
-		                        		<option>N</option>
-		                        		<option>Y</option>
+									<select class="form-select" id="infrMmDelNy" name="infrMmDelNy">
+		                        		<option value="1">N</option>
+		                        		<option value="0">Y</option>
 		                        	</select>
 		                        </div>
 		                        <div class="col">
 		                        	<label class="form-label">사용여부</label>
-									<select class="form-select" id="infrMmDelNy" name="infrMmDelNy">
+									<select class="form-select" id="infrMmUseNy" name="infrMmUseNy">
 		                        		<option value="1">N</option>
 		                        		<option value="0">Y</option>
 		                        	</select>
@@ -136,7 +136,7 @@
 	                        </div>
 							<div class="row p-0">
 								<div class="col">
-									<button class="btn btn-secondary" type="button" id="cglList"><i class="fa-sharp fa-solid fa-bars"></i></button>
+									<button class="btn btn-secondary" type="button" id="btnList"><i class="fa-sharp fa-solid fa-bars"></i></button>
 								</div>
 								<div class="col" style="text-align: right;">
 									<button class="btn btn-danger" type="button" id="cglDel"><i class="fa-regular fa-trash-can"></i></button>
@@ -163,6 +163,12 @@
         <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 		<script>
+			var goUrlList = "/admin/memberGroup/infrMmList"
+			
+			$("#btnList").on("click",function(){
+		   		$(location).attr("href",goUrlList);
+		   	});
+		
 		    //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
 		    function sample4_execDaumPostcode() {
 		        new daum.Postcode({
@@ -220,6 +226,49 @@
 		    }
 		    
 		    function register(){
+		    	if(document.getElementById('infrMmId').value == '' || document.getElementById('infrMmId').value == null){
+					alert("아이디를 입력해주세요")
+					document.getElementById('infrMmId').value="";
+					document.getElementById('infrMmId').focus();
+					return false;
+				}
+				if(document.getElementById('infrMmName').value == '' || document.getElementById('infrMmName').value == null){
+					alert("이름을 입력해주세요")
+					document.getElementById('infrMmName').value="";
+					document.getElementById('infrMmName').focus();
+					return false;
+				}
+				if(document.getElementById('infrMmPw').value == '' || document.getElementById('infrMmPw').value == null){
+					alert("비밀번호 입력해주세요")
+					document.getElementById('infrMmPw').value="";
+					document.getElementById('infrMmPw').focus();
+					return false;
+				}
+				if(document.getElementById('infrMmEmailId').value == '' || document.getElementById('infrMmEmailId').value == null){
+					alert("이메일주소 입력해주세요")
+					document.getElementById('infrMmEmailId').value="";
+					document.getElementById('infrMmEmailId').focus();
+					return false;
+				}
+				if(document.getElementById('infrMmNickname').value == '' || document.getElementById('infrMmNickname').value == null){
+					alert("닉네임 입력해주세요")
+					document.getElementById('infrMmNickname').value="";
+					document.getElementById('infrMmNickname').focus();
+					return false;
+				}
+				if(document.getElementById('infrMmBod').value == '' || document.getElementById('infrMmBod').value == null){
+					alert("생년월일 입력해주세요")
+					document.getElementById('infrMmBod').value="";
+					document.getElementById('infrMmBod').focus();
+					return false;
+				}
+				if(document.getElementById('infrMmPhone').value == '' || document.getElementById('infrMmPhone').value == null){
+					alert("전화번호 입력해주세요")
+					document.getElementById('infrMmPhone').value="";
+					document.getElementById('infrMmPhone').focus();
+					return false;
+				}
+		    	
 		    	document.getElementById('memberFormReg').submit();
 		    };
 		</script>

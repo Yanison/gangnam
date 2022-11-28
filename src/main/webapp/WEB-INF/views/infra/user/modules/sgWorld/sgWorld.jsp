@@ -8,9 +8,11 @@
 	<%@ include file="../../../../rscs/basicRscs.jsp" %>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.1/sockjs.min.js" integrity="sha512-1QvjE7BtotQjkq8PxLeF6P46gEpBRXuskzIVgjFpekzFVF4yjRgrQvTG1MTOJ3yQgvTteKAcO7DSZI92+u/yZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<link href="/resources/user/sgworld/css/sgWorldTest.css" rel="stylesheet"/>
-	<script src="/resources/user/sgworld/js/sgWorldDiv.js"></script>
+	
 </head>
 <body>
+<input type="hidden" id="infrMmSeq" value="<c:out value="${infrMmSeq}"/>">
+<input type="hidden" id="endPoint" value="<c:out value="${endPoint}"/>">
 
 
 <div class="sgWorld">
@@ -43,87 +45,11 @@
 					<em style="font-size:14px;">num</em>
 				</div>
 			</div>
-			<div class="chat">
-				<div class="msgDiv">
-					<div class="msgHeader">
-						<i id="exitSgWorld"class="fa-solid fa-user"></i>
-						<p>dateTime</p>
-					</div>
-					<div class="msgBody">
-						<p class="magTextarea" id="magTextarea">
-							msgTextarea
-						</p>
-					</div>
-				</div>
-				<div class="msgDiv">
-					<div class="msgHeader">
-						<i id="exitSgWorld"class="fa-solid fa-user"></i>
-						<p>dateTime</p>
-					</div>
-					<div class="msgBody">
-						<p class="magTextarea" id="magTextarea">
-							msgTextarea
-						</p>
-					</div>
-				</div>
-				<div class="msgDiv">
-					<div class="msgHeader">
-						<i id="exitSgWorld"class="fa-solid fa-user"></i>
-						<p>dateTime</p>
-					</div>
-					<div class="msgBody">
-						<p class="magTextarea" id="magTextarea">
-							msgTextarea
-						</p>
-					</div>
-				</div>
-				<div class="msgDiv">
-					<div class="msgHeader">
-						<i id="exitSgWorld"class="fa-solid fa-user"></i>
-						<p>dateTime</p>
-					</div>
-					<div class="msgBody">
-						<p class="magTextarea" id="magTextarea">
-							msgTextarea
-						</p>
-					</div>
-				</div>
-				<div class="msgDiv">
-					<div class="msgHeader">
-						<i id="exitSgWorld"class="fa-solid fa-user"></i>
-						<p>dateTime</p>
-					</div>
-					<div class="msgBody">
-						<p class="magTextarea" id="magTextarea">
-							msgTextarea
-						</p>
-					</div>
-				</div>
-				<div class="msgDiv">
-					<div class="msgHeader">
-						<i id="exitSgWorld"class="fa-solid fa-user"></i>
-						<p>dateTime</p>
-					</div>
-					<div class="msgBody">
-						<p class="magTextarea" id="magTextarea">
-							msgTextarea
-						</p>
-					</div>
-				</div>
-				<div class="msgDiv">
-					<div class="msgHeader">
-						<i id="exitSgWorld"class="fa-solid fa-user"></i>
-						<p>dateTime</p>
-					</div>
-					<div class="msgBody">
-						<p class="magTextarea" id="magTextarea">
-							msgTextarea
-						</p>
-					</div>
-				</div>
+			<div class="chat" id="sgwChat">
+				
 				
 			</div>
-			<form class="inputMsgDiv">
+			<div class="inputMsgDiv">
 				<div class="msgTo">
 				<span>To.</span>
 				<select>
@@ -131,8 +57,8 @@
 					<option>EveryOne</option>
 				</select>
 				</div>
-				<input type="text" class="inputMsg" name="msg" placeholder="Message...">
-			</form>
+				<input type="text" class="inputMsg" name="msg" id="inputMsg" placeholder="Message..." onkeypress="sendMsg(event)">
+			</div>
 		</article>
 	</section>
 	<section class="div2 utilDiv">
@@ -150,10 +76,10 @@
 			</div>
 			<div class="divContents">
 				<i class="fa-solid fa-microphone-lines"></i>
-				<!-- <i class="fa-solid fa-microphone-lines-slash"></i> -->
+				<<i class="fa-solid fa-microphone-lines-slash"></i>
 			</div>
 			<div class="divContents">
-				<!-- <i class="fa-solid fa-video-slash"></i> -->
+				 <i class="fa-solid fa-video-slash"></i>
 				<i class="fa-solid fa-video"></i>
 			</div>
 		</div>
@@ -196,10 +122,10 @@
 			
 			<div class="divContents">
 				<i class="fa-solid fa-microphone-lines"></i>
-				<!-- <i class="fa-solid fa-microphone-lines-slash"></i> -->
+				<<i class="fa-solid fa-microphone-lines-slash"></i>
 			</div>
 			<div class="divContents">
-				<!-- <i class="fa-solid fa-video-slash"></i> -->
+				<i class="fa-solid fa-video-slash"></i>
 				<i class="fa-solid fa-video"></i>
 			</div>
 		</div>
@@ -218,57 +144,7 @@
 
 </body>
 </html>
-<script src="/resources/user/sgworld/js/sgWorld.js"></script>
-<script>
-	var stompClient = null;
-	
-	function setConnected(connected) {
-	    $("#connect").prop("disabled", connected);
-	    //$("#disconnect").prop("disabled", !connected);
-	    if (connected) {
-	        $("#conversation").show();
-	    }
-	    //else {
-	        //$("#conversation").hide();
-	    //}
-	    $("#greetings").html("");
-	}
-	
-	function connect() {
-	    var socket = new SockJS('/gs-guide-websocket');
-	    stompClient = Stomp.over(socket);
-	    stompClient.connect({}, function (frame) {
-	        setConnected(true);
-	        console.log('Connected: ' + frame);
-	        stompClient.subscribe('/topic/greetings', function (greeting) {
-	            showGreeting(JSON.parse(greeting.body).content);
-	        });
-	    });
-	}
-	/*
-	function disconnect() {
-	    if (stompClient !== null) {
-	        stompClient.disconnect();
-	    }
-	    setConnected(false);
-	    console.log("Disconnected");
-	}
-	*/
-	function sendName() {
-	    stompClient.send("/app/hello", {}, JSON.stringify({'name': $("#name").val()}));
-	}
-	
-	function showGreeting(message) {
-	    $("#greetings").append("<tr><td>" + message + "</td></tr>");
-	}
-	
-	$(function () {
-	    $("form").on('submit', function (e) {
-	        e.preventDefault();
-	    });
-	    $( "#connect" ).click(function() { connect(); });
-	    //$( "#disconnect" ).click(function() { disconnect(); });
-	    $( "#send" ).click(function() { sendName(); });
-	});
 
-</script>
+<script src="/resources/user/sgworld/js/sgWorld.js"></script>
+<script src="/resources/user/sgworld/js/sgWorldDiv.js"></script>
+<script src="/resources/user/sgworld/js/sgWorldRequets.js"></script>

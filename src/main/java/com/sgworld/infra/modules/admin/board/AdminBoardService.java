@@ -32,4 +32,11 @@ public interface AdminBoardService {
 	
 	//조회수
 	public int boardViewCount(AdminBoardDto dto) throws Exception;
+
+	//좋아요
+	public int boardLikeCount(AdminBoardVo vo) throws Exception;
+	public AdminBoardDto boardLiked(AdminBoardVo vo) throws Exception;
+	public int insertLike(AdminBoardDto dto) throws Exception;
+	public int deleteLike(AdminBoardVo vo) throws Exception;
 }
+

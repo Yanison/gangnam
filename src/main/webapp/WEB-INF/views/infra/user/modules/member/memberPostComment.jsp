@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
 <html>
 <head>
 	<title>SGWorld</title>
@@ -16,6 +15,9 @@
 	<header>
 		<%@ include file="../../common/header.jsp"%> 
 	</header>
+	<input type="hidden" name="bdSeq" value="<c:out value="${dto.bdSeq }"/>">
+	<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>">
+	<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow }"/>">
 	<div class="wrap">
 		<!-- header 넣을자리-->
 		<div class="contentWrap">
@@ -32,10 +34,11 @@
 						<b>내글 조회</b>
 							<ul class="rightUl">
 								<li style="color:#8F8CFF ">작성글
-								<li>댓글
-								<li>댓글단 글
-								<li>좋아요 글
+								<li onclick="ready()">댓글
+								<li onclick="ready()">댓글단 글
+								<li onclick="ready()">좋아요 글
 							</ul>
+							<%-- <c:out value="${vo.totalRows }"/> --%>
 							<table>
 								<tr>
 									<th><input type="checkbox"></td>
@@ -55,7 +58,7 @@
 											<tr>
 												<td><input type="checkbox"></td>
 												<td><c:out value="${list.bdTitle }" /></td>
-												<td><c:out value="${list.regDatetime }" /><%-- <fmt:formatDate value="${list.regDatetime }" pattern="yyyy-MM-dd"/> --%></td>
+												<td><%-- <c:out value="${list.regDatetime }" /> --%><fmt:formatDate value="${list.regDatetime }" pattern="yyyy-MM-dd"/></td>
 												<td>10<!-- ? --></td>
 												<td><c:out value="${list.bdLikeSeq }" /></td>
 											</tr>
@@ -64,20 +67,12 @@
 								</c:choose>		
 							</table>
 							<div class="button">
-								<button type="button" class="btnDelete">삭제</button>
-								<button type="button" class="btnModify">수정</button>
+								<button type="button" class="btnDelete" onclick="ready()">삭제</button>
+								<button type="button" class="btnModify" onclick="ready()">수정</button>
 							</div>
-							<div class="pagination">
-								<ul class="paginationUl">
-									<li><
-									<li>1
-									<li>2
-									<li>3
-									<li>4
-									<li>5
-									<li>>
-								</ul>
-							</div>	
+							<!-- pagination s -->
+							<%@include file="../../common/userPagination.jsp"%>
+							<!-- pagination e -->	
 					</article>
 				</section>
 			</div>	
@@ -118,5 +113,15 @@
 		seq.val(seqValue);
 		form.attr("action" , goUrlMemberWithdraw).submit();
 	};
+	
+	goList = function(thisPage){
+		$("input:hidden[name=thisPage]").val(thisPage);
+		form.attr("action" , goUrlMemberPostComment).submit();
+	}	
+	
+	function ready(){
+		alert("준비중입니다")
+	};
+</script>	
 </body>
 </html>

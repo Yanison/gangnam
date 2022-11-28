@@ -2,13 +2,16 @@ package com.sgworld.infra.modules.user.board;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sgworld.infra.modules.admin.board.AdminBoardDto;
@@ -44,9 +47,12 @@ public class BoardController {
 	public String boardView(@ModelAttribute("vo") AdminBoardVo vo, AdminBoardDto dto, Model model) throws Exception {
 		
 		service.boardViewCount(dto);
+		AdminBoardDto like = service.boardLiked(vo);
+		model.addAttribute("like", like);
+		int likeCount = service.boardLikeCount(vo);
+		model.addAttribute("likeCount", likeCount);
 		AdminBoardDto item = service.selectOne(vo);
 		model.addAttribute("item", item);
-		model.addAttribute("listUploaded", service.selectListUploaded(vo));
 		
 		return "infra/user/modules/board/boardView";
 	}
@@ -85,4 +91,43 @@ public class BoardController {
 		service.delete(vo);
 		return "redirect:/board/boardList";
 	}
+	
+	//좋아요
+	@ResponseBody
+	@RequestMapping(value = "boardLike")
+	public Map<String, Object> boardLike(AdminBoardDto dto, AdminBoardVo vo) throws Exception {
+
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		int result = service.insertLike(dto);
+		int likedCount = service.boardLikeCount(vo);
+
+		if (result == 0) {
+			returnMap.put("rt", "fail");
+		} else {
+			returnMap.put("rt", "success");	
+			returnMap.put("likedCount", likedCount);
+		}
+		return returnMap;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "boardUnLike")
+	public Map<String, Object> boardUnLike(AdminBoardDto dto, AdminBoardVo vo) throws Exception {
+
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		int result = service.deleteLike(vo);
+		int likedCount = service.boardLikeCount(vo);
+
+		if (result == 0) {
+			returnMap.put("rt", "fail");
+		} else {
+			returnMap.put("rt", "success");	
+			returnMap.put("likedCount", likedCount);
+		}
+		return returnMap;
+	}
+	
+	
 }

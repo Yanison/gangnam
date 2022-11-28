@@ -5,7 +5,7 @@ import java.util.List;
 public interface MemberGroupService {
 
 	//유저 리스트
-	public List<MemberGroup> selectMmList(MemberGroup dto) throws Exception;
+	public List<MemberGroup> selectMmList(MemberGroupVo vo) throws Exception;
 
 	//admin_내 정보 보기
 	public MemberGroup selectMmOne(MemberGroupVo vo) throws Exception;
@@ -18,8 +18,8 @@ public interface MemberGroupService {
 
 	//로그인
 	public MemberGroup selectUserLogin(MemberGroup dto) throws Exception;
-	public MemberGroup selectOneId(MemberGroup dto) throws Exception;
-	public MemberGroup selectOneLogin(MemberGroup dto) throws Exception;
+	public MemberGroup selectOneXdminId(MemberGroup dto) throws Exception;
+	public MemberGroup selectOneXdminLogin(MemberGroup dto) throws Exception;
 
 	public int udptMmifo(MemberGroup dto)throws Exception;
 
@@ -34,5 +34,17 @@ public interface MemberGroupService {
 	
 	//admin count조회
 	public int selectOneCount(MemberGroupVo vo)throws Exception;
+	
+
+	public int selectCount(MemberGroupVo vo)throws Exception;
+
+	//admin 회원정보 수정
+	public int adminUpdate(MemberGroup dto)throws Exception;
+	
+	//admin 회원정보 삭제여부 삭제
+	public int adminUelete(MemberGroup dto)throws Exception;
+	
+	//admin 회원정보 완전 삭제
+	public int adminDelete(MemberGroupVo vo)throws Exception;
 	
 }

@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
 <html>
 <head>
 	<title>SGWorld</title>
@@ -30,11 +29,11 @@
 					<article class="rightContent">
 						<div class="rightContentWrap">
 							<h5>회원탈퇴를 원하시면 아래의 텍스트를 입력해주세요.</h5>
-							<div>
-								<input type="text" placeholder="회원탈퇴" class="txt">
+							<div style="margin: auto">
+								<input type="text" placeholder="회원탈퇴" class="txt form-control" id="withdrawText">
 							</div>	
 							<div>	
-								<select class="txt1">
+								<select class="form-select txt1">
 									<option>탈퇴사유</option>
 									<option>이용하고 싶은 서비스가 없어요.</option>
 									<option>서비스 퀄리티가 낮아요.</option>
@@ -45,13 +44,16 @@
 								</select>
 								<!-- <input type="text" placeholder="탈퇴사유" class="txt"> -->
 							</div>
-							<button type="button" class="modifyBtn">탈퇴하기</button>
+							<button type="button" id="btnModify" class="modifyBtn">탈퇴하기</button>
 							
 						</div>
 					</article>
 				</section>
 			</div>	
 		</div><!-- contentWrap end -->
+	</form>
+	<form name="formVo" id="formVo" method="post">
+	<input type="hidden" id="infrMmSeq" name="infrMmSeq" value="${infrMmSeq}" onchange="isSssValThere('infrMmSeq')">
 	</form>	
 	</div><!-- wrap end -->
 	<!-- contend e -->
@@ -66,9 +68,11 @@
 	var goUrlMemberAvartar = "/member/memberAvartar";
 	var goUrlMemberPostComment = "/member/memberPostComment";
 	var goUrlMemberWithdraw = "/member/memberWithdraw";
+	var goUrlMemberUelete = "/member/ueleteMm";
 	
 	var seq = $("input:hidden[name=infrMmSeq]");
 	var form = $("form[name=form]");
+	var formVo = $("form[name=formVo]"); 
 	
 	goMemberView = function(seqValue){
 		seq.val(seqValue);
@@ -89,6 +93,15 @@
 		seq.val(seqValue);
 		form.attr("action" , goUrlMemberWithdraw).submit();
 	};	
-
+	
+	$("#btnModify").on("click" , function(){
+		if(document.getElementById('withdrawText').value == '회원탈퇴'){
+			formVo.attr("action" ,goUrlMemberUelete).submit();
+		}else{
+			alert('회원탈퇴 입력해주십쇼');
+			false
+		}
+	});
+</script>
 </body>
 </html>

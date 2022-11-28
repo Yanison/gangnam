@@ -12,8 +12,8 @@ public class MemberGroupServiceImpl implements MemberGroupService {
 	MemberGroupDao mmDao;
 	
 	@Override
-	public List<MemberGroup> selectMmList(MemberGroup dto) throws Exception{
-		return mmDao.selectMmList(dto);
+	public List<MemberGroup> selectMmList(MemberGroupVo vo) throws Exception{
+		return mmDao.selectMmList(vo);
 	}
 	
 	
@@ -65,14 +65,40 @@ public class MemberGroupServiceImpl implements MemberGroupService {
 	}
 	
 	@Override
-	public MemberGroup selectOneId(MemberGroup dto) throws Exception {
-		return mmDao.selectOneId(dto);
+	public MemberGroup selectOneXdminId(MemberGroup dto) throws Exception {
+		return mmDao.selectOneXdminId(dto);
 	}
 
 	@Override
-	public MemberGroup selectOneLogin(MemberGroup dto) throws Exception {
-		return mmDao.selectOneLogin(dto);
+	public MemberGroup selectOneXdminLogin(MemberGroup dto) throws Exception {
+		return mmDao.selectOneXdminLogin(dto);
 	}
+
+
+	@Override
+	public int adminUpdate(MemberGroup dto) throws Exception {
+		return mmDao.adminUpdate(dto);
+	}
+
+
+	@Override
+	public int adminUelete(MemberGroup dto) throws Exception {
+		return mmDao.adminUelete(dto);
+	}
+
+
+	@Override
+	public int adminDelete(MemberGroupVo vo) throws Exception {
+		return mmDao.adminDelete(vo);
+	}
+
+
+	@Override
+	public int selectCount(MemberGroupVo vo) throws Exception {
+		return mmDao.selectCount(vo);
+	}
+	
+	
 	
 	
 	
