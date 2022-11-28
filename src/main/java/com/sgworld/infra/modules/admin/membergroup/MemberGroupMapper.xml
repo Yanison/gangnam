@@ -241,4 +241,5 @@
 	<delete id="adminDelete">
 		DELETE FROM infrMember WHERE infrMmSeq = #{infrMmSeq}
 	</delete>
+	
 </mapper>

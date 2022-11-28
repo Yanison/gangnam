@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.sgworld.infra.modules.admin.avatar.AvatarDto;
+import com.sgworld.infra.modules.admin.avatar.AvatarVo;
 import com.sgworld.infra.modules.admin.membergroup.MemberGroup;
 import com.sgworld.infra.modules.admin.membergroup.MemberGroupServiceImpl;
 import com.sgworld.infra.modules.admin.membergroup.MemberGroupVo;
@@ -43,11 +45,22 @@ public class MemberController {
 		return "redirect:/member/memberView";
 	}
 	
-	//내정보_아바타 수정
+	//내정보_아바타 수정 화면가기
 	@RequestMapping(value="memberAvartar")
 	public String memberAvartar()throws Exception {
 		return "infra/user/modules/member/memberAvartar";
 	}
+	
+	//내정보_아바타 수정
+	@SuppressWarnings(value = {"all"})
+	@RequestMapping(value = "infrAvatarInst")
+	public String infrAvatarInst(AvatarVo vo, AvatarDto dto, RedirectAttributes redirectAttributes) throws Exception {
+		System.out.println("까꿍");
+		vo.setAvatarSeq(dto.getAvatarSeq());
+		
+		redirectAttributes.addFlashAttribute("vo", vo);
+		return "redirect:/member/memberAvartar";
+	}	
 		
 	//내정보_내 글 조회
 	@RequestMapping(value="memberPostComment")
