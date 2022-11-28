@@ -17,6 +17,7 @@
 	<%@ include file="../../common/header.jsp" %>
 	<!-- header e -->
 <form method="post" id="form" name="form">
+	<input type="hidden" id="infrMmSeq" name="infrMmSeq" value="${infrMmSeq}">
 	<input type="hidden" name="bdSeq" value="${dto.bdSeq }">
 	<!-- contend s -->
 	<section class=" container boardBody">

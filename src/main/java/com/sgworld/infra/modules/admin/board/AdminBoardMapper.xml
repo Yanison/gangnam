@@ -141,7 +141,7 @@
 	</update>
 	
 	<!-- 좋아요 여부확인 -->
-	<select id="boardLiked" resultType="Integer"> 
+	<select id="boardLiked" resultMap="resultMapObj"> 
 		SELECT 
 			infrMmSeq
 		FROM bdLike 
