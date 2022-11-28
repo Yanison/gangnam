@@ -11,7 +11,7 @@
 	<link href="../resources/user/home/css/footer.css" rel="stylesheet">
 </head>
 <body>
-	<form name="form" method="post">
+	<form name="form" method="post" enctype="multipart/form-data">
 	<header>
 		<%@ include file="../../common/header.jsp"%> 
 	</header>
@@ -25,16 +25,11 @@
 				<%@ include file="../../common/memberNav.jsp"%>
 				<!-- left Nav e -->
 				<section style=" width: 1000px;">
-			        <%-- <div class="row mt-sm-4">
-				        <div class="col-sm-6 mt-3 mt-sm-0">
-				        	<c:set var="type" value="2"/>		<!-- #-> -->
+					<b>아바타 수정</b>
+					<article class="rightContent">
+						<div class="icon">
+							<c:set var="type" value="2"/>		<!-- #-> -->
 				        	<c:set var="name" value="uploadImg"/>		<!-- #-> -->
-				        	<input type="hidden" id="<c:out value="${name }"/>Type" name="<c:out value="${name }"/>Type" value="<c:out value="${type }"/>"/>
-				        	<input type="hidden" id="<c:out value="${name }"/>MaxNumber" name="<c:out value="${name }"/>MaxNumber" value="0"/>
-				        	<input type="hidden" id="<c:out value="${name }"/>DeleteSeq" name="<c:out value="${name }"/>DeleteSeq"/>
-				        	<input type="hidden" id="<c:out value="${name }"/>DeletePathFile" name="<c:out value="${name }"/>DeletePathFile"/>
-				            <label for="uploadImg" class="form-label input-file-button">이미지첨부</label>
-				 			<input class="form-control form-control-sm" id="<c:out value="${name }"/>" name="<c:out value="${name }"/>" type="file" multiple="multiple" style="display: none;" onChange="upload('<c:out value="${name }"/>', <c:out value="${type }"/>, 0, 1, 0, 0, 1);">
 							<div id="<c:out value="${name }"/>Preview" class="addScroll">
 								<c:forEach items="${listUploaded}" var="listUploaded" varStatus="statusUploaded">
 									<c:if test="${listUploaded.type eq type }">
@@ -45,13 +40,20 @@
 									</c:if>
 								</c:forEach>
 							</div>
-				        </div>
-				        <div class="col-sm-6 mt-3 mt-sm-0">
-				        	<c:set var="type" value="3"/>		<!-- #-> -->
-				        	<c:set var="name" value="uploadFile"/>		<!-- #-> -->
-				        	<input type="hidden" id="<c:out value="${name }"/>Type" name="<c:out value="${name }"/>Type" value="<c:out value="${type }"/>"/>
+							<input type="hidden" id="<c:out value="${name }"/>Type" name="<c:out value="${name }"/>Type" value="<c:out value="${type }"/>"/>
 				        	<input type="hidden" id="<c:out value="${name }"/>MaxNumber" name="<c:out value="${name }"/>MaxNumber" value="0"/>
 				        	<input type="hidden" id="<c:out value="${name }"/>DeleteSeq" name="<c:out value="${name }"/>DeleteSeq"/>
+				        	<input type="hidden" id="<c:out value="${name }"/>DeletePathFile" name="<c:out value="${name }"/>DeletePathFile"/>
+				 			<input class="form-control form-control-sm" id="<c:out value="${name }"/>" name="<c:out value="${name }"/>" type="file" style="display: none;" onChange="upload('<c:out value="${name }"/>', <c:out value="${type }"/>, 0, 1, 0, 0, 1);">
+							<label for="uploadImg" class="form-label input-file-button">이미지첨부</label>
+							<!-- <i class="fa-solid fa-user fa-4x"></i> -->
+						</div>
+						<div class="inputBox">
+							<input type="text" placeholder="아바타 이름" class="txt form-control" id="avatarName" name="avatarName" value="<c:out value="${dto.avatarName }"/>">
+						</div>
+						<div class="btns">
+							<button type="button" class="modifyBtn">기본 아바타</button>
+							<button type="button" class="modifyBtn" id="btnSave">아바타 업로드</button>					
 				        	<input type="hidden" id="<c:out value="${name }"/>DeletePathFile" name="<c:out value="${name }"/>DeletePathFile"/>   	
 							<label for="uploadFile" class="form-label input-file-button">파일첨부</label>
 							<input class="form-control form-control-sm" id="<c:out value="${name }"/>" name="<c:out value="${name }"/>" type="file" multiple="multiple" style="display: none;" onChange="upload('<c:out value="${name }"/>', <c:out value="${type }"/>, 0, 2, 0, 0, 2);" >
@@ -119,14 +121,42 @@
 	var goUrlMemberAvartar = "/member/memberAvartar";
 	var goUrlMemberPostComment = "/member/memberPostComment";
 	var goUrlMemberWithdraw = "/member/memberWithdraw";
+	var goUrlInst = "/member/avatarUpload";
 	var goUrlAvatarInst = "/member/infrAvatarInst"
 	
 	var seq = $("input:hidden[name=infrMmSeq]");
 	var form = $("form[name=form]");
 	
+	goMemberView = function(seqValue){
+		seq.val(seqValue);
+		form.attr("action" , goUrlMemberView).submit();
+	};
+	
+	goMemberAvartar = function(seqValue){
+		seq.val(seqValue);
+		form.attr("action" , goUrlMemberAvartar).submit();
+	};
+	
+	goMemberPostComment = function(seqValue){
+		seq.val(seqValue);
+		form.attr("action" , goUrlMemberPostComment).submit();
+	};
+	
+	goMemberWithdraw = function(seqValue){
+		seq.val(seqValue);
+		form.attr("action" , goUrlMemberWithdraw).submit();
+	};	
+	
+	$("#btnSave").on("click", function(){
+   		form.attr("action", goUrlInst).submit();
+	});
+	
+	
+</script>
 	$("#avatarInst").on("click" , function(){
 		form.attr("action" ,goUrlAvatarInst).submit();
 	});	
+
 
 </body>
 

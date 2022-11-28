@@ -58,6 +58,12 @@ section > b{
 	padding-right: 120px;
 }
 
+.inputBox{
+	display: flex;
+	justify-content: center;
+	width: 500px;
+}
+
 
 
 .modifyBtn{
@@ -79,16 +85,43 @@ section > b{
 	padding-top:5px; 
 	padding-left:5px;
 	margin: auto;
-	margin-top: 30px;
+	margin-top: 100px;
 	height: 472px;
 }
-
+ 	
 .input-file-button{
 	padding: 4px 25px;
 	background-color: #434A72;
 	border-radius: 4px;
 	color: white;
 	cursor: pointer;
+	font-size: 20px;
+	margin-top: 30px;
+}
+.inputBox{
+	width: 600px;
+	margin: auto;
+	margin-top: 30px;
+}
+.button{
+	width:200px;
+	margin: auto;
+	margin-top:20px;
+	display: block;
+	background-color: #434A72;
+	color: white;
+	height: 50px;
+	border-radius: 10px;
+	border-color: #434A72;
+}
+.list{
+	text-align: center;
+	color: white;
+	font-size: 15px
+}
+.profilIcon{
+	font-size: 12em;
+	line-height: 400px;
 	margin-top: 20px;
 }
 
