@@ -53,7 +53,7 @@ public class MemberController {
 	
 	//내정보_아바타 수정
 	@SuppressWarnings(value = {"all"})
-	@RequestMapping(value = "infrAvatarInst")
+	@RequestMapping(value = "avatarUpload")
 	public String infrAvatarInst(AvatarVo vo, AvatarDto dto, RedirectAttributes redirectAttributes) throws Exception {
 		System.out.println("까꿍");
 		vo.setAvatarSeq(dto.getAvatarSeq());

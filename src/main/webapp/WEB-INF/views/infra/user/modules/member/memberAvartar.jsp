@@ -11,7 +11,7 @@
 	<link href="../resources/user/home/css/footer.css" rel="stylesheet">
 </head>
 <body>
-	<form name="form" method="post">
+	<form name="form" method="post" enctype="multipart/form-data">
 	<header>
 		<%@ include file="../../common/header.jsp"%> 
 	</header>
@@ -50,7 +50,7 @@
 						</div>
 						<div class="btns">
 							<button type="button" class="modifyBtn">기본 아바타</button>
-							<button type="button" class="modifyBtn">아바타 업로드</button>					
+							<button type="button" class="modifyBtn" id="btnSave">아바타 업로드</button>					
 						</div>
 					</article>
 				</section>
@@ -72,6 +72,7 @@
 	var goUrlMemberAvartar = "/member/memberAvartar";
 	var goUrlMemberPostComment = "/member/memberPostComment";
 	var goUrlMemberWithdraw = "/member/memberWithdraw";
+	var goUrlInst = "/member/avatarUpload";
 	
 	var seq = $("input:hidden[name=infrMmSeq]");
 	var form = $("form[name=form]");
@@ -95,6 +96,10 @@
 		seq.val(seqValue);
 		form.attr("action" , goUrlMemberWithdraw).submit();
 	};	
+	
+	$("#btnSave").on("click", function(){
+   		form.attr("action", goUrlInst).submit();
+	});
 	
 	
 </script>
