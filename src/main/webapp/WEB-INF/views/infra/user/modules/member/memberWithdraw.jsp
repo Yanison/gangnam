@@ -18,7 +18,7 @@
 	<!-- contend s -->
 	<div class="wrap">
 		<!-- header 넣을자리-->
-		<div class="contentWrap">
+		<div class="contentWrap" style="margin-top: 100px;">
 			<span>My Page</span>
 			<div class="leftDiv">	
 				<!-- left Nav s-->

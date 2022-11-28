@@ -96,7 +96,7 @@ public class MemberController {
 		vo.setAvatarSeq(dto.getAvatarSeq());
 		
 		redirectAttributes.addFlashAttribute("vo", vo);
-		return "redirect:/admin/avatar/infrAvatarList";
+		return "redirect:/member/memberAvartar";
 	}
 
 }
