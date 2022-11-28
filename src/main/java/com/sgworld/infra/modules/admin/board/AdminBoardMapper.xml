@@ -36,6 +36,8 @@
 				,a.regDatetime
 				,a.delNy
 				,a.viewCount
+				,a.likeCount
+				<!-- ,(select count(bdLikeSeq) from bdLike c where 1=1 and a.bdSeq = c.bdSeq) -->
 			<include refid="selectCommon" />
 			ORDER BY a.bdSeq DESC
 		<include refid="Base.selectListLowerForMysql" />
@@ -138,7 +140,47 @@
 			AND bdSeq = #{bdSeq}	
 	</update>
 	
-	<!-- 추천 -->
+	<!-- 좋아요 여부확인 -->
+	<select id="boardLiked" resultType="Integer"> 
+		SELECT 
+			infrMmSeq
+		FROM bdLike 
+		WHERE 1=1
+			AND bdSeq = #{bdSeq}
+			AND infrMmSeq = #{infrMmSeq}
+	</select>
+	
+	<!-- 좋아요 count -->
+	<select id="boardLikeCount" resultType="Integer"> 
+		SELECT 
+			COUNT(*) as likeCount 
+		FROM bdLike 
+		WHERE 1=1
+			AND bdSeq = #{bdSeq}
+	</select>
+	
+	<!-- 좋아요 추가 -->
+	<insert id="insertLike">
+		INSERT INTO bdLike (
+			bdSeq
+			,infrMmSeq
+		)
+		VALUES (
+			#{bdSeq}
+			,#{infrMmSeq}
+		)
+		<selectKey resultType="String" keyProperty="bdLikeSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
+	
+	<!-- 좋아요 취소 -->
+	<delete id="deleteLike">
+		DELETE FROM bdLike
+		WHERE 1=1
+			AND bdSeq = #{bdSeq}
+			AND infrMmSeq = #{infrMmSeq}
+	</delete>
 	
  	<!-- 댓글 -->
  	<select id="selectCommentList" resultMap="resultMapCommnet">

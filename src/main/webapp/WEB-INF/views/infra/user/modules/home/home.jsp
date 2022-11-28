@@ -8,7 +8,7 @@
 	<script src="/resources/user/home/js/home.js"></script>
 </head>
 <body>
-	<form name="form" method="post">
+<!-- 	<form name="form" method="post"> -->
 	<header>
 		<%@ include file="../../common/header.jsp"%> 
 	</header>
@@ -29,7 +29,7 @@
 			</c:choose>
 		</article>
 		<article class="onLiveSgWorld">
-			<h1 class="onLiveSgWorldTitle">OnLive</h1>
+			<h1 class="onLiveSgWorldTitle">Onlive</h1>
 			<div class="onSgWorldListDiv">
 				<!-- forEach로 데이터 뿌려주세요 -->
 				<div class="onSgWorldList onSgWorldList1">
@@ -140,7 +140,7 @@
 	<footer>
 		<%@include file="../../common/footer.jsp" %>
 	</footer>
-	</form>
+<!-- 	</form> -->
 	<div id="modalDiv" class="modalDiv"  style="display:none">
 			<%@include file="./createOption.jsp" %>
 	</div>

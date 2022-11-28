@@ -35,6 +35,7 @@
 		where 1=1
 		and regByMm = #{infrMmSeq}
 	</select>
+	
 	<select id="isDupleLink" resultType="Integer">
 		select count(*)
 		from sgWorld
@@ -52,7 +53,51 @@
 		where infrMmSeq = #{infrMmSeq}
 	</select>
 	
-	<select id="loadRoomInfo">
+	<select id="onLoadInfoSgw" resultMap="SgwDto">
+		select
+		  s.sgwSeq
+		  ,s.sgwTitle
+		  ,s.sgwMap
+		  ,s.sgwMmNumber
+		  ,s.isHidden
+		  ,s.sgwLink
+		  ,s.regDateTime
+		  ,s.regByMm
+		from sgWorld s
+		where 1=1
+		and s.sgwLink = #{sgwLink}
+	</select>
 	
+	<select id="onLoadUserInfoSgw" resultMap="SgwDto">
+		select
+		  r.sgwSeq
+		  ,m.infrMmSeq
+		  ,m.infrMmNickname
+		  ,a.avatarSeq
+		  ,a.avatarName
+		from sgWorld s 
+		  left join sgWorldRoom r 
+		    on s.sgwSeq = r.sgwSeq
+		  left join infrMember m 
+		    on r.infrMmSeq = m.infrMmSeq
+		  left join sgWorldAvatar a
+		    on r.sgwAvatar = a.avatarSeq
+		  where 1=1
+		  and s.sgwLink = #{sgwLink}
+	</select>
+	
+	<insert id="addUserSgwRoom">
+		insert into sgwRoom(
+			infrMmSeq
+			sgwAvatarSeq
+		)values(
+			#{infrMmSeq},
+			#{sgwAvatarSeq}
+			where 1=1
+			and s.sgwLink = #{sgwLink}
+		)
+	</insert>
+	<select id="selectUserinfo">
+		select infrMmSeq,infrMmNickname,avatarSeq
 	</select>
 </mapper>

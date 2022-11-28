@@ -29,6 +29,7 @@ public class MemberController {
 	@Autowired
 	AdminAvatarServiceImpl servicee;
 	
+
 	@Autowired
 	HttpSession session;
 	
@@ -97,6 +98,17 @@ public class MemberController {
 	@RequestMapping(value="findMyLogin")
 	public String findUser() {
 		return "infra/user/modules/home/findMyLogin";
+	}
+	
+	@SuppressWarnings(value = {"all"})
+	@RequestMapping(value = "infrAvatarInst")
+	public String infrAvatarInst(AvatarVo vo, AvatarDto dto, RedirectAttributes redirectAttributes) throws Exception {
+		System.out.println("까꿍");
+		servicee.insert(dto);
+		vo.setAvatarSeq(dto.getAvatarSeq());
+		
+		redirectAttributes.addFlashAttribute("vo", vo);
+		return "redirect:/member/memberAvartar";
 	}
 
 }

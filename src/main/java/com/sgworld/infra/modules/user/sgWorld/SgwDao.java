@@ -18,7 +18,10 @@ public class SgwDao {
 	private SqlSession sqlSession;
 	
 	public static String namespace = "com.sgworld.infra.modules.user.sgWorld.SgwMapper";
-	
+	/* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+	 * @@@@@@ sgw
+	 * @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+	 */
 	public int buildSgw (SgwDto sgwDto) {
 		System.out.println(
 				"SgwDao.buildSgw() :: shWorld 방 개설에 필요한 정보를 DB로 전달합니다." + "\n" +
@@ -33,7 +36,13 @@ public class SgwDao {
 		
 		return sqlSession.insert(namespace + ".buildSgw", sgwDto);
 	}
-	
+	public SgwDto onLoadInfoSgw(SgwDto sgwDto) {
+		return sqlSession.selectOne(namespace+".onLoadInfoSgw", sgwDto);
+	}
+	/* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+	 * @@@@@@ user
+	 * @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+	 */
 	public SgwDto findSgwbyMmSeq(SgwDto sgwDto) {
 		System.out.println(
 				"SgwDao.selectSgwOne :: 최근 개설된 Sgworld 하나를 불러옵니다." + "\n"+
@@ -48,6 +57,10 @@ public class SgwDao {
 				"방 생성시간 :: " + "\n" + ""
 				);
 		return sqlSession.selectOne(namespace + ".findSgwbyMmSeq", sgwDto);
+	}
+	public SgwDto onLoadUserInfoSgw(SgwDto sgwDto) {
+		
+		return sqlSession.selectOne(namespace+".onLoadUserInfoSgw", sgwDto);
 	}
 	public int isDupleLink(SgwDto sgwDto){
 		return sqlSession.selectOne(namespace+".isDupleLink", sgwDto);

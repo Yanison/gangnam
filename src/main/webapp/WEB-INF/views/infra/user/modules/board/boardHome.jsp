@@ -48,7 +48,7 @@
 					</div>
 					<div class="icon">
 						<i class="fa-solid fa-eye"> <c:out value="${list.viewCount }" /></i> <!-- 조회수 -->
-						<i class="fa-regular fa-thumbs-up"> 99</i> <!-- 좋아요 -->
+						<i class="fa-regular fa-heart"> <c:out value="${list.likeCount }" /></i> <!-- 좋아요 -->
 						<i class="fa-regular fa-message"> 99</i> <!-- 댓글수 -->
 					</div>
 				</div>

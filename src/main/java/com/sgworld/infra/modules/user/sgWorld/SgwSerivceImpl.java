@@ -14,11 +14,24 @@ public class SgwSerivceImpl implements SgwSerivce {
 	@Autowired
 	SgwWSController sgwWSController;
 	
+	/* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+	 * @@@@@@ sgw
+	 * @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+	 */
 	@Override
 	public int buildSgw (SgwDto sgwDto)throws Exception{
 		System.out.println("SgwSerivceImpl.buildSgw() :: shWorld 방 개설 서비스 로직을 수행합니.");
 		return sgwDao.buildSgw(sgwDto);
 	}
+	@Override
+	public SgwDto onLoadUserInfoSgw(SgwDto sgwDto)throws Exception{
+		return sgwDao.onLoadInfoSgw(sgwDto);
+	}
+	
+	/* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+	 * @@@@@@ user
+	 * @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+	 */
 	@Override
 	public int isDupleLink(SgwDto sgwDto)throws Exception{
 		return sgwDao.isDupleLink(sgwDto);
@@ -36,6 +49,11 @@ public class SgwSerivceImpl implements SgwSerivce {
 	@Override
 	public SgwDto findMm(SgwDto sgwDto)throws Exception{
 		return sgwDao.findMm(sgwDto);
+	}
+	
+	@Override
+	public SgwDto onLoadInfoSgw(SgwDto sgwDto)throws Exception{
+		return sgwDao.onLoadUserInfoSgw(sgwDto);
 	}
 	
 	

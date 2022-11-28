@@ -45,6 +45,17 @@ public class MemberGroupVo extends BaseVo{
 		this.mmSsSeq = mmSsSeq;
 	}
 	
+	private	String avatarSeq;
+
+	public String getAvatarSeq() {
+		return avatarSeq;
+	}
+	public void setAvatarSeq(String avatarSeq) {
+		this.avatarSeq = avatarSeq;
+	}
+	
+	
+	
 	
 	
 	

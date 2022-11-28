@@ -2,14 +2,17 @@ package com.sgworld.infra.modules.admin.membergroup;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 @Service
 public class MemberGroupServiceImpl implements MemberGroupService {
 	
 	@Autowired
 	MemberGroupDao mmDao;
+	
 	
 	@Override
 	public List<MemberGroup> selectMmList(MemberGroupVo vo) throws Exception{
@@ -97,9 +100,7 @@ public class MemberGroupServiceImpl implements MemberGroupService {
 	public int selectCount(MemberGroupVo vo) throws Exception {
 		return mmDao.selectCount(vo);
 	}
-	
-	
-	
+
 	
 	
 	
