@@ -22,7 +22,7 @@
 	<!-- contend s -->
 	<section class=" container boardBody">
 		<div class="boarderTitle">
-			<h2>자유게시판</h2> <!-- 게시판 타이틀 -->
+			<a>게시판</a><a>자유게시판</a> <!-- 게시판 타이틀 -->
 		</div>
 		<section class="boarder row">
 		<c:choose>

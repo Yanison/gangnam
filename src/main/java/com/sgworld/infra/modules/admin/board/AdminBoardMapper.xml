@@ -36,10 +36,9 @@
 				,a.regDatetime
 				,a.delNy
 				,a.viewCount
-				,a.likeCount
-				<!-- ,(select count(bdLikeSeq) from bdLike c where 1=1 and a.bdSeq = c.bdSeq) -->
+				,(select count(bdLikeSeq) from bdLike c where 1=1 and a.bdSeq = c.bdSeq) as likeCount
 			<include refid="selectCommon" />
-			ORDER BY a.bdSeq DESC
+			ORDER BY likeCount DESC, a.bdSeq DESC
 		<include refid="Base.selectListLowerForMysql" />
 	</select>
 	
@@ -198,7 +197,24 @@
  		<include refid="Base.selectListLowerForMysql" />
  	</select>
  	
- 	<!-- 사용자 게시글 등록 -->
- 	
+	<insert id="commentInst">
+		INSERT INTO bdComment (
+			content
+			,regDatetime
+			,infrMmSeq
+			,board_seq
+			,delNy
+		)
+		VALUES (
+			#{content}
+			,now()
+			,#{infrMmSeq}
+			,#{bdSeq}
+			,1
+		)
+		<selectKey resultType="String" keyProperty="cmSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert> 	
  	
 </mapper>

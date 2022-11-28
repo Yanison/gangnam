@@ -53,6 +53,8 @@ public class AdminBoardDao {
 		return list;
 	}
 	
+	public int commentInst(AdminBoardDto dto) { return sqlSession.insert(namespace + ".commentInst", dto); }
+	
 	//조회수
 	public int boardViewCount(AdminBoardDto dto) { return sqlSession.update(namespace + ".boardViewCount", dto); }
 	
