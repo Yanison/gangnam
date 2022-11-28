@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.sgworld.infra.modules.admin.avatar.AdminAvatarServiceImpl;
 import com.sgworld.infra.modules.admin.avatar.AvatarDto;
 import com.sgworld.infra.modules.admin.avatar.AvatarVo;
 import com.sgworld.infra.modules.admin.membergroup.MemberGroup;
@@ -24,6 +25,9 @@ public class MemberController {
 	
 	@Autowired
 	MemberGroupServiceImpl service;
+	
+	@Autowired
+	AdminAvatarServiceImpl servicee;
 	
 	@Autowired
 	HttpSession session;
@@ -56,6 +60,7 @@ public class MemberController {
 	@RequestMapping(value = "avatarUpload")
 	public String infrAvatarInst(AvatarVo vo, AvatarDto dto, RedirectAttributes redirectAttributes) throws Exception {
 		System.out.println("까꿍");
+		servicee.insert(dto);
 		vo.setAvatarSeq(dto.getAvatarSeq());
 		
 		redirectAttributes.addFlashAttribute("vo", vo);

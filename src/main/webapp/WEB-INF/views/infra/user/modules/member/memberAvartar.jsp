@@ -48,6 +48,9 @@
 							<label for="uploadImg" class="form-label input-file-button">이미지첨부</label>
 							<!-- <i class="fa-solid fa-user fa-4x"></i> -->
 						</div>
+						<div class="inputBox">
+							<input type="text" placeholder="아바타 이름" class="txt form-control" id="avatarName" name="avatarName" value="<c:out value="${dto.avatarName }"/>">
+						</div>
 						<div class="btns">
 							<button type="button" class="modifyBtn">기본 아바타</button>
 							<button type="button" class="modifyBtn" id="btnSave">아바타 업로드</button>					

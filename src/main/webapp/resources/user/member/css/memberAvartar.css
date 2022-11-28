@@ -58,6 +58,12 @@ section > b{
 	padding-right: 120px;
 }
 
+.inputBox{
+	display: flex;
+	justify-content: center;
+	width: 500px;
+}
+
 
 
 .modifyBtn{
@@ -89,6 +95,8 @@ section > b{
 	border-radius: 4px;
 	color: white;
 	cursor: pointer;
+	font-size: 20px;
+	margin-top: 30px;
 }
 .inputBox{
 	width: 600px;
