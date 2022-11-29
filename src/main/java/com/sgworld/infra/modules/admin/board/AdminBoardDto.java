@@ -18,15 +18,20 @@ public class AdminBoardDto extends Base{
 	private String modBy;
 	private	Integer delNy;
 	private String infrMmNickname;
+	
+	//조회수
 	private Integer viewCount;
-	private Integer likeCount;
 	
 	//게시글 좋아요
 	private String bdLikeSeq;
-	private Integer	likeNy;
+	private Integer likeCount;
 	
-	//댓글 좋아요
-	private Integer cmSeq;
+	//댓글
+	private String cmSeq;
+	private String cmReSeq;
+	private String content;
+	private String Comment_seq;
+	private String board_seq;
 	
 	//업로드관련
 	private MultipartFile[] uploadImg;
@@ -188,17 +193,35 @@ public class AdminBoardDto extends Base{
 	public void setBdLikeSeq(String bdLikeSeq) {
 		this.bdLikeSeq = bdLikeSeq;
 	}
-	public Integer getLikeNy() {
-		return likeNy;
-	}
-	public void setLikeNy(Integer likeNy) {
-		this.likeNy = likeNy;
-	}
-	public Integer getCmSeq() {
+	public String getCmSeq() {
 		return cmSeq;
 	}
-	public void setCmSeq(Integer cmSeq) {
+	public void setCmSeq(String cmSeq) {
 		this.cmSeq = cmSeq;
+	}
+	public String getCmReSeq() {
+		return cmReSeq;
+	}
+	public void setCmReSeq(String cmReSeq) {
+		this.cmReSeq = cmReSeq;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	public String getComment_seq() {
+		return Comment_seq;
+	}
+	public void setComment_seq(String comment_seq) {
+		Comment_seq = comment_seq;
+	}
+	public String getBoard_seq() {
+		return board_seq;
+	}
+	public void setBoard_seq(String board_seq) {
+		this.board_seq = board_seq;
 	}
 	
 	
