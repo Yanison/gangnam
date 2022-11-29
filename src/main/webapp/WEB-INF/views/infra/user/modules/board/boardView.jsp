@@ -20,7 +20,7 @@
 	<!-- contend s -->
 	<section>
 		<div class="boarderTitle">
-			<h2>자유게시판</h2> <!-- 게시판 타이틀 -->
+			<a>게시판</a><a>자유게시판</a> <!-- 게시판 타이틀 -->
 		</div>
 		<section class="boarder">
 			<article class="board">
@@ -32,7 +32,7 @@
 						<p><c:out value="${item.infrMmNickname }"/></p>
 					</div>
 					<div class="icon">
-						<i class="fa-regular fa-clock"> 10-19</i>
+						<i class="fa-regular fa-clock"> <fmt:formatDate value="${item.regDatetime }" pattern="MM-dd" /></i>
 						<i class="fa-solid fa-eye"> <c:out value="${item.viewCount }" /></i>
 						<i class="fa-regular fa-message"> 200</i>
 					</div>
@@ -48,29 +48,35 @@
 							<c:otherwise>
 							<c:choose>
 							<c:when test="${like.infrMmSeq eq null }">
-							<div id="likeBtnATag" class="likeBtnDiv" name="likeBtnATag"><a id="likeBtn" type="button"><i class="fa-regular fa-heart"></i></a> ${likeCount }</div>
+							<div id="likeBtnATag" class="likeBtnDiv" name="likeBtnATag"><a id="likeBtn" type="button"><i class="fa-regular fa-heart"></i>  ${likeCount }</a></div>
 							</c:when>
 							<c:otherwise>
-							<a id="likeBtnATag" class="likeBtnDiv" name="likedBtnATag"><i class="fa-solid fa-heart" style="color: #E95721;"></i> ${likeCount }</a>
+							<div id="likeBtnATag" class="likeBtnDiv" name="likedBtnATag"><a id="likedBtn" type="button"><i class="fa-solid fa-heart" style="color: #E95721;"></i> ${likeCount }</a></div>
 							</c:otherwise>
 							</c:choose>
 							</c:otherwise>
 						</c:choose>
-						<i class="fa-regular fa-message"> 200</i>
+						<div><i class="fa-regular fa-message"> 200</i></div>
 					</div>
 				</div>
 				<div>
 					<div class="boarderFooter">
 						<div>		
-							<p>전체댓글수 200</p>
+							<p>댓글 200</p>
 						</div>
 						<div class="commentHead">
 							<button class="writeBtn1" id="writeBtn">작성하기</button>
 						</div>
 					</div>
+				<c:choose>
+					<c:when test="${infrMmSeq eq null }">
+					</c:when>
+					<c:otherwise>
 					<div id="writeDiv" class="writeDiv">
 						<textarea style="width: 735px; height: 70px; resize: none;"></textarea>
 					</div>
+					</c:otherwise>
+				</c:choose>
 				</div>
 			</article>
 		</section>
@@ -120,7 +126,7 @@
 						$(".likeBtnDiv").empty();
 		   				str += '<a id="likedBtn" name="likedBtn" type="button" onclick="unlike();">';
 		   				str += '<i class="fa-solid fa-heart" style="color: #E95721;"></i> ' + response.likedCount;
-		   				str += '</a>';	   		
+		   				str += '</a>';   
 		   				document.getElementById("likeBtnATag").innerHTML = str;
 					} else{
 						
