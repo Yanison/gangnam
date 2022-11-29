@@ -74,6 +74,14 @@ public class BoardController {
 		return "redirect:/board/boardList";
 	}
 	
+	@SuppressWarnings(value = {"all"})
+	@RequestMapping(value = "commentInst")
+	public String commentInst(AdminBoardVo vo, AdminBoardDto dto, RedirectAttributes redirectAttributes) throws Exception {
+		service.commentInst(dto);
+		redirectAttributes.addFlashAttribute("vo", vo);
+		return "redirect:/board/boardView";
+	}
+	
 	@RequestMapping(value = "boardUpdt")
 	public String boardUpdt(AdminBoardVo vo, AdminBoardDto dto, RedirectAttributes redirectAttributes) throws Exception {
 		service.update(dto);

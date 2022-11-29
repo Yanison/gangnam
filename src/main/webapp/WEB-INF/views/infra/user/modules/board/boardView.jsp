@@ -60,23 +60,62 @@
 					</div>
 				</div>
 				<div>
-					<div class="boarderFooter">
+					<div class="commentTotal">
 						<div>		
 							<p>댓글 200</p>
-						</div>
-						<div class="commentHead">
-							<button class="writeBtn1" id="writeBtn">작성하기</button>
 						</div>
 					</div>
 				<c:choose>
 					<c:when test="${infrMmSeq eq null }">
 					</c:when>
 					<c:otherwise>
-					<div id="writeDiv" class="writeDiv">
-						<textarea style="width: 735px; height: 70px; resize: none;"></textarea>
+					<div class="commentBox">
+						<div class="commentHead">
+							<div class="">
+								<span><c:out value="${infrMmName }" />(<c:out value="${infrMmId }" />)</span>
+							</div>
+							<div>
+								<button class="writeBtn1" id="writeBtn">등록</button>
+							</div>
+						</div>
+						<div class="writeBox">
+							<div id="writeDiv" class="writeDiv">
+								<textarea class="textBox" style="width: 680px; height: 90px; resize: none;" maxlength="200" placeholder="댓글을 입력하세요."></textarea>
+								<div class="textLengthWrap">
+								    <span class="textCount">0</span>
+								    <span class="textTotal">/200</span>
+								</div>
+							</div>	
+						</div>
 					</div>
 					</c:otherwise>
 				</c:choose>
+					<div class="commentList">
+						<div class="commentItem">
+							<div class="">
+								<span><c:out value="${infrMmName }" />(<c:out value="${infrMmId }" />)</span>
+							</div>
+							<div>
+								<i class="fa-solid fa-ellipsis-vertical"></i>
+							</div>
+						</div>
+						<div class="commentContent">
+							<p>박진철의 "아레스" ㅈ간지면 개추...<%-- <c:out value="${content }" /> --%></p>
+						</div>
+						<div class="">
+							<p>2022-11-29 15:57<%-- <c:out value="${regDatetime }" /> --%></p>
+						</div>
+						<div class="commentBtn">
+							<div class="">
+								<button>답글 <%-- <c:out value="${reCommentCount }" /> --%></button>
+							</div>
+							<div class="">
+								<div class="">
+									<a><i class="fa-regular fa-heart"></i></a>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</article>
 		</section>
@@ -145,6 +184,26 @@
 		
 		$("#likeBtn").on("click", function(){
 			like();
+		});
+		
+		//댓글 글자수 제한 체크
+		$('.textBox').keyup(function (e) {
+			let content = $(this).val();
+		    
+		    // 글자수 세기
+		    if (content.length == 0 || content == '') {
+		    	$('.textCount').text('0');
+		    } else {
+		    	$('.textCount').text(content.length + '');
+		    }
+		    
+		    // 글자수 제한
+		    if (content.length > 200) {
+		    	// 200자 부터는 타이핑 되지 않도록
+		        $(this).val($(this).val().substring(0, 200));
+		        // 200자 넘으면 알림창 뜨도록
+		        alert('글자수는 200자까지 입력 가능합니다.');
+		    };
 		});
 	</script>
 </body>
