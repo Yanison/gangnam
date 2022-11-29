@@ -55,3 +55,11 @@ goMemberView = function(keyValue) {
 	seq.val(keyValue);
 	form.attr("action", goUrlView).submit();
 }
+
+function myPage(){
+	$.ajax({
+		type:"post"
+		,url:"/member/memberView"
+		,data:"infrMmSeq"
+	})
+}

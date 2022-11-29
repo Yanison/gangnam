@@ -25,6 +25,7 @@
 					<li class="logedIn"><button id="logOutBtn" onClick="userLogOut()">로그아웃</button></li>
 					<!-- 마이페이지 링크 연결해주세요 -->
 					<li class="logedIn" ><a href="javascript:goMemberView(<c:out value="${infrMmSeq }"/>)" >마이페이지</a></li>
+					<!-- <li class="logedIn"><button onclick="myPage()">마이페이지</button></li> -->
 				</c:otherwise>
 			</c:choose>
 		</ul>
