@@ -15,7 +15,7 @@
 	</div> 
 	<div class="rightNav">
 		<ul class="navBtn">
-			<li class="write"><a class="writeBtn" id="btnBoardRegForm" type="button">글쓰기</a></li>
+			<li class="write"><a class="writeBtn" onclick="goWrite()">글쓰기</a></li>
 			<c:choose>
 				<c:when test="${infrMmSeq eq null}">
 					<li class="last"><a href="/userLogin" type="button" id="">로그인</a></li>

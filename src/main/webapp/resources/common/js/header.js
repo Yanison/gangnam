@@ -46,6 +46,10 @@ function goboard(){
 	location.href="http://127.0.0.1:8085/board/boardList"
 }
 
+function goWrite(){
+	location.href="http://127.0.0.1:8085/board/boardWrite"
+}
+
 
 var goUrlView = "/member/memberView";
 var form = $("form[name=form]");
