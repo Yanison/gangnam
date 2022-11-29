@@ -105,9 +105,9 @@
 						<div class="">
 							<p>2022-11-29 15:57<%-- <c:out value="${regDatetime }" /> --%></p>
 						</div>
-						<div class="commentBtn">
+						<div class="commentBtnBox">
 							<div class="">
-								<button>답글 <%-- <c:out value="${reCommentCount }" /> --%></button>
+								<button class="commentBtn" type="button" id="">답글 <%-- <c:out value="${reCommentCount }" /> --%></button>
 							</div>
 							<div class="">
 								<div class="">
@@ -127,7 +127,8 @@
 	<!-- footer e -->
 	
 	<script type="text/javascript">
-		
+		var goUrlCommentInst = "/board/commentInst";
+	
 		function unlike(){
 			$.ajax({
 				async: true 

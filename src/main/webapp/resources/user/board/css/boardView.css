@@ -89,11 +89,15 @@
 	padding-top: 10px;
 	padding-bottom: 10px;
 }
-.commentBtn{
+.commentBtnBox{
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	font-size: x-small;
 	border-bottom: 1px solid #DEDEDE;
 	padding-bottom: 15px;
+}
+.commentBtn{
+	background-color: white;
+	border-radius: 5px;
 }
