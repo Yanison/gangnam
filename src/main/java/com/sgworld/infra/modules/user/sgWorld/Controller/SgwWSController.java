@@ -1,8 +1,10 @@
 package com.sgworld.infra.modules.user.sgWorld.Controller;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -18,14 +20,13 @@ import com.sgworld.infra.modules.user.sgWorld.SgwSerivceImpl;
 import com.sgworld.infra.modules.user.sgWorld.sgwdto.AvatarControllVo;
 import com.sgworld.infra.modules.user.sgWorld.sgwdto.SgwChat;
 import com.sgworld.infra.modules.user.sgWorld.sgwdto.SgwDto;
-import com.sgworld.infra.modules.user.sgWorld.sgwdto.SgwVo;
 
 
 @Controller
 public class SgwWSController {
 	@Autowired
 	SgwSerivceImpl sgwService;
-	
+	private HttpSession session;
 	private SimpMessagingTemplate template;
 	
 	@Autowired
@@ -52,7 +53,7 @@ public class SgwWSController {
 			  @DestinationVariable String endPoint,
 			  SgwChat msg,
 			  SgwDto sgwDto)throws Exception {
-		 System.out.println("endPoint :: " + msg.getEndPoint());
+		 System.out.println("endPoint :: " + endPoint);
 		 System.out.println("msg.getChatMsg() :: "+msg.getChatMsg());
 		 
 		 Date nowDate = new Date();
@@ -61,36 +62,32 @@ public class SgwWSController {
 		 
 		 HashMap<String,String> chatInfo = new HashMap<String,String>();
 		 chatInfo.put("chatMsg", msg.getChatMsg());
-		 chatInfo.put("infrNickname", msg.getImfrNickname());
+		 chatInfo.put("infrNickname", msg.getInfrMmNickname());
 		 chatInfo.put("datetime", datetime);
 		 chatInfo.put("infrMmSeq", msg.getInfrMmSeq());
-		 
-		 
-		 
+		 System.out.println(chatInfo);
 	     template.convertAndSend("/topic/sgWorld/sendMessage/" + endPoint, chatInfo);
 	 }
 	 
-	 public void requestAvatar(SgwDto userInfo,String endPoint) {
-		 System.out.println(
-				 "유저가 입장합니다. :: "+userInfo.getInfrMmSeq() +"님"+ "\n" +
-				 "유저 시퀀스 :: "+userInfo.getInfrMmSeq()+ "\n" +
-				 "유저 닉네임 :: "+userInfo.getInfrMmNickname()+ "\n" +
-				 "유저 아바타코드 :: "+userInfo.getAvatarSeq()+ "\n" +"\n"
-				 );
-		 if(userInfo.getInfrMmSeq() != null) {
-			 System.out.println("userIdx in not null :: "+userInfo.getInfrMmSeq());
-			 template.convertAndSend("/topic/sgWorld/requestAvatar/"+endPoint,userInfo);
-		 }
-	}
+	 @MessageMapping(value = "/sgWorld/msgTo/{endPoint}/requestOnloadInfo")
+	 public void requestOnloadInfo( @DestinationVariable String endPoint,SgwChat sgwChat)throws Exception {
+		 System.out.println("msg :: "+sgwChat.getSgwseq() +" // "+ sgwChat.getInfrMmSeq());
+		 List<SgwChat> user = sgwService.findRoomMm(sgwChat);
+		 template.convertAndSend("/topic/sgWorld/requestOnloadInfo/"+endPoint, user);
+	 }
 	 
 	
-	 
 	/*
 	 * 유저를 연결시켜주고 끝이 아니다. 실시시간으로 유저의 좌표를 서버와 통신받고 웹소켓 서버에 연결된 유저들에게 공유가되어야한다.
 	 */
-	 @RequestMapping(value="/sgWorld/{endPoint}/avatarWSControll")
-	 public void avatarWSControll(@DestinationVariable String endPoint,AvatarControllVo acVo) {
+	 @MessageMapping(value="/sgWorld/{endPoint}/avatarWSControll/updateLoca")
+	 public void avatarWSControll(@DestinationVariable String endPoint,SgwChat sgwChat) {
 		 
-		 template.convertAndSend("/topic/sgWorld/"+endPoint+"/avatarWSControll/",acVo);
+		 System.out.println(
+				 "유저 시퀀스 :: "+sgwChat.getInfrMmSeq()+ "\n" +
+				 "좌표 :: x = " + sgwChat.getX()+" y = " + sgwChat.getY()+ "\n"
+				 );
+		 
+		 template.convertAndSend("/topic/sgWorld/"+endPoint+"/avatarWSControll/update",sgwChat);
 	 }
 }

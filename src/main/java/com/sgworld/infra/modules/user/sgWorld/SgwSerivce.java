@@ -1,5 +1,8 @@
 package com.sgworld.infra.modules.user.sgWorld;
 
+import java.util.List;
+
+import com.sgworld.infra.modules.user.sgWorld.sgwdto.SgwChat;
 import com.sgworld.infra.modules.user.sgWorld.sgwdto.SgwDto;
 
 public interface SgwSerivce {
@@ -22,6 +25,9 @@ public interface SgwSerivce {
 	public SgwDto findMm(SgwDto sgwDto)throws Exception;
 	
 	public SgwDto onLoadUserInfoSgw(SgwDto sgwDto)throws Exception;
-	
-
+	public int insertRoomUser(SgwDto sgwDto)throws Exception;
+	public int deleteRoomUser(SgwDto sgwDto)throws Exception;
+	public List<SgwChat>  findRoomMm(SgwChat sgwChat)throws Exception;
+	public SgwChat findRoomMmOne(SgwChat sgwChat)throws Exception;
+	public int findMmRoomOne(SgwDto sgwDto)throws Exception;
 }

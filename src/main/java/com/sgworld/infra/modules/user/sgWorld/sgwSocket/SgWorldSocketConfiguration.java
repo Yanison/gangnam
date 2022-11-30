@@ -17,7 +17,5 @@ public class SgWorldSocketConfiguration implements WebSocketMessageBrokerConfigu
 	  @Override
 	  public void registerStompEndpoints(StompEndpointRegistry registry) {
 	    registry.addEndpoint("/sgWorldService").setAllowedOrigins("*").withSockJS();
-	    registry.addEndpoint("/sgWorldService/avatarContorller").setAllowedOrigins("*").withSockJS();
 	  }	
-	  
 }

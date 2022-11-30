@@ -7,7 +7,10 @@ import java.util.Set;
 
 import org.springframework.web.socket.WebSocketSession;
 
-public class SgwDto {
+import com.sgworld.infra.common.base.Base;
+import com.sgworld.infra.common.base.BaseVo;
+
+public class SgwDto extends BaseVo {
 	
 	/*
 	 * sgwRoom
@@ -133,7 +136,4 @@ public class SgwDto {
 	public void setAvatarName(String avatarName) {
 		this.avatarName = avatarName;
 	}
-	
-	
-	
 }

@@ -17,14 +17,19 @@
 
 <div class="sgWorld">
 	<section class="div1">
-		<canvas id="myCanvas"class ="canvasDiv" style="width:calc(100% - 280px); height:100%; background:#fff;">
-			<div class="camDiv" style="display:none;">
+		<div ="canvasDiv" style="width:calc(100% - 280px); height:100%; background:#fff;">
+			<canvas id="myCanvas" width="1020px" height="763px">
+			
+			
+			
+			</canvas>
+			<!-- <div class="camDiv" style="display:none;">
+				
 			
 			
 			
 			
-			
-				<!-- <div class="littleCamDiv" onclick="fullCamDiv()">
+				<div class="littleCamDiv" onclick="fullCamDiv()">
 					<div class="cam">
 						cam
 					</div>
@@ -33,9 +38,9 @@
 					<div class="cam">
 						cam
 					</div>
-				</div> -->
-			</div>
-		</canvas>
+				</div>
+			</div> -->
+		</div>
 		<article class="utilDiv chatDiv">
 			<div class="headerDiv">
 				<h6>SgWorld Room Title</h6>

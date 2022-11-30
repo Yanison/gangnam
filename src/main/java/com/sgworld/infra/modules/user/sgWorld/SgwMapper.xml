@@ -6,6 +6,8 @@
 <mapper namespace="com.sgworld.infra.modules.user.sgWorld.SgwMapper">
 	<resultMap id="SgwDto" type="com.sgworld.infra.modules.user.sgWorld.sgwdto.SgwDto">
 	</resultMap>
+	<resultMap id="SgwChat" type="com.sgworld.infra.modules.user.sgWorld.sgwdto.SgwChat">
+	</resultMap>
 	
 	
 	<!-- 
@@ -115,10 +117,57 @@
 		where 1=1
 		and regByMm = #{infrMmSeq}
 	</select>
-	
-	
+	<select id="findRoomMm" resultMap="SgwChat">
+		select
+			s.sgwSeq
+			,r.infrMmSeq
+			,m.infrMmNickname
+			,r.avatarSeq
+		from sgWorld s 
+			left join sgWorldRoom r on s.sgwSeq = r.sgwSeq
+			left join infrMember m on r.infrMmSeq = m.infrMmSeq
+	</select>
+	<select id="findRoomMmOne" resultMap="SgwDto">
+		select
+			s.sgwSeq
+			,r.infrMmSeq
+			,m.infrMmNickname
+			,r.avatarSeq
+		from sgWorld s 
+			left join sgWorldRoom r on s.sgwSeq = r.sgwSeq
+			left join infrMember m on r.infrMmSeq = m.infrMmSeq
+			where r.infrMmSeq = #{infrMmSeq}
+	</select>
+	<select id="findMmRoomOne" resultType="Integer">
+		select
+			count(*)
+		from sgWorldRoom
+		where 1=1
+		and sgwSeq =#{sgwSeq}
+		and infrMmSeq = #{infrMmSeq}
+	</select>
 	<select id="findMm" resultMap="SgwDto">
-		select * from infrMember
+		select
+		 infrMmSeq
+		 ,infrMmNickname
+		from infrMember
 		where infrMmSeq = #{infrMmSeq}
 	</select>
+	<insert id="insertRoomUser">
+		insert into sgWorldRoom(
+			infrMmSeq,
+			sgwSeq,
+			avatarSeq
+		)values(
+			#{infrMmSeq},
+			#{sgwSeq},
+			#{avatarSeq}
+		)
+	</insert>
+	<delete id="deleteRoomUser">
+		delete from sgWorldRoom where 1=1
+		and infrMmSeq = #{infrMmSeq}
+	</delete>
+	
+	
 </mapper>

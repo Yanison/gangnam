@@ -27,9 +27,12 @@ public class HomeController {
 		Object infrMmId = session.getAttribute("infrMmId");
 		Object infrMmName = session.getAttribute("infrMmName");
 		String infrMmSeq = (String) session.getAttribute("infrMmSeq");
+		Object infrMmNickname = session.getAttribute("infrMmNickname");
 		model.addAttribute("infrMmSeq", infrMmSeq);
 		model.addAttribute("infrMmName", infrMmName);
+		model.addAttribute("infrMmName", infrMmNickname);
 		model.addAttribute("infrMmId", infrMmId);
+		
 		try {
 			if(infrMmSeq != null) {
 				sgwDto.setInfrMmSeq(infrMmSeq);

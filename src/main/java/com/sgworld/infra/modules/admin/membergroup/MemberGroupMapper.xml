@@ -42,6 +42,7 @@
 			,infrMmPw
 			,infrMmSeq
 			,infrMmName
+			,infrMmNickname
 			,count(*) count
 			from infrMember
 		where 1=1

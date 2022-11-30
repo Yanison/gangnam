@@ -42,6 +42,7 @@ public class MemberRestController {
 	
 	@RequestMapping(value="userLogin")
 	public String userLogin(MemberGroup dto,MemberGroupVo vo,HttpSession session)throws Exception{
+		
 		System.out.println("dd");
 		MemberGroup user = mmService.selectUserLogin(dto);
 		
@@ -50,11 +51,12 @@ public class MemberRestController {
 			session.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE);
 			session.setAttribute("infrMmSeq", user.getInfrMmSeq());
 			session.setAttribute("infrMmId", user.getInfrMmId());
-			session.setAttribute("infrMmName", user.getInfrMmName());
-			session.setMaxInactiveInterval(0);
+			session.setAttribute("infrMmNickname", user.getInfrMmNickname());
+			session.setMaxInactiveInterval(-1);
 			Object infrMmSeq = session.getAttribute("infrMmSeq");
 			Object infrMmId = session.getAttribute("infrMmId");
 			Object infrMmName = session.getAttribute("infrMmName");
+			Object infrMmNickname = session.getAttribute("infrMmNickname");
 			String mmSs = (String) session.getAttribute("infrMmSeq");
 			session.setAttribute("infrMmSeqNum"+mmSs,mmSs);
 			
@@ -63,7 +65,7 @@ public class MemberRestController {
 					"userLogin session infrMmSeq ::" + infrMmSeq + "\n "
 					+ "userLogin session infrMmId ::" + infrMmId + "\n "
 					+ "userLogin session infrMmName ::" + infrMmName + "\n "
-					+ "userLogin session infrMmName ::" + infrMmName + "\n "
+					+ "userLogin session infrMmNickname ::" + infrMmNickname + "\n "
 					);
 			return "okay";
 		}else {

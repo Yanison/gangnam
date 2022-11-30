@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.sgworld.infra.modules.user.sgWorld.sgwdto.SgwChat;
 import com.sgworld.infra.modules.user.sgWorld.sgwdto.SgwDto;
 
 @Repository
@@ -33,7 +34,6 @@ public class SgwDao {
 				"방장 시퀀스//닉네임 :: "+sgwDto.getInfrMmSeq()+" // " +sgwDto.getInfrMmNickname()+ "\n" + ""
 
 				);
-		
 		return sqlSession.insert(namespace + ".buildSgw", sgwDto);
 	}
 	public SgwDto onLoadInfoSgw(SgwDto sgwDto) {
@@ -81,5 +81,21 @@ public class SgwDao {
 	}
 	public SgwDto findMm(SgwDto sgwDto) {
 		return sqlSession.selectOne(namespace+".findMm", sgwDto);
+	}
+	
+	public int insertRoomUser(SgwDto sgwDto) {
+		return sqlSession.insert(namespace+".insertRoomUser",sgwDto);
+	}
+	public int deleteRoomUser(SgwDto sgwDto) {
+		return sqlSession.insert(namespace+".deleteRoomUser",sgwDto);
+	}
+	public List<SgwChat> findRoomMm(SgwChat sgwDto) {
+		return sqlSession.selectList(namespace+".findRoomMm",sgwDto);
+	}
+	public SgwChat findRoomMmOne(SgwChat sgwDto) {
+		return sqlSession.selectOne(namespace+".findRoomMmOne",sgwDto);
+	}
+	public int findMmRoomOne(SgwDto sgwDto) {
+		return sqlSession.selectOne(namespace+".findMmRoomOne",sgwDto);
 	}
 }

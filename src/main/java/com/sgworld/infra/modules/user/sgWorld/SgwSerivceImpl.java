@@ -1,9 +1,12 @@
 package com.sgworld.infra.modules.user.sgWorld;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sgworld.infra.modules.user.sgWorld.Controller.SgwWSController;
+import com.sgworld.infra.modules.user.sgWorld.sgwdto.SgwChat;
 import com.sgworld.infra.modules.user.sgWorld.sgwdto.SgwDto;
 
 @Service
@@ -62,14 +65,24 @@ public class SgwSerivceImpl implements SgwSerivce {
 	public SgwDto onLoadUserInfoSgw(SgwDto sgwDto)throws Exception{
 		return sgwDao.onLoadUserInfoSgw(sgwDto);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
+	@Override
+	public int insertRoomUser(SgwDto sgwDto)throws Exception{
+		return sgwDao.insertRoomUser(sgwDto);
+	}
+	@Override
+	public int deleteRoomUser(SgwDto sgwDto)throws Exception{
+		return sgwDao.deleteRoomUser(sgwDto);
+	}
+	@Override
+	public List<SgwChat>  findRoomMm(SgwChat sgwChat)throws Exception{
+		return sgwDao.findRoomMm(sgwChat);
+	}
+	@Override
+	public SgwChat findRoomMmOne(SgwChat sgwChat)throws Exception{
+		return sgwDao.findRoomMmOne(sgwChat);
+	}
+	@Override
+	public int findMmRoomOne(SgwDto sgwDto)throws Exception{
+		return sgwDao.findMmRoomOne(sgwDto);
+	}
 }
