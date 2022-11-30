@@ -215,6 +215,12 @@
 		<selectKey resultType="String" keyProperty="cmSeq" order="AFTER">
 			SELECT last_insert_id()
 		</selectKey>
-	</insert> 	
+	</insert>
+	
+	<delete id="">
+		DELETE FROM bdComment
+		WHERE 1=1
+			AND cmSeq = #{cmSeq}
+	</delete> 	
  	
 </mapper>

@@ -75,7 +75,7 @@
 								<span><c:out value="${infrMmName }" />(<c:out value="${infrMmId }" />)</span>
 							</div>
 							<div>
-								<button class="writeBtn1" id="writeBtn">등록</button>
+								<button class="writeBtn1" id="btnComment">등록</button>
 							</div>
 						</div>
 						<div class="writeBox">
@@ -90,13 +90,17 @@
 					</div>
 					</c:otherwise>
 				</c:choose>
+					<!-- 답글에 답글 버튼 누를시 입력창 뜨게 하고, 로그인 없이 누르면 로그인 페이지로 연결되게끔 -->
 					<div class="commentList">
 						<div class="commentItem">
 							<div class="">
 								<span><c:out value="${infrMmName }" />(<c:out value="${infrMmId }" />)</span>
 							</div>
-							<div>
-								<i class="fa-solid fa-ellipsis-vertical"></i>
+							<div class="dropstart">
+								<a class="" id="" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-ellipsis-vertical"></i></a>
+								<ul class="dropdown-menu">
+									<li><a class="dropdown-item" id="">삭제</a></li>
+								</ul>
 							</div>
 						</div>
 						<div class="commentContent">
@@ -107,7 +111,7 @@
 						</div>
 						<div class="commentBtnBox">
 							<div class="">
-								<button class="commentBtn" type="button" id="">답글 <%-- <c:out value="${reCommentCount }" /> --%></button>
+								<button class="commentBtn" type="button" id="reCommentBtn">답글 <%-- <c:out value="${reCommentCount }" /> --%></button>
 							</div>
 							<div class="">
 								<div class="">
@@ -128,6 +132,13 @@
 	
 	<script type="text/javascript">
 		var goUrlCommentInst = "/board/commentInst";
+		
+		var form = $("form[name=form]");
+		var seq = $("input:hidden[name=cmSeq]");
+		
+		$("#btnComment").on("click", function(){
+			form.attr("action", goUrlCommentInst).submit();
+		});
 	
 		function unlike(){
 			$.ajax({
