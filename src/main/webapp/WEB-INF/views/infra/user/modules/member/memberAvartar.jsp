@@ -78,7 +78,7 @@
 					        	<input type="hidden" id="<c:out value="${name }"/>DeletePathFile" name="<c:out value="${name }"/>DeletePathFile"/>
 					 			<input class="form-control form-control-sm" id="<c:out value="${name }"/>" name="<c:out value="${name }"/>" type="file" style="display: none;" onChange="upload('<c:out value="${name }"/>', <c:out value="${type }"/>, 0, 1, 0, 0, 1);">
 								<div class="uploadDiv">
-									<label for="uploadImg" class="form-label input-file-button">이미지첨부</label>
+									<label for="uploadImg" class="form-label input-file-button">이미지바꾸기</label>
 								</div>	
 								<!-- <i class="fa-solid fa-user fa-4x"></i>  -->
 								<div class="btns">

@@ -203,8 +203,8 @@ public class MemberGroupServiceImpl implements MemberGroupService {
 	}
 	
 	public int memberInst(MemberGroup dto)throws Exception{
-		uploadFiles(dto.getUploadImg(), dto, "memberUploaded", dto.getUploadImgType(), dto.getUploadImgMaxNumber());
 		setRegMod(dto);
+		uploadFiles(dto.getUploadImg(), dto, "memberUploaded", dto.getUploadImgType(), dto.getUploadImgMaxNumber());
 		return 1;
 	}
 
