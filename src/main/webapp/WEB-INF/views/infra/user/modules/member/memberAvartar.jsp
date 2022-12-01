@@ -26,36 +26,68 @@
 				<!-- left Nav e -->
 				<section style=" width: 1000px;">
 					<b>아바타 수정</b>
-					<article class="rightContent">
-						<div class="icon">
-							<c:set var="type" value="2"/>		<!-- #-> -->
-				        	<c:set var="name" value="uploadImg"/>		<!-- #-> -->
-							<div id="<c:out value="${name }"/>Preview" class="addScroll">
-								<c:forEach items="${listUploaded}" var="listUploaded" varStatus="statusUploaded">
-									<c:if test="${listUploaded.type eq type }">
-										<div id="imgDiv_<c:out value="${type }"/>_<c:out value="${listUploaded.sort }"/>" style="display: inline-block; height: 95px;">
-											<img src="<c:out value="${listUploaded.path }"/><c:out value="${listUploaded.uuidName }"/>" class="rounded" width= "85px" height="85px" style="cursor:pointer;" onClick="openViewer(<c:out value="${listUploaded.type }"/>, <c:out value="${listUploaded. sort }"/>);">
-											<div style="position: relative; top:-85px; left:5px"><span style="color: red; cursor:pointer;" onClick="delImgDiv('<c:out value="${name }"/>', <c:out value="${type }"/>,<c:out value="${listUploaded.sort }"/>, <c:out value="${listUploaded.seq }"/>, '<c:out value="${listUploaded.path }"/><c:out value="${listUploaded.uuidName }"/>')">X</span></div>
-										</div>
-									</c:if>
-								</c:forEach>
+					<c:choose>
+						<c:when test="${item.seq == null}">
+							<article class="rightContent">
+								<!-- <div class="icon"> -->
+									<c:set var="type" value="2"/>	
+						        	<c:set var="name" value="uploadImg"/>		
+									<div id="<c:out value="${name }"/>Preview" class="addScroll">
+										<c:forEach items="${listUploaded}" var="listUploaded" varStatus="statusUploaded">
+											<c:if test="${listUploaded.type eq type }">
+												<div id="imgDiv_<c:out value="${type }"/>_<c:out value="${listUploaded.sort }"/>" style="display: inline-block; height: 95px;">
+													<img src="<c:out value="${listUploaded.path }"/><c:out value="${listUploaded.uuidName }"/>" class="rounded" width= "85px" height="85px" style="cursor:pointer;" onClick="openViewer(<c:out value="${listUploaded.type }"/>, <c:out value="${listUploaded. sort }"/>);">
+													<div style="position: relative; top:-85px; left:5px"><span style="color: red; cursor:pointer;" onClick="delImgDiv('<c:out value="${name }"/>', <c:out value="${type }"/>,<c:out value="${listUploaded.sort }"/>, <c:out value="${listUploaded.seq }"/>, '<c:out value="${listUploaded.path }"/><c:out value="${listUploaded.uuidName }"/>')">X</span></div>
+												</div>
+											</c:if>
+										</c:forEach>
+									</div>
+									<input type="hidden" id="<c:out value="${name }"/>Type" name="<c:out value="${name }"/>Type" value="<c:out value="${type }"/>"/>
+						        	<input type="hidden" id="<c:out value="${name }"/>MaxNumber" name="<c:out value="${name }"/>MaxNumber" value="0"/>
+						        	<input type="hidden" id="<c:out value="${name }"/>DeleteSeq" name="<c:out value="${name }"/>DeleteSeq"/>
+						        	<input type="hidden" id="<c:out value="${name }"/>DeletePathFile" name="<c:out value="${name }"/>DeletePathFile"/>
+						 			<input class="form-control form-control-sm" id="<c:out value="${name }"/>" name="<c:out value="${name }"/>" type="file" style="display: none;" onChange="upload('<c:out value="${name }"/>', <c:out value="${type }"/>, 0, 1, 0, 0, 1);">
+									<div class="uploadDiv">
+										<label for="uploadImg" class="form-label input-file-button">이미지첨부</label>
+									</div>	
+									<!-- <i class="fa-solid fa-user fa-4x"></i>  -->
+									<div class="btns">
+										<button type="button" class="modifyBtn" id="btnSave">아바타 업로드</button>					
+						        	</div>
+								</div>
+							</article>
+						</c:when>
+						<c:otherwise>
+							<article class="rightContent">
+							<!-- <div class="icon"> -->
+								<c:set var="type" value="2"/>	
+					        	<c:set var="name" value="uploadImg"/>		
+								<div id="<c:out value="${name }"/>Preview" class="addScroll">
+									<c:forEach items="${listUploaded}" var="listUploaded" varStatus="statusUploaded">
+										<c:if test="${listUploaded.type eq type }">
+											<div id="imgDiv_<c:out value="${type }"/>_<c:out value="${listUploaded.sort }"/>" style="display: inline-block; height: 95px;">
+												<img src="<c:out value="${listUploaded.path }"/><c:out value="${listUploaded.uuidName }"/>" class="rounded" width= "85px" height="85px" style="cursor:pointer;" onClick="openViewer(<c:out value="${listUploaded.type }"/>, <c:out value="${listUploaded. sort }"/>);">
+												<div style="position: relative; top:-85px; left:5px"><span style="color: red; cursor:pointer;" onClick="delImgDiv('<c:out value="${name }"/>', <c:out value="${type }"/>,<c:out value="${listUploaded.sort }"/>, <c:out value="${listUploaded.seq }"/>, '<c:out value="${listUploaded.path }"/><c:out value="${listUploaded.uuidName }"/>')">X</span></div>
+											</div>
+										</c:if>
+									</c:forEach>
+								</div>
+								<input type="hidden" id="<c:out value="${name }"/>Type" name="<c:out value="${name }"/>Type" value="<c:out value="${type }"/>"/>
+					        	<input type="hidden" id="<c:out value="${name }"/>MaxNumber" name="<c:out value="${name }"/>MaxNumber" value="0"/>
+					        	<input type="hidden" id="<c:out value="${name }"/>DeleteSeq" name="<c:out value="${name }"/>DeleteSeq"/>
+					        	<input type="hidden" id="<c:out value="${name }"/>DeletePathFile" name="<c:out value="${name }"/>DeletePathFile"/>
+					 			<input class="form-control form-control-sm" id="<c:out value="${name }"/>" name="<c:out value="${name }"/>" type="file" style="display: none;" onChange="upload('<c:out value="${name }"/>', <c:out value="${type }"/>, 0, 1, 0, 0, 1);">
+								<div class="uploadDiv">
+									<label for="uploadImg" class="form-label input-file-button">이미지첨부</label>
+								</div>	
+								<!-- <i class="fa-solid fa-user fa-4x"></i>  -->
+								<div class="btns">
+									<button type="button" class="modifyBtn" id="btnSave">아바타 업로드</button>					
+					        	</div>
 							</div>
-							<input type="hidden" id="<c:out value="${name }"/>Type" name="<c:out value="${name }"/>Type" value="<c:out value="${type }"/>"/>
-				        	<input type="hidden" id="<c:out value="${name }"/>MaxNumber" name="<c:out value="${name }"/>MaxNumber" value="0"/>
-				        	<input type="hidden" id="<c:out value="${name }"/>DeleteSeq" name="<c:out value="${name }"/>DeleteSeq"/>
-				        	<input type="hidden" id="<c:out value="${name }"/>DeletePathFile" name="<c:out value="${name }"/>DeletePathFile"/>
-				 			<input class="form-control form-control-sm" id="<c:out value="${name }"/>" name="<c:out value="${name }"/>" type="file" style="display: none;" onChange="upload('<c:out value="${name }"/>', <c:out value="${type }"/>, 0, 1, 0, 0, 1);">
-							<label for="uploadImg" class="form-label input-file-button">이미지첨부</label>
-							<!-- <i class="fa-solid fa-user fa-4x"></i> -->
-						</div>
-						<div class="inputBox">
-							<input type="text" placeholder="아바타 이름" class="txt form-control" id="avatarName" name="avatarName" value="<c:out value="${dto.avatarName }"/>">
-						</div>
-						<div class="btns">
-							<button type="button" class="modifyBtn">기본 아바타</button>
-							<button type="button" class="modifyBtn" id="btnSave">아바타 업로드</button>					
-				        </div>	
-					</article>
+						</article>
+						</c:otherwise>
+					</c:choose> 
 				</section>
 			</div>	
 		</div><!-- contentWrap end -->
@@ -68,8 +100,9 @@
 	
 <!-- jquery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-<script src="/resources/common/js/upload.js"></script>
+<!-- <script src="/resources/common/js/upload.js"></script> -->
 <script src="/resources/common/js/commonAdmin.js"></script>
+<script src="/resources/common/js/memberUpload.js"></script>
 <script>
 	var goUrlMemberView = "/member/memberView";
 	var goUrlMemberAvartar = "/member/memberAvartar";
@@ -105,11 +138,24 @@
    		form.attr("action", goUrlInst).submit();
 	});
 	
+	function sgwAvatar(){
+		
+		var thisRadio = $('input[name="avatar"]')
+		
+		if(thisRadio.is(':checked')){
+			var thisRadioVal = $('input[name="avatar"]:checked').val()
+			console.log(thisRadioVal);
+			thisRadio.next().removeClass('focus')
+			$('input[name="avatar"]:checked').next().addClass('focus')
+			$('#sgwAvatar').val(thisRadioVal);
+		}
+	}
+	
 	
 </script>
-	$("#avatarInst").on("click" , function(){
+	<!-- $("#avatarInst").on("click" , function(){
 		form.attr("action" ,goUrlAvatarInst).submit();
-	});	
+	});	 -->
 
 
 </body>

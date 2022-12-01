@@ -67,7 +67,7 @@
 </head>
 <body>
 	<form name="form" method="post">
-	<input type="hidden" id="infrMmSeq" name="infrMmSeq" value="${infrMmSeq}">
+	<%-- <input type="hidden" id="infrMmSeq" name="infrMmSeq" value="${infrMmSeq}"> --%>
 	<header>
 		<%@ include file="../../common/header.jsp"%> 
 	</header>
@@ -87,25 +87,25 @@
 						<div class="inputBox">
 							<label class="label">이메일</label>
 							 <input class="form-control" type="text"
-							 id="infrMmEmailId"  value="<c:out value="${item.infrMmEmailId }"/>"
+							 id="infrMmEmailId" name="infrMmEmailId" value="<c:out value="${item.infrMmEmailId }"/>"
 							 >
 						</div>
 						<div class="inputBox">
 							<label class="label">닉네임</label>
 							<input class="form-control" type="text"
-							 id="infrMmNickname"  value="<c:out value="${item.infrMmNickname }"/>"
+							 id="infrMmNickname" name="infrMmNickname" value="<c:out value="${item.infrMmNickname }"/>"
 							 >
 						</div>
 						<div class="inputBox">
 							<label class="label">휴대폰</label>
 							<input class="form-control" type="text"
-							 id="infrMmPhone"  value="<c:out value="${item.infrMmPhone }"/>"
+							 id="infrMmPhone" name="infrMmPhone" value="<c:out value="${item.infrMmPhone }"/>"
 							 >
 						</div>
 						<div class="inputBox">
 							<label class="label">생년월일</label>
 							<input class="form-control" type="text"
-							 id="datepicker"  value="<c:out value="${item.infrMmBod }"/>"
+							 id="datepicker" name="infrMmBod" value="<c:out value="${item.infrMmBod }"/>"
 							 >
 						</div>
 						<button type="button" class="modifyBtn" id="modifyBtn">수정하기</button>					

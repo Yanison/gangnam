@@ -1,6 +1,7 @@
 package com.sgworld.infra.modules.user.member;
 
 
+
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -13,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sgworld.infra.modules.admin.avatar.AdminAvatarServiceImpl;
-import com.sgworld.infra.modules.admin.avatar.AvatarDto;
-import com.sgworld.infra.modules.admin.avatar.AvatarVo;
 import com.sgworld.infra.modules.admin.membergroup.MemberGroup;
 import com.sgworld.infra.modules.admin.membergroup.MemberGroupServiceImpl;
 import com.sgworld.infra.modules.admin.membergroup.MemberGroupVo;
@@ -52,17 +51,19 @@ public class MemberController {
 	
 	//내정보_아바타 수정 화면가기
 	@RequestMapping(value="memberAvartar")
-	public String memberAvartar()throws Exception {
+	public String memberAvartar(@ModelAttribute("vo") MemberGroupVo vo, Model model)throws Exception {
+		MemberGroup item = service.selectCheck(vo);
+		model.addAttribute("item",item);
+		model.addAttribute("listUploaded", service.selectListUploaded(vo));
 		return "infra/user/modules/member/memberAvartar";
 	}
 	
 	//내정보_아바타 수정
 	@SuppressWarnings(value = {"all"})
 	@RequestMapping(value = "avatarUpload")
-	public String infrAvatarInst(AvatarVo vo, AvatarDto dto, RedirectAttributes redirectAttributes) throws Exception {
-		System.out.println("까꿍");
-		servicee.insert(dto);
-		vo.setAvatarSeq(dto.getAvatarSeq());
+	public String infrAvatarInst(@ModelAttribute("vo") MemberGroupVo vo,MemberGroup dto, RedirectAttributes redirectAttributes) throws Exception {
+		service.memberInst(dto);
+		vo.setInfrMmSeq(dto.getInfrMmSeq());
 		
 		redirectAttributes.addFlashAttribute("vo", vo);
 		return "redirect:/member/memberAvartar";
