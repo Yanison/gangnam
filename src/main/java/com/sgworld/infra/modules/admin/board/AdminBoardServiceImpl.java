@@ -171,8 +171,16 @@ public class AdminBoardServiceImpl extends BaseServiceImpl implements AdminBoard
 	}
 	
 	@Override
+	public int selectCommentCount(AdminBoardVo vo) throws Exception { return dao.selectCommentCount(vo); }
+		
+	@Override
 	public int commentInst(AdminBoardDto dto) throws Exception { return dao.commentInst(dto); }
 
+	@Override
+	public int commentDele(AdminBoardVo vo) throws Exception { return dao.commentDele(vo); }
+		
+	
+	
 	//조회수
 	@Override
 	public int boardViewCount(AdminBoardDto dto) throws Exception { return dao.boardViewCount(dto); }
@@ -191,8 +199,7 @@ public class AdminBoardServiceImpl extends BaseServiceImpl implements AdminBoard
 	public int deleteLike(AdminBoardVo vo) throws Exception { return dao.deleteLike(vo); }
 
 	
-		
-	
 
+	
 
 }

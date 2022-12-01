@@ -27,11 +27,16 @@ public class AdminBoardDto extends Base{
 	private Integer likeCount;
 	
 	//댓글
+	private String infrMmId;
 	private String cmSeq;
 	private String cmReSeq;
 	private String content;
 	private String Comment_seq;
 	private String board_seq;
+	private Integer commentCount;
+	
+	//댓글 좋아요
+	private String cmLikeSeq;
 	
 	//업로드관련
 	private MultipartFile[] uploadImg;
@@ -222,6 +227,24 @@ public class AdminBoardDto extends Base{
 	}
 	public void setBoard_seq(String board_seq) {
 		this.board_seq = board_seq;
+	}
+	public String getCmLikeSeq() {
+		return cmLikeSeq;
+	}
+	public void setCmLikeSeq(String cmLikeSeq) {
+		this.cmLikeSeq = cmLikeSeq;
+	}
+	public String getInfrMmId() {
+		return infrMmId;
+	}
+	public void setInfrMmId(String infrMmId) {
+		this.infrMmId = infrMmId;
+	}
+	public Integer getCommentCount() {
+		return commentCount;
+	}
+	public void setCommentCount(Integer commentCount) {
+		this.commentCount = commentCount;
 	}
 	
 	

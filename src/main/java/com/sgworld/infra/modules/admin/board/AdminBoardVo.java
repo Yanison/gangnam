@@ -5,6 +5,7 @@ import com.sgworld.infra.common.base.BaseVo;
 public class AdminBoardVo extends BaseVo {
 
 	private String bdSeq;
+	private String cmSeq;
 	private String sessSeq;
 	private String infrCcSeq;
 	private String infrCcNameKor;
@@ -47,6 +48,12 @@ public class AdminBoardVo extends BaseVo {
 	}
 	public void setInfrMmSeq(String infrMmSeq) {
 		this.infrMmSeq = infrMmSeq;
+	}
+	public String getCmSeq() {
+		return cmSeq;
+	}
+	public void setCmSeq(String cmSeq) {
+		this.cmSeq = cmSeq;
 	}
 	
 	

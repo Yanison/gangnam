@@ -57,6 +57,16 @@ public class BoardController {
 		return "infra/user/modules/board/boardView";
 	}
 	
+	@RequestMapping(value = "boardCommentLita")
+	public String boardCommentLita(@ModelAttribute("vo") AdminBoardVo vo, Model model) throws Exception {
+		vo.setParamsPaging(service.selectCommentCount(vo));
+		
+		List<AdminBoardDto> list = service.selectCommentList(vo);
+		model.addAttribute("list", list);
+		
+		return "infra/user/modules/board/boardCommentLita";
+	}
+	
 	//게시판 글쓰기
 	@RequestMapping(value = "boardWrite")
 	public String boardWrite() {
@@ -78,7 +88,15 @@ public class BoardController {
 	@RequestMapping(value = "commentInst")
 	public String commentInst(AdminBoardVo vo, AdminBoardDto dto, RedirectAttributes redirectAttributes) throws Exception {
 		service.commentInst(dto);
+		vo.setCmSeq(dto.getCmSeq());
+		vo.setBdSeq(dto.getBdSeq());
 		redirectAttributes.addFlashAttribute("vo", vo);
+		return "redirect:/board/boardView";
+	}
+	
+	@RequestMapping(value = "commentDele")
+	public String commentDele(AdminBoardVo vo, RedirectAttributes redirectAttributes) throws Exception {
+		service.commentDele(vo);
 		return "redirect:/board/boardView";
 	}
 	

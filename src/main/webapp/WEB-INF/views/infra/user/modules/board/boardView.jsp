@@ -17,6 +17,10 @@
 	<form id="form" name="form" autocomplete="off" enctype="multipart/form-data">
 	<input type="hidden" id="infrMmSeq" name="infrMmSeq" value="${infrMmSeq}">
 	<input type="hidden" id="bdSeq" name="bdSeq" value="${item.bdSeq}">
+	<input type="hidden" id="cmSeq" name="cmSeq" value="${cmSeq}">
+	<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>">
+	<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow }"/>">
+	
 	<!-- contend s -->
 	<section>
 		<div class="boarderTitle">
@@ -34,7 +38,7 @@
 					<div class="icon">
 						<i class="fa-regular fa-clock"> <fmt:formatDate value="${item.regDatetime }" pattern="MM-dd" /></i>
 						<i class="fa-solid fa-eye"> <c:out value="${item.viewCount }" /></i>
-						<i class="fa-regular fa-message"> 200</i>
+						<i class="fa-regular fa-message"> <c:out value="${item.commentCount }" /></i>
 					</div>
 				</div>
 				<div class="boarderBody">
@@ -60,11 +64,9 @@
 					</div>
 				</div>
 				<div>
-					<div class="commentTotal">
-						<div>		
-							<p>댓글 200</p>
-						</div>
-					</div>
+				<!-- totalAndRowNum s -->
+				<%@include file="../../common//totalAndRowNum.jsp"%>
+				<!-- totalAndRowNumu e -->
 				<c:choose>
 					<c:when test="${infrMmSeq eq null }">
 					</c:when>
@@ -80,7 +82,7 @@
 						</div>
 						<div class="writeBox">
 							<div id="writeDiv" class="writeDiv">
-								<textarea class="textBox" style="width: 680px; height: 90px; resize: none;" maxlength="200" placeholder="댓글을 입력하세요."></textarea>
+								<textarea class="textBox" style="width: 680px; height: 90px; resize: none;" name="content" maxlength="200" placeholder="댓글을 입력하세요."><c:out value="${dto.content }" /></textarea>
 								<div class="textLengthWrap">
 								    <span class="textCount">0</span>
 								    <span class="textTotal">/200</span>
@@ -90,36 +92,7 @@
 					</div>
 					</c:otherwise>
 				</c:choose>
-					<!-- 답글에 답글 버튼 누를시 입력창 뜨게 하고, 로그인 없이 누르면 로그인 페이지로 연결되게끔 -->
-					<div class="commentList">
-						<div class="commentItem">
-							<div class="">
-								<span><c:out value="${infrMmName }" />(<c:out value="${infrMmId }" />)</span>
-							</div>
-							<div class="dropstart">
-								<a class="" id="" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-ellipsis-vertical"></i></a>
-								<ul class="dropdown-menu">
-									<li><a class="dropdown-item" id="">삭제</a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="commentContent">
-							<p>박진철의 "아레스" ㅈ간지면 개추...<%-- <c:out value="${content }" /> --%></p>
-						</div>
-						<div class="">
-							<p>2022-11-29 15:57<%-- <c:out value="${regDatetime }" /> --%></p>
-						</div>
-						<div class="commentBtnBox">
-							<div class="">
-								<button class="commentBtn" type="button" id="reCommentBtn">답글 <%-- <c:out value="${reCommentCount }" /> --%></button>
-							</div>
-							<div class="">
-								<div class="">
-									<a><i class="fa-regular fa-heart"></i></a>
-								</div>
-							</div>
-						</div>
-					</div>
+					<div id="lita"></div>
 				</div>
 			</article>
 		</section>
@@ -130,14 +103,38 @@
 	<%@ include file="../../common/footer.jsp" %>
 	<!-- footer e -->
 	
+	<!-- modalBase s -->
+	<%@include file="../../common/modalBase.jsp"%>
+	<!-- modalBase e -->
+	
 	<script type="text/javascript">
+		$(document).ready(function(){
+			setLita();
+		}); 
+	
 		var goUrlCommentInst = "/board/commentInst";
+		var goUrlCommentDele = "/board/commentDele";
+		var goUrlAjaxLita = "/board/boardCommentLita";
 		
 		var form = $("form[name=form]");
 		var seq = $("input:hidden[name=cmSeq]");
 		
 		$("#btnComment").on("click", function(){
 			form.attr("action", goUrlCommentInst).submit();
+		});
+		
+		$("#btnCommentDele").on("click", function(){
+			$(".modal-title").text("확 인");
+			$(".modal-body").text("해당 데이터를 삭제하시겠습니까 ?");
+			$("#btnModalDelete").show();
+			$("#modalConfirm").modal("show");
+		});
+		
+		$("#btnModalDelete").on("click", function(){
+			
+			$("#modalConfirm").modal("hide");
+								
+			form.attr("action", goUrlCommentDele).submit();
 		});
 	
 		function unlike(){
@@ -217,6 +214,57 @@
 		        alert('글자수는 200자까지 입력 가능합니다.');
 		    };
 		});
+		
+		//commentLita jsp
+		var page = 0;
+		
+		function setLita() {
+			$.ajax({
+				async: true 
+				,cache: false
+				,type: "post"
+				/* ,dataType:"json" */
+				,url: goUrlAjaxLita
+				,data : $("#form").serialize()
+				/* ,data : {  } */
+				,success: function(response) {
+					$("#lita").empty();
+					$("#lita").append(response);
+					window.location.hash = '#page' + page;
+					page++;
+
+				}
+				,error : function(jqXHR, textStatus, errorThrown){
+					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+				}
+			});
+		}
+		
+		$(window).bind('hashchange', function() { 
+			$.ajax({
+				async: true 
+				,cache: false
+				,type: "post"
+				/* ,dataType:"json" */
+				,url: goUrlAjaxLita
+				,data : $("#form").serialize()
+				/* ,data : {  } */
+				,success: function(response) {
+					$("#lita").empty();
+					$("#lita").append(response);
+					window.location.hash = '#page' + page;
+				}
+				,error : function(jqXHR, textStatus, errorThrown){
+					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+				}
+			});
+		});
+		
+		function setHash() {
+			if(location.hash == "" || location.hash == null){
+				alert("hash is empty");
+			}
+		}
 	</script>
 </body>
 </html>
