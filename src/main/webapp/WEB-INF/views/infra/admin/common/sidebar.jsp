@@ -20,37 +20,16 @@
                         <a class="nav-link" onclick = "goAdminCodeList()" style="cursor: pointer;">코드</a>
                     </nav>
                 </div>
-                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts2" aria-expanded="false" aria-controls="collapseLayouts">
+                <a class="nav-link collapsed" onclick="goAdminMetaversMap()" style="cursor: pointer;">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     	매타버스관리
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
-                <div class="collapse" id="collapseLayouts2" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                    <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="layout-static.html">기본매타버스맵관리</a>
-                        <a class="nav-link" href="layout-sidenav-light.html">매타버스내 기능관리</a>
-                    </nav>
-                </div>
-                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts3" aria-expanded="false" aria-controls="collapseLayouts">
+                <a class="nav-link collapsed" onclick="goAdminAvartList()" style="cursor: pointer;">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
 						아바타관리	
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
-                <div class="collapse" id="collapseLayouts3" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                    <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" //  onclick="goAdminAvartList()">goAdminAvartList</a>
-                    </nav>
-                </div>
-                <div class="collapse" id="collapseLayouts3" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                    <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" //  onclick="goAdminAvartView()">goAdminAvartView</a>
-                    </nav>
-                </div>
-                <div class="collapse" id="collapseLayouts3" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                    <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" onclick="goAdminAvartForm()">goAdminAvartForm</a>
-                    </nav>
-                </div>
                 <a class="nav-link collapsed" onclick = "goAdminMemberList()" style="cursor: pointer;">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     	회원관리
@@ -61,17 +40,11 @@
                         <a class="nav-link" href="layout-static.html">회원목록</a>
                     </nav>
                 </div>
-                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts5" aria-expanded="false" aria-controls="collapseLayouts">
+                <a class="nav-link collapsed" onclick="goAdminBoardList()" style="cursor: pointer;">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     	계시판관리
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
-                <div class="collapse" id="collapseLayouts5" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                    <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="layout-static.html">계시글</a>
-                        <a class="nav-link" href="layout-sidenav-light.html">댓글</a>
-                    </nav>
-                </div>
             </div>
         </div>
     </nav>
