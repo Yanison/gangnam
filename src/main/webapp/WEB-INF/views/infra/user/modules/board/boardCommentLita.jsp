@@ -20,9 +20,9 @@
 				<span><c:out value="${list.infrMmNickname }" />(<c:out value="${list.infrMmId }" />)</span>
 			</div>
 			<div class="dropstart">
-				<a class="" id="" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-ellipsis-vertical"></i></a>
+				<a type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-ellipsis-vertical"></i></a>
 				<ul class="dropdown-menu">
-					<li><a class="dropdown-item" id="btnCommentDele" style="font-size: x-small; cursor: pointer;">삭제</a></li>
+					<li><button class="dropdown-item" type="button" id="btnCommentDele" style="font-size: x-small; cursor: pointer;">삭제</button></li>
 				</ul>
 			</div>
 		</div>
@@ -43,6 +43,25 @@
 			</div>
 		</div>
 	</div>
+	<div class="reCommentBox" style="display: none;">
+		<div class="commentHead">
+			<div class="">
+				<span><c:out value="${infrMmName }" />(<c:out value="${infrMmId }" />)</span>
+			</div>
+			<div>
+				<button class="writeBtn1" id="btnComment">등록</button>
+			</div>
+		</div>
+		<div class="writeBox">
+			<div id="writeDiv" class="writeDiv">
+				<textarea class="textBox" style="width: 680px; height: 90px; resize: none;" name="content" maxlength="200" placeholder="댓글을 입력하세요."></textarea>
+				<div class="textLengthWrap">
+				    <span class="textCount">0</span>
+				    <span class="textTotal">/200</span>
+				</div>
+			</div>	
+		</div>
+	</div>
 		</c:forEach>
 	</c:otherwise>
 </c:choose>
@@ -51,7 +70,14 @@
 <%@include file="../../common/userPagination.jsp"%>
 <!-- pagination e -->
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
 <script type="text/javascript">
+	$('#reCommentBtn').on('click', function() {
+		$(".reCommentBox").show();
+	});
+	
+	
 	goForm = function(keyValue) {
 		/* if(key != 0) seq.val(btoa(key)); */
 		seq.val(keyValue);
@@ -63,5 +89,7 @@
 		$("input:hidden[name=thisPage]").val(thisPage);
 		setLita();
 	}
+	
+
 	
 </script>

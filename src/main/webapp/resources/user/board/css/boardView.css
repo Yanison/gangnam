@@ -60,6 +60,10 @@
 	border: 1px solid #DEDEDE;
 	border-radius: 5px;
 }
+.reCommentBox{
+	border: 1px solid #DEDEDE;
+	border-radius: 5px;
+}
 .commentHead{
 	display: flex;
 	justify-content: space-between;	

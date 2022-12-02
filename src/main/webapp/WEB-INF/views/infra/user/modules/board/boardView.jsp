@@ -106,14 +106,14 @@
 	<!-- modalBase s -->
 	<%@include file="../../common/modalBase.jsp"%>
 	<!-- modalBase e -->
-	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
 			setLita();
 		}); 
 	
 		var goUrlCommentInst = "/board/commentInst";
-		var goUrlCommentDele = "/board/commentDele";
+		
 		var goUrlAjaxLita = "/board/boardCommentLita";
 		
 		var form = $("form[name=form]");
@@ -123,6 +123,8 @@
 			form.attr("action", goUrlCommentInst).submit();
 		});
 		
+		var goUrlCommentDele = "/board/commentDele";
+
 		$("#btnCommentDele").on("click", function(){
 			$(".modal-title").text("확 인");
 			$(".modal-body").text("해당 데이터를 삭제하시겠습니까 ?");
@@ -136,6 +138,7 @@
 								
 			form.attr("action", goUrlCommentDele).submit();
 		});
+		
 	
 		function unlike(){
 			$.ajax({
