@@ -35,7 +35,7 @@
 		</div>
 		<div class="commentBtnBox">
 			<div class="">
-				<button class="commentBtn" style="text-decoration: none;" type="button" onclick="reComment(<c:out value="${list.cmSeq }"/>)">답글</button>
+				<button class="commentBtn" style="text-decoration: none;" type="button" onclick="reComment();">답글</button>
 			</div>
 			<div class="">
 				<div class="">
