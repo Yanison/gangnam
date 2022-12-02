@@ -64,3 +64,13 @@ function goAdminMemberList(){
 	location.href = "../../../admin/memberGroup/infrMmList"
 	//  onclick = "goAdminMemberList()"
 }
+
+function goAdminMetaversMap(){
+	location.href="../../../admin/metaverse/infrMapList"
+	// onclick = "goAdminMetaversMap()"
+}
+
+function goAdminBoardList(){
+	location.href="../../../admin/board/infrBdList"
+	// onclick = "goAdminBoardList()"
+}
