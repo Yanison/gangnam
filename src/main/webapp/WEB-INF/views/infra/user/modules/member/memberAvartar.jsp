@@ -82,7 +82,7 @@
 								</div>	
 								<!-- <i class="fa-solid fa-user fa-4x"></i>  -->
 								<div class="btns">
-									<button type="button" class="modifyBtn" id="btnSave">아바타 업로드</button>					
+									<button type="button" class="modifyBtn" id="btnUpload">아바타 업로드</button>					
 					        	</div>
 							</div>
 						</article>
@@ -108,8 +108,8 @@
 	var goUrlMemberAvartar = "/member/memberAvartar";
 	var goUrlMemberPostComment = "/member/memberPostComment";
 	var goUrlMemberWithdraw = "/member/memberWithdraw";
-	var goUrlInst = "/member/avatarUpload";
-	var goUrlAvatarInst = "/member/infrAvatarInst"
+	var goUrlInst = "/member/avatarInst";
+	var goUrlUpload = "/member/avatarUpload";
 	
 	var seq = $("input:hidden[name=infrMmSeq]");
 	var form = $("form[name=form]");
@@ -136,6 +136,10 @@
 	
 	$("#btnSave").on("click", function(){
    		form.attr("action", goUrlInst).submit();
+	});
+	
+	$("#btnUpload").on("click", function(){
+   		form.attr("action", goUrlUpload).submit();
 	});
 	
 	function sgwAvatar(){

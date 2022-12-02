@@ -207,6 +207,14 @@ public class MemberGroupServiceImpl implements MemberGroupService {
 		uploadFiles(dto.getUploadImg(), dto, "memberUploaded", dto.getUploadImgType(), dto.getUploadImgMaxNumber());
 		return 1;
 	}
+	
+	public int memberUploaded(MemberGroup dto)throws Exception{
+		setRegMod(dto);
+		
+		deleteFiles(dto.getUploadImgDeleteSeq(), dto.getUploadImgDeletePathFile(), dto, "memberUploaded");
+		uploadFiles(dto.getUploadImg(), dto, "memberUploaded", dto.getUploadImgType(), dto.getUploadImgMaxNumber());
+		return 1;
+	}
 
 	@Override
 	public MemberGroup selectCheck(MemberGroupVo vo) throws Exception {

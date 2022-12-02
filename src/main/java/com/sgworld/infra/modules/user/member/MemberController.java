@@ -58,16 +58,25 @@ public class MemberController {
 		return "infra/user/modules/member/memberAvartar";
 	}
 	
-	//내정보_아바타 수정
+	//내정보_아바타 이미지 등록
 	@SuppressWarnings(value = {"all"})
-	@RequestMapping(value = "avatarUpload")
-	public String infrAvatarInst(@ModelAttribute("vo") MemberGroupVo vo,MemberGroup dto, RedirectAttributes redirectAttributes) throws Exception {
+	@RequestMapping(value = "avatarInst")
+	public String memberAvatarInst(@ModelAttribute("vo") MemberGroupVo vo,MemberGroup dto, RedirectAttributes redirectAttributes) throws Exception {
 		service.memberInst(dto);
 		vo.setInfrMmSeq(dto.getInfrMmSeq());
 		
 		redirectAttributes.addFlashAttribute("vo", vo);
 		return "redirect:/member/memberAvartar";
-	}	
+	}
+	
+	//내정보_아바타 이미지 변경
+	@RequestMapping(value = "avatarUpload")
+	public String memberAvatarUpdt(@ModelAttribute("vo")MemberGroupVo vo,MemberGroup dto,RedirectAttributes redirectAttributes)throws Exception{
+		service.memberUploaded(dto);
+		
+		redirectAttributes.addFlashAttribute("vo", vo);
+		return "redirect:/member/memberAvartar";
+	}
 		
 	//내정보_내 글 조회
 	@RequestMapping(value="memberPostComment")
