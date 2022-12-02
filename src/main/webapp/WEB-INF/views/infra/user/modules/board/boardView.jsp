@@ -17,7 +17,6 @@
 	<form id="form" name="form" autocomplete="off" enctype="multipart/form-data">
 	<input type="hidden" id="infrMmSeq" name="infrMmSeq" value="${infrMmSeq}">
 	<input type="hidden" id="bdSeq" name="bdSeq" value="${item.bdSeq}">
-	<input type="hidden" id="cmSeq" name="cmSeq" value="${cmSeq}">
 	<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>">
 	<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow }"/>">
 	
@@ -117,7 +116,6 @@
 		var goUrlAjaxLita = "/board/boardCommentLita";
 		
 		var form = $("form[name=form]");
-		var seq = $("input:hidden[name=cmSeq]");
 		
 		$("#btnComment").on("click", function(){
 			form.attr("action", goUrlCommentInst).submit();

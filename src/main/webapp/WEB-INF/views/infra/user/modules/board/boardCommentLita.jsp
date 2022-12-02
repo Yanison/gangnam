@@ -17,6 +17,7 @@
 	<div class="commentList">
 		<div class="commentItem">
 			<div class="">
+				<input type="hidden" name="cmSeq" value="${list.cmSeq }">
 				<span><c:out value="${list.infrMmNickname }" />(<c:out value="${list.infrMmId }" />)</span>
 			</div>
 			<div class="dropstart">
@@ -34,7 +35,7 @@
 		</div>
 		<div class="commentBtnBox">
 			<div class="">
-				<button class="commentBtn" type="button" id="reCommentBtn">답글</button>
+				<button class="commentBtn" style="text-decoration: none;" type="button" onclick="reComment(<c:out value="${list.cmSeq }"/>)">답글</button>
 			</div>
 			<div class="">
 				<div class="">
@@ -73,10 +74,19 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
 <script type="text/javascript">
-	$('#reCommentBtn').on('click', function() {
+	
+	var seq = $("input:hidden[name=cmSeq]");
+	/*
+	$('#commentBtn_').on('click', function() {
 		$(".reCommentBox").show();
 	});
+	*/
+	var num = $("input:hidden[name=cmSeq]");
 	
+	goReComment = function reComment(keyValue) {
+		num.val(keyValue);
+		$(".reCommentBox").show();
+	}	
 	
 	goForm = function(keyValue) {
 		/* if(key != 0) seq.val(btoa(key)); */
@@ -84,6 +94,10 @@
 		form.attr("action", goUrlForm).submit();
 	}
 	
+	goView = function(keyValue) {
+		seq.val(keyValue);
+		form.attr("action", goUrlBoardView).submit();
+	}
 	
 	goList = function(thisPage) {
 		$("input:hidden[name=thisPage]").val(thisPage);
