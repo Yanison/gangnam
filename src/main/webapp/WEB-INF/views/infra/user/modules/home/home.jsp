@@ -8,11 +8,11 @@
 	<script src="/resources/user/home/js/home.js"></script>
 </head>
 <body>
-<!-- 	<form name="form" method="post"> -->
+	<form name="form" method="post">
 	<header>
 		<%@ include file="../../common/header.jsp"%> 
 	</header>
-	
+	</form>
 	<section class="bodyWrapper">
 		<article class="mySgWorld">
 			<c:choose>

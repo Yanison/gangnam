@@ -342,6 +342,19 @@ public class MemberGroup extends Base{
 		this.uploadImgDeletePathFile = uploadImgDeletePathFile;
 	}
 	
+	private String pseq;
+
+	public String getPseq() {
+		return pseq;
+	}
+	public void setPseq(String pseq) {
+		this.pseq = pseq;
+	}
+	
+	
+	
+	
+	
 	
 	
 }
