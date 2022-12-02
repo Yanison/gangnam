@@ -24,21 +24,54 @@
 	border-bottom: 1px solid #DEDEDE;
 	border-top: 1px solid #DEDEDE;
 }
-.boarderFooter{
-	display: flex;
-	justify-content: space-between;
-	border-bottom: 1px solid #DEDEDE;
+.commentTotal{
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
 .writeBtn1{
 	border-radius: 5px;
 	background-color: #434A72; 
-	padding: 5px 10px;
-	font-size: 0.9em;
+	width: 50px;
+	height: 30px;
+	font-size: small;
 	color: white;
+}
+.writeBox{
+	display: flex;
+	justify-content: center;
+	padding: 10px;
+}
+.writeDiv{
+	width: 680px;
+}
+.textLengthWrap{
+	text-align: right;
+	padding-top: 5px;
+	
+}
+.textLengthWrap > span {
+	color: #9D9D9D;
 }
 .iconComment{
 	font-size: 0.6em;
 	color: #9D9D9D;
+}
+.commentBox{
+	border: 1px solid #DEDEDE;
+	border-radius: 5px;
+}
+.reCommentBox{
+	border: 1px solid #DEDEDE;
+	border-radius: 5px;
+}
+.commentHead{
+	display: flex;
+	justify-content: space-between;	
+	align-items: center;
+	padding: 5px;
+}
+.commentHead div > span {
+	font-size: small;
 }
 .commentBody{
 	border-bottom: 1px solid #DEDEDE;
@@ -48,4 +81,27 @@
 .commentPlus{
 	text-align: center;
 	color: #9D9D9D;
+}
+.commentItem{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-size: small;
+	padding-top: 15px;
+}
+.commentContent{
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.commentBtnBox{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-size: x-small;
+	border-bottom: 1px solid #DEDEDE;
+	padding-bottom: 15px;
+}
+.commentBtn{
+	background-color: white;
+	border-radius: 5px;
 }

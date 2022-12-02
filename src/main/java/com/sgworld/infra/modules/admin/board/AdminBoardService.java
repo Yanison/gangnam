@@ -29,7 +29,9 @@ public interface AdminBoardService {
 	
 	//댓글
 	public List<AdminBoardDto> selectCommentList(AdminBoardVo vo) throws Exception;
+	public int selectCommentCount(AdminBoardVo vo) throws Exception;
 	public int commentInst(AdminBoardDto dto) throws Exception;
+	public int commentDele(AdminBoardVo vo) throws Exception;
 	
 	//조회수
 	public int boardViewCount(AdminBoardDto dto) throws Exception;

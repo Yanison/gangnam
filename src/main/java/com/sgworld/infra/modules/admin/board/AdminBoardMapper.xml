@@ -37,8 +37,9 @@
 				,a.delNy
 				,a.viewCount
 				,(select count(bdLikeSeq) from bdLike c where 1=1 and a.bdSeq = c.bdSeq) as likeCount
+				,(select count(cmSeq) from bdComment d where 1=1 and a.bdSeq = d.board_seq) as commentCount
 			<include refid="selectCommon" />
-			ORDER BY likeCount DESC, a.bdSeq DESC
+			ORDER BY a.bdSeq DESC
 		<include refid="Base.selectListLowerForMysql" />
 	</select>
 	
@@ -51,6 +52,7 @@
 		SELECT		
 			a.*
 			,b.infrMmNickname
+			,(select count(cmSeq) from bdComment d where 1=1 and a.bdSeq = d.board_seq) as commentCount
 		FROM board a
 		JOIN infrMember b on a.infrMmSeq = b.infrMmSeq
 		WHERE 1=1
@@ -182,10 +184,12 @@
 	</delete>
 	
  	<!-- 댓글 -->
- 	<select id="selectCommentList" resultMap="resultMapCommnet">
+ 	<select id="selectCommentList" resultMap="resultMapObj">
  		<include refid="Base.selectListUpperForMysql" />
  			SELECT
  				a.cmSeq
+ 				,b.infrMmId
+ 				,b.infrMmName
  				,b.infrMmNickname
  				,a.content
  				,a.regDatetime
@@ -196,6 +200,15 @@
 				AND c.bdSeq = #{bdSeq}
  		<include refid="Base.selectListLowerForMysql" />
  	</select>
+ 	
+ 	<select id="selectCommentCount" resultType="Integer">
+		SELECT COUNT(*)
+		FROM bdComment a
+		JOIN infrMember b on a.infrMmSeq = b.infrMmSeq
+		LEFT JOIN board c on a.board_seq = c.bdSeq
+		WHERE 1=1
+			AND a.board_seq = #{bdSeq} 
+	</select>
  	
 	<insert id="commentInst">
 		INSERT INTO bdComment (
@@ -215,6 +228,13 @@
 		<selectKey resultType="String" keyProperty="cmSeq" order="AFTER">
 			SELECT last_insert_id()
 		</selectKey>
-	</insert> 	
+	</insert>
+	
+	<delete id="commentDele">
+		DELETE FROM bdComment
+		WHERE 1=1
+			AND cmSeq = #{cmSeq}
+			AND infrMmSeq = #{infrMmSeq}
+	</delete> 	
  	
 </mapper>

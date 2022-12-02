@@ -53,7 +53,12 @@ public class AdminBoardDao {
 		return list;
 	}
 	
+	public int selectCommentCount(AdminBoardVo vo) {
+		return sqlSession.selectOne(namespace + ".selectCommentCount", vo);
+	}
+	
 	public int commentInst(AdminBoardDto dto) { return sqlSession.insert(namespace + ".commentInst", dto); }
+	public int commentDele(AdminBoardVo vo) { return sqlSession.delete(namespace + ".commentDele", vo); }
 	
 	//조회수
 	public int boardViewCount(AdminBoardDto dto) { return sqlSession.update(namespace + ".boardViewCount", dto); }
