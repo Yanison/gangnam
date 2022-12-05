@@ -1,92 +1,348 @@
-const canvas = document.getElementById('canvas');
+ 
+$(window).on("beforeunload",function(){
+	leaveAndDel()
+	disconnect() 
+})
+
+
+
+var endPoint = $('#endPoint').val()
+var infrMmSeq = $('#infrMmSeq').val()
+// 유저의 정보를 담을 배열
+var userIdx
+var users=[];
+// 유저의 고유 인덱스
+
+// 색상. 
+var colArr = [
+		"#5c1e1e",
+		"#7b6bb3",
+		"#708a94",
+		"#3e6941",
+		"#096085",
+		"#098536",
+		"#000000",
+		"#008536",
+		"#a19fbf",
+		"#63144c" ]
+/**
+선언된 배열 users에 유저들의 정보가 담겨있음. 각자 본인의 정보에만 접근 가능하도록
+본인의 index를 할당받는 메소드
+ */
+
+
+
+function findMyInx(){
+	console.log("findMyInx.users :: "+ JSON.stringify(users))
+	loopi:for(var i = 0 ; i <users.length;i ++){
+		console.log("findMyInx for ["+i+"] users :: "+ JSON.stringify(users[i]))
+		console.log("findMyInx, infrMmSeq :: " + infrMmSeq)
+		
+		if(infrMmSeq == users[i].infrMmSeq){
+			
+			console.log("findMyInx users["+i+"] userSeq :: "+users[i].infrMmSeq)
+			console.log("findMyInx users["+i+"] infrMmNickname :: "+users[i].infrMmNickname)
+			this.userIdx = i
+			console.log("findMyInx, userIdx :: " + this.userIdx)
+			break loopi
+		}
+	}
+	
+}
+function connect() {
+	var socket = new SockJS('/sgWorldService');
+	stompClient = Stomp.over(socket);
+    stompClient.connect({}, function (frame) {
+        setConnected(true);
+        console.log('Connected: ' + frame);
+        
+        stompClient.subscribe('/topic/sgWorld/chatroom/'+endPoint, function (msgObjFromServer) {
+			 var msgObj = JSON.parse(msgObjFromServer.body)
+			 console.log("topic/sgWorld/chatroom"+ msgObj)
+            showMsg(msgObj);
+        });
+        
+         stompClient.subscribe('/topic/sgWorld/sendMessage/'+endPoint, function (msgObjFromServer) {
+            var msgObj = JSON.parse(msgObjFromServer.body)
+            showMsg(msgObj);
+        });
+        
+        stompClient.subscribe("/topic/sgWorld/" +this.endPoint+"/avatarWSControll/updateLoca",function (leave) {
+            var leave = JSON.parse(leave.body)
+            console.log("topic/sgWorld/chatroom"+ msgObj)
+        });
+        
+        
+        stompClient.subscribe('/topic/sgWorld/requestOnloadInfo/'+endPoint, function(usersInfo) {
+		console.log('/topic/sgWorld/requestOnloadInfo/')
+		var usersInfo = JSON.parse(usersInfo.body)
+		var users = this.users
+		
+		var arr = {
+				infrMmSeq :usersInfo.infrMmSeq,
+				infrMmNickname : usersInfo.infrMmNickname,
+				userColor :  usersInfo.userColor,
+				x :  usersInfo.x,
+				y :  usersInfo.y,
+				avatarSeq : usersInfo.avatarSeq
+			}
+		users.push(arr)
+		/**
+		배열에 추가하고 전체 플레이어를 다시 렌더링 해주는 작업 필요
+		이미 들어와서 렌더링 된 플레이어들은 렌더링에서 제외
+		 */
+		findMyInx()
+		console.log("userIdx :: "+ this.userIdx)
+		//새로운 배열에 유저가 추가가 되면 추가가 되었다고 다른 유저들에게도 공유
+		/**
+	      새로운 유저가 추가가되면 추가된 배열울 후발주자에게 전달해야함. 
+	      지금 문제는 전달되고 전달 잘 받고 나서 reRenderingUsers 메소드 때문에 덮어 씌여짐.
+	      왜냐하면 
+		 */
+        });
+        stompClient.subscribe('/topic/sgWorld/' + endPoint + "/avatarWSControll/reRenderingUsers", function(udateUserList) {
+			var udateUserList = JSON.parse(udateUserList.body);
+			console.log("udateUserList :: "+JSON.stringify(udateUserList))
+			this.users = []
+			var userLsit=[];
+			loopi:for(var i = 0 ; i < udateUserList.length; i ++){
+				console.log("udateUserList.length :: " +  udateUserList.length)
+				console.log("users :: "  +JSON.stringify(users))
+				
+				if(users.length <= 0){
+					for(var q = 0;q < udateUserList.length ;q ++){
+						var arr = {
+								infrMmSeq :udateUserList[q].infrMmSeq,
+								infrMmNickname : udateUserList[q].infrMmNickname,
+								userColor :  udateUserList[q].userColor,
+								x :  udateUserList[q].x,
+								y :  udateUserList[q].y,
+								avatarSeq : udateUserList[q].avatarSeqx
+							}
+						userLsit.push(arr); console.log("break"); 	
+					}
+					break loopi
+				}else{
+					loope:for(var e = 0; e < users.length; e  ++){
+						console.log("users.length :: " + users.length)
+						
+						
+						if (users[e].infrMmSeq == udateUserList[i].infrMmSeq){
+							console.log("this.users["+e+"].infrMmSeq == udateUserList["+i+"].infrMmSeq"+ (users[e].infrMmSeq == udateUserList[i].infrMmSeq))
+							var arr = {
+								infrMmSeq :udateUserList[i].infrMmSeq,
+								infrMmNickname : udateUserList[i].infrMmNickname,
+								userColor :  udateUserList[i].userColor,
+								x :  udateUserList[i].x,
+								y :  udateUserList[i].y,
+								avatarSeq : udateUserList[i].avatarSeq
+							}
+							userLsit.push(arr)
+							console.log(JSON.stringify("arr :: " + arr))
+							continue loope;
+						}else{
+							console.log("this.users["+e+"].infrMmSeq == udateUserList["+i+"].infrMmSeq"+ (users[e].infrMmSeq == udateUserList[i].infrMmSeq))
+						}
+					}	
+				}
+				
+				
+			}
+			console.log(JSON.stringify("after for ie. userLsit :: " + JSON.stringify(userLsit)))
+			for(var o = 0; o < userLsit.length; o  ++){
+				users.push(userLsit[o])
+			}
+			console.log(JSON.stringify("after for ie. this.users:: " + JSON.stringify(users)))
+			findMyInx()
+		});
+		stompClient.subscribe('/topic/sgWorld/' + endPoint + "/avatarWSControll/update", function(update) {
+			var update = JSON.parse(update.body)
+			updateState(update.infrMmSeq,update.x,update.y)
+		});
+		
+		send(endPoint,infrMmSeq)
+    });
+}
+
+function send(ep,seq) {
+	data={'infrMmSeq' : infrMmSeq}
+	stompClient.send("/app/sgWorld/msgTo/" +ep+"/requestOnloadInfo",{},JSON.stringify(data));
+}
+function leaveAndDel() {
+	
+	var users = this.users;
+	var leavingUser = users[userIdx]
+	console.log(JSON.stringify(users[userIdx]))
+	for(var i = 0 ; i < users.length; i ++){
+		if(users[i].infrMmSeq == leavingUser.infrMmSeq){
+			var leaving = users.splice(i,1);
+			i--;
+			leavingUser.x = 1600;
+			leavingUser.y = 0;
+			sendLocation(leavingUser)
+			this.userIdx = null;
+			console.log("leaving"+JSON.stringify(leaving))
+			console.log("leftusers"+JSON.stringify(users))
+		}
+	}
+	console.log("leavingUser :: " + JSON.stringify(leavingUser))
+	stompClient.send("/app/sgWorld/" +this.endPoint+"/avatarWSControll/leave",{},JSON.stringify(leavingUser));
+}
+
+function sendLocation(data){
+	console.log("seq :: "+data.infrMmSeq+"\n"+
+				" x :: "+data.x +"\n"+
+				" y:: "+data.y)
+	stompClient.send("/app/sgWorld/" +this.endPoint+"/avatarWSControll/updateLoca",{},JSON.stringify(data));
+}
+
+const canvas = document.getElementById('myCanvas');
 const ctx = canvas.getContext('2d');
 
-var mtAvatar = new Image();
-mtAvatar.src = "./resources/common/images/pepe.png"
 
-const player = {
-  w: 10,
-  h: 10,
-  x: 20,
-  y: 100,
-  speed: 1.5,
-  dx: 0,
-  dy: 0,
-};
+var rightPressed = false;
+var leftPressed = false;
+var upPressed = false;
+var downPressed = false;
 
-const clear = () => {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-};
+document.addEventListener("keydown", keyDownHandler, false);
+document.addEventListener("keyup", keyUpHandler, false);
 
-const drawPlayer = () => {
-  ctx.drawImage(mtAvatar, player.x, player.y, player.w, player.h); // (*)
-};
+function keyDownHandler(e) {
+    if(e.key == "Right" || e.key == "ArrowRight") {
+        rightPressed = true;
+    }
+    else if(e.key == "Left" || e.key == "ArrowLeft") {
+        leftPressed = true;
+    }else if(e.key == "Up" || e.key == "ArrowUp") {
+        upPressed = true;
+    }else if(e.key == "Dwon" || e.key == "ArrowDown") {
+        downPressed = true;
+    }
+}
 
-const detectWalls = () => {
-  // Left wall
-  if (player.x < 0) {
-    player.x = 0;
-  }
-  // Right Wall
-  if (player.x + player.w > canvas.width) {
-    player.x = canvas.width - player.w;
-  }
-  // Top wall
-  if (player.y < 0) {
-    player.y = 0;
-  }
-  // Bottom Wall
-  if (player.y + player.h > canvas.height) {
-    player.y = canvas.height - player.h;
-  }
-};
+function keyUpHandler(e) {
+    if(e.key == "Right" || e.key == "ArrowRight") {
+        rightPressed = false;
+    }
+    else if(e.key == "Left" || e.key == "ArrowLeft") {
+        leftPressed = false;
+    }else if(e.key == "Up" || e.key == "ArrowUp") {
+        upPressed = false;
+    }else if(e.key == "Dwon" || e.key == "ArrowDown") {
+        downPressed = false;
+    }
+}
 
-const newPos = () => {
-  player.x += player.dx;
-  player.y += player.dy;
-  detectWalls();
-};
+function updateState(infrMmSeq,x,y){
+	// 메세지는 한번에 한명씩 정보를 던짐. 
+	// 메세지는 seq 정보를 줌
+	// seq와 맞는 유저에 위치 정보를 주면 됨
+	// But 내 인덱스 정보를 제외
+	let users = this.users
+    
+    for(var i = 0 ; i < users.length; i ++){
+		if(i != this.userIdx){
+			if(infrMmSeq == users[i].infrMmSeq){
+				users[i].x = x;
+   	 			users[i].y = y;
+   	 			console.log(users[i].infrMmSeq +":: x_"+ users[i].x +" y_"+ users[i].y)
+			}
+		}
+	}
+}
 
-const update = () => {
-  clear();
-  drawPlayer();
-  newPos();
-  requestAnimationFrame(update);
-};
+var ballRadius = 10;
 
-const moveRight = () => (player.dx = player.speed);
-const moveLeft = () => (player.dx = -player.speed);
-const moveUp = () => (player.dy = -player.speed);
-const moveDown = () => (player.dy = player.speed);
+function draw(){
+	
+	let users = this.users
+	
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	for(var i = 0 ; i <users.length ; i ++){
+		ctx.beginPath();
+	    ctx.arc(users[i].x, users[i].y, ballRadius, 0, Math.PI*2);
+	    ctx.fillStyle = colArr[i];
+	    ctx.fill();
+	    ctx.closePath();
+	}
+	
+    let user = users[userIdx];
+    
+    // 정방향
+    if(rightPressed) {
+        user.x += 10;
+        if (user.x + ballRadius > canvas.width){
+            user.x = canvas.width - ballRadius;
+        }
+        sendLocation(user);
+    }
+    else if(leftPressed) {
+        user.x -= 10;
+        if (user.x < ballRadius){
+            user.x = ballRadius;
+        }
+        sendLocation(user);
+    }
+    else if(upPressed) {
+        user.y -= 10;
+        if (user.y < ballRadius){
+            user.y = ballRadius;
+        }
+        sendLocation(user);
+    }
+    else if(downPressed) {
+        user.y+= 10;
+        if (user.y + ballRadius > canvas.height){
+            user.y = canvas.height - ballRadius;
+        }
+        sendLocation(user);
+    }
+    
+    //대각
+    if(downPressed && leftPressed) {
+        user.y += 7;
+        user.x -= 7;
+        if (user.y + ballRadius > canvas.height){
+            user.y = canvas.height - ballRadius;
+        }
+        if (user.x < ballRadius){
+            user.x = ballRadius;
+        }
+        sendLocation(user);
+    }else if(downPressed && rightPressed) {
+        user.y += 7;
+        user.x += 7;
+        if (user.y + ballRadius > canvas.height){
+            user.y = canvas.height - ballRadius;
+        }
+        if (user.x + ballRadius > canvas.width){
+            user.x = canvas.width - ballRadius;
+        }
+        sendLocation(user);
+    }else if(upPressed && leftPressed) {
+        user.y -= 7;
+        user.x -= 7;
+        if (user.y < ballRadius){
+            user.y = ballRadius;
+        }
+        if (user.x < ballRadius){
+            user.x = ballRadius;
+        }
+        sendLocation(user);
+    }else if(upPressed && rightPressed) {
+        user.y -= 7;
+        user.x += 7;
+         if (user.y < ballRadius){
+            user.y = ballRadius;
+        }
+        if (user.x + ballRadius > canvas.width){
+            user.x = canvas.width - ballRadius;
+        }
+        sendLocation(user);
+    }
+    
+}
+setInterval(draw, 50);
 
-const keyDown = e => {
-  if (e.key === 'ArrowRight' || e.key === 'Right') {
-    moveRight();
-  } else if (e.key === 'ArrowLeft' || e.key === 'Left') {
-    moveLeft();
-  } else if (e.key === 'ArrowUp' || e.key === 'Up') {
-    moveUp();
-  } else if (e.key === 'ArrowDown' || e.key === 'Down') {
-    moveDown();
-  }
-};
-
-const keyUp = e => {
-  if (
-    e.key === 'ArrowRight' ||
-    e.key === 'Right' ||
-    e.key === 'ArrowLeft' ||
-    e.key === 'Left' ||
-    e.key === 'ArrowUp' ||
-    e.key === 'Up' ||
-    e.key === 'ArrowDown' ||
-    e.key === 'Down'
-  ) {
-    player.dx = 0;
-    player.dy = 0;
-  }
-};
-
-update();
-document.addEventListener('keydown', keyDown);
-document.addEventListener('keyup', keyUp);
+	

@@ -1,6 +1,7 @@
 package com.sgworld.infra.modules.user.sgWorld.sgwdto;
 
 public class SgwVo {
+	
 	private int onLiveNy;
 
 	public int getOnLiveNy() {

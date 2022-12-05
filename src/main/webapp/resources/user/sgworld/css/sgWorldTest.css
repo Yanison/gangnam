@@ -16,6 +16,7 @@ div, span, ul, li, a {
 
 #extiRoom{
 	cursor:pointer;
+	
 }
 
 .div1{
@@ -206,7 +207,7 @@ div, span, ul, li, a {
 	transition-duration: 0.5s
 }
 .divContents{
-	width:40px;
+	width:120px;
 	height:40px;
 	background:#333A64;
 	border-radius:5px;
@@ -217,15 +218,26 @@ div, span, ul, li, a {
 	font-size: 25px;
 	cursor:pointer;
 	padding:7px;
+	
+	display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .divContents.user{
-	width: 144px;
+	width: 160px;
 	font-size:12px !important;
+	display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 .divContents.user span{
 	display:block;
 	height:50%;
+	
+	display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 .divContents.user span:first-child{
 	display:flex;

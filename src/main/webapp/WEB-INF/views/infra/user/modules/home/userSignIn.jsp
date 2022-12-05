@@ -104,6 +104,9 @@
 						<!-- input 7,8 -->
 						<select class="infrMmTelecom memberInput" id="infrMmTelecom" name="infrMmTelecom" onchange="addValiHtmlOnKeyEvent('#infrMmTelecom')">
 							<option value="" disable>통신사</option>
+							<option value="1">KT</option>
+							<option value="2">SKT</option>
+							<option value="2">LG</option>
 							<option value="11">KT</option>
 							<option value="12">SKT</option>
 							<option value="13">LG</option>
@@ -133,6 +136,7 @@
 						<option value="2">@gmail.com</option>
 						<option value="3">@hanmail.com</option>
 						<option value="4">@daum.com</option>
+						<option value="5">@yahoo.com</option>
 						<option value="20">@yahoo.com</option>
 					</select>
 				</div>

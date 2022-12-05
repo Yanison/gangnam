@@ -1,4 +1,8 @@
+
+
 package com.sgworld.infra.modules.user.home;
+
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -16,22 +20,24 @@ public class HomeController {
 	HttpSession session;
 	@Autowired
 	SgwSerivceImpl sgwService;
+	@Autowired
+	HomeServiceImpl homeSerive;
 	
 	public void getSss(Model model,SgwDto sgwDto) {
 		Object infrMmId = session.getAttribute("infrMmId");
 		Object infrMmName = session.getAttribute("infrMmName");
 		String infrMmSeq = (String) session.getAttribute("infrMmSeq");
+		Object infrMmNickname = session.getAttribute("infrMmNickname");
 		model.addAttribute("infrMmSeq", infrMmSeq);
 		model.addAttribute("infrMmName", infrMmName);
+		model.addAttribute("infrMmName", infrMmNickname);
 		model.addAttribute("infrMmId", infrMmId);
-		
 		
 		try {
 			if(infrMmSeq != null) {
 				sgwDto.setInfrMmSeq(infrMmSeq);
-				SgwDto findSgwbyMmSeq = sgwService.findSgwbyMmSeq(sgwDto);
-				String sessSgw = findSgwbyMmSeq.getRegByMm();
-				System.out.println("infrMmSeq != null :: " + (infrMmSeq != null));
+				String sessSgw = sgwService.findSgwbyMmSeq(sgwDto).getRegByMm();
+				System.out.println("sessSgw ::" + sessSgw);
 				if(sessSgw != null) {
 					System.out.println("sessSgw != null :: " + (sessSgw != null));
 					System.out.println("sessSgw :: "+sessSgw);
@@ -56,8 +62,11 @@ public class HomeController {
 	@RequestMapping(value="/")
 	public String home(SgwDto sgwDto,Model model)throws Exception {
 		
-		
 		getSss(model,sgwDto);
+		
+		List<SgwDto> sgwList = homeSerive.selectSgwList(sgwDto);
+		model.addAttribute("sgwList", sgwList);
+		
 		return "infra/user/modules/home/home";
 	}
 	//로그인 화면

@@ -7,8 +7,13 @@ import java.util.Set;
 
 import org.springframework.web.socket.WebSocketSession;
 
-public class SgwDto {
+import com.sgworld.infra.common.base.Base;
+import com.sgworld.infra.common.base.BaseVo;
+
+public class SgwDto extends BaseVo {
 	
+
+
 	/*
 	 * sgwRoom
 	 */
@@ -107,5 +112,30 @@ public class SgwDto {
 	}
 	public void setInfrMmNickname(String infrMmNickname) {
 		this.infrMmNickname = infrMmNickname;
+	}
+	
+	private Integer onLiveNy;
+
+	public Integer getOnLiveNy() {
+		return onLiveNy;
+	}
+	public void setOnLiveNy(Integer onLiveNy) {
+		this.onLiveNy = onLiveNy;
+	}
+	
+	private Integer avatarSeq;
+	private String avatarName;
+
+	public Integer getAvatarSeq() {
+		return avatarSeq;
+	}
+	public void setAvatarSeq(Integer avatarSeq) {
+		this.avatarSeq = avatarSeq;
+	}
+	public String getAvatarName() {
+		return avatarName;
+	}
+	public void setAvatarName(String avatarName) {
+		this.avatarName = avatarName;
 	}
 }
