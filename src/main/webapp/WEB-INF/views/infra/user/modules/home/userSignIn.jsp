@@ -107,6 +107,10 @@
 							<option value="1">KT</option>
 							<option value="2">SKT</option>
 							<option value="2">LG</option>
+							<option value="11">KT</option>
+							<option value="12">SKT</option>
+							<option value="13">LG</option>
+							<option value="14">알뜰폰</option>
 						</select>
 					</div>
 				</div>
@@ -133,6 +137,7 @@
 						<option value="3">@hanmail.com</option>
 						<option value="4">@daum.com</option>
 						<option value="5">@yahoo.com</option>
+						<option value="20">@yahoo.com</option>
 					</select>
 				</div>
 			</div>
