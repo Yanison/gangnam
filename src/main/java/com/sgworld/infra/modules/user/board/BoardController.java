@@ -53,6 +53,7 @@ public class BoardController {
 		model.addAttribute("likeCount", likeCount);
 		AdminBoardDto item = service.selectOne(vo);
 		model.addAttribute("item", item);
+		System.out.println("boardCount:" + item.getCommentCount());
 		
 		return "infra/user/modules/board/boardView";
 	}

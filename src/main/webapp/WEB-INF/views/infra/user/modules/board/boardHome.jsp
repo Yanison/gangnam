@@ -46,7 +46,7 @@
 					<div class="contentBox">
 						<div>${list.bdContent }</div> <!-- 글 내용(게시판 리스트에 보이는 글자 수 제한 둘 것) -->
 					</div>
-					<div>
+					<div class="userName">
 						<p><c:out value="${list.infrMmNickname }" /></p><!-- 작성자 닉네임 -->
 					</div>
 					<div class="icon">

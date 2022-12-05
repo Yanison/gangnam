@@ -31,7 +31,7 @@
 			<p><c:out value="${list.content }" /></p>
 		</div>
 		<div class="">
-			<p>2022-11-29 15:57<c:out value="${list.regDatetime }" /></p>
+			<p><!-- 2022-11-29 15:57 --><c:out value="${list.regDatetime }" /></p>
 		</div>
 		<div class="commentBtnBox">
 			<div class="">
