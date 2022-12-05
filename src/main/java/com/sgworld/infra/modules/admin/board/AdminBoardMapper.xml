@@ -36,6 +36,8 @@
 				,a.regDatetime
 				,a.delNy
 				,a.viewCount
+				,(select count(bdLikeSeq) from bdLike c where 1=1 and a.bdSeq = c.bdSeq) as likeCount
+				,(select count(cmSeq) from bdComment d where 1=1 and a.bdSeq = d.board_seq) as commentCount
 			<include refid="selectCommon" />
 			ORDER BY a.bdSeq DESC
 		<include refid="Base.selectListLowerForMysql" />
@@ -50,6 +52,7 @@
 		SELECT		
 			a.*
 			,b.infrMmNickname
+			,(select count(cmSeq) from bdComment d where 1=1 and a.bdSeq = d.board_seq) as commentCount
 		FROM board a
 		JOIN infrMember b on a.infrMmSeq = b.infrMmSeq
 		WHERE 1=1
@@ -138,13 +141,55 @@
 			AND bdSeq = #{bdSeq}	
 	</update>
 	
-	<!-- 추천 -->
+	<!-- 좋아요 여부확인 -->
+	<select id="boardLiked" resultMap="resultMapObj"> 
+		SELECT 
+			infrMmSeq
+		FROM bdLike 
+		WHERE 1=1
+			AND bdSeq = #{bdSeq}
+			AND infrMmSeq = #{infrMmSeq}
+	</select>
+	
+	<!-- 좋아요 count -->
+	<select id="boardLikeCount" resultType="Integer"> 
+		SELECT 
+			COUNT(*) as likeCount 
+		FROM bdLike 
+		WHERE 1=1
+			AND bdSeq = #{bdSeq}
+	</select>
+	
+	<!-- 좋아요 추가 -->
+	<insert id="insertLike">
+		INSERT INTO bdLike (
+			bdSeq
+			,infrMmSeq
+		)
+		VALUES (
+			#{bdSeq}
+			,#{infrMmSeq}
+		)
+		<selectKey resultType="String" keyProperty="bdLikeSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
+	
+	<!-- 좋아요 취소 -->
+	<delete id="deleteLike">
+		DELETE FROM bdLike
+		WHERE 1=1
+			AND bdSeq = #{bdSeq}
+			AND infrMmSeq = #{infrMmSeq}
+	</delete>
 	
  	<!-- 댓글 -->
- 	<select id="selectCommentList" resultMap="resultMapCommnet">
+ 	<select id="selectCommentList" resultMap="resultMapObj">
  		<include refid="Base.selectListUpperForMysql" />
  			SELECT
  				a.cmSeq
+ 				,b.infrMmId
+ 				,b.infrMmName
  				,b.infrMmNickname
  				,a.content
  				,a.regDatetime
@@ -156,7 +201,40 @@
  		<include refid="Base.selectListLowerForMysql" />
  	</select>
  	
- 	<!-- 사용자 게시글 등록 -->
+ 	<select id="selectCommentCount" resultType="Integer">
+		SELECT COUNT(*)
+		FROM bdComment a
+		JOIN infrMember b on a.infrMmSeq = b.infrMmSeq
+		LEFT JOIN board c on a.board_seq = c.bdSeq
+		WHERE 1=1
+			AND a.board_seq = #{bdSeq} 
+	</select>
  	
+	<insert id="commentInst">
+		INSERT INTO bdComment (
+			content
+			,regDatetime
+			,infrMmSeq
+			,board_seq
+			,delNy
+		)
+		VALUES (
+			#{content}
+			,now()
+			,#{infrMmSeq}
+			,#{bdSeq}
+			,1
+		)
+		<selectKey resultType="String" keyProperty="cmSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
+	
+	<delete id="commentDele">
+		DELETE FROM bdComment
+		WHERE 1=1
+			AND cmSeq = #{cmSeq}
+			AND infrMmSeq = #{infrMmSeq}
+	</delete> 	
  	
 </mapper>

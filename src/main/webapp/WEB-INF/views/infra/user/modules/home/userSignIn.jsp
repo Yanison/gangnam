@@ -83,11 +83,11 @@
 					<input type="hidden" id="infrMmGender">
 					<label class="genderRadio" for="infrMmGenderMan" name="infrMmGender">
 						남자
-						<input type="radio" id="infrMmGenderMan" class="memberInputRadio" name="infrMmGender" value="0" onchange="radioCheckVal()" >						
+						<input type="radio" id="infrMmGenderMan" class="memberInputRadio" name="infrMmGender" value="5" onchange="radioCheckVal()" >						
 					</label>
 					<label class="genderRadio" for="infrMmGenderWoman" name="infrMmGender">
 						여자
-						<input type="radio" id="infrMmGenderWoman"  class="memberInputRadio" name="infrMmGender" value="1" onchange="radioCheckVal()">						
+						<input type="radio" id="infrMmGenderWoman"  class="memberInputRadio" name="infrMmGender" value="6" onchange="radioCheckVal()">						
 					</label>
 				</div>
 			</div>

@@ -152,6 +152,7 @@
 			a.infrMmSeq
 			,b.bdTitle
 			,b.regDatetime
+			,b.viewCount
 			,(SELECT COUNT(aa.bdLikeSeq) FROM bdLike aa where 1=1 AND aa.bdSeq = b.bdSeq)as bdLikeSeq
 		FROM infrMember a
 		LEFT JOIN board b on b.infrMmSeq = a.infrMmSeq
@@ -242,4 +243,36 @@
 	<delete id="adminDelete">
 		DELETE FROM infrMember WHERE infrMmSeq = #{infrMmSeq}
 	</delete>
+	
+	<!--이미지 업로드 관련 -->
+ 	<select id="selectListUploaded" resultMap="MemberGroup">
+		SELECT 
+			seq
+			,type
+			,defaultNy
+			,sort
+			,path
+			,originalName
+			,uuidName
+		FROM sgworld.memberUploaded
+		WHERE 1=1
+			AND delNy = 0
+			AND pseq = #{infrMmSeq}
+		ORDER BY
+			type, sort
+	</select>
+	
+	<!-- user_아바타 화면 가기(사진이 있냐 없냐 체크) -->
+	<select id="selectCheck" resultMap="MemberGroup">
+		SELECT
+			a.infrMmSeq
+			,b.pseq
+			,b.seq
+		FROM infrMember a
+		LEFT JOIN memberUploaded b on b.pseq = a.infrMmSeq
+		WHERE 1=1
+			AND infrMmSeq = #{infrMmSeq}	
+	</select>
+	
+	
 </mapper>

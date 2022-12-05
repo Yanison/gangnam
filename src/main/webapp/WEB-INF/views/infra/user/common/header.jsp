@@ -15,7 +15,7 @@
 	</div> 
 	<div class="rightNav">
 		<ul class="navBtn">
-			<li class="write"><a class="writeBtn" id="btnBoardRegForm" type="button">글쓰기</a></li>
+			<li class="write"><a class="writeBtn" onclick="goWrite()">글쓰기</a></li>
 			<c:choose>
 				<c:when test="${infrMmSeq eq null}">
 					<li class="last"><a href="/userLogin" type="button" id="">로그인</a></li>
@@ -25,6 +25,7 @@
 					<li class="logedIn"><button id="logOutBtn" onClick="userLogOut()">로그아웃</button></li>
 					<!-- 마이페이지 링크 연결해주세요 -->
 					<li class="logedIn" ><a href="javascript:goMemberView(<c:out value="${infrMmSeq }"/>)" >마이페이지</a></li>
+					<!-- <li class="logedIn"><button onclick="myPage()">마이페이지</button></li> -->
 				</c:otherwise>
 			</c:choose>
 		</ul>

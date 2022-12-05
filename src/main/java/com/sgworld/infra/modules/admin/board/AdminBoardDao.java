@@ -53,6 +53,19 @@ public class AdminBoardDao {
 		return list;
 	}
 	
+	public int selectCommentCount(AdminBoardVo vo) {
+		return sqlSession.selectOne(namespace + ".selectCommentCount", vo);
+	}
+	
+	public int commentInst(AdminBoardDto dto) { return sqlSession.insert(namespace + ".commentInst", dto); }
+	public int commentDele(AdminBoardVo vo) { return sqlSession.delete(namespace + ".commentDele", vo); }
+	
 	//조회수
 	public int boardViewCount(AdminBoardDto dto) { return sqlSession.update(namespace + ".boardViewCount", dto); }
+	
+	//좋아요
+	public int boardLikeCount(AdminBoardVo vo) { return sqlSession.selectOne(namespace + ".boardLikeCount", vo); }
+	public AdminBoardDto boardLiked(AdminBoardVo vo) { return sqlSession.selectOne(namespace + ".boardLiked", vo); }
+	public int insertLike(AdminBoardDto dto) { return sqlSession.insert(namespace + ".insertLike", dto); }
+	public int deleteLike(AdminBoardVo vo) { return sqlSession.delete(namespace + ".deleteLike", vo); }
 }

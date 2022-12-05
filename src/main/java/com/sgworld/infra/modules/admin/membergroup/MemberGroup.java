@@ -2,6 +2,8 @@ package com.sgworld.infra.modules.admin.membergroup;
 
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.sgworld.infra.common.base.Base;
 
 
@@ -278,6 +280,7 @@ public class MemberGroup extends Base{
 	
 	//board
 	private String bdTitle;
+	private Integer viewCount;
 
 	public String getBdTitle() {
 		return bdTitle;
@@ -285,8 +288,13 @@ public class MemberGroup extends Base{
 	public void setBdTitle(String bdTitle) {
 		this.bdTitle = bdTitle;
 	}
-	
-	
+	public Integer getViewCount() {
+		return viewCount;
+	}
+	public void setViewCount(Integer viewCount) {
+		this.viewCount = viewCount;
+	}
+
 	//bdLike
 	private String bdLikeSeq;
 
@@ -296,6 +304,55 @@ public class MemberGroup extends Base{
 	public void setBdLikeSeq(String bdLikeSeq) {
 		this.bdLikeSeq = bdLikeSeq;
 	}
+	
+	private MultipartFile[] uploadImg;
+	private Integer uploadImgType;	
+	private Integer uploadImgMaxNumber;
+	private String[] uploadImgDeleteSeq;
+	private String[] uploadImgDeletePathFile;
+
+	public MultipartFile[] getUploadImg() {
+		return uploadImg;
+	}
+	public void setUploadImg(MultipartFile[] uploadImg) {
+		this.uploadImg = uploadImg;
+	}
+	public Integer getUploadImgType() {
+		return uploadImgType;
+	}
+	public void setUploadImgType(Integer uploadImgType) {
+		this.uploadImgType = uploadImgType;
+	}
+	public Integer getUploadImgMaxNumber() {
+		return uploadImgMaxNumber;
+	}
+	public void setUploadImgMaxNumber(Integer uploadImgMaxNumber) {
+		this.uploadImgMaxNumber = uploadImgMaxNumber;
+	}
+	public String[] getUploadImgDeleteSeq() {
+		return uploadImgDeleteSeq;
+	}
+	public void setUploadImgDeleteSeq(String[] uploadImgDeleteSeq) {
+		this.uploadImgDeleteSeq = uploadImgDeleteSeq;
+	}
+	public String[] getUploadImgDeletePathFile() {
+		return uploadImgDeletePathFile;
+	}
+	public void setUploadImgDeletePathFile(String[] uploadImgDeletePathFile) {
+		this.uploadImgDeletePathFile = uploadImgDeletePathFile;
+	}
+	
+	private String pseq;
+
+	public String getPseq() {
+		return pseq;
+	}
+	public void setPseq(String pseq) {
+		this.pseq = pseq;
+	}
+	
+	
+	
 	
 	
 	

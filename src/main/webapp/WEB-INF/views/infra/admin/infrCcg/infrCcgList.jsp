@@ -55,10 +55,6 @@
 									</div>
 									<div class="row mb-2">
 										<div class="col-2 p-1">
-
-											<select class="form-select" name="shOption">
-												<option value="" selected<c:if test="${empty vo.shOption}">selected</c:if>>검색구분</option>
-
 											<select class="form-select" id="shOption" name="shOption">
 												<option value="">검색구분</option>
 												<option value="1" <c:if test="${vo.shOption eq 1 }">selected</c:if>>순서</option>
@@ -67,11 +63,7 @@
 											</select>
 										</div>
 										<div class="col-2 p-1">
-
 											<input class="form-control" type="text" placeholder="검색어" id="shValue" name="shValue" value="<c:out value="${vo.shValue }"/>">
-
-											<input class="form-control" type="text" placeholder="검색어" id="shValue" name="shValue"  value="<c:out value="${vo.shValue }"/>">
-
 										</div>
 										<div class="col-1 p-1">
 											<a class="btn btn-warning" role="button" id="btnSearch"><i class="fa-solid fa-magnifying-glass"></i></a>

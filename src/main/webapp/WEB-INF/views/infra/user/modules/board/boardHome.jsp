@@ -17,11 +17,14 @@
 	<%@ include file="../../common/header.jsp" %>
 	<!-- header e -->
 <form method="post" id="form" name="form">
+	<input type="hidden" id="infrMmSeq" name="infrMmSeq" value="${infrMmSeq}">
 	<input type="hidden" name="bdSeq" value="${dto.bdSeq }">
+	<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>">
+	<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow }"/>">
 	<!-- contend s -->
 	<section class=" container boardBody">
 		<div class="boarderTitle">
-			<h2>자유게시판</h2> <!-- 게시판 타이틀 -->
+			<a>게시판</a><a>자유게시판</a> <!-- 게시판 타이틀 -->
 		</div>
 		<section class="boarder row">
 		<c:choose>
@@ -48,8 +51,8 @@
 					</div>
 					<div class="icon">
 						<i class="fa-solid fa-eye"> <c:out value="${list.viewCount }" /></i> <!-- 조회수 -->
-						<i class="fa-regular fa-thumbs-up"> 99</i> <!-- 좋아요 -->
-						<i class="fa-regular fa-message"> 99</i> <!-- 댓글수 -->
+						<i class="fa-regular fa-heart"> <c:out value="${list.likeCount }" /></i> <!-- 좋아요 -->
+						<i class="fa-regular fa-message"> <c:out value="${list.commentCount }" /></i> <!-- 댓글수 -->
 					</div>
 				</div>
 			</article>
@@ -59,6 +62,9 @@
 		</section>
 	</section>
 	<!-- contend e -->
+	<!-- pagination s -->
+	<%@include file="../../common/userPagination.jsp"%>
+	<!-- pagination e -->
 </form>	
 	<!-- footer s -->
 	<%@ include file="../../common/footer.jsp" %>
@@ -66,6 +72,7 @@
 	<script type="text/javascript">
 		var goUrlBoardRegForm = "/board/boardWrite";
 		var goUrlBoardView = "/board/boardView";
+		var goUrlList = "/board/boardList";
 		
 		var form = $("form[name=form]");
 		var seq = $("input:hidden[name=bdSeq]");
@@ -77,6 +84,11 @@
 		goBoardView = function(keyValue) {
 			seq.val(keyValue);
 			form.attr("action", goUrlBoardView).submit();
+		}
+		
+		goList = function(thisPage) {
+			$("input:hidden[name=thisPage]").val(thisPage);
+			form.attr("action", goUrlList).submit();
 		}
 	</script>
 </body>

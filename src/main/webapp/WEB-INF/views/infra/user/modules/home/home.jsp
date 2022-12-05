@@ -11,7 +11,6 @@
 	<header>
 		<%@ include file="../../common/header.jsp"%> 
 	</header>
-	
 	<section class="bodyWrapper">
 		<article class="mySgWorld">
 			<c:choose>
@@ -28,7 +27,7 @@
 			</c:choose>
 		</article>
 		<article class="onLiveSgWorld">
-			<h1 class="onLiveSgWorldTitle">OnLive</h1>
+			<h1 class="onLiveSgWorldTitle">Onlive</h1>
 			<div class="onSgWorldListDiv">
 				<!-- forEach로 데이터 뿌려주세요 -->
 				<c:forEach items="${sgwList}" var="sl" varStatus="status">

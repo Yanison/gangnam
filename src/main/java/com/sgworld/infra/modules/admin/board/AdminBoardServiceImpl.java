@@ -128,12 +128,6 @@ public class AdminBoardServiceImpl extends BaseServiceImpl implements AdminBoard
 	public int delete(AdminBoardVo vo) throws Exception { return dao.delete(vo); }
 
 	@Override
-	public List<AdminBoardDto> selectCommentList(AdminBoardVo vo) throws Exception {
-		List<AdminBoardDto> list = dao.selectCommentList(vo);
-		return list;
-	}
-
-	@Override
 	public void deleteFiles(String[] deleteSeq, String[] deletePathFile, AdminBoardDto dto, String tableName) throws Exception {
 			
 		for (int i=0; i<deleteSeq.length; i++) {
@@ -168,12 +162,43 @@ public class AdminBoardServiceImpl extends BaseServiceImpl implements AdminBoard
 	public List<AdminBoardDto> selectListUploaded(AdminBoardVo vo) throws Exception {
 		return dao.selectListUploaed(vo);
 	}
+	
+	//댓글
+	@Override
+	public List<AdminBoardDto> selectCommentList(AdminBoardVo vo) throws Exception {
+		List<AdminBoardDto> list = dao.selectCommentList(vo);
+		return list;
+	}
+	
+	@Override
+	public int selectCommentCount(AdminBoardVo vo) throws Exception { return dao.selectCommentCount(vo); }
+		
+	@Override
+	public int commentInst(AdminBoardDto dto) throws Exception { return dao.commentInst(dto); }
 
+	@Override
+	public int commentDele(AdminBoardVo vo) throws Exception { return dao.commentDele(vo); }
+		
+	
+	
 	//조회수
 	@Override
-	public int boardViewCount(AdminBoardDto dto) throws Exception {
-		return dao.boardViewCount(dto);
-	}
+	public int boardViewCount(AdminBoardDto dto) throws Exception { return dao.boardViewCount(dto); }
+
+	//좋아요
+	@Override
+	public int boardLikeCount(AdminBoardVo vo) throws Exception { return dao.boardLikeCount(vo); }
+	
+	@Override
+	public AdminBoardDto boardLiked(AdminBoardVo vo) throws Exception { return dao.boardLiked(vo); }
+		
+	@Override
+	public int insertLike(AdminBoardDto dto) throws Exception { return dao.insertLike(dto); }
+		
+	@Override
+	public int deleteLike(AdminBoardVo vo) throws Exception { return dao.deleteLike(vo); }
+
+	
 
 	
 

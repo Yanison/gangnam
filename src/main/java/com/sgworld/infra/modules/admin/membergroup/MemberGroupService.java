@@ -2,6 +2,13 @@ package com.sgworld.infra.modules.admin.membergroup;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
+
+
+
+
+
 public interface MemberGroupService {
 
 	//유저 리스트
@@ -47,4 +54,13 @@ public interface MemberGroupService {
 	//admin 회원정보 완전 삭제
 	public int adminDelete(MemberGroupVo vo)throws Exception;
 	
+	public void setRegMod(MemberGroup dto) throws Exception;
+	public void uploadFiles(MultipartFile[] multipartFiles, MemberGroup dto, String tableName, int type, int maxNumber) throws Exception;
+	public void deleteFiles(String[] deleteSeq, String[] deletePathFile, MemberGroup dto, String tableName) throws Exception;
+	public void ueleteFiles(String[] deleteSeq, String[] deletePathFile, MemberGroup dto, String tableName) throws Exception;	
+	
+	public MemberGroup selectCheck(MemberGroupVo vo)throws Exception;
+	
+	List<MemberGroup>selectListUploaded(MemberGroupVo vo)throws Exception;
+
 }

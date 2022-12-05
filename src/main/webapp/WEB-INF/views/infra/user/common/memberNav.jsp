@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 	<nav class="leftVanner">
-		<ul>
+		<ul style="font-size: 12px;">
 			<li>
 				<a href="javascript:goMemberView(<c:out value="${infrMmSeq }"/>)" >
 					<i class="fa-sharp fa-solid fa-user"></i>

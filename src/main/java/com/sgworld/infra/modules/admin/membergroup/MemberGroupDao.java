@@ -8,6 +8,8 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+
+
 @Repository
 public class MemberGroupDao {
 
@@ -83,6 +85,27 @@ public class MemberGroupDao {
 	//admin 회원정보 완전삭제
 	public int adminDelete(MemberGroupVo vo) {
 		return sqlSession.delete(namespace + ".adminDelete", vo);
+	}
+	
+	//밑 3개 아바타 자기 사진 올리기,업데이트,수정
+	public int insertUploaded(MemberGroup dto) {
+		return sqlSession.insert("Base" + ".insertUploaded", dto); 
+	}
+	
+	public int ueleteUploaded(MemberGroup dto) { 
+		return sqlSession.insert("Base" + ".ueleteUploaded", dto); 
+	}
+	
+	public int deleteUploaded(MemberGroup dto) {
+		return sqlSession.insert("Base" + ".deleteUploaded", dto); 
+	}
+	
+	public MemberGroup selectCheck(MemberGroupVo vo) {
+		return sqlSession.selectOne(namespace +".selectCheck", vo);
+	}
+	
+	public List<MemberGroup>selectListUploaded(MemberGroupVo vo){
+		return sqlSession.selectList(namespace +".selectListUploaded", vo);
 	}
 	
 	
