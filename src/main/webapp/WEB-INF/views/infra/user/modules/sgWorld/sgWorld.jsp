@@ -21,7 +21,6 @@
 			<canvas id="myCanvas" width="1020px" height="763px">
 			
 			
-			
 			</canvas>
 			<!-- <div class="camDiv" style="display:none;">
 				

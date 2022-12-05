@@ -28,7 +28,6 @@ public class SgwWSController {
 	SgwSerivceImpl sgwService;
 	private HttpSession session;
 	private SimpMessagingTemplate template;
-	
 	@Autowired
 	public SgwWSController(SimpMessagingTemplate template) {
 		this.template = template;
@@ -72,22 +71,36 @@ public class SgwWSController {
 	 @MessageMapping(value = "/sgWorld/msgTo/{endPoint}/requestOnloadInfo")
 	 public void requestOnloadInfo( @DestinationVariable String endPoint,SgwChat sgwChat)throws Exception {
 		 System.out.println("msg :: "+sgwChat.getSgwseq() +" // "+ sgwChat.getInfrMmSeq());
-		 List<SgwChat> user = sgwService.findRoomMm(sgwChat);
-		 template.convertAndSend("/topic/sgWorld/requestOnloadInfo/"+endPoint, user);
+		
+		 //SgwChat user = sgwService.findRoomMmOne(sgwChat);
+		 //template.convertAndSend("/topic/sgWorld/requestOnloadInfo/"+endPoint, user);
+		 
+		 sgwChat.setEndPoint(endPoint);
+		 List<SgwChat> userList = sgwService.findRoomMm(sgwChat);
+		 template.convertAndSend("/topic/sgWorld/"+endPoint+"/avatarWSControll/reRenderingUsers", userList);
 	 }
-	 
-	
 	/*
 	 * 유저를 연결시켜주고 끝이 아니다. 실시시간으로 유저의 좌표를 서버와 통신받고 웹소켓 서버에 연결된 유저들에게 공유가되어야한다.
 	 */
 	 @MessageMapping(value="/sgWorld/{endPoint}/avatarWSControll/updateLoca")
-	 public void avatarWSControll(@DestinationVariable String endPoint,SgwChat sgwChat) {
-		 
-		 System.out.println(
-				 "유저 시퀀스 :: "+sgwChat.getInfrMmSeq()+ "\n" +
-				 "좌표 :: x = " + sgwChat.getX()+" y = " + sgwChat.getY()+ "\n"
-				 );
+	 public synchronized void avatarWSControll(@DestinationVariable String endPoint,SgwChat sgwChat) {
 		 
 		 template.convertAndSend("/topic/sgWorld/"+endPoint+"/avatarWSControll/update",sgwChat);
+	 }
+	 
+	 @MessageMapping(value="/sgWorld/{endPoint}/avatarWSControll/leave")
+	 public void leaveTheRoom(@DestinationVariable String endPoint,SgwChat sgwChat,SgwDto sgwDto) {
+		 //String leaving = sgwChat.getInfrMmSeq();
+		 System.out.println("회원번호 "+ sgwChat.getInfrMmSeq()+"번 "+sgwChat.getInfrMmNickname()+" 님이 " +endPoint+ "방을 나갑니다.");
+		 try {
+			 int deleteMm = sgwService.deleteRoomUser(sgwChat);
+			 template.convertAndSend("/topic/sgWorld/"+endPoint+"/avatarWSControll/leave",deleteMm);
+			
+//			 if(leaving ==  sgwService.onLoadInfoSgw(sgwDto).getRegByMm()) {
+//				 
+//			 }
+		 }catch(Exception e){
+			 e.printStackTrace();
+		 }
 	 }
 }

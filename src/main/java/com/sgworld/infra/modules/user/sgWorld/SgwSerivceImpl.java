@@ -70,8 +70,8 @@ public class SgwSerivceImpl implements SgwSerivce {
 		return sgwDao.insertRoomUser(sgwDto);
 	}
 	@Override
-	public int deleteRoomUser(SgwDto sgwDto)throws Exception{
-		return sgwDao.deleteRoomUser(sgwDto);
+	public int deleteRoomUser(SgwChat sgwChat)throws Exception{
+		return sgwDao.deleteRoomUser(sgwChat);
 	}
 	@Override
 	public List<SgwChat>  findRoomMm(SgwChat sgwChat)throws Exception{

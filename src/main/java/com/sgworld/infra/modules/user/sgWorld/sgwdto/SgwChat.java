@@ -1,12 +1,10 @@
 package com.sgworld.infra.modules.user.sgWorld.sgwdto;
 
-import java.lang.reflect.Array;
-import java.util.HashSet;
-import java.util.Set;
-
-import org.springframework.web.socket.WebSocketSession;
+import java.util.List;
 
 public class SgwChat {
+	
+	public static List<SgwChat> userList;
 	
 	private String sgwseq;
 	private String chatMsg;
@@ -101,6 +99,16 @@ public class SgwChat {
 	}
 	public double getStarY() {
 		return starY;
+	}
+	
+	private String sgwLink;
+
+
+	public String getSgwLink() {
+		return sgwLink;
+	}
+	public void setSgwLink(String sgwLink) {
+		this.sgwLink = sgwLink;
 	}
 	
 }

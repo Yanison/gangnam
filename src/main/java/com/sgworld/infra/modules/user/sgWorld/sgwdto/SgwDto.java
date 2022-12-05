@@ -12,6 +12,8 @@ import com.sgworld.infra.common.base.BaseVo;
 
 public class SgwDto extends BaseVo {
 	
+
+
 	/*
 	 * sgwRoom
 	 */

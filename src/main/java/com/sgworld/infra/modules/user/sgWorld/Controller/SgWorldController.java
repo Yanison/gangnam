@@ -87,18 +87,17 @@ public class SgWorldController {
 		sgwDto.setSgwLink(endPoint);
 		SgwDto onLoadInfoSgw = sgwService.onLoadInfoSgw(sgwDto);
 		String sgwSeq = onLoadInfoSgw.getSgwSeq();
-		List<SgwDto>userArrList = AvatarControllVo.userArrList;
-		userArrList.add(onLoadInfoSgw);
+//		List<SgwDto>userArrList = AvatarControllVo.userArrList;
+//		userArrList.add(onLoadInfoSgw);
 		
-		System.out.println("sgwSeq :: "+sgwSeq);
 		model.addAttribute("onLoadInfoSgw", onLoadInfoSgw);
-		System.out.println("manInCharge :: " + onLoadInfoSgw.getRegByMm());
 		setOnliveNy(sgwDto,session,model,onLoadInfoSgw.getRegByMm(),endPoint);
+		
 		
 		sgwDto.setInfrMmSeq(infrMmSeq);
 		sgwDto.setSgwSeq(sgwSeq);
+		
 		int findMmRoomOne = sgwService.findMmRoomOne(sgwDto);
-		System.out.println("findMmRoomOne :: " + findMmRoomOne);
 		 if(findMmRoomOne == 0) {
 			 	sgwDto.setSgwSeq(sgwSeq);
 			 	sgwDto.setInfrMmSeq(infrMmSeq);

@@ -1,42 +1,50 @@
+ 
+$(window).on("beforeunload",function(){
+	leaveAndDel()
+	disconnect() 
+})
 
-// 유저의 정보를 담을 배열
+
+
+var endPoint = $('#endPoint').val()
 var infrMmSeq = $('#infrMmSeq').val()
+// 유저의 정보를 담을 배열
+var userIdx
 var users=[];
 // 유저의 고유 인덱스
-var userIdx
-var endPoint = $('#endPoint').val()
-var userColor1;
-var userColor2; 
-var userColor3; 
-var userColor4; 
-var userColor5; 
-var userColor6; 
-var userColor7; 
-var userColor8; 
-var colArr = [
-			"#5c1e1e",
-			"#7b6bb3",
-			"#708a94",
-			"#3e6941",
-			"#096085",
-			"#098536",
-			"#000000",
-			"#008536",
-			"#a19fbf",
-			"#63144c"
-	]
-var sx = 494;
-var sy = 494;
 
-function findMyInx(users){
+// 색상. 
+var colArr = [
+		"#5c1e1e",
+		"#7b6bb3",
+		"#708a94",
+		"#3e6941",
+		"#096085",
+		"#098536",
+		"#000000",
+		"#008536",
+		"#a19fbf",
+		"#63144c" ]
+/**
+선언된 배열 users에 유저들의 정보가 담겨있음. 각자 본인의 정보에만 접근 가능하도록
+본인의 index를 할당받는 메소드
+ */
+
+
+
+function findMyInx(){
 	console.log("findMyInx.users :: "+ JSON.stringify(users))
-	for(var i = 0 ; i <users.length;i ++){
-		console.log("findMyInx idx is :: " + users[i].infrMmSeq)
-		console.log("findMyInx this infrMmSeq is :: " + this.infrMmSeq)
-			if(this.infrMmSeq == users[i].infrMmSeq){
-				console.log("findMyInx this userSeq"+users[i].infrMmSeq)
-				this.userIdx = i
-				break
+	loopi:for(var i = 0 ; i <users.length;i ++){
+		console.log("findMyInx for ["+i+"] users :: "+ JSON.stringify(users[i]))
+		console.log("findMyInx, infrMmSeq :: " + infrMmSeq)
+		
+		if(infrMmSeq == users[i].infrMmSeq){
+			
+			console.log("findMyInx users["+i+"] userSeq :: "+users[i].infrMmSeq)
+			console.log("findMyInx users["+i+"] infrMmNickname :: "+users[i].infrMmNickname)
+			this.userIdx = i
+			console.log("findMyInx, userIdx :: " + this.userIdx)
+			break loopi
 		}
 	}
 	
@@ -48,7 +56,6 @@ function connect() {
         setConnected(true);
         console.log('Connected: ' + frame);
         
-        var endPoint = $('#endPoint').val()
         stompClient.subscribe('/topic/sgWorld/chatroom/'+endPoint, function (msgObjFromServer) {
 			 var msgObj = JSON.parse(msgObjFromServer.body)
 			 console.log("topic/sgWorld/chatroom"+ msgObj)
@@ -60,60 +67,128 @@ function connect() {
             showMsg(msgObj);
         });
         
-        stompClient.subscribe('/topic/sgWorld/requestOnloadInfo/'+endPoint, function(user) {
-		console.log('/topic/sgWorld/requestOnloadInfo/')
-		var user = JSON.parse(user.body)
-		var users = [];
-			for(i = 0 ; i < user.length;i ++){
-					console.log('반복문시작')
-					var arr={
-						infrMmSeq :user[i].infrMmSeq,
-						infrMmNickName : user[i].infrMmNickname,
-						userColor :  user[i].userColor,
-						x :  user[i].x,
-						y :  user[i].y,
-						avatarSeq : user[i].avatarSeq
-					}
-				if(users.length != 0){
-					for(e = 0 ; e < users.length; e++){
-						if(users[e].infrMmSeq == user[i].infrMmSeq){
-							console.log('users.length != 0 중복')
-							break;
-						}else{
-							console.log('users.length != 0 푸쉬')
-							users.push(arr)
-							this.user = user
-						}
-					}
-				}else{
-					console.log('users.length == 0 푸쉬')
-					users.push(arr)
-				}
-			
-			}
-			
-			console.log("users :: "+ JSON.stringify(users))
-			this.users = users
-			console.log("this.users :: "+ JSON.stringify(this.users))
-			findMyInx(this.users)
-			console.log("userIdx :: "+ this.userIdx)
+        stompClient.subscribe("/topic/sgWorld/" +this.endPoint+"/avatarWSControll/updateLoca",function (leave) {
+            var leave = JSON.parse(leave.body)
+            console.log("topic/sgWorld/chatroom"+ msgObj)
         });
+        
+        
+        stompClient.subscribe('/topic/sgWorld/requestOnloadInfo/'+endPoint, function(usersInfo) {
+		console.log('/topic/sgWorld/requestOnloadInfo/')
+		var usersInfo = JSON.parse(usersInfo.body)
+		var users = this.users
+		
+		var arr = {
+				infrMmSeq :usersInfo.infrMmSeq,
+				infrMmNickname : usersInfo.infrMmNickname,
+				userColor :  usersInfo.userColor,
+				x :  usersInfo.x,
+				y :  usersInfo.y,
+				avatarSeq : usersInfo.avatarSeq
+			}
+		users.push(arr)
+		/**
+		배열에 추가하고 전체 플레이어를 다시 렌더링 해주는 작업 필요
+		이미 들어와서 렌더링 된 플레이어들은 렌더링에서 제외
+		 */
+		findMyInx()
+		console.log("userIdx :: "+ this.userIdx)
+		//새로운 배열에 유저가 추가가 되면 추가가 되었다고 다른 유저들에게도 공유
+		/**
+	      새로운 유저가 추가가되면 추가된 배열울 후발주자에게 전달해야함. 
+	      지금 문제는 전달되고 전달 잘 받고 나서 reRenderingUsers 메소드 때문에 덮어 씌여짐.
+	      왜냐하면 
+		 */
+        });
+        stompClient.subscribe('/topic/sgWorld/' + endPoint + "/avatarWSControll/reRenderingUsers", function(udateUserList) {
+			var udateUserList = JSON.parse(udateUserList.body);
+			console.log("udateUserList :: "+JSON.stringify(udateUserList))
+			this.users = []
+			var userLsit=[];
+			loopi:for(var i = 0 ; i < udateUserList.length; i ++){
+				console.log("udateUserList.length :: " +  udateUserList.length)
+				console.log("users :: "  +JSON.stringify(users))
+				
+				if(users.length <= 0){
+					for(var q = 0;q < udateUserList.length ;q ++){
+						var arr = {
+								infrMmSeq :udateUserList[q].infrMmSeq,
+								infrMmNickname : udateUserList[q].infrMmNickname,
+								userColor :  udateUserList[q].userColor,
+								x :  udateUserList[q].x,
+								y :  udateUserList[q].y,
+								avatarSeq : udateUserList[q].avatarSeqx
+							}
+						userLsit.push(arr); console.log("break"); 	
+					}
+					break loopi
+				}else{
+					loope:for(var e = 0; e < users.length; e  ++){
+						console.log("users.length :: " + users.length)
+						
+						
+						if (users[e].infrMmSeq == udateUserList[i].infrMmSeq){
+							console.log("this.users["+e+"].infrMmSeq == udateUserList["+i+"].infrMmSeq"+ (users[e].infrMmSeq == udateUserList[i].infrMmSeq))
+							var arr = {
+								infrMmSeq :udateUserList[i].infrMmSeq,
+								infrMmNickname : udateUserList[i].infrMmNickname,
+								userColor :  udateUserList[i].userColor,
+								x :  udateUserList[i].x,
+								y :  udateUserList[i].y,
+								avatarSeq : udateUserList[i].avatarSeq
+							}
+							userLsit.push(arr)
+							console.log(JSON.stringify("arr :: " + arr))
+							continue loope;
+						}else{
+							console.log("this.users["+e+"].infrMmSeq == udateUserList["+i+"].infrMmSeq"+ (users[e].infrMmSeq == udateUserList[i].infrMmSeq))
+						}
+					}	
+				}
+				
+				
+			}
+			console.log(JSON.stringify("after for ie. userLsit :: " + JSON.stringify(userLsit)))
+			for(var o = 0; o < userLsit.length; o  ++){
+				users.push(userLsit[o])
+			}
+			console.log(JSON.stringify("after for ie. this.users:: " + JSON.stringify(users)))
+			findMyInx()
+		});
 		stompClient.subscribe('/topic/sgWorld/' + endPoint + "/avatarWSControll/update", function(update) {
 			var update = JSON.parse(update.body)
 			updateState(update.infrMmSeq,update.x,update.y)
 		});
 		
-		var endPoint = $('#endPoint').val()
-		var infrMmSeq = $('#infrMmSeq').val()
 		send(endPoint,infrMmSeq)
     });
 }
 
-
 function send(ep,seq) {
-	data={'infrMmSeq' : seq}
+	data={'infrMmSeq' : infrMmSeq}
 	stompClient.send("/app/sgWorld/msgTo/" +ep+"/requestOnloadInfo",{},JSON.stringify(data));
 }
+function leaveAndDel() {
+	
+	var users = this.users;
+	var leavingUser = users[userIdx]
+	console.log(JSON.stringify(users[userIdx]))
+	for(var i = 0 ; i < users.length; i ++){
+		if(users[i].infrMmSeq == leavingUser.infrMmSeq){
+			var leaving = users.splice(i,1);
+			i--;
+			leavingUser.x = 1600;
+			leavingUser.y = 0;
+			sendLocation(leavingUser)
+			this.userIdx = null;
+			console.log("leaving"+JSON.stringify(leaving))
+			console.log("leftusers"+JSON.stringify(users))
+		}
+	}
+	console.log("leavingUser :: " + JSON.stringify(leavingUser))
+	stompClient.send("/app/sgWorld/" +this.endPoint+"/avatarWSControll/leave",{},JSON.stringify(leavingUser));
+}
+
 function sendLocation(data){
 	console.log("seq :: "+data.infrMmSeq+"\n"+
 				" x :: "+data.x +"\n"+
@@ -124,7 +199,7 @@ function sendLocation(data){
 const canvas = document.getElementById('myCanvas');
 const ctx = canvas.getContext('2d');
 
-var ballRadius = 10;
+
 var rightPressed = false;
 var leftPressed = false;
 var upPressed = false;
@@ -171,15 +246,17 @@ function updateState(infrMmSeq,x,y){
 			if(infrMmSeq == users[i].infrMmSeq){
 				users[i].x = x;
    	 			users[i].y = y;
+   	 			console.log(users[i].infrMmSeq +":: x_"+ users[i].x +" y_"+ users[i].y)
 			}
 		}
 	}
-    
 }
 
+var ballRadius = 10;
+
 function draw(){
-	let users = this.users
 	
+	let users = this.users
 	
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	for(var i = 0 ; i <users.length ; i ++){
@@ -191,31 +268,81 @@ function draw(){
 	}
 	
     let user = users[userIdx];
+    
+    // 정방향
     if(rightPressed) {
-        user.x += 2;
+        user.x += 10;
         if (user.x + ballRadius > canvas.width){
             user.x = canvas.width - ballRadius;
         }
+        sendLocation(user);
     }
     else if(leftPressed) {
-        user.x -= 2;
-        if (user.x < 0){
-            user.x = 0;
+        user.x -= 10;
+        if (user.x < ballRadius){
+            user.x = ballRadius;
         }
+        sendLocation(user);
     }
     else if(upPressed) {
-        user.y -= 2;
+        user.y -= 10;
+        if (user.y < ballRadius){
+            user.y = ballRadius;
+        }
+        sendLocation(user);
+    }
+    else if(downPressed) {
+        user.y+= 10;
         if (user.y + ballRadius > canvas.height){
             user.y = canvas.height - ballRadius;
         }
+        sendLocation(user);
     }
-    else if(downPressed) {
-        user.y+= 2;
-        if (user.y < 0){
-            user.y = 0;
+    
+    //대각
+    if(downPressed && leftPressed) {
+        user.y += 7;
+        user.x -= 7;
+        if (user.y + ballRadius > canvas.height){
+            user.y = canvas.height - ballRadius;
         }
+        if (user.x < ballRadius){
+            user.x = ballRadius;
+        }
+        sendLocation(user);
+    }else if(downPressed && rightPressed) {
+        user.y += 7;
+        user.x += 7;
+        if (user.y + ballRadius > canvas.height){
+            user.y = canvas.height - ballRadius;
+        }
+        if (user.x + ballRadius > canvas.width){
+            user.x = canvas.width - ballRadius;
+        }
+        sendLocation(user);
+    }else if(upPressed && leftPressed) {
+        user.y -= 7;
+        user.x -= 7;
+        if (user.y < ballRadius){
+            user.y = ballRadius;
+        }
+        if (user.x < ballRadius){
+            user.x = ballRadius;
+        }
+        sendLocation(user);
+    }else if(upPressed && rightPressed) {
+        user.y -= 7;
+        user.x += 7;
+         if (user.y < ballRadius){
+            user.y = ballRadius;
+        }
+        if (user.x + ballRadius > canvas.width){
+            user.x = canvas.width - ballRadius;
+        }
+        sendLocation(user);
     }
-    sendLocation(user);
+    
 }
-setInterval(draw, 10);
-		
+setInterval(draw, 50);
+
+	

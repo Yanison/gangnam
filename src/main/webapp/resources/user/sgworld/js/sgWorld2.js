@@ -175,7 +175,7 @@ function renderPlayer() {
 		ctx.arc(avatar.x, avatar.y, radius, 0, Math.PI * 2, false);
 		ctx.closePath();
 		ctx.fill();
-
+		
 		ctx.beginPath();
 		ctx.font = '15px Arial';
 		ctx.fillText(`player ${i}`, avatar.x - radius - 7, avatar.y - radius);

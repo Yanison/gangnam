@@ -86,7 +86,7 @@ public class SgwDao {
 	public int insertRoomUser(SgwDto sgwDto) {
 		return sqlSession.insert(namespace+".insertRoomUser",sgwDto);
 	}
-	public int deleteRoomUser(SgwDto sgwDto) {
+	public int deleteRoomUser(SgwChat sgwDto) {
 		return sqlSession.insert(namespace+".deleteRoomUser",sgwDto);
 	}
 	public List<SgwChat> findRoomMm(SgwChat sgwDto) {

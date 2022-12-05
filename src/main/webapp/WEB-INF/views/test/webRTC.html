@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="webRTC.js"></script>
+</head>
+<body>
+<div class="messagebox">
+  <label for="message"
+    >Enter a message:
+    <input
+      type="text"
+      name="message"
+      id="message"
+      placeholder="Message text"
+      inputmode="latin"
+      size="60"
+      maxlength="120"
+      disabled />
+  </label>
+  <button id="sendButton" name="sendButton" class="buttonright" disabled>
+    Send
+  </button>
+</div> 
+
+<div class="messagebox" id="receivebox">
+  <p>Messages received:</p>
+</div>
+</body>
+</html>

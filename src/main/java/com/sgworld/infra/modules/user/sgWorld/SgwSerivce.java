@@ -26,7 +26,7 @@ public interface SgwSerivce {
 	
 	public SgwDto onLoadUserInfoSgw(SgwDto sgwDto)throws Exception;
 	public int insertRoomUser(SgwDto sgwDto)throws Exception;
-	public int deleteRoomUser(SgwDto sgwDto)throws Exception;
+	public int deleteRoomUser(SgwChat sgwChat)throws Exception;
 	public List<SgwChat>  findRoomMm(SgwChat sgwChat)throws Exception;
 	public SgwChat findRoomMmOne(SgwChat sgwChat)throws Exception;
 	public int findMmRoomOne(SgwDto sgwDto)throws Exception;
