@@ -115,6 +115,8 @@
 		
 		var goUrlAjaxLita = "/board/boardCommentLita";
 		
+		var goUrlReCommentInst ="/board/recommentInst"
+		
 		var form = $("form[name=form]");
 		
 		$("#btnComment").on("click", function(){
@@ -266,6 +268,14 @@
 				alert("hash is empty");
 			}
 		}
+		
+		$("#btnReComment").on("click", function(){
+			form.attr("action", goUrlReCommentInst).submit();
+		});
+		
+		$("#btnReComment2").on("click", function(){
+			form.attr("action", goUrlReCommentInst).submit();
+		});
 	</script>
 </body>
 </html>

@@ -65,6 +65,9 @@ public class BoardController {
 		List<AdminBoardDto> list = service.selectCommentList(vo);
 		model.addAttribute("list", list);
 		
+		List<AdminBoardDto> list2 = service.recommentList(vo);
+		model.addAttribute("list2", list2);
+		
 		return "infra/user/modules/board/boardCommentLita";
 	}
 	
@@ -154,6 +157,16 @@ public class BoardController {
 			returnMap.put("likedCount", likedCount);
 		}
 		return returnMap;
+	}
+	
+	@SuppressWarnings(value = {"all"})
+	@RequestMapping(value = "recommentInst")
+	public String reComentInst(AdminBoardVo vo, AdminBoardDto dto, RedirectAttributes redirectAttributes) throws Exception {
+		service.reComentInst(dto);
+		vo.setCmSeq(dto.getCmSeq());
+		vo.setBdSeq(dto.getBdSeq());
+		redirectAttributes.addFlashAttribute("vo", vo);
+		return "redirect:/board/boardView";
 	}
 	
 	

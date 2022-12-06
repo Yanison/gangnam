@@ -68,4 +68,10 @@ public class AdminBoardDao {
 	public AdminBoardDto boardLiked(AdminBoardVo vo) { return sqlSession.selectOne(namespace + ".boardLiked", vo); }
 	public int insertLike(AdminBoardDto dto) { return sqlSession.insert(namespace + ".insertLike", dto); }
 	public int deleteLike(AdminBoardVo vo) { return sqlSession.delete(namespace + ".deleteLike", vo); }
+
+	//답글 리스트
+	public List<AdminBoardDto>recommentList(AdminBoardVo vo){return sqlSession.selectList(namespace + ".recommentList", vo);}
+	
+	//답글 쓰기
+	public int reComentInst(AdminBoardDto dto) {return sqlSession.insert(namespace +".reComentInst", dto);}
 }

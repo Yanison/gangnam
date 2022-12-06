@@ -51,6 +51,9 @@ public class AdminBoardDto extends Base{
 	private String[] uploadFileDeleteSeq;
 	private String[] uploadFileDeletePathFile;
 	
+	//답글
+	private String reContent;
+	
 	
 ///////////////////////////////////////////////////	
 	
@@ -245,6 +248,12 @@ public class AdminBoardDto extends Base{
 	}
 	public void setCommentCount(Integer commentCount) {
 		this.commentCount = commentCount;
+	}
+	public String getReContent() {
+		return reContent;
+	}
+	public void setReContent(String reContent) {
+		this.reContent = reContent;
 	}
 	
 	

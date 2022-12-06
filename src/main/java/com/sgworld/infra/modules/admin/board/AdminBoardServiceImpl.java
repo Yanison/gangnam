@@ -198,8 +198,17 @@ public class AdminBoardServiceImpl extends BaseServiceImpl implements AdminBoard
 	@Override
 	public int deleteLike(AdminBoardVo vo) throws Exception { return dao.deleteLike(vo); }
 
+	//답글 리스트 띄우기
+	@Override
+	public List<AdminBoardDto> recommentList(AdminBoardVo vo) throws Exception {return dao.recommentList(vo);}
 	
+	//답글쓰기
+	@Override
+	public int reComentInst(AdminBoardDto dto) throws Exception {return dao.reComentInst(dto);}
 
+	
+	
+	
 	
 
 }

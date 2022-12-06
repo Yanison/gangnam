@@ -17,7 +17,7 @@
 	<div class="commentList">
 		<div class="commentItem">
 			<div class="">
-				<input type="hidden" name="cmSeq" value="re_${list.cmSeq }">
+				<%-- <input type="hidden" name="cmSeq" value="${list.cmSeq }"> --%>
 				<span><c:out value="${list.infrMmNickname }" />(<c:out value="${list.infrMmId }" />)</span>
 			</div>
 			<div class="dropstart">
@@ -44,24 +44,54 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- 답글 영역 -->
 	<div id="re_${list.cmSeq }" style="display: none;">
-		<div class="commentHead">
-			<div class="">
-				<span><c:out value="${infrMmName }" />(<c:out value="${infrMmId }" />)</span>
-			</div>
-			<div>
-				<button class="writeBtn1" id="btnComment">등록</button>
-			</div>
-		</div>
-		<div class="writeBox">
-			<div id="writeDiv" class="writeDiv">
-				<textarea class="textBox" style="width: 680px; height: 90px; resize: none;" name="content" maxlength="200" placeholder="댓글을 입력하세요."></textarea>
-				<div class="textLengthWrap">
-				    <span class="textCount">0</span>
-				    <span class="textTotal">/200</span>
+		<c:choose>
+			<c:when test="${fn:length(list2) eq 0}">
+				<p>답글이 없습니다. 답글을 작성해주세요.</p>
+				<div class="commentHead">
+					<div class="">
+						<span><c:out value="${infrMmName }" />(<c:out value="${infrMmId }" />)</span>
+					</div>
+					<div>
+						<button class="writeBtn1" id="btnReComment">등록</button>
+					</div>
 				</div>
-			</div>	
-		</div>
+				<div class="writeBox">
+					<div id="writeDiv" class="writeDiv">
+						<textarea class="textBox" style="width: 680px; height: 90px; resize: none;" name="content" maxlength="200" placeholder="댓글을 입력하세요."></textarea>
+						<div class="textLengthWrap">
+						    <span class="textCount">0</span>
+						    <span class="textTotal">/200</span>
+						</div>
+					</div>	
+				</div>
+			</c:when>
+			<c:otherwise>
+				<input type="hidden" name="cmSeq" value="${list.cmSeq }">
+				<c:forEach items="${list2 }" var="list2" varStatus="status">
+				<p><c:out value="${list2.reContent }"/></p>
+				<div class="commentHead">
+					<div class="">
+						<span><c:out value="${infrMmName }" />(<c:out value="${infrMmId }" />)</span>
+					</div>
+					<div>
+						<button class="writeBtn1" id="btnReComment2">등록</button>
+					</div>
+				</div>
+				<div class="writeBox">
+					<div id="writeDiv" class="writeDiv">
+						<textarea class="textBox" style="width: 680px; height: 90px; resize: none;" name="content" maxlength="200" placeholder="댓글을 입력하세요."></textarea>
+						<div class="textLengthWrap">
+						    <span class="textCount">0</span>
+						    <span class="textTotal">/200</span>
+						</div>
+					</div>	
+				</div>
+				</c:forEach>
+			</c:otherwise>
+		</c:choose>	
 	</div>
 		</c:forEach>
 	</c:otherwise>
