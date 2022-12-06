@@ -17,7 +17,7 @@
 	<div class="commentList">
 		<div class="commentItem">
 			<div class="">
-				<input type="hidden" name="cmSeq" value="${list.cmSeq }">
+				<input type="hidden" name="cmSeq" value="re_${list.cmSeq }">
 				<span><c:out value="${list.infrMmNickname }" />(<c:out value="${list.infrMmId }" />)</span>
 			</div>
 			<div class="dropstart">
@@ -35,7 +35,7 @@
 		</div>
 		<div class="commentBtnBox">
 			<div class="">
-				<button class="commentBtn" style="text-decoration: none;" type="button" onclick="reComment(<c:out value="${list.cmSeq }"/>)">답글</button>
+				<button class="commentBtn" style="text-decoration: none;" type="button" onclick="showRecomment(<c:out value="${list.cmSeq }"/>)" value="${list.cmSeq }">답글</button>
 			</div>
 			<div class="">
 				<div class="">
@@ -44,7 +44,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="reCommentBox" style="display: none;">
+	<div id="re_${list.cmSeq }" style="display: none;">
 		<div class="commentHead">
 			<div class="">
 				<span><c:out value="${infrMmName }" />(<c:out value="${infrMmId }" />)</span>
@@ -103,6 +103,49 @@
 		$("input:hidden[name=thisPage]").val(thisPage);
 		setLita();
 	}
+	
+	/* function reComment(numm){
+		$(".reCommentBox").show();
+	} */
+	
+	 function showRecomment(commentSeq){
+		var numm = commentSeq;
+		var re = $('#re_'+numm);
+		//답글이 보일때 
+		if(re.css('display') !=='none'){
+			re.hide();
+		//답글일 안보일때	
+		}else{ 
+			re.show();
+		} 
+		/* $('#re_'+numm).show(); */
+	}
+	
+	/* $(function(){
+		$('#recomment').click(function(){
+			$('#re_recomment').val().show();
+		})
+	}) */
+	
+	//댓글 글자수 제한 체크
+		$('.textBox').keyup(function (e) {
+			let content = $(this).val();
+		    
+		    // 글자수 세기
+		    if (content.length == 0 || content == '') {
+		    	$('.textCount').text('0');
+		    } else {
+		    	$('.textCount').text(content.length + '');
+		    }
+		    
+		    // 글자수 제한
+		    if (content.length > 200) {
+		    	// 200자 부터는 타이핑 되지 않도록
+		        $(this).val($(this).val().substring(0, 200));
+		        // 200자 넘으면 알림창 뜨도록
+		        alert('글자수는 200자까지 입력 가능합니다.');
+		    };
+		});
 	
 
 	

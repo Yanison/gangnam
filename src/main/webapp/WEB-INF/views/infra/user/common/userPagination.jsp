@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %> 
 
-<div class="container-fluid px-0 mt-2">
+<div class="container-fluid px-0 mt-2" style="margin-top: 20px;">
     <div class="row">
         <div class="col">
             <!-- <ul class="pagination pagination-sm justify-content-center mb-0"> -->
