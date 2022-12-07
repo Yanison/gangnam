@@ -23,7 +23,7 @@
 	<!-- contend s -->
 	<section>
 		<div class="boarderTitle">
-			<a>게시판</a><a>자유게시판</a> <!-- 게시판 타이틀 -->
+			<a>자유게시판</a> <!-- 게시판 타이틀 -->
 		</div>
 		<section class="boarder">
 			<article class="board">
