@@ -50,7 +50,7 @@ upload = function(objName, seq, allowedMaxTotalFileNumber, allowedExtdiv, allowe
 		var filesCount = files.length;
 		var filesArray = [];
 		
-		allowedMaxTotalFileNumber = allowedMaxTotalFileNumber == 0 ? MAX_TOTAL_FILE_NUMBER : allowedMaxTotalFileNumber;
+		allowedMaxTotalFileNumber = allowedMaxTotalFileNumber == 0 ? 1 : allowedMaxTotalFileNumber;
 		allowedEachFileSize = allowedEachFileSize == 0 ? MAX_EACH_FILE_SIZE : allowedEachFileSize;
 		allowedTotalFileSize = allowedTotalFileSize == 0 ? MAX_TOTAL_FILE_SIZE : allowedTotalFileSize;
 		

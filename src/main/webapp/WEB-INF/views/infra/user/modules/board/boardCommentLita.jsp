@@ -50,13 +50,13 @@
 		<!-- 답글 s -->
 		<div id="re_${list.cmSeq }" style="display: none;">
 			<c:choose>
-				<c:when test="${vo.selectReCommentCount eq 0}">
+				<c:when test="${fn:length(listt) eq 0}">
 					<%-- <c:out value="${fn:length(listt) }"/> --%>
-					<c:out value="${vo.selectReCommentCount }"/>
+					<%-- <c:out value="${vo.selectReCommentCount }"/> --%>
 					<p>답글이 없습니다. 답글을 작성해주세요.</p>
 					<div class="commentHead">
 						<div class="">
-							<span><c:out value="${infrMmName }" />(<c:out value="${infrMmId }" />)</span>
+							<span><c:out value="${list.infrMmNickname }" />(<c:out value="${infrMmId }" />)</span>
 						</div>
 						<div>
 							<button class="writeBtn1" id="btnReComment">등록</button>
@@ -156,7 +156,7 @@
 			,cache: false
 			,type: "post"
 			,url: "/board/boardReCommentLita"
-			,data : { "cmSeq" : $(val).val(), "infrMmSeq" : $("#infrMmSeq").val() ,""}
+			,data : { "cmSeq" : $(val).val(), "infrMmSeq" : $("#infrMmSeq").val()}
 			,success: function(data) {
 					//답글이 보일때
 					if(re.css('display') !=='none'){

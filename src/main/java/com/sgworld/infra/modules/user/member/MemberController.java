@@ -80,7 +80,7 @@ public class MemberController {
 		
 	//내정보_내 글 조회
 	@RequestMapping(value="memberPostComment")
-	public String memberPostComment(@ModelAttribute("vo") MemberGroupVo vo , Model model)throws Exception {
+	public String memberPostComment(@ModelAttribute("vo") MemberGroupVo vo , Model model ,MemberGroup dto)throws Exception {
 		
 		vo.setParamsPaging(service.selectCount(vo));
 		List<MemberGroup>list = service.selectListBoard(vo);

@@ -61,13 +61,14 @@
 							<article class="rightContent">
 							<!-- <div class="icon"> -->
 								<c:set var="type" value="2"/>	
-					        	<c:set var="name" value="uploadImg"/>		
+					        	<c:set var="name" value="uploadImg"/>
+					        	<!-- 이미지 먼저 보여주는 곳 -->		
 								<div id="<c:out value="${name }"/>Preview" class="addScroll">
 									<c:forEach items="${listUploaded}" var="listUploaded" varStatus="statusUploaded">
 										<c:if test="${listUploaded.type eq type }">
-											<div id="imgDiv_<c:out value="${type }"/>_<c:out value="${listUploaded.sort }"/>" style="display: inline-block; height: 95px;">
+											<div  id="imgDiv_<c:out value="${type }"/>_<c:out value="${listUploaded.sort }"/>">
 												<img src="<c:out value="${listUploaded.path }"/><c:out value="${listUploaded.uuidName }"/>" class="rounded" width= "85px" height="85px" style="cursor:pointer;" onClick="openViewer(<c:out value="${listUploaded.type }"/>, <c:out value="${listUploaded. sort }"/>);">
-												<div style="position: relative; top:-85px; left:5px"><span style="color: red; cursor:pointer;" onClick="delImgDiv('<c:out value="${name }"/>', <c:out value="${type }"/>,<c:out value="${listUploaded.sort }"/>, <c:out value="${listUploaded.seq }"/>, '<c:out value="${listUploaded.path }"/><c:out value="${listUploaded.uuidName }"/>')">X</span></div>
+												<div style="position: relative; top:-200px; left:94px"><span style="color: red; cursor:pointer;" onClick="delImgDiv('<c:out value="${name }"/>', <c:out value="${type }"/>,<c:out value="${listUploaded.sort }"/>, <c:out value="${listUploaded.seq }"/>, '<c:out value="${listUploaded.path }"/><c:out value="${listUploaded.uuidName }"/>')">X</span></div>
 											</div>
 										</c:if>
 									</c:forEach>
