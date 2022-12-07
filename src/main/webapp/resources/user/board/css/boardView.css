@@ -1,11 +1,13 @@
 .boardHead{
 	border-bottom: 1px solid #DEDEDE;
 	padding-bottom: 30px;
+	margin-top: 30px;
 }
 .boarderTitle{
 	display: flex;
 	justify-content: center;
 	padding-right: 620px;
+	margin-top: 50px;
 }
 .boarder{
 	display: flex;
@@ -23,6 +25,8 @@
 	padding-bottom: 15px;
 	border-bottom: 1px solid #DEDEDE;
 	border-top: 1px solid #DEDEDE;
+	margin-top: 30px;
+	justify-content: flex-end;
 }
 .commentTotal{
 	padding-top: 10px;
@@ -105,3 +109,4 @@
 	background-color: white;
 	border-radius: 5px;
 }
+

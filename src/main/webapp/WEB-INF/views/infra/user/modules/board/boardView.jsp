@@ -29,16 +29,14 @@
 			<article class="board">
 				<div class="boardHead">
 					<div>
-						<h3><c:out value="${item.bdTitle }"/></h3>
+						<h3>Title: <c:out value="${item.bdTitle }"/></h3>
 					</div>
-					<div>
-						<p><c:out value="${item.infrMmNickname }"/></p>
+					<div style="margin-top: 10px;''">
+						<p>작성자: <c:out value="${item.infrMmNickname }"/></p>
 					</div>
-					<div class="icon">
-						<i class="fa-regular fa-clock"> <fmt:formatDate value="${item.regDatetime }" pattern="MM-dd" /></i>
-						<i class="fa-solid fa-eye"> <c:out value="${item.viewCount }" /></i>
-						<i class="fa-regular fa-message"> <c:out value="${item.commentCount }" /></i>
-					</div>
+					<!-- <div class="icon">
+						
+					</div> -->
 				</div>
 				<div class="boarderBody">
 					<div class="content">
@@ -59,7 +57,9 @@
 							</c:choose>
 							</c:otherwise>
 						</c:choose>
-						<div><i class="fa-regular fa-message"> 200</i></div>
+						<!-- <div><i class="fa-regular fa-message"> 200</i></div> -->
+						<%-- <i class="fa-regular fa-clock"> <fmt:formatDate value="${item.regDatetime }" pattern="MM-dd" /></i> --%>
+						<i class="fa-solid fa-eye" style="margin-left: 5px;"> <c:out value="${item.viewCount }" /></i>
 					</div>
 				</div>
 				<div>
@@ -114,6 +114,8 @@
 		var goUrlCommentInst = "/board/commentInst";
 		
 		var goUrlAjaxLita = "/board/boardCommentLita";
+		
+		var goUrlReCommentInst ="/board/recommentInst";
 		
 		var form = $("form[name=form]");
 		
@@ -266,6 +268,14 @@
 				alert("hash is empty");
 			}
 		}
+		
+		$("#btnReComment").on("click", function(){
+			form.attr("action", goUrlReCommentInst).submit();
+		});
+		
+		$("#btnReComment2").on("click", function(){
+			form.attr("action", goUrlReCommentInst).submit();
+		});
 	</script>
 </body>
 </html>

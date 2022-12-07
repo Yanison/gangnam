@@ -58,5 +58,15 @@ public class AdminBoardVo extends BaseVo {
 	
 	
 //////////////////////////////////////////////////////////////
+	public int selectReCommentCount;
+
+	public int getSelectReCommentCount() {
+		return selectReCommentCount;
+	}
+	public void setSelectReCommentCount(int selectReCommentCount) {
+		this.selectReCommentCount = selectReCommentCount;
+	}
+	
+	
 	
 }

@@ -5,7 +5,7 @@
         <div class="col-9 col-md-10 col-xl-11 text-start pt-1">
 <c:choose>
 	<c:when test="${not empty vo.totalRows}">        
-            <span class="align-middle">댓글 <fmt:formatNumber value="${vo.totalRows}" pattern="#,###"/></span>
+            <span class="align-middle">댓글  <c:out value="${item.commentCount }" /><%-- <fmt:formatNumber value="${vo.totalRows}" pattern="#,###"/> --%></span>
 	</c:when>
 	<c:otherwise>            
 			<span class="align-middle">댓글 0</span>

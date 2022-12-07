@@ -198,6 +198,7 @@
 			JOIN board c on a.board_seq = c.bdSeq
 			WHERE 1=1
 				AND c.bdSeq = #{bdSeq}
+				ORDER BY a.cmSeq DESC	
  		<include refid="Base.selectListLowerForMysql" />
  	</select>
  	
@@ -236,5 +237,43 @@
 			AND cmSeq = #{cmSeq}
 			AND infrMmSeq = #{infrMmSeq}
 	</delete> 	
+	
+	<select id="recommentList" resultMap="resultMapObj">
+		SELECT
+			cmReSeq
+			,reContent
+			,regDatetime
+			,regBy
+			,delNy
+			,comment_seq
+			,infrMmSeq
+		FROM bdReComment 
+			WHERE 1=1
+			AND comment_seq= #{cmSeq}	
+	</select>
+	
+	<insert id="reComentInst">
+		INSERT INTO bdReComment (
+			reContent
+		    ,regDatetime
+		    ,comment_seq
+		    ,infrMmSeq
+		)
+		VALUES(
+			#{reContent}
+		    ,now()
+		    ,#{cmSeq}
+		    ,#{infrMmSeq}
+		)
+		<selectKey resultType="String" keyProperty="cmReSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
+	
+	<select id="selectReCommentCount" resultType="Integer">
+		SELECT COUNT(*)FROM bdReComment
+			WHERE 1=1
+			AND comment_seq = #{cmSeq}    
+	</select>
  	
 </mapper>

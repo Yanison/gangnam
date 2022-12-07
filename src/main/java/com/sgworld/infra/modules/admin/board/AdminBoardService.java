@@ -41,5 +41,14 @@ public interface AdminBoardService {
 	public AdminBoardDto boardLiked(AdminBoardVo vo) throws Exception;
 	public int insertLike(AdminBoardDto dto) throws Exception;
 	public int deleteLike(AdminBoardVo vo) throws Exception;
+	
+	//답글 리스트
+	public List<AdminBoardDto> recommentList(AdminBoardVo vo)throws Exception;
+	
+	//답글 쓰기
+	public int reComentInst(AdminBoardDto dto)throws Exception;
+	
+	//답글 갯수세기
+	public int selectReCommentCount(AdminBoardVo vo)throws Exception;
 }
 

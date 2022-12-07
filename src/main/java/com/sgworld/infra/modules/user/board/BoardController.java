@@ -46,24 +46,41 @@ public class BoardController {
 	@RequestMapping(value = "boardView")
 	public String boardView(@ModelAttribute("vo") AdminBoardVo vo, AdminBoardDto dto, Model model) throws Exception {
 		
-		service.boardViewCount(dto);
-		AdminBoardDto like = service.boardLiked(vo);
+		service.boardViewCount(dto); //조회수
+		
+		AdminBoardDto like = service.boardLiked(vo); //좋아여 여부
 		model.addAttribute("like", like);
-		int likeCount = service.boardLikeCount(vo);
+		
+		int likeCount = service.boardLikeCount(vo); //좋아여 count
 		model.addAttribute("likeCount", likeCount);
-		AdminBoardDto item = service.selectOne(vo);
+		
+		AdminBoardDto item = service.selectOne(vo); //계시글 한개에 대한 정보
 		model.addAttribute("item", item);
+		System.out.println("boardCount:" + item.getCommentCount());
 		
 		return "infra/user/modules/board/boardView";
 	}
 	
+	//계시글 댓글쪽 아작스 처리하신듯? 맞나?
 	@RequestMapping(value = "boardCommentLita")
 	public String boardCommentLita(@ModelAttribute("vo") AdminBoardVo vo, Model model) throws Exception {
 		vo.setParamsPaging(service.selectCommentCount(vo));
 		
-		List<AdminBoardDto> list = service.selectCommentList(vo);
+		List<AdminBoardDto> list = service.selectCommentList(vo);//댓글정보 리스트
 		model.addAttribute("list", list);
 		
+		return "infra/user/modules/board/boardCommentLita";
+	}
+	
+	//답글 아작스 처리
+	@RequestMapping(value = "boardReCommentLita")
+	public String boardReCommentLita(@ModelAttribute ("vo") AdminBoardVo vo , Model model)throws Exception{
+		
+		vo.setSelectReCommentCount(service.selectReCommentCount(vo));
+		/* System.out.println("selectReCommentCount: "+); */
+		
+		List<AdminBoardDto> listt = service.recommentList(vo);//답글정보 리스트 
+		model.addAttribute("listt", listt);
 		return "infra/user/modules/board/boardCommentLita";
 	}
 	
@@ -153,6 +170,16 @@ public class BoardController {
 			returnMap.put("likedCount", likedCount);
 		}
 		return returnMap;
+	}
+	
+	@SuppressWarnings(value = {"all"})
+	@RequestMapping(value = "recommentInst")
+	public String reComentInst(AdminBoardVo vo, AdminBoardDto dto) throws Exception {
+		System.out.println("inst!!");
+		service.reComentInst(dto);
+		vo.setCmSeq(dto.getCmSeq());
+		vo.setBdSeq(dto.getBdSeq());
+		return "infra/user/modules/board/boardCommentLita";
 	}
 	
 	
