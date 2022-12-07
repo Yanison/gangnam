@@ -30,9 +30,9 @@
 			<h1 class="onLiveSgWorldTitle">Onlive</h1>
 			<div class="onSgWorldListDiv">
 				<!-- forEach로 데이터 뿌려주세요 -->
-				<c:forEach items="${sgwList}" var="sl" varStatus="status">
 					<div class="container text-center">
 					  <div class="row row-cols-3">
+					  <c:forEach items="${sgwList}" var="sl" varStatus="status">
 					    <div class="col">
 						    <div class="SgWorldPreviewDiv">
 								<a class="SgWorldPreview" href="./sgWorld/join/${sl.sgwLink}">
@@ -50,10 +50,9 @@
 								</div>
 							</div>
 						</div>
+						 </c:forEach>
 					  </div>
 					</div>
-				</c:forEach>
-				
 				<div class="onSgWorldList onSgWorldList1">
 					
 				</div>

@@ -12,8 +12,8 @@ public class SgwChat {
 	private String infrMmNickname;
 	private String endPoint;
 	private String avatarseq;
-	private int x;
-	private int y;
+	private int x = 497;
+	private int y = 375;
 	
 	
 	public String getSgwseq() {

@@ -166,10 +166,11 @@ function renderPlayer() {
 	 */
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-
+	
 	for (let i = 0; i < avatars.length; i++) {
 		let avatar = avatars[i];
-
+		avatar.x = 497
+		avatar.y = 375
 		ctx.fillStyle = avatar.color;
 		ctx.beginPath();
 		ctx.arc(avatar.x, avatar.y, radius, 0, Math.PI * 2, false);
