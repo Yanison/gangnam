@@ -76,8 +76,9 @@ public class BoardController {
 	@RequestMapping(value = "boardReCommentLita")
 	public String boardReCommentLita(@ModelAttribute ("vo") AdminBoardVo vo , Model model)throws Exception{
 		
-		var count = service.selectReCommentCount(vo);
-		model.addAttribute("count", count);
+		vo.setSelectReCommentCount(service.selectReCommentCount(vo));
+		/* System.out.println("selectReCommentCount: "+); */
+		
 		List<AdminBoardDto> listt = service.recommentList(vo);//답글정보 리스트 
 		model.addAttribute("listt", listt);
 		return "infra/user/modules/board/boardCommentLita";
