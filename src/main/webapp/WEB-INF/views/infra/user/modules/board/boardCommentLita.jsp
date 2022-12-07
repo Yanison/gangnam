@@ -62,9 +62,9 @@
 					</div>
 					<div class="writeBox">
 						<div id="writeDiv" class="writeDiv">
-							<textarea class="textBox" style="width: 680px; height: 90px; resize: none;" name="content" maxlength="200" placeholder="답글을 입력하세요."></textarea>
+							<textarea class="reTextBox" style="width: 680px; height: 90px; resize: none;" name="content" maxlength="200" placeholder="답글을 입력하세요."></textarea>
 							<div class="textLengthWrap">
-							    <span class="textCount">0</span>
+							    <span class="reTextCount">0</span>
 							    <span class="textTotal">/200</span>
 							</div>
 						</div>	
@@ -188,14 +188,14 @@
 	}) */
 	
 	//댓글 글자수 제한 체크
-		$('.textBox').keyup(function (e) {
+		$('.reTextBox').keyup(function (e) {
 			let content = $(this).val();
 		    
 		    // 글자수 세기
 		    if (content.length == 0 || content == '') {
-		    	$('.textCount').text('0');
+		    	$('.reTextCount').text('0');
 		    } else {
-		    	$('.textCount').text(content.length + '');
+		    	$('.reTextCount').text(content.length + '');
 		    }
 		    
 		    // 글자수 제한
