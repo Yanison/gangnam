@@ -11,6 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.sgworld.infra.modules.admin.board.AdminBoardDto;
+import com.sgworld.infra.modules.admin.board.AdminBoardServiceImpl;
+import com.sgworld.infra.modules.admin.board.AdminBoardVo;
 import com.sgworld.infra.modules.user.sgWorld.SgwSerivceImpl;
 import com.sgworld.infra.modules.user.sgWorld.sgwdto.SgwDto;
 
@@ -22,6 +25,8 @@ public class HomeController {
 	SgwSerivceImpl sgwService;
 	@Autowired
 	HomeServiceImpl homeSerive;
+	@Autowired
+	AdminBoardServiceImpl bdService;
 	
 	public void getSss(Model model,SgwDto sgwDto) {
 		Object infrMmId = session.getAttribute("infrMmId");
@@ -60,12 +65,16 @@ public class HomeController {
 	
 	//메인페이지
 	@RequestMapping(value="/")
-	public String home(SgwDto sgwDto,Model model)throws Exception {
+	public String home(SgwDto sgwDto,Model model,AdminBoardVo vo)throws Exception {
 		
 		getSss(model,sgwDto);
 		
 		List<SgwDto> sgwList = homeSerive.selectSgwList(sgwDto);
 		model.addAttribute("sgwList", sgwList);
+		
+		List<AdminBoardDto> bdList = bdService.selectList(vo);
+		model.addAttribute("bdList", bdList);
+		
 		
 		return "infra/user/modules/home/home";
 	}

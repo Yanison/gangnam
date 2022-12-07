@@ -28,36 +28,70 @@
 	@@@@ Sgworld 
 	@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 	-->
+	<insert id="buildSgw">
+		insert into sgWorld
+		(
+		sgwTitle
+		,isHidden
+		,sgwMmNumber
+		,sgwMap
+		,sgwLink
+		,regByMm
+		)
+		values(
+		#{sgwTitle}
+		,#{isHidden}
+		,#{sgwMmNumber}
+		,#{sgwMap}
+		,#{sgwLink}
+		,#{infrMmSeq}
+		)
+	</insert>
 
 	<select id="onLoadUserInfoSgw" resultMap="SgwDto">
-			select
-			  s.sgwSeq
-			  ,m.infrMmSeq
-			  ,m.infrMmNickname
-			  ,a.avatarSeq
-			  ,a.avatarName
-			from sgWorld s 
-			  left join sgWorldRoom r 
-			    on s.sgwSeq = r.sgwSeq
-			  left join infrMember m 
-			    on s.regByMm = m.infrMmSeq
-			  left join sgWorldAvatar a
-			    on r.avatarSeq = a.avatarSeq
-			  where 1=1
-			  and m.infrMmSeq = #{infrMmSeq}
-		</select>
+		select
+		  s.sgwSeq
+		  ,m.infrMmSeq
+		  ,m.infrMmNickname
+		  ,a.avatarSeq
+		  ,a.avatarName
+		from sgWorld s 
+		  left join sgWorldRoom r 
+		    on s.sgwSeq = r.sgwSeq
+		  left join infrMember m 
+		    on s.regByMm = m.infrMmSeq
+		  left join sgWorldAvatar a
+		    on r.avatarSeq = a.avatarSeq
+		  where 1=1
+		  and m.infrMmSeq = #{infrMmSeq}
+	</select>
+	
+	<select id="onLoadInfoSgw" resultMap="SgwDto">
+		select
+		  s.sgwSeq
+		  ,s.sgwTitle
+		  ,s.sgwMap
+		  ,s.sgwMmNumber
+		  ,s.isHidden
+		  ,s.sgwLink
+		  ,s.regDateTime
+		  ,s.regByMm
+		from sgWorld s
+		where 1=1
+		and s.sgwLink = #{sgwLink}
+	</select>
 		
-		<update id="onLiveNy">
+	<update id="onLiveNy">
 		update sgWorld set onLiveNy = #{onLiveNy}
 		where 1=1
 		and sgwLink = #{sgwLink}
-		</update>
-		<!-- 
-		@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-		@@@@ User
-		@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-		-->
-		<select id="findSgwbyMmSeq" resultMap="SgwDto">
+	</update>
+	<!-- 
+	@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+	@@@@ User
+	@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+	-->
+	<select id="findSgwbyMmSeq" resultMap="SgwDto">
 		select 
 			regByMm
 			,sgwLink

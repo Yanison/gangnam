@@ -77,17 +77,37 @@
 						<td><strong><a>더보기</a></strong></td>
 					</thead>
 					<tbody>
-						<th>
-							<a>title</a>
-						</th>
-						<td>
-							<i class="fa-solid fa-eye"></i>
-							<em>num</em>
-						</td>
+						<c:choose>
+							<c:when test="${fn:length(bdList) eq 0} } ">
+								<tr>
+									<th>
+										<a>title</a>
+									</th>
+									<td>
+										<i class="fa-solid fa-eye"></i>
+										<em>num</em>
+									</td>	
+								</tr>
+							</c:when>
+							<c:otherwise>
+								<c:forEach items="${bdList}" var="bdList" varStatus="status">
+									<tr>
+										<th>
+											<a>${bdList.bdTitle}</a>
+										</th>
+										<td>
+											<i class="fa-solid fa-eye"></i>
+											<em>${bdList.viewCount}</em>
+										</td>
+									</tr>		
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
+						
 					</tbody>
 				</table>
 			</div>
-			<div class="boardPrev info">
+			<!-- <div class="boardPrev info">
 				<table>
 					<colgroup>
 						<col width="70%">
@@ -128,7 +148,7 @@
 						</td>
 					</tbody>
 				</table>
-			</div>
+			</div> -->
 		</article>
 	</section>
 	<footer>
