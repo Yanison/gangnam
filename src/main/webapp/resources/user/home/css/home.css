@@ -91,7 +91,7 @@ sgwTitle div:fist-child{
 }
 
 .boardPrev{
-	width:280px;
+	width:100%;
 	height:100%;
 }
 
@@ -116,6 +116,14 @@ sgwTitle div:fist-child{
 	font-size: 17px;
 	cursor:pointer;
 	font-weight:800;
+}
+
+.boardPrev table tbody tr{
+	cursor:pointer;
+}
+
+.boardPrev table tbody tr:hover{
+	background:#f6f6f6;
 }
 .boardPrev table tr td {
 	text-align:right;
