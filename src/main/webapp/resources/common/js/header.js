@@ -39,15 +39,15 @@ function isSssValThere(str){
 }
 
 function gohome(){
-	location.href="http://127.0.0.1:8085"
+	location.href="/"
 }
 
 function goboard(){
-	location.href="http://127.0.0.1:8085/board/boardList"
+	location.href="/board/boardList"
 }
 
 function goWrite(){
-	location.href="http://127.0.0.1:8085/board/boardWrite"
+	location.href="/board/boardWrite"
 }
 
 

@@ -59,6 +59,6 @@ function addSGW(sgwSeq){
 	html += '<em>num</em>'
 	html += '</div></div></div>'
 	
-	$('.onSgWorldListDiv').append(html).fast()
+	$('.container text-center').append(html).fast()
 }
 
