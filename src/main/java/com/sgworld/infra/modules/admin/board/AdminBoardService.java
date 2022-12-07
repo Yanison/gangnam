@@ -47,5 +47,8 @@ public interface AdminBoardService {
 	
 	//답글 쓰기
 	public int reComentInst(AdminBoardDto dto)throws Exception;
+	
+	//답글 갯수세기
+	public int selectReCommentCount(AdminBoardVo vo)throws Exception;
 }
 

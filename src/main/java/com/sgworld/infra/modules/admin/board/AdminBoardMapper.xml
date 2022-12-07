@@ -198,6 +198,7 @@
 			JOIN board c on a.board_seq = c.bdSeq
 			WHERE 1=1
 				AND c.bdSeq = #{bdSeq}
+				ORDER BY a.cmSeq DESC	
  		<include refid="Base.selectListLowerForMysql" />
  	</select>
  	
@@ -268,5 +269,11 @@
 			SELECT last_insert_id()
 		</selectKey>
 	</insert>
+	
+	<select id="selectReCommentCount" resultType="Integer">
+		SELECT COUNT(*)FROM bdReComment
+			WHERE 1=1
+			AND comment_seq = #{cmSeq}    
+	</select>
  	
 </mapper>

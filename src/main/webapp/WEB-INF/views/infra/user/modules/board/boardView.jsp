@@ -115,7 +115,7 @@
 		
 		var goUrlAjaxLita = "/board/boardCommentLita";
 		
-		var goUrlReCommentInst ="/board/recommentInst"
+		var goUrlReCommentInst ="/board/recommentInst";
 		
 		var form = $("form[name=form]");
 		

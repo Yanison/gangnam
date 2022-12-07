@@ -206,6 +206,9 @@ public class AdminBoardServiceImpl extends BaseServiceImpl implements AdminBoard
 	@Override
 	public int reComentInst(AdminBoardDto dto) throws Exception {return dao.reComentInst(dto);}
 
+	@Override
+	public int selectReCommentCount(AdminBoardVo vo) throws Exception {return dao.selectReCommentCount(vo);}
+
 	
 	
 	

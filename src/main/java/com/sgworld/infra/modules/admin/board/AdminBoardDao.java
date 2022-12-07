@@ -74,4 +74,7 @@ public class AdminBoardDao {
 	
 	//답글 쓰기
 	public int reComentInst(AdminBoardDto dto) {return sqlSession.insert(namespace +".reComentInst", dto);}
+	
+	//답글 갯수세기
+	public int selectReCommentCount(AdminBoardVo vo) {return sqlSession.selectOne(namespace +".selectReCommentCount", vo);}
 }
