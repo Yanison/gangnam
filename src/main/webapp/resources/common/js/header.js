@@ -39,26 +39,19 @@ function isSssValThere(str){
 }
 
 function gohome(){
-	location.href="http://127.0.0.1:8085"
+	location.href="/"
 }
 
 function goboard(){
-	location.href="http://127.0.0.1:8085/board/boardList"
+	location.href="/board/boardList"
 }
 
 function goWrite(){
-	location.href="http://127.0.0.1:8085/board/boardWrite"
+	location.href="/board/boardWrite"
 }
 
 
-var goUrlView = "/member/memberView";
-var form = $("form[name=form]");
-var seq = $("input:hidden[name=infrMmSeq]");
 
-goMemberView = function(keyValue) {
-	seq.val(keyValue);
-	form.attr("action", goUrlView).submit();
-}
 
 function myPage(){
 	$.ajax({

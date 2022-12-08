@@ -1,9 +1,12 @@
 package com.sgworld.infra.modules.user.sgWorld;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sgworld.infra.modules.user.sgWorld.Controller.SgwWSController;
+import com.sgworld.infra.modules.user.sgWorld.sgwdto.SgwChat;
 import com.sgworld.infra.modules.user.sgWorld.sgwdto.SgwDto;
 
 @Service
@@ -24,10 +27,21 @@ public class SgwSerivceImpl implements SgwSerivce {
 		return sgwDao.buildSgw(sgwDto);
 	}
 	@Override
-	public SgwDto onLoadUserInfoSgw(SgwDto sgwDto)throws Exception{
+	public SgwDto onLoadInfoSgw(SgwDto sgwDto)throws Exception{
 		return sgwDao.onLoadInfoSgw(sgwDto);
 	}
-	
+	@Override
+	public int onLiveNy(SgwDto sgwDto)throws Exception{
+		return sgwDao.onLiveNy(sgwDto);
+	}
+	@Override
+	public int addUserSgwRoom(SgwDto sgwDto) throws Exception{
+		return sgwDao.addUserSgwRoom(sgwDto);
+	}
+	@Override
+	public SgwDto usersNum(SgwDto sgwDto) throws Exception{
+		return sgwDao.usersNum(sgwDto);
+	}
 	/* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 	 * @@@@@@ user
 	 * @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -37,8 +51,8 @@ public class SgwSerivceImpl implements SgwSerivce {
 		return sgwDao.isDupleLink(sgwDto);
 	}
 	@Override
-	public int doesHeAlreadyMakeSgw(SgwDto sgwDto)throws Exception{
-		return sgwDao.doesHeAlreadyMakeSgw(sgwDto);
+	public int didHeAlreadyMadeSgw(SgwDto sgwDto)throws Exception{
+		return sgwDao.didHeAlreadyMadeSgw(sgwDto);
 	}
 	
 	@Override
@@ -50,17 +64,29 @@ public class SgwSerivceImpl implements SgwSerivce {
 	public SgwDto findMm(SgwDto sgwDto)throws Exception{
 		return sgwDao.findMm(sgwDto);
 	}
-	
+
 	@Override
-	public SgwDto onLoadInfoSgw(SgwDto sgwDto)throws Exception{
+	public SgwDto onLoadUserInfoSgw(SgwDto sgwDto)throws Exception{
 		return sgwDao.onLoadUserInfoSgw(sgwDto);
 	}
-	
-	
-	
-	
-	
-	
-	
-
+	@Override
+	public int insertRoomUser(SgwDto sgwDto)throws Exception{
+		return sgwDao.insertRoomUser(sgwDto);
+	}
+	@Override
+	public int deleteRoomUser(SgwChat sgwChat)throws Exception{
+		return sgwDao.deleteRoomUser(sgwChat);
+	}
+	@Override
+	public List<SgwChat>  findRoomMm(SgwChat sgwChat)throws Exception{
+		return sgwDao.findRoomMm(sgwChat);
+	}
+	@Override
+	public SgwChat findRoomMmOne(SgwChat sgwChat)throws Exception{
+		return sgwDao.findRoomMmOne(sgwChat);
+	}
+	@Override
+	public int findMmRoomOne(SgwDto sgwDto)throws Exception{
+		return sgwDao.findMmRoomOne(sgwDto);
+	}
 }

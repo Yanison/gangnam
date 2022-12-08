@@ -34,14 +34,19 @@
 				</div>
 			</c:when>
 			<c:otherwise>
-				<c:forEach items="${list }" var="list" varStatus="status">
+				<c:forEach items="${list}" var="list" varStatus="status">
 			<article class="board col-4">
 				<div class="post1" style="curcor: pointer;">
 					<div class="state1">
 						<c:if test="${resultInfo.frstRegisterPnttm>=nowday }"><span>NOW</span></c:if> <!-- 작성상태(최신글, 조회수 높은 글 등) -->
 					</div>
 					<div class="title1">
-						<a href="javascript:goBoardView(<c:out value="${list.bdSeq }" />)" style="text-decoration: none;"><c:out value="${list.bdTitle }" /></a> <!-- 글 제목 -->
+						<p class="bdTitle" onClick="goBoardView(<c:out value="${list.bdSeq}"/>)">
+							<c:out value="${list.bdTitle }"/>
+						</p>
+						<!-- <p > 
+							 
+						</p> 글 제목 -->
 					</div>
 					<div class="contentBox">
 						<div>${list.bdContent }</div> <!-- 글 내용(게시판 리스트에 보이는 글자 수 제한 둘 것) -->
@@ -71,7 +76,7 @@
 	<!-- footer e -->
 	<script type="text/javascript">
 		var goUrlBoardRegForm = "/board/boardWrite";
-		var goUrlBoardView = "/board/boardView";
+		var goUrlBoardView = "/board/boardView/"
 		var goUrlList = "/board/boardList";
 		
 		var form = $("form[name=form]");
@@ -81,14 +86,21 @@
 			$(location).attr("href", goUrlBoardRegForm);
 		})
 		
-		goBoardView = function(keyValue) {
-			seq.val(keyValue);
-			form.attr("action", goUrlBoardView).submit();
-		}
 		
+		
+		/* goBoardView = function(keyValue) {
+			var keyValue = seq.val(keyValue);
+			form.attr("action", goUrlBoardView+keyValue).submit();
+		} */
 		goList = function(thisPage) {
 			$("input:hidden[name=thisPage]").val(thisPage);
 			form.attr("action", goUrlList).submit();
+		}
+		function goBoardView(e){
+			/* console.log("bdSeq :: "+ e)
+			form.attr("action", goUrlBoardView).submit(); */
+			seq.val(e);
+			form.attr("action", goUrlBoardView+e).submit();
 		}
 	</script>
 </body>

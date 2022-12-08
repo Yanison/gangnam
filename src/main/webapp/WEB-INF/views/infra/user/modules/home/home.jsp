@@ -8,11 +8,9 @@
 	<script src="/resources/user/home/js/home.js"></script>
 </head>
 <body>
-	<form name="form" method="post">
 	<header>
 		<%@ include file="../../common/header.jsp"%> 
 	</header>
-	</form>
 	<section class="bodyWrapper">
 		<article class="mySgWorld">
 			<c:choose>
@@ -32,41 +30,36 @@
 			<h1 class="onLiveSgWorldTitle">Onlive</h1>
 			<div class="onSgWorldListDiv">
 				<!-- forEach로 데이터 뿌려주세요 -->
-				<div class="onSgWorldList onSgWorldList1">
-					<div>
-						<a class="SgWorldPreview">
-							<img scr="/resources/common/images/pepe.png">
-						</a>
-						<div class="sgwTitle">
-							<div>
-								<i class="fa-solid fa-circle"></i>
-								<span>title</span>
-							</div>
-							<div>
-								<i class="fa-solid fa-eye"></i>
-								<em>num</em>
+					<div class="container text-center">
+					  <div class="row row-cols-3">
+					  <c:forEach items="${sgwList}" var="sl" varStatus="status">
+					    <div class="col">
+						    <div class="SgWorldPreviewDiv">
+								<a class="SgWorldPreview" href="./sgWorld/join/${sl.sgwLink}">
+									<img scr="/resources/common/images/pepe.png">
+								</a>
+								<div class="sgwTitle">
+									<div>
+										<i class="fa-solid fa-circle"></i>
+										<span>${sl.sgwTitle}</span>
+									</div>
+									<div>
+										<i class="fa-solid fa-eye"></i>
+										<em>${sl.usersNum}</em>
+									</div>
+								</div>
 							</div>
 						</div>
+						 </c:forEach>
+					  </div>
 					</div>
+				<div class="onSgWorldList onSgWorldList1">
+					
 				</div>
 				<!-- forEach로 데이터 뿌려주세요 -->
 				<!-- forEach로 데이터 뿌려주세요 -->
 				<div class="onSgWorldList onSgWorldList2">
-					<div>
-						<a class="SgWorldPreview">
-							<img scr="/resources/common/images/pepe.png">
-						</a>
-						<div class="sgwTitle">
-							<div>
-								<i class="fa-solid fa-circle"></i>
-								<span>title</span>
-							</div>
-							<div>
-								<i class="fa-solid fa-eye"></i>
-								<em>num</em>
-							</div>
-						</div>
-					</div>
+					
 				</div>
 				<!-- forEach로 데이터 뿌려주세요 -->
 			</div>
@@ -83,17 +76,37 @@
 						<td><strong><a>더보기</a></strong></td>
 					</thead>
 					<tbody>
-						<th>
-							<a>title</a>
-						</th>
-						<td>
-							<i class="fa-solid fa-eye"></i>
-							<em>num</em>
-						</td>
+						<c:choose>
+							<c:when test="${fn:length(bdList) eq 0} } ">
+								<tr>
+									<th>
+										<a>title</a>
+									</th>
+									<td>
+										<i class="fa-solid fa-eye"></i>
+										<em>num</em>
+									</td>	
+								</tr>
+							</c:when>
+							<c:otherwise>
+								<c:forEach items="${bdList}" var="bdList" varStatus="status">
+									<tr>
+										<th>
+											<a>${bdList.bdTitle}</a>
+										</th>
+										<td>
+											<i class="fa-solid fa-eye"></i>
+											<em>${bdList.viewCount}</em>
+										</td>
+									</tr>		
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
+						
 					</tbody>
 				</table>
 			</div>
-			<div class="boardPrev info">
+			<!-- <div class="boardPrev info">
 				<table>
 					<colgroup>
 						<col width="70%">
@@ -134,13 +147,12 @@
 						</td>
 					</tbody>
 				</table>
-			</div>
+			</div> -->
 		</article>
 	</section>
 	<footer>
 		<%@include file="../../common/footer.jsp" %>
 	</footer>
-<!-- 	</form> -->
 	<div id="modalDiv" class="modalDiv"  style="display:none">
 			<%@include file="./createOption.jsp" %>
 	</div>

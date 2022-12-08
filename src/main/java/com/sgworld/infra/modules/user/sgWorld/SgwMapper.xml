@@ -6,34 +6,14 @@
 <mapper namespace="com.sgworld.infra.modules.user.sgWorld.SgwMapper">
 	<resultMap id="SgwDto" type="com.sgworld.infra.modules.user.sgWorld.sgwdto.SgwDto">
 	</resultMap>
+	<resultMap id="SgwChat" type="com.sgworld.infra.modules.user.sgWorld.sgwdto.SgwChat">
+	</resultMap>
 	
-	<insert id="buildSgw">
-		insert into 
-			(select * from sgWorld sg left join sgWorldRoom sgr on sg.sgwSeq = sgr.sgwRSeq)
-		(
-		sg.sgwTitle
-		,sgisHidden
-		,sg.sgwMmNumber
-		,sg.sgwMap
-		,sg.sgwLink
-		,sg.regByMm
-		,sgr.sgwSeq
-		)
-		values(
-		#{sgwTitle}
-		,#{isHidden}
-		,#{sgwMmNumber}
-		,#{sgwMap}
-		,#{sgwLink}
-		,#{infrMmSeq}
-		,#{sgwSeq}
-		)
-	</insert>
-	<select id="findSgwbyMmSeq" resultMap="SgwDto">
-		select * 
+	<select id="didHeAlreadyMadeSgw" resultType="Integer">
+		select count(*)
 		from sgWorld 
 		where 1=1
-		and regByMm = #{infrMmSeq}
+		and  regByMm = #{infrMmSeq}
 	</select>
 	
 	<select id="isDupleLink" resultType="Integer">
@@ -42,15 +22,48 @@
 		where 1=1
 		and  sgwLink = #{sgwLink}
 	</select>
-	<select id="doesHealreadyMakeSgw" resultType="Integer">
-		select count(*)
-		from sgWorld 
-		where 1=1
-		and  regByMm = #{infrMmSeq}
-	</select>
-	<select id="findMm" resultMap="SgwDto">
-		select * from infrMember
-		where infrMmSeq = #{infrMmSeq}
+	
+	<!-- 
+	@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+	@@@@ Sgworld 
+	@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+	-->
+	<insert id="buildSgw">
+		insert into sgWorld
+		(
+		sgwTitle
+		,isHidden
+		,sgwMmNumber
+		,sgwMap
+		,sgwLink
+		,regByMm
+		)
+		values(
+		#{sgwTitle}
+		,#{isHidden}
+		,#{sgwMmNumber}
+		,#{sgwMap}
+		,#{sgwLink}
+		,#{infrMmSeq}
+		)
+	</insert>
+
+	<select id="onLoadUserInfoSgw" resultMap="SgwDto">
+		select
+		  s.sgwSeq
+		  ,m.infrMmSeq
+		  ,m.infrMmNickname
+		  ,a.avatarSeq
+		  ,a.avatarName
+		from sgWorld s 
+		  left join sgWorldRoom r 
+		    on s.sgwSeq = r.sgwSeq
+		  left join infrMember m 
+		    on s.regByMm = m.infrMmSeq
+		  left join sgWorldAvatar a
+		    on r.avatarSeq = a.avatarSeq
+		  where 1=1
+		  and m.infrMmSeq = #{infrMmSeq}
 	</select>
 	
 	<select id="onLoadInfoSgw" resultMap="SgwDto">
@@ -67,37 +80,95 @@
 		where 1=1
 		and s.sgwLink = #{sgwLink}
 	</select>
-	
-	<select id="onLoadUserInfoSgw" resultMap="SgwDto">
-		select
-		  r.sgwSeq
-		  ,m.infrMmSeq
-		  ,m.infrMmNickname
-		  ,a.avatarSeq
-		  ,a.avatarName
-		from sgWorld s 
-		  left join sgWorldRoom r 
-		    on s.sgwSeq = r.sgwSeq
-		  left join infrMember m 
-		    on r.infrMmSeq = m.infrMmSeq
-		  left join sgWorldAvatar a
-		    on r.sgwAvatar = a.avatarSeq
-		  where 1=1
-		  and s.sgwLink = #{sgwLink}
+	<select id ="usersNum" resultMap="SgwDto">
+		select count(*) as usersNum,sgwSeq from sgWorldRoom where sgwSeq = ${sgwSeq}
+	</select>
+		
+	<update id="onLiveNy">
+		update sgWorld set onLiveNy = #{onLiveNy}
+		where 1=1
+		and sgwLink = #{sgwLink}
+	</update>
+	<!-- 
+	@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+	@@@@ User
+	@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+	-->
+	<select id="findSgwbyMmSeq" resultMap="SgwDto">
+		select 
+			regByMm
+			,sgwLink
+		from sgWorld 
+		where 1=1
+		and regByMm = #{infrMmSeq}
 	</select>
 	
-	<insert id="addUserSgwRoom">
-		insert into sgwRoom(
-			infrMmSeq
-			sgwAvatarSeq
+	<!-- 해당 방에 들어간 유저들 정보 리스트 -->
+	<select id="findRoomMm" resultMap="SgwChat">
+		select
+			s.sgwSeq
+			,s.sgwLink
+			,r.infrMmSeq
+			,m.infrMmNickname
+			,r.avatarSeq
+			,count(*) as usersNum
+		from sgWorld s 
+			left join sgWorldRoom r on s.sgwSeq = r.sgwSeq
+			left join infrMember m on r.infrMmSeq = m.infrMmSeq
+		where s.sgwLink = #{endPoint}
+	</select>
+	<!-- 해당 방에 들어간 유저 정보 한명 -->
+	<select id="findRoomMmOne" resultMap="SgwChat">
+		select
+			s.sgwSeq
+			,r.infrMmSeq
+			,m.infrMmNickname
+			,r.avatarSeq
+		from sgWorld s 
+			left join sgWorldRoom r on s.sgwSeq = r.sgwSeq
+			left join infrMember m on r.infrMmSeq = m.infrMmSeq
+			where r.infrMmSeq = #{infrMmSeq}
+	</select>
+	
+	<select id="findMmRoomOne" resultType="Integer">
+		select
+			count(*)
+		from sgWorldRoom
+		where 1=1
+		and sgwSeq =#{sgwSeq}
+		and infrMmSeq = #{infrMmSeq}
+	</select>
+	
+	
+	<select id="findMm" resultMap="SgwDto">
+		select
+		 infrMmSeq
+		 ,infrMmNickname
+		from infrMember
+		where infrMmSeq = #{infrMmSeq}
+	</select>
+	
+	<insert id="insertRoomUser">
+		insert into sgWorldRoom(
+			infrMmSeq,
+			sgwSeq,
+			avatarSeq
 		)values(
 			#{infrMmSeq},
-			#{sgwAvatarSeq}
-			where 1=1
-			and s.sgwLink = #{sgwLink}
+			#{sgwSeq},
+			#{avatarSeq}
 		)
 	</insert>
-	<select id="selectUserinfo">
-		select infrMmSeq,infrMmNickname,avatarSeq
-	</select>
+	
+	
+	<delete id="deleteRoomUser">
+		delete from sgWorldRoom where 1=1
+		and infrMmSeq = #{infrMmSeq}
+		and sgwSeq = #{sgwSeq}
+	</delete>
+	
+	<delete id="deleteRoom">
+		delete from sgWorld where 1=1
+		and regByMm = #{infrMmSeq};
+	</delete>
 </mapper>

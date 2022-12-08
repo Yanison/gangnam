@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.sgworld.infra.modules.user.sgWorld.sgwdto.SgwChat;
 import com.sgworld.infra.modules.user.sgWorld.sgwdto.SgwDto;
 
 @Repository
@@ -33,11 +34,32 @@ public class SgwDao {
 				"방장 시퀀스//닉네임 :: "+sgwDto.getInfrMmSeq()+" // " +sgwDto.getInfrMmNickname()+ "\n" + ""
 
 				);
-		
 		return sqlSession.insert(namespace + ".buildSgw", sgwDto);
 	}
 	public SgwDto onLoadInfoSgw(SgwDto sgwDto) {
 		return sqlSession.selectOne(namespace+".onLoadInfoSgw", sgwDto);
+	}
+	public SgwDto onLoadUserInfoSgw(SgwDto sgwDto) {
+		
+		return sqlSession.selectOne(namespace+".onLoadUserInfoSgw", sgwDto);
+	}
+	
+	public int onLiveNy(SgwDto sgwDto) {
+		return sqlSession.update(namespace+".onLiveNy",sgwDto);
+	}
+	public int addUserSgwRoom(SgwDto sgwDto) {
+		return sqlSession.insert(namespace+".addUserSgwRoom", sgwDto);
+	}
+
+	public int didHeAlreadyMadeSgw(SgwDto sgwDto){
+		return sqlSession.selectOne(namespace+".didHeAlreadyMadeSgw", sgwDto);
+	}
+	
+	public int isDupleLink(SgwDto sgwDto){
+		return sqlSession.selectOne(namespace+".isDupleLink", sgwDto);
+	}
+	public SgwDto usersNum(SgwDto sgwDto){
+		return sqlSession.selectOne(namespace+".usersNum", sgwDto);
 	}
 	/* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 	 * @@@@@@ user
@@ -58,19 +80,23 @@ public class SgwDao {
 				);
 		return sqlSession.selectOne(namespace + ".findSgwbyMmSeq", sgwDto);
 	}
-	public SgwDto onLoadUserInfoSgw(SgwDto sgwDto) {
-		
-		return sqlSession.selectOne(namespace+".onLoadUserInfoSgw", sgwDto);
-	}
-	public int isDupleLink(SgwDto sgwDto){
-		return sqlSession.selectOne(namespace+".isDupleLink", sgwDto);
-	}
-	
-	public int doesHeAlreadyMakeSgw(SgwDto sgwDto){
-		return sqlSession.selectOne(namespace+".doesHealreadyMakeSgw", sgwDto);
-	}
-	
 	public SgwDto findMm(SgwDto sgwDto) {
 		return sqlSession.selectOne(namespace+".findMm", sgwDto);
+	}
+	
+	public int insertRoomUser(SgwDto sgwDto) {
+		return sqlSession.insert(namespace+".insertRoomUser",sgwDto);
+	}
+	public int deleteRoomUser(SgwChat sgwDto) {
+		return sqlSession.insert(namespace+".deleteRoomUser",sgwDto);
+	}	
+	public List<SgwChat> findRoomMm(SgwChat sgwDto) {
+		return sqlSession.selectList(namespace+".findRoomMm",sgwDto);
+	}
+	public SgwChat findRoomMmOne(SgwChat sgwDto) {
+		return sqlSession.selectOne(namespace+".findRoomMmOne",sgwDto);
+	}
+	public int findMmRoomOne(SgwDto sgwDto) {
+		return sqlSession.selectOne(namespace+".findMmRoomOne",sgwDto);
 	}
 }

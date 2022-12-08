@@ -1,8 +1,12 @@
 package com.sgworld.infra.modules.user.sgWorld.Controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,8 +14,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.sgworld.infra.modules.user.sgWorld.SgwSerivceImpl;
+import com.sgworld.infra.modules.user.sgWorld.sgwdto.AvatarControllVo;
+import com.sgworld.infra.modules.user.sgWorld.sgwdto.SgwChat;
 import com.sgworld.infra.modules.user.sgWorld.sgwdto.SgwDto;
-import com.sgworld.infra.modules.user.sgWorld.sgwdto.SgwVo;
 
 @Controller
 @RequestMapping(value = "/sgWorld/")
@@ -19,46 +24,91 @@ public class SgWorldController {
 	
 	@Autowired
 	SgwSerivceImpl sgwService;
+	@Autowired
+	SgwWSController sgwWSController;
+	
+	private void setOnliveNy(SgwDto sgwDto,HttpSession session,Model model,String manInCharge,String endPoint){
+		 
+		try {
+			if( manInCharge != null) {
+				 
+				 sgwDto.setOnLiveNy(1);
+				 sgwDto.setSgwLink(endPoint);
+				 sgwService.onLiveNy(sgwDto);
+				 session.setAttribute(endPoint, sgwDto.getOnLiveNy());
+			 }else {
+				 sgwDto.setOnLiveNy(0);
+				 sgwDto.setSgwLink(endPoint);
+				 session.invalidate();
+			 }
+			session.getAttribute(endPoint);
+			model.addAttribute(endPoint, sgwDto.getOnLiveNy());
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+	}
 
 	//매타버스 실행
 	@GetMapping("join/{endPoint}")
 	public String sgWorld(
 			@PathVariable("endPoint") String endPoint,
 			SgwDto sgwDto,
-			SgwVo sgwVo,
+			SgwChat sgwChat,
 			Model model,
 			HttpSession session)throws Exception {
+		/*
+		 * 유저가 입장하면..
+		 * 1.유저의 세션을 불러오
+		 */
 		
+		
+		/*
+		 * 입장한 유저의 세션정보 불러오기
+		 */
 		String infrMmSeq = (String) session.getAttribute("infrMmSeq");
+		String infrMmNickname = (String) session.getAttribute("infrMmNickname");
 		System.out.println("this endPoint is ::" + endPoint);
 		System.out.println("this MmSess is ::" + infrMmSeq);
 		model.addAttribute("infrMmSeq",infrMmSeq);
+		model.addAttribute("infrMmNickname",infrMmNickname);
 		model.addAttribute("endPoint",endPoint);
 		
 		/*
-		 * 페이지 온로드시 클라이언트로 전달될 정보들
+		 * 페이지 온로드시 클라이언트로 전달될 방 정보들
 		 */
+		sgwDto.setSgwLink(endPoint);
 		SgwDto onLoadInfoSgw = sgwService.onLoadInfoSgw(sgwDto);
-		SgwDto onLoadUserInfoSgw = sgwService.onLoadUserInfoSgw(sgwDto);
+		String sgwSeq = onLoadInfoSgw.getSgwSeq();
+		model.addAttribute("sgwSeq",sgwSeq);
+		sgwWSController.usersNum(onLoadInfoSgw);
+//		List<SgwDto>userArrList = AvatarControllVo.userArrList;
+//		userArrList.add(onLoadInfoSgw);
+		
 		model.addAttribute("onLoadInfoSgw", onLoadInfoSgw);
-		model.addAttribute("onLoadUserInfoSgw", onLoadUserInfoSgw);
+		setOnliveNy(sgwDto,session,model,onLoadInfoSgw.getRegByMm(),endPoint);
 		
 		
+		sgwDto.setInfrMmSeq(infrMmSeq);
+		sgwDto.setSgwSeq(sgwSeq);
 		
+		int findMmRoomOne = sgwService.findMmRoomOne(sgwDto);
+		 if(findMmRoomOne == 0) {
+			 	sgwDto.setSgwSeq(sgwSeq);
+			 	sgwDto.setInfrMmSeq(infrMmSeq);
+				sgwService.insertRoomUser(sgwDto);
+		}else {
+			System.out.println("유저 있음");
+		}
+		 
 		/*
 		  * 방장이 들어오면 방의 활성화 여부를 결정함.
 		  * 활성화 여부는 세션값으로 남김. 
 		  */
-		 if(onLoadInfoSgw.getRegByMm() != null) {
-			 sgwVo.setOnLiveNy(1);
-			 session.setAttribute("onliveNy", sgwVo.getOnLiveNy());
-		 }else {
-			 sgwVo.setOnLiveNy(0);
-			 session.invalidate();
-		 }
-		 session.getAttribute("onliveNy");
-		 model.addAttribute("onliveNy", sgwVo.getOnLiveNy());
-		
-		return "infra/user/modules/sgWorld/sgWorld";
+		return "infra/user/modules/sgWorld/sgWorld2";
 	}
+	 
 }
+
+
+
