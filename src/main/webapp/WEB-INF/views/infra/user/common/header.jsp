@@ -31,8 +31,6 @@
 					</form> --%>
 					<li class="logedIn" ><a href="#" onclick="goMp()">마이페이지</a></li> 
 					<%-- <li class="logedIn" ><a href="javascript:goMemberView(<c:out value="${infrMmSeq}"/>)" >마이페이지</a></li> --%>
-
-					<li class="logedIn" ><a href="javascript:goMemberView(<c:out value="${infrMmSeq }"/>)" >마이페이지</a></li>
 				</c:otherwise>
 			</c:choose>
 		</ul>
