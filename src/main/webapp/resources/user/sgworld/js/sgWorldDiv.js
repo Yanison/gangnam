@@ -6,13 +6,6 @@ $(document).ready(function(){
 	})
 
 })
-
-function fullCamDiv(){
-	$('#fullCamDiv').fadeIn("fast")
-}
-function fullCamDivOff(){
-	$('#fullCamDiv').fadeOut("fast")
-}
 function gohome(){
 	location.href="http://127.0.0.1:8085"
 }

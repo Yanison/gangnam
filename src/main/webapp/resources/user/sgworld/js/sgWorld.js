@@ -4,9 +4,7 @@ $(window).on("beforeunload",function(){
 	sendUsersNum(users.length)
 	disconnect() 
 })
-
-
-
+var camwith = null;
 var endPoint = $('#endPoint').val()
 var infrMmSeq = $('#infrMmSeq').val()
 var sgwSeq = $('#sgwSeq').val()
@@ -118,7 +116,8 @@ function connect() {
 								userColor :  udateUserList[q].userColor,
 								x :  udateUserList[q].x,
 								y :  udateUserList[q].y,
-								avatarSeq : udateUserList[q].avatarSeqx
+								avatarSeq : udateUserList[q].avatarSeqx,
+								userStatus : "normal"
 							}
 						userLsit.push(arr); console.log("break"); 	
 					}
@@ -136,7 +135,8 @@ function connect() {
 								userColor :  udateUserList[i].userColor,
 								x :  udateUserList[i].x,
 								y :  udateUserList[i].y,
-								avatarSeq : udateUserList[i].avatarSeq
+								avatarSeq : udateUserList[i].avatarSeq,
+								userStatus : "normal"
 							}
 							userLsit.push(arr)
 							console.log(JSON.stringify("arr :: " + arr))
@@ -366,25 +366,48 @@ function draw(){
 			let contact = users[e].x < user.x + 25 && users[e].x > user.x - 25 && users[e].y < user.y + 25 && users[e].y > user.y - 25
 			
 			if(contact){
-				shoCamDiv(true)
+				if(users[e].userStatus == "normal"){
+					shoCamDiv(true,users[e].infrMmSeq,user.infrMmSeq)
+					users[e].userStatus = "onCam"
+					user.userStatus = "onCam"	
+				}else{
+					console.log("상대가 화상채팅중 입니다. 대상 :: " + camwith)
+				}
 			}else{
-				shoCamDiv(false)
-			}	
+				shoCamDiv(false,users[e].infrMmSeq,user.infrMmSeq)
+				users[e].userStatus = "normal"
+				user.userStatus = "normal"
+			}
 		}
 	}
 }
-function shoCamDiv(event){
+function shoCamDiv(event,you,me){
+	
 	if(event){
-		$('#camDiv').show()
+		$('#camDiv').fadeIn("fast")
+		camwith = you
+		$('.yourCam').val(you)
+		$('.myCam').val(me)
 	}else{
-		$('#camDiv').hide()
+		$('#camDiv').fadeOut("fast")
+		camwith = null;
+		$('.yourCam').val(null)
+		$('.myCam').val(null)
 	}
 }
 
 setInterval(draw, 50);
 
 
-
+function fullCamDiv(){
+	$('#fullCamDiv').fadeIn("fast")
+}
+function fullCamDivOff(){
+	$('#fullCamDiv').fadeOut("fast")
+}
+function whosCam(e){
+	console.log("whosCam :: "+$(e).val())
+}
 	
 		
 			

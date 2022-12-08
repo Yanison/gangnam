@@ -20,12 +20,12 @@
 	 
 	 <div id="camDiv" class="camDiv" style="display:none;">
 		<div class="littleCamDiv" onclick="fullCamDiv()">
-			<div class="cam">
+			<div class="cam myCam" onclick="whosCam(this)">
 				cam
 			</div>
 		</div>
 		<div class="littleCamDiv" onclick="fullCamDiv()">
-			<div class="cam">
+			<div class="cam yourCam" onclick="whosCam(this)">
 				cam
 			</div>
 		</div>
@@ -57,6 +57,34 @@
 			<input type="text" class="inputMsg" name="msg" id="inputMsg" placeholder="Message..." onkeypress="sendMsg(event)">
 		</div>
 	</article>
+	
+	<div id="fullCamDiv" class="fullCamDiv" style="display:none;">
+		<div class="fullCamDivHeader" onclick="fullCamDivOff()">
+			전체화면 종료
+			<!-- <div class="left">
+				<span></span>
+			</div>
+			<div class="right">
+				<span></span>
+			</div> -->
+		</div>
+		<section class="top">
+			<div class="left">
+				<div id="littleCamDiv" class="littleCamDiv">
+					<div id="myCam" class="cam myCam" onclick="whosCam(this)">
+						cam
+					</div>
+				</div>
+			</div>
+			<div class="right">
+				<div id="bigCam" class="bigCam">
+					<div id="yourCam" class="cam yourCam" onclick="whosCam(this)">
+						cam
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
 </div>
 <section class="bottom div2 utilDiv" style="width:1300px;">
 	<div class="left">
@@ -85,6 +113,8 @@
 		</div>
 	</div>
 </section>
+
+	
 </body>
 </html>
 <script src="/resources/user/sgworld/js/sgWorldDiv.js"></script>
