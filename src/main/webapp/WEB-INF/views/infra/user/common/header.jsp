@@ -23,7 +23,6 @@
 				<c:otherwise>
 					<li class="logedIn" style="margin-left:20px"><span style="font-weight:600;"><c:out value="${infrMmName}"/></span> 님</li>
 					<li class="logedIn"><button id="logOutBtn" onClick="userLogOut()">로그아웃</button></li>
-					<li class="logedIn" ><a onclick="goMp()">마이페이지</a></li>
 
 					<%-- <form name="formm" method="post">
 						<input type="hidden" id="sessMmSeq" name="infrMmSeq" value="${infrMmSeq}" onchange="isSssValThere('#sessMmSeq')">
