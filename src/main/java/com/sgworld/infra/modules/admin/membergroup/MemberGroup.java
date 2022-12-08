@@ -351,6 +351,15 @@ public class MemberGroup extends Base{
 		this.pseq = pseq;
 	}
 	
+	//공통코드(이메일 사용)
+	private String infrCcNameEng;
+
+	public String getInfrCcNameEng() {
+		return infrCcNameEng;
+	}
+	public void setInfrCcNameEng(String infrCcNameEng) {
+		this.infrCcNameEng = infrCcNameEng;
+	}
 	
 	
 	

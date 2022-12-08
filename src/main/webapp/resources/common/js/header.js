@@ -30,6 +30,12 @@ function userLogOut(){
 	
 }
 
+function goMp(){
+	var mmSeq = $('#sessMmSeq').val()
+	console.log("../member/memberView?infrMmSeq="+mmSeq)
+	//location.href="../member/memberView?infrMmSeq="+mmSeq
+}
+
 
 function isSssValThere(str){
 	var sessMmId = $(str).val();

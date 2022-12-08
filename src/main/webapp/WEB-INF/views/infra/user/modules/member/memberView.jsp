@@ -87,7 +87,7 @@
 						<div class="inputBox">
 							<label class="label">이메일</label>
 							 <input class="form-control" type="text"
-							 id="infrMmEmailId" name="infrMmEmailId" value="<c:out value="${item.infrMmEmailId }"/>"
+							 id="infrMmEmailId" name="infrMmEmailId" value="<c:out value="${item.infrMmEmailId }"/>@<c:out value="${item.infrCcNameEng }"/>" 
 							 >
 						</div>
 						<div class="inputBox">
@@ -124,9 +124,22 @@
 <!-- jquery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script>
+	$(document).ready(function(){
+		console.log('doc ready')
+		$.ajax({
+			data:{'infrMmSeq':$('#sessMmSeq').val()},
+			url:'/member/memberView',
+			type:'get',
+			success:function(rp){
+			}
+			,error:function(){}
+		})
+	})
+	
 	$("#modifyBtn").on("click" , function(){
 		form.attr("action" ,goUrlMemberUpdate).submit();
 	});	
+	
 </script>
 
 

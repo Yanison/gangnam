@@ -108,5 +108,10 @@ public class MemberGroupDao {
 		return sqlSession.selectList(namespace +".selectListUploaded", vo);
 	}
 	
+	//user_마이페이지 정보 가져오기
+	public MemberGroup selectMember(MemberGroupVo vo){
+		return sqlSession.selectOne(namespace +".selectMember", vo);
+	}
+	
 	
 }

@@ -225,6 +225,11 @@ public class MemberGroupServiceImpl implements MemberGroupService {
 	public List<MemberGroup> selectListUploaded(MemberGroupVo vo) throws Exception {
 		return mmDao.selectListUploaded(vo);
 	}
+
+	@Override
+	public MemberGroup selectMember(MemberGroupVo vo) throws Exception {
+		return mmDao.selectMember(vo);
+	}
 	
 	
 	

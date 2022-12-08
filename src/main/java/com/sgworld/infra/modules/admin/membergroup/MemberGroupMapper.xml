@@ -274,5 +274,18 @@
 			AND infrMmSeq = #{infrMmSeq}	
 	</select>
 	
+	<!-- 유저_마이페이지 정보 가져오기 -->
+	<select id="selectMember" resultMap="MemberGroup">
+		SELECT
+			a.infrMmEmailId
+		    ,a.infrMmNickname
+		    ,a.infrMmPhone
+			,a.infrMmBod
+		    ,(SELECT infrCcNameEng FROM infrCode aa where 1=1 AND aa.infrCcSeq =a.infrMmEmailAddress)as infrCcNameEng
+		FROM infrMember a 
+			WHERE 1=1
+			AND infrMmSeq = #{infrMmSeq}
+	</select>
+	
 	
 </mapper>

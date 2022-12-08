@@ -71,7 +71,9 @@ public class BoardController {
 	
 	//계시판 리스트
 	@RequestMapping(value = "boardList")
-	public String boardList(@ModelAttribute("vo") AdminBoardVo vo, Model model) throws Exception {
+	public String boardList(@ModelAttribute("vo") AdminBoardVo vo, Model model ,SgwDto sgwDto) throws Exception {
+		
+		getSss(model,sgwDto);
 		
 		vo.setParamsPaging(service.selectOneCount(vo));
 		List<AdminBoardDto> list = service.selectList(vo);
@@ -89,7 +91,9 @@ public class BoardController {
 	//게시글 보기
 	@RequestMapping(value = "boardView/{bdSeq}")
 	public String boardView(@ModelAttribute("vo") AdminBoardVo vo, AdminBoardDto dto, Model model,
-				@PathVariable String bdSeq) throws Exception {
+				@PathVariable String bdSeq ,SgwDto sgwDto) throws Exception {
+		
+		getSss(model,sgwDto);
 		
 		service.boardViewCount(dto); //조회수
 		
@@ -131,7 +135,8 @@ public class BoardController {
 	
 	//게시판 글쓰기
 	@RequestMapping(value = "boardWrite")
-	public String boardWrite() {
+	public String boardWrite(SgwDto sgwDto,Model model) {
+		getSss(model,sgwDto);
 		return "infra/user/modules/board/boardRegForm"; 
 	}
 
