@@ -62,5 +62,8 @@ public interface MemberGroupService {
 	public MemberGroup selectCheck(MemberGroupVo vo)throws Exception;
 	
 	List<MemberGroup>selectListUploaded(MemberGroupVo vo)throws Exception;
+	
+	//user 마이페이지 정보 보여주기
+	public MemberGroup selectMember(MemberGroupVo vo)throws Exception;
 
 }

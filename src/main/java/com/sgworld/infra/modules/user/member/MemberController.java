@@ -36,7 +36,7 @@ public class MemberController {
 	@RequestMapping(value="memberView")
 	public String memberView(@ModelAttribute("vo") MemberGroupVo vo , Model model)throws Exception {
 		
-		MemberGroup item = service.selectMmOne(vo);
+		MemberGroup item = service.selectMember(vo);
 		model.addAttribute("item", item);
 		return "infra/user/modules/member/memberView";
 	}

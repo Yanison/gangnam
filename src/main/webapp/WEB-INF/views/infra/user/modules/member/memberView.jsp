@@ -87,7 +87,7 @@
 						<div class="inputBox">
 							<label class="label">이메일</label>
 							 <input class="form-control" type="text"
-							 id="infrMmEmailId" name="infrMmEmailId" value="<c:out value="${item.infrMmEmailId }"/>"
+							 id="infrMmEmailId" name="infrMmEmailId" value="<c:out value="${item.infrMmEmailId }"/>@<c:out value="${item.infrCcNameEng }"/>" 
 							 >
 						</div>
 						<div class="inputBox">
