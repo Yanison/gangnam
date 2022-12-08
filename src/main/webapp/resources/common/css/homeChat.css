@@ -1,0 +1,44 @@
+.sideChatDiv{
+	position: absolute;
+    width: 300px;
+    height: 400px;
+    right: -320px;
+    top: 0;
+    box-shadow: 6px 6px 12px -5px rgb(88 88 88);
+}
+.sideChatDiv table{
+	width:100%;
+	height:100%;
+}
+.sideChatDiv .chatHeader{
+	width:100%;
+	height:30px;
+	background:var(--mC-blue);
+	text-align:center;
+	color:#fff;
+	line-height:30px;
+}
+.sideChatDiv .chatBody{
+	width:100%;
+	height:calc(100% - 60px);
+	background:#fff;
+	display: flex;
+	flex-direction: column-reverse;
+	overflow:scroll;
+}
+.sideChatDiv .chatText{
+	width:100%;
+	height:20px !important;
+}
+.sideChatDiv .chatFoot{
+	width:100%;
+	height:40px;
+	padding:3px;
+}
+.sideChatDiv .chatFoot input{
+	width:100%;
+	height:100%;
+	border:none;
+	border-top:1px solid #dedede;
+	padding:5px;
+}

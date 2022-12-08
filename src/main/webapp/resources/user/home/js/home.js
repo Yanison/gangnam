@@ -50,9 +50,18 @@ function connect(){
 			console.log(endPoint+" = "+howManyUsers)
 			
 			$("#"+endPoint+" em").text(howManyUsers)
-		})	
+		})
+		
+		stompClient.subscribe('/topic/home/chat',function(msg){
+			var msg = JSON.parse(msg.body);
+			appendChat(msg)
+		})
 	})
 }
+
+
+
+
 
 function addSGW(sgwSeq){
 	var html = "";

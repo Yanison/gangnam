@@ -33,6 +33,10 @@ public class SgwWSController {
 		SgwDto selectSgwOne = sgwService.findSgwbyMmSeq(sgwDto);
 		this.template.convertAndSend("/topic/createSgworldDiv", selectSgwOne);
 	}
+	@MessageMapping(value="/home/chat")
+	public void homeChat(SgwChat sgwChat)throws Exception {
+		this.template.convertAndSend("/topic/home/chat", sgwChat);
+	}
 	@MessageMapping(value="usersNum/{endPoint}")
 	public synchronized void usersNum(String num,@DestinationVariable String endPoint)throws Exception {
 		

@@ -276,13 +276,15 @@ var ballRadius = 10;
 function draw(){
 	
 	let users = this.users
-	
+		
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	for(var i = 0 ; i <users.length ; i ++){
 		ctx.beginPath();
 	    ctx.arc(users[i].x, users[i].y, ballRadius, 0, Math.PI*2);
 	    ctx.fillStyle = colArr[i];
 	    ctx.fill();
+	    ctx.font = "10px Arial";
+		ctx.fillText(users[i].infrMmNickname, users[i].x-(ballRadius+5), users[i].y-(ballRadius+2));
 	    ctx.closePath();
 	}
 	
@@ -360,7 +362,6 @@ function draw(){
         }
         sendLocation(user);
     }
-    
     for(var e = 0 ; e  < users.length; e ++){
 		if(users[e].infrMmSeq != user.infrMmSeq){
 			let contact = users[e].x < user.x + 25 && users[e].x > user.x - 25 && users[e].y < user.y + 25 && users[e].y > user.y - 25
@@ -393,6 +394,7 @@ function shoCamDiv(event,you,me){
 		camwith = null;
 		$('.yourCam').val(null)
 		$('.myCam').val(null)
+		$('#fullCamDiv').fadeOut("fast")
 	}
 }
 
@@ -407,6 +409,33 @@ function fullCamDivOff(){
 }
 function whosCam(e){
 	console.log("whosCam :: "+$(e).val())
+}
+
+function onoff(e){
+	var option = $(e).attr("id")
+	
+	switch(option){
+		case "micOff":
+			console.log("micOff")
+			$('.onOffMic').css("color","#fff")
+			$('#'+option).css("color","#ac3b49")
+			break;
+		case "micOn":
+			console.log("micOn")
+			$('.onOffMic').css("color","#fff")
+			$('#'+option).css("color","#4d9d85")
+			break;
+		case "camOff":
+			console.log("camOff")
+			$('.onOffCam').css("color","#fff")
+			$('#'+option).css("color","#ac3b49")
+			break;
+		case "camOn":
+			console.log("camOn")
+			$('.onOffCam').css("color","#fff")
+			$('#'+option).css("color","#4d9d85")
+			break;
+	}
 }
 	
 		

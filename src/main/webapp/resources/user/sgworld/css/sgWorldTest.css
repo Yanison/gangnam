@@ -1,4 +1,6 @@
 body{
+	padding: 0px; 
+	margin: 0px;
 	background:#333A64;
 	position:relative;
 	overflow: hidden;
@@ -9,6 +11,26 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+.mainDiv{
+	position:absolute;
+	width:100%;
+	display:flex;
+	flex-direction:column;
+	justify-content:center;
+	align-items:center;
+	z-index: 1;
+}
+video.backgroundVid {
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 102%;
+    overflow: hidden;
+    margin: 0px auto;
+    z-index: 0;
+    object-fit: none;
+    transform: translate(-50%, -50%);
 }
 
 div, span, ul, li, a {
@@ -259,11 +281,13 @@ div, span, ul, li, a {
 
 .fullCamDiv{
 	width: 1304px;
-    height: 957px;
+    height: 756px;
     background: #333A64;
     position: absolute;
-    top: 0;
-    left: 52px;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
 }
 .fullCamDiv .top{
 	width:100%;

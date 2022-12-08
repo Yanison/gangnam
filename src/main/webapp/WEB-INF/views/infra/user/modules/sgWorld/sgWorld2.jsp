@@ -15,6 +15,7 @@
 <input type="hidden" id="infrMmNickname" value="<c:out value="${infrMmNickname}"/>">
 <input type="hidden" id="endPoint" value="<c:out value="${endPoint}"/>">
 <input type="hidden" id="sgwSeq" value="<c:out value="${sgwSeq}"/>">
+<div class="mainDiv">
 <div class="wrapper" style="display:flex; height:93%">
 	 <canvas id = "myCanvas" width ="1024" height = "768" style="background:#fff"></canvas>
 	 
@@ -57,55 +58,26 @@
 			<input type="text" class="inputMsg" name="msg" id="inputMsg" placeholder="Message..." onkeypress="sendMsg(event)">
 		</div>
 	</article>
-	
-	<div id="fullCamDiv" class="fullCamDiv" style="display:none;">
-		<div class="fullCamDivHeader" onclick="fullCamDivOff()">
-			전체화면 종료
-			<!-- <div class="left">
-				<span></span>
-			</div>
-			<div class="right">
-				<span></span>
-			</div> -->
-		</div>
-		<section class="top">
-			<div class="left">
-				<div id="littleCamDiv" class="littleCamDiv">
-					<div id="myCam" class="cam myCam" onclick="whosCam(this)">
-						cam
-					</div>
-				</div>
-			</div>
-			<div class="right">
-				<div id="bigCam" class="bigCam">
-					<div id="yourCam" class="cam yourCam" onclick="whosCam(this)">
-						cam
-					</div>
-				</div>
-			</div>
-		</section>
-	</div>
 </div>
 <section class="bottom div2 utilDiv" style="width:1300px;">
 	<div class="left">
 		<img id="sgLogo"class="sgLogo" src="/../../resources/common/images/sgLogo.png">
 		
 		<div class="divContents">
-			<i class="fa-solid fa-microphone-lines"></i>
-			<i class="fa-solid fa-microphone-lines-slash"></i>
+			<i class="fa-solid fa-microphone-lines onOffMic" id="micOff" onclick="onoff(this)" value="0"></i>
+			<i class="fa-solid fa-microphone-lines-slash onOffMic" id="micOn" onclick="onoff(this)" value="1"></i>
 		</div>
 		<div class="divContents">
-			<i class="fa-solid fa-video-slash"></i>
-			<i class="fa-solid fa-video"></i>
+			<i class="fa-solid fa-video-slash onOffCam" id="camOff" onclick="onoff(this)" value="0"></i>
+			<i class="fa-solid fa-video onOffCam" id="camOn" onclick="onoff(this)" value="1"></i>
 		</div>
 	</div>
 	<div class="right">
 		<div class="divContents" style="width:80px;" >
 			<!-- onclick="fullCamDivOff()" -->
 			<i class="fa-solid fa-users"></i>
-			<em id="usersNum"style="font-size:15px;" onclick="sendUsersNum()">#</em>
+			<em id="usersNum"style="font-size:15px;">#</em>
 			<input type="hidden" id="ipUsersNum" onchange="sendUsersNum()">
-			
 		</div>
 		<div style="font-size:26px; color:#333A64; font-weight:700;">|</div>
 		<div class="divContents" style="width:56px;" onclick="confirmLeaving()">
@@ -114,9 +86,41 @@
 	</div>
 </section>
 
-	
+</div>
+
+<div id="fullCamDiv" class="fullCamDiv" style="display:none;">
+	<div class="fullCamDivHeader" onclick="fullCamDivOff()">
+		전체화면 종료
+		<!-- <div class="left">
+			<span></span>
+		</div>
+		<div class="right">
+			<span></span>
+		</div> -->
+	</div>
+	<section class="top">
+		<div class="left">
+			<div id="littleCamDiv" class="littleCamDiv">
+				<div id="myCam" class="cam myCam" onclick="whosCam(this)">
+					cam
+				</div>
+			</div>
+		</div>
+		<div class="right">
+			<div id="bigCam" class="bigCam">
+				<div id="yourCam" class="cam yourCam" onclick="whosCam(this)">
+					cam
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+
+  <video muted autoplay loop class="backgroundVid">
+    <source src="/resources/common/video/space.mp4" type="video/mp4">
+    <strong>Your browser does not support the video tag.</strong>
+  </video>
 </body>
 </html>
-<script src="/resources/user/sgworld/js/sgWorldDiv.js"></script>
 <script src="/resources/user/sgworld/js/sgWorldRequets.js"></script>
 <script src="/resources/user/sgworld/js/sgWorld.js"></script>
