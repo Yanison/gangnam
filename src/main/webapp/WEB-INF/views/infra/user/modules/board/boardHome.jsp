@@ -41,7 +41,7 @@
 						<c:if test="${resultInfo.frstRegisterPnttm>=nowday }"><span>NOW</span></c:if> <!-- 작성상태(최신글, 조회수 높은 글 등) -->
 					</div>
 					<div class="title1">
-						<p class="bdTitle" onClick="goBoardView(<c:out value="${list.bdSeq}"/>)">
+						<p class="bdTitle" style="cursor: pointer" onClick="goBoardView(<c:out value="${list.bdSeq}"/>)">
 							<c:out value="${list.bdTitle }"/>
 						</p>
 						<!-- <p > 
