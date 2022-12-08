@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -17,6 +18,8 @@ import com.sgworld.infra.modules.admin.avatar.AdminAvatarServiceImpl;
 import com.sgworld.infra.modules.admin.membergroup.MemberGroup;
 import com.sgworld.infra.modules.admin.membergroup.MemberGroupServiceImpl;
 import com.sgworld.infra.modules.admin.membergroup.MemberGroupVo;
+import com.sgworld.infra.modules.user.sgWorld.SgwSerivceImpl;
+import com.sgworld.infra.modules.user.sgWorld.sgwdto.SgwDto;
 
 @Controller
 @RequestMapping(value = "/member/")
@@ -28,17 +31,74 @@ public class MemberController {
 	@Autowired
 	AdminAvatarServiceImpl servicee;
 	
+	@Autowired
+	SgwSerivceImpl sgwService;
 
 	@Autowired
 	HttpSession session;
 	
+	public void getSss(Model model,SgwDto sgwDto) {
+		Object infrMmId = session.getAttribute("infrMmId");
+		Object infrMmName = session.getAttribute("infrMmName");
+		String infrMmSeq = (String) session.getAttribute("infrMmSeq");
+		Object infrMmNickname = session.getAttribute("infrMmNickname");
+		model.addAttribute("infrMmSeq", infrMmSeq);
+		model.addAttribute("infrMmName", infrMmName);
+		model.addAttribute("infrMmName", infrMmNickname);
+		model.addAttribute("infrMmId", infrMmId);
+		
+		try {
+			if(infrMmSeq != null) {
+				sgwDto.setInfrMmSeq(infrMmSeq);
+				String sessSgw = sgwService.findSgwbyMmSeq(sgwDto).getRegByMm();
+				System.out.println("sessSgw ::" + sessSgw);
+				if(sessSgw != null) {
+					System.out.println("sessSgw != null :: " + (sessSgw != null));
+					System.out.println("sessSgw :: "+sessSgw);
+					System.out.println("infrMmSeq :: "+infrMmSeq);
+					model.addAttribute("sessSgw", sessSgw);
+				}else {
+					System.out.println("sessSgw != null :: " + (sessSgw != null));
+					model.addAttribute("sessSgw", null);
+				}
+			}else {
+				System.out.println("infrMmSeq != null :: " + (infrMmSeq != null));
+				model.addAttribute("sessSgw", null);
+			}
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	//내 정보 보기
 	@RequestMapping(value="memberView")
-	public String memberView(@ModelAttribute("vo") MemberGroupVo vo , Model model)throws Exception {
+	public String memberView(@ModelAttribute("vo") MemberGroupVo vo , Model model ,SgwDto sgwDto)throws Exception {
 		
-		MemberGroup item = service.selectMmOne(vo);
+		getSss(model,sgwDto);
+//		String infrMmSeq = (String) session.getAttribute("infrMmSeq");
+//		vo.setInfrMmSeq(infrMmSeq);
+		System.out.println("mmseq :: "+vo.getInfrMmSeq());
+		
+		MemberGroup item = service.selectMember(vo);
+		
+		//System.out.println("mmseq ph"+item.getInfrMmPhone());
+		
 		model.addAttribute("item", item);
+		
+		
 		return "infra/user/modules/member/memberView";
+	}
+	
+	@RequestMapping(value="rqMemberView/{seq}")
+	public MemberGroup rqMemberView(@ModelAttribute("vo") MemberGroupVo vo , Model model ,SgwDto sgwDto,@PathVariable String seq)throws Exception {
+		
+		System.out.println("mmseq :: "+vo.getInfrMmSeq());
+		MemberGroup item = service.selectMember(vo);
+		
+		System.out.println("mmseq ph"+item.getInfrMmPhone());
+		return item;
 	}
 	
 	//내 정보 보기_정보 수정
@@ -51,7 +111,8 @@ public class MemberController {
 	
 	//내정보_아바타 수정 화면가기
 	@RequestMapping(value="memberAvartar")
-	public String memberAvartar(@ModelAttribute("vo") MemberGroupVo vo, Model model)throws Exception {
+	public String memberAvartar(@ModelAttribute("vo") MemberGroupVo vo, Model model ,SgwDto sgwDto)throws Exception {
+		getSss(model,sgwDto);
 		MemberGroup item = service.selectCheck(vo);
 		model.addAttribute("item",item);
 		model.addAttribute("listUploaded", service.selectListUploaded(vo));
@@ -80,8 +141,8 @@ public class MemberController {
 		
 	//내정보_내 글 조회
 	@RequestMapping(value="memberPostComment")
-	public String memberPostComment(@ModelAttribute("vo") MemberGroupVo vo , Model model ,MemberGroup dto)throws Exception {
-		
+	public String memberPostComment(@ModelAttribute("vo") MemberGroupVo vo , Model model ,MemberGroup dto,SgwDto sgwDto)throws Exception {
+		getSss(model,sgwDto);
 		vo.setParamsPaging(service.selectCount(vo));
 		List<MemberGroup>list = service.selectListBoard(vo);
 		model.addAttribute("list", list);
@@ -91,8 +152,8 @@ public class MemberController {
 		
 	//내정보_회원탈퇴하기
 	@RequestMapping(value="memberWithdraw")
-	public String memberWithdraw()throws Exception {
-
+	public String memberWithdraw( Model model ,SgwDto sgwDto)throws Exception {
+		getSss(model,sgwDto);
 		return "infra/user/modules/member/memberWithdraw";
 	}
 	

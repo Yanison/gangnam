@@ -42,9 +42,16 @@ function goWrite(){
 }
 
 function goMemberView(){
-	location.href="../member/memberView"
+	var mmSeq = $('#sessMmSeq').val()
+	console.log("../member/memberView?infrMmSeq="+mmSeq)
+	//location.href="../member/memberView?infrMmSeq="+mmSeq
 }
 
+function goMp(){
+	var mmSeq = $('#sessMmSeq').val()
+	console.log("../member/memberView?infrMmSeq="+mmSeq)
+	//location.href="../member/memberView?infrMmSeq="+mmSeq
+}
 //var goUrlView = "/member/memberView";
 //var form = $("form[name=form]");
 //var seq = $("input:hidden[name=infrMmSeq]");
