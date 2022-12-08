@@ -51,7 +51,20 @@ function goWrite(){
 }
 
 
+var goUrlView = "/member/memberView?infrMmSeq=";
 
+var form = $("form[name=form]");
+var seq = $("input:hidden[name=infrMmSeq]");
+
+goMemberView = function(keyValue) {
+	seq.val(keyValue);
+	form.attr("action", goUrlView).submit();
+}
+
+function goMp(){
+	var sessMmSeq = $('.hiddenGroup #sessMmSeq').val()
+	location.href=goUrlView+sessMmSeq
+}
 
 function myPage(){
 	$.ajax({

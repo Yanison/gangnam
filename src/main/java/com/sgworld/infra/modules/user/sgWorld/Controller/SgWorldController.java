@@ -81,7 +81,6 @@ public class SgWorldController {
 		SgwDto onLoadInfoSgw = sgwService.onLoadInfoSgw(sgwDto);
 		String sgwSeq = onLoadInfoSgw.getSgwSeq();
 		model.addAttribute("sgwSeq",sgwSeq);
-		sgwWSController.usersNum(onLoadInfoSgw);
 //		List<SgwDto>userArrList = AvatarControllVo.userArrList;
 //		userArrList.add(onLoadInfoSgw);
 		

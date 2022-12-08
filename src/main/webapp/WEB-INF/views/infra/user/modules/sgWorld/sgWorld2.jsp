@@ -26,7 +26,7 @@
 		<div class="showNumPeople">
 			<div>
 				<i  class="fa-solid fa-location-dot"></i>
-				<em id="usersNum2" style="font-size:14px;">num</em>
+				<em id="usersNum2" style="font-size:14px;" >num</em>
 			</div>
 		</div>
 		<div class="chat" id="sgwChat">
@@ -59,10 +59,12 @@
 		</div>
 	</div>
 	<div class="right">
-		<div class="divContents" style="width:80px;" onclick="sendUserList()">
+		<div class="divContents" style="width:80px;" >
 			<!-- onclick="fullCamDivOff()" -->
 			<i class="fa-solid fa-users"></i>
-			<em id="usersNum"style="font-size:15px;">#</em>
+			<em id="usersNum"style="font-size:15px;" onclick="usersNumChage()">#</em>
+			<input type="hidden" id="ipUsersNum" onchange="usersNumChage()">
+			
 		</div>
 		<div style="font-size:26px; color:#333A64; font-weight:700;">|</div>
 		<div class="divContents" style="width:56px;" onclick="confirmLeaving()">

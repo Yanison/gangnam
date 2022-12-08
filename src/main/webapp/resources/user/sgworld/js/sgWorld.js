@@ -1,5 +1,7 @@
 $(window).on("beforeunload",function(){
+	
 	leaveAndDel()
+	usersNumChage()
 	disconnect() 
 })
 
@@ -104,6 +106,8 @@ function connect() {
 			var udateUserList = JSON.parse(udateUserList.body);
 			console.log("udateUserList :: "+JSON.stringify(udateUserList) + "// usersNum :: "  + udateUserList.x)
 			$('em#usersNum,em#usersNum2').text(udateUserList[0].usersNum)
+			$('#ipUsersNum').val(udateUserList[0].usersNum)
+			usersNumChage()
 			this.users = []
 			var userLsit=[];
 			loopi:for(var i = 0 ; i < udateUserList.length; i ++){
@@ -162,12 +166,34 @@ function connect() {
 		});
 		
 		send(endPoint,infrMmSeq)
+		
+		
     });
 }
 
 function send(ep,seq) {
 	data={'infrMmSeq' : infrMmSeq}
 	stompClient.send("/app/sgWorld/msgTo/" +ep+"/requestOnloadInfo",{},JSON.stringify(data));
+}
+function usersNumChage(){
+	console.log($('#ipUsersNum').val())
+	 $('#ipUsersNum').change(function(){
+		var arr={
+			'usersNum':$('#ipUsersNum').val()
+			,'endPoint':endPoint
+			}
+		console.log("arr :: "+JSON.stringify(arr))
+		stompClient.send("/app/usersNum/"+endPoint,{},JSON.stringify(arr));
+	})
+}
+
+function sendUsersNum(){
+	var arr={
+		'usersNum':$('#usersNum').text()
+		,'endPoint':endPoint
+	}
+	console.log("arr :: "+JSON.stringify(arr))
+	stompClient.send("/app/usersNum/"+endPoint,{},JSON.stringify(arr));
 }
 function leaveAndDel() {
 	var users = this.users;

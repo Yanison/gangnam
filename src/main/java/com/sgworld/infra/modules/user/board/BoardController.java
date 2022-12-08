@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +20,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.sgworld.infra.modules.admin.board.AdminBoardDto;
 import com.sgworld.infra.modules.admin.board.AdminBoardServiceImpl;
 import com.sgworld.infra.modules.admin.board.AdminBoardVo;
+import com.sgworld.infra.modules.user.sgWorld.SgwSerivceImpl;
+import com.sgworld.infra.modules.user.sgWorld.sgwdto.SgwDto;
 
 @Controller
 @RequestMapping(value = "/board/")
@@ -25,6 +29,45 @@ public class BoardController {
 	
 	@Autowired
 	AdminBoardServiceImpl service;
+	@Autowired
+	SgwSerivceImpl sgwService;
+	@Autowired
+	HttpSession session;
+	
+	public void getSss(Model model,SgwDto sgwDto) {
+		Object infrMmId = session.getAttribute("infrMmId");
+		Object infrMmName = session.getAttribute("infrMmName");
+		String infrMmSeq = (String) session.getAttribute("infrMmSeq");
+		Object infrMmNickname = session.getAttribute("infrMmNickname");
+		model.addAttribute("infrMmSeq", infrMmSeq);
+		model.addAttribute("infrMmName", infrMmName);
+		model.addAttribute("infrMmName", infrMmNickname);
+		model.addAttribute("infrMmId", infrMmId);
+		
+		try {
+			if(infrMmSeq != null) {
+				sgwDto.setInfrMmSeq(infrMmSeq);
+				String sessSgw = sgwService.findSgwbyMmSeq(sgwDto).getRegByMm();
+				System.out.println("sessSgw ::" + sessSgw);
+				if(sessSgw != null) {
+					System.out.println("sessSgw != null :: " + (sessSgw != null));
+					System.out.println("sessSgw :: "+sessSgw);
+					System.out.println("infrMmSeq :: "+infrMmSeq);
+					model.addAttribute("sessSgw", sessSgw);
+				}else {
+					System.out.println("sessSgw != null :: " + (sessSgw != null));
+					model.addAttribute("sessSgw", null);
+				}
+			}else {
+				System.out.println("infrMmSeq != null :: " + (infrMmSeq != null));
+				model.addAttribute("sessSgw", null);
+			}
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 	//계시판 리스트
 	@RequestMapping(value = "boardList")

@@ -1,6 +1,6 @@
 
 $(document).ready(function(){
-//connect()
+connect()
 })
 
 function showModal(){
@@ -46,8 +46,11 @@ function connect(){
 		
 		stompClient.subscribe('/topic/usersNum',function(howManyUsers){
 			var howManyUsers = JSON.parse(howManyUsers.body);
-			$(".sgwSeqDiv"+howManyUsers.sgwSeq +" em.usersNum").text(howManyUsers.usersNum)
-		})
+			var endPoint =$('#'+howManyUsers.endPoint)
+			console.log("howManyUsers :: "+JSON.stringify(howManyUsers))
+			console.log("endPoint" + endPoint)
+			$("#"+endPoint).text(howManyUsers.usersNum)
+		})	
 	})
 }
 

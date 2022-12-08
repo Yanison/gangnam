@@ -17,6 +17,8 @@ import com.sgworld.infra.modules.admin.avatar.AdminAvatarServiceImpl;
 import com.sgworld.infra.modules.admin.membergroup.MemberGroup;
 import com.sgworld.infra.modules.admin.membergroup.MemberGroupServiceImpl;
 import com.sgworld.infra.modules.admin.membergroup.MemberGroupVo;
+import com.sgworld.infra.modules.user.sgWorld.SgwSerivceImpl;
+import com.sgworld.infra.modules.user.sgWorld.sgwdto.SgwDto;
 
 @Controller
 @RequestMapping(value = "/member/")
@@ -32,9 +34,49 @@ public class MemberController {
 	@Autowired
 	HttpSession session;
 	
+	@Autowired
+	SgwSerivceImpl sgwService;
+	
+	public void getSss(Model model,SgwDto sgwDto) {
+		Object infrMmId = session.getAttribute("infrMmId");
+		Object infrMmName = session.getAttribute("infrMmName");
+		String infrMmSeq = (String) session.getAttribute("infrMmSeq");
+		Object infrMmNickname = session.getAttribute("infrMmNickname");
+		model.addAttribute("infrMmSeq", infrMmSeq);
+		model.addAttribute("infrMmName", infrMmName);
+		model.addAttribute("infrMmName", infrMmNickname);
+		model.addAttribute("infrMmId", infrMmId);
+		
+		try {
+			if(infrMmSeq != null) {
+				sgwDto.setInfrMmSeq(infrMmSeq);
+				String sessSgw = sgwService.findSgwbyMmSeq(sgwDto).getRegByMm();
+				System.out.println("sessSgw ::" + sessSgw);
+				if(sessSgw != null) {
+					System.out.println("sessSgw != null :: " + (sessSgw != null));
+					System.out.println("sessSgw :: "+sessSgw);
+					System.out.println("infrMmSeq :: "+infrMmSeq);
+					model.addAttribute("sessSgw", sessSgw);
+				}else {
+					System.out.println("sessSgw != null :: " + (sessSgw != null));
+					model.addAttribute("sessSgw", null);
+				}
+			}else {
+				System.out.println("infrMmSeq != null :: " + (infrMmSeq != null));
+				model.addAttribute("sessSgw", null);
+			}
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	//내 정보 보기
 	@RequestMapping(value="memberView")
-	public String memberView(@ModelAttribute("vo") MemberGroupVo vo , Model model)throws Exception {
+	public String memberView(@ModelAttribute("vo") MemberGroupVo vo , Model model,SgwDto sgwDto)throws Exception {
+		
+		getSss(model,sgwDto);
 		
 		MemberGroup item = service.selectMmOne(vo);
 		model.addAttribute("item", item);

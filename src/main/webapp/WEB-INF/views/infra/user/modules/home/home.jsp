@@ -35,7 +35,7 @@
 					  <c:forEach items="${sgwList}" var="sl" varStatus="status">
 					    <div class="col">
 						    <div class="SgWorldPreviewDiv">
-								<a class="SgWorldPreview" href="./sgWorld/join/${sl.sgwLink}">
+								<a id="${sl.sgwLink}" class="SgWorldPreview" href="./sgWorld/join/${sl.sgwLink}">
 									<img scr="/resources/common/images/pepe.png">
 								</a>
 								<div class="sgwTitle">

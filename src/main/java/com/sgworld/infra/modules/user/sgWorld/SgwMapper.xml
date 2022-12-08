@@ -81,7 +81,7 @@
 		and s.sgwLink = #{sgwLink}
 	</select>
 	<select id ="usersNum" resultMap="SgwDto">
-		select count(*) as usersNum,sgwSeq from sgWorldRoom where sgwSeq = ${sgwSeq}
+		select count(*) usersNum,s.sgwLink from sgWorldRoom sr left join sgWorld s on sr.sgwSeq = s.sgwSeq where sgwLink =  #{sgwLink};
 	</select>
 		
 	<update id="onLiveNy">

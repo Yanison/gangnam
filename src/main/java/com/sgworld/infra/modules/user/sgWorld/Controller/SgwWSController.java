@@ -26,7 +26,6 @@ import com.sgworld.infra.modules.user.sgWorld.sgwdto.SgwDto;
 public class SgwWSController {
 	@Autowired
 	SgwSerivceImpl sgwService;
-	private HttpSession session;
 	private SimpMessagingTemplate template;
 	@Autowired
 	public SgwWSController(SimpMessagingTemplate template) {
@@ -39,9 +38,19 @@ public class SgwWSController {
 		SgwDto selectSgwOne = sgwService.findSgwbyMmSeq(sgwDto);
 		this.template.convertAndSend("/topic/createSgworldDiv", selectSgwOne);
 	}
-	@MessageMapping(value="usersNum")
-	public void usersNum(SgwDto sgwDto)throws Exception {
-		SgwDto usersNum = sgwService.usersNum(sgwDto);
+	@MessageMapping(value="usersNum/{endPoint}")
+	public synchronized void usersNum(SgwDto sgwDto,@DestinationVariable String endPoint)throws Exception {
+//		sgwDto.setSgwLink(endPoint);
+//		SgwDto usersNum = sgwService.usersNum(sgwDto);
+		int num = sgwDto.getUsersNum();
+		System.out.println(
+				"usersNum :: "+sgwDto.getUsersNum()+ "\n" +
+				"endPoint :: "+ endPoint
+				);
+		HashMap<String,String> usersNum = new HashMap<String,String>();
+		usersNum.put("endPoint", endPoint);
+		usersNum.put("usersNum",String.valueOf(num));
+		
 		this.template.convertAndSend("/topic/usersNum", usersNum);
 	}
 	
@@ -113,7 +122,6 @@ public class SgwWSController {
 				 sgwDto.setOnLiveNy(0);
 				 sgwService.onLiveNy(onLoadInfoSgw);
 			 }
-			 usersNum(sgwDto);
 		 }catch(Exception e){
 			 e.printStackTrace();
 		 }
