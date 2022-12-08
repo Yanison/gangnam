@@ -28,7 +28,7 @@
 						<input type="hidden" id="sessMmSeq" name="infrMmSeq" value="${infrMmSeq}" onchange="isSssValThere('#sessMmSeq')">
 						<li class="logedIn" ><a href="javascript:goMemberView(<c:out value="${infrMmSeq }"/>)" >마이페이지</a></li>
 					</form> --%>
-					<li class="logedIn" ><a href="#" onclick="goMemberView()">마이페이지</a></li> 
+					<li class="logedIn" ><a href="#" onclick="goMp()">마이페이지</a></li> 
 					<%-- <li class="logedIn" ><a href="javascript:goMemberView(<c:out value="${infrMmSeq}"/>)" >마이페이지</a></li> --%>
 					<!-- <li class="logedIn"><button onclick="myPage()">마이페이지</button></li> -->
 				</c:otherwise>

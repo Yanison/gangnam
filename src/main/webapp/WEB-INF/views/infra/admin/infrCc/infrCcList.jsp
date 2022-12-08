@@ -102,6 +102,7 @@
 											</tr>
 										</thead>
 										<tbody>
+											<c:set var="listCodePersonaluseNy" value="${AdminCodeServiceImpl.selectListCachedCode('6')}"/><!--사용여부  -->
 											<c:choose>
 												<c:when test="${fn:length(list) eq 0 }">
 													<tr>	
@@ -117,7 +118,12 @@
 														<td><c:out value="${list.infrCcgNameKor }"/></td>
 														<td><a href="javascript:goView(<c:out value="${list.infrCcSeq }"/>)" class="text-decoration-none"><c:out value="${list.infrCcNameKor }"/></td>
 														<td><c:out value="${list.infrCcNameEng }"/></td>
-														<td><c:out value="${list.infrCcUseNy }"/></td>
+														<td>
+															<c:out value="${list.infrCcUseNy }"/> 
+															<%-- <c:forEach items="${listCodePersonaluseNy }" var="listUseNy" varStatus="statusUseNy">
+																<c:if test="${list.infrCcUseNy eq listUseNy.infrCcSeq }"><c:out value="${listUseNy.infrCcNameEng }" /></c:if>	
+															</c:forEach> --%>
+														</td>
 														<td><c:out value="${list.infrCcDelNy }"/></td>
 														<td></td>
 														<td></td>
