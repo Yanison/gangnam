@@ -34,10 +34,15 @@ public class SgwWSController {
 		System.out.println("ExchangeController :: ExchangeController");
 	}
 	
-	@RequestMapping(value="createSgworldDiv")
+	@MessageMapping(value="createSgworldDiv")
 	public void createSgworldDiv(SgwDto sgwDto)throws Exception {
 		SgwDto selectSgwOne = sgwService.findSgwbyMmSeq(sgwDto);
 		this.template.convertAndSend("/topic/createSgworldDiv", selectSgwOne);
+	}
+	@MessageMapping(value="usersNum")
+	public void usersNum(SgwDto sgwDto)throws Exception {
+		SgwDto usersNum = sgwService.usersNum(sgwDto);
+		this.template.convertAndSend("/topic/usersNum", usersNum);
 	}
 	
 	 @MessageMapping(value = "/sgWorld/chatroom/{endPoint}")
@@ -70,14 +75,16 @@ public class SgwWSController {
 	 
 	 @MessageMapping(value = "/sgWorld/msgTo/{endPoint}/requestOnloadInfo")
 	 public void requestOnloadInfo( @DestinationVariable String endPoint,SgwChat sgwChat)throws Exception {
-		 System.out.println("msg :: "+sgwChat.getSgwseq() +" // "+ sgwChat.getInfrMmSeq());
+		 System.out.println("msg :: "+sgwChat.getSgwSeq() +" // "+ sgwChat.getInfrMmSeq());
 		
 		 //SgwChat user = sgwService.findRoomMmOne(sgwChat);
 		 //template.convertAndSend("/topic/sgWorld/requestOnloadInfo/"+endPoint, user);
 		 
 		 sgwChat.setEndPoint(endPoint);
 		 List<SgwChat> userList = sgwService.findRoomMm(sgwChat);
+		 
 		 template.convertAndSend("/topic/sgWorld/"+endPoint+"/avatarWSControll/reRenderingUsers", userList);
+		 
 	 }
 	/*
 	 * 유저를 연결시켜주고 끝이 아니다. 실시시간으로 유저의 좌표를 서버와 통신받고 웹소켓 서버에 연결된 유저들에게 공유가되어야한다.
@@ -90,15 +97,23 @@ public class SgwWSController {
 	 
 	 @MessageMapping(value="/sgWorld/{endPoint}/avatarWSControll/leave")
 	 public void leaveTheRoom(@DestinationVariable String endPoint,SgwChat sgwChat,SgwDto sgwDto) {
-		 //String leaving = sgwChat.getInfrMmSeq();
-		 System.out.println("회원번호 "+ sgwChat.getInfrMmSeq()+"번 "+sgwChat.getInfrMmNickname()+" 님이 " +endPoint+ "방을 나갑니다.");
+		 String leaving = sgwChat.getInfrMmSeq();
+		 System.out.println("회원번호 "+ leaving+"번 "+sgwChat.getInfrMmNickname()+" 님이 " +endPoint+"("+sgwChat.getSgwSeq()+")"+ "방을 나갑니다.");
 		 try {
 			 int deleteMm = sgwService.deleteRoomUser(sgwChat);
 			 template.convertAndSend("/topic/sgWorld/"+endPoint+"/avatarWSControll/leave",deleteMm);
 			
-//			 if(leaving ==  sgwService.onLoadInfoSgw(sgwDto).getRegByMm()) {
-//				 
-//			 }
+			 sgwDto.setSgwLink(endPoint);
+			 SgwDto onLoadInfoSgw = sgwService.onLoadInfoSgw(sgwDto);
+			 String regByMm = onLoadInfoSgw.getRegByMm();
+			 System.out.println("isRegByMm??"+(leaving == regByMm) + "//getRegByMm :: "+ regByMm+" ,leaving :: "+leaving);
+			 
+			 if(String.valueOf(leaving) == String.valueOf(regByMm)) {
+				 System.out.println("isRegByMm?? " + (leaving == regByMm));
+				 sgwDto.setOnLiveNy(0);
+				 sgwService.onLiveNy(onLoadInfoSgw);
+			 }
+			 usersNum(sgwDto);
 		 }catch(Exception e){
 			 e.printStackTrace();
 		 }

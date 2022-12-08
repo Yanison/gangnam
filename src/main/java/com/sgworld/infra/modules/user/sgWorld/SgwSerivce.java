@@ -15,6 +15,7 @@ public interface SgwSerivce {
 	public SgwDto onLoadInfoSgw(SgwDto sgwDto)throws Exception;
 	public int onLiveNy(SgwDto sgwDto)throws Exception;
 	public int addUserSgwRoom(SgwDto sgwDto) throws Exception;
+	public SgwDto usersNum(SgwDto sgwDto) throws Exception;
 	/* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 	 * @@@@@@ sgw
 	 * @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

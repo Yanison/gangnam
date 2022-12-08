@@ -6,7 +6,9 @@
 <mapper namespace="com/sgworld/infra/modules/user/home/HomeMapper">
 	<resultMap id="homeDto" type="com.sgworld.infra.modules.user.home.HomeDto">
 	</resultMap>
-	<select id="selectSgwList" resultMap="homeDto">
+	<resultMap id="SgwDto" type="com.sgworld.infra.modules.user.sgWorld.sgwdto.SgwDto">
+	</resultMap>
+	<select id="selectSgwList" resultMap="SgwDto">
 		select
 		  s.sgwSeq
 		  ,s.sgwTitle
@@ -17,13 +19,13 @@
 		  ,s.regDateTime
 		  ,s.regByMm
 		  ,s.onLiveNy
+		  ,(select count(*) from sgWorldRoom sr where sr.sgwSeq = s.sgwSeq ) as usersNum
 		from sgWorld s
 		where 1=1
 		and onLiveNy = 1
 		order by sgwSeq
 		limit 6
 	</select>
-
 </mapper>
 
 

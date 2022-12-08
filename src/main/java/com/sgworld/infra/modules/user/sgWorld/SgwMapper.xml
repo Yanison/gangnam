@@ -80,6 +80,9 @@
 		where 1=1
 		and s.sgwLink = #{sgwLink}
 	</select>
+	<select id ="usersNum" resultMap="SgwDto">
+		select count(*) as usersNum,sgwSeq from sgWorldRoom where sgwSeq = ${sgwSeq}
+	</select>
 		
 	<update id="onLiveNy">
 		update sgWorld set onLiveNy = #{onLiveNy}
@@ -108,6 +111,7 @@
 			,r.infrMmSeq
 			,m.infrMmNickname
 			,r.avatarSeq
+			,count(*) as usersNum
 		from sgWorld s 
 			left join sgWorldRoom r on s.sgwSeq = r.sgwSeq
 			left join infrMember m on r.infrMmSeq = m.infrMmSeq
@@ -160,6 +164,7 @@
 	<delete id="deleteRoomUser">
 		delete from sgWorldRoom where 1=1
 		and infrMmSeq = #{infrMmSeq}
+		and sgwSeq = #{sgwSeq}
 	</delete>
 	
 	<delete id="deleteRoom">

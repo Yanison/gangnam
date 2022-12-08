@@ -26,13 +26,6 @@ public class SgWorldController {
 	SgwSerivceImpl sgwService;
 	@Autowired
 	SgwWSController sgwWSController;
-	private SimpMessagingTemplate template;
-	
-	@Autowired
-	public SgWorldController(SimpMessagingTemplate template) {
-		this.template = template;
-		System.out.println("ExchangeController :: ExchangeController");
-	}
 	
 	private void setOnliveNy(SgwDto sgwDto,HttpSession session,Model model,String manInCharge,String endPoint){
 		 
@@ -87,6 +80,8 @@ public class SgWorldController {
 		sgwDto.setSgwLink(endPoint);
 		SgwDto onLoadInfoSgw = sgwService.onLoadInfoSgw(sgwDto);
 		String sgwSeq = onLoadInfoSgw.getSgwSeq();
+		model.addAttribute("sgwSeq",sgwSeq);
+		sgwWSController.usersNum(onLoadInfoSgw);
 //		List<SgwDto>userArrList = AvatarControllVo.userArrList;
 //		userArrList.add(onLoadInfoSgw);
 		

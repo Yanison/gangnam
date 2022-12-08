@@ -138,4 +138,15 @@ public class SgwDto extends BaseVo {
 	public void setAvatarName(String avatarName) {
 		this.avatarName = avatarName;
 	}
+	
+	private int usersNum;
+
+	public int getUsersNum() {
+		return usersNum;
+	}
+	public void setUsersNum(int usersNum) {
+		this.usersNum = usersNum;
+	}
+	
+	
 }

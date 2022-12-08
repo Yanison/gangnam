@@ -1,4 +1,3 @@
- 
 $(window).on("beforeunload",function(){
 	leaveAndDel()
 	disconnect() 
@@ -8,6 +7,7 @@ $(window).on("beforeunload",function(){
 
 var endPoint = $('#endPoint').val()
 var infrMmSeq = $('#infrMmSeq').val()
+var sgwSeq = $('#sgwSeq').val()
 // 유저의 정보를 담을 배열
 var userIdx
 var users=[];
@@ -102,7 +102,8 @@ function connect() {
         });
         stompClient.subscribe('/topic/sgWorld/' + endPoint + "/avatarWSControll/reRenderingUsers", function(udateUserList) {
 			var udateUserList = JSON.parse(udateUserList.body);
-			console.log("udateUserList :: "+JSON.stringify(udateUserList))
+			console.log("udateUserList :: "+JSON.stringify(udateUserList) + "// usersNum :: "  + udateUserList.x)
+			$('em#usersNum,em#usersNum2').text(udateUserList[0].usersNum)
 			this.users = []
 			var userLsit=[];
 			loopi:for(var i = 0 ; i < udateUserList.length; i ++){
@@ -169,9 +170,9 @@ function send(ep,seq) {
 	stompClient.send("/app/sgWorld/msgTo/" +ep+"/requestOnloadInfo",{},JSON.stringify(data));
 }
 function leaveAndDel() {
-	
 	var users = this.users;
 	var leavingUser = users[userIdx]
+	leavingUser["sgwSeq"] = $('#sgwSeq').val()
 	console.log(JSON.stringify(users[userIdx]))
 	for(var i = 0 ; i < users.length; i ++){
 		if(users[i].infrMmSeq == leavingUser.infrMmSeq){
@@ -187,6 +188,13 @@ function leaveAndDel() {
 	}
 	console.log("leavingUser :: " + JSON.stringify(leavingUser))
 	stompClient.send("/app/sgWorld/" +this.endPoint+"/avatarWSControll/leave",{},JSON.stringify(leavingUser));
+	
+	location.href="/"
+}
+function confirmLeaving(){
+	if(confirm("정말 나가시겠습니까?"+this.sgwSeq)){
+		leaveAndDel()
+	}
 }
 
 function sendLocation(data){

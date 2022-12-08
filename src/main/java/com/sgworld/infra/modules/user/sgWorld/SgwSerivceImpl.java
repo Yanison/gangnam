@@ -38,6 +38,10 @@ public class SgwSerivceImpl implements SgwSerivce {
 	public int addUserSgwRoom(SgwDto sgwDto) throws Exception{
 		return sgwDao.addUserSgwRoom(sgwDto);
 	}
+	@Override
+	public SgwDto usersNum(SgwDto sgwDto) throws Exception{
+		return sgwDao.usersNum(sgwDto);
+	}
 	/* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 	 * @@@@@@ user
 	 * @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

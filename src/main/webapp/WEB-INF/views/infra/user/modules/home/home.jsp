@@ -45,7 +45,7 @@
 									</div>
 									<div>
 										<i class="fa-solid fa-eye"></i>
-										<em>num</em>
+										<em>${sl.usersNum}</em>
 									</div>
 								</div>
 							</div>
