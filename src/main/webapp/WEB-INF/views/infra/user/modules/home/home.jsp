@@ -34,8 +34,8 @@
 					  <div class="row row-cols-3">
 					  <c:forEach items="${sgwList}" var="sl" varStatus="status">
 					    <div class="col">
-						    <div class="SgWorldPreviewDiv">
-								<a id="${sl.sgwLink}" class="SgWorldPreview" href="./sgWorld/join/${sl.sgwLink}">
+						    <div  id="${sl.sgwLink}" class="SgWorldPreviewDiv">
+								<a class="SgWorldPreview" href="./sgWorld/join/${sl.sgwLink}">
 									<img scr="/resources/common/images/pepe.png">
 								</a>
 								<div class="sgwTitle">

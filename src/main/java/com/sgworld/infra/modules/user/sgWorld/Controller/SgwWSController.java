@@ -1,12 +1,9 @@
 package com.sgworld.infra.modules.user.sgWorld.Controller;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
@@ -14,10 +11,8 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.sgworld.infra.modules.user.sgWorld.SgwSerivceImpl;
-import com.sgworld.infra.modules.user.sgWorld.sgwdto.AvatarControllVo;
 import com.sgworld.infra.modules.user.sgWorld.sgwdto.SgwChat;
 import com.sgworld.infra.modules.user.sgWorld.sgwdto.SgwDto;
 
@@ -39,17 +34,15 @@ public class SgwWSController {
 		this.template.convertAndSend("/topic/createSgworldDiv", selectSgwOne);
 	}
 	@MessageMapping(value="usersNum/{endPoint}")
-	public synchronized void usersNum(SgwDto sgwDto,@DestinationVariable String endPoint)throws Exception {
-//		sgwDto.setSgwLink(endPoint);
-//		SgwDto usersNum = sgwService.usersNum(sgwDto);
-		int num = sgwDto.getUsersNum();
+	public synchronized void usersNum(String num,@DestinationVariable String endPoint)throws Exception {
+		
 		System.out.println(
-				"usersNum :: "+sgwDto.getUsersNum()+ "\n" +
+				"usersNum :: "+num+ "\n" +
 				"endPoint :: "+ endPoint
 				);
 		HashMap<String,String> usersNum = new HashMap<String,String>();
 		usersNum.put("endPoint", endPoint);
-		usersNum.put("usersNum",String.valueOf(num));
+		usersNum.put("usersNum",num);
 		
 		this.template.convertAndSend("/topic/usersNum", usersNum);
 	}
@@ -91,10 +84,8 @@ public class SgwWSController {
 		 
 		 sgwChat.setEndPoint(endPoint);
 		 List<SgwChat> userList = sgwService.findRoomMm(sgwChat);
-		 SgwDto usersNum = sgwService.usersNum(sgwDto);
 		 
 		 template.convertAndSend("/topic/sgWorld/"+endPoint+"/avatarWSControll/reRenderingUsers", userList);
-		 this.template.convertAndSend("/topic/usersNum", usersNum);
 	 }
 	/*
 	 * 유저를 연결시켜주고 끝이 아니다. 실시시간으로 유저의 좌표를 서버와 통신받고 웹소켓 서버에 연결된 유저들에게 공유가되어야한다.

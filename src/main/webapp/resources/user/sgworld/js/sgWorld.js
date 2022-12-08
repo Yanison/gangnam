@@ -1,7 +1,7 @@
 $(window).on("beforeunload",function(){
 	
 	leaveAndDel()
-	usersNumChage()
+	sendUsersNum(users.length)
 	disconnect() 
 })
 
@@ -73,14 +73,6 @@ function connect() {
             var leave = JSON.parse(leave.body)
             console.log("topic/sgWorld/chatroom"+ msgObj)
         });
-        
-        stompClient.subscribe('/topic/usersNum',function(howManyUsers){
-			var howManyUsers = JSON.parse(howManyUsers.body);
-			var endPoint =$('#'+howManyUsers.endPoint)
-			console.log("howManyUsers :: "+JSON.stringify(howManyUsers))
-			console.log("endPoint" + endPoint)
-			$("#"+endPoint).text(howManyUsers.usersNum)
-		})
         stompClient.subscribe('/topic/sgWorld/requestOnloadInfo/'+endPoint, function(usersInfo) {
 		console.log('/topic/sgWorld/requestOnloadInfo/')
 		var usersInfo = JSON.parse(usersInfo.body)
@@ -111,9 +103,7 @@ function connect() {
         stompClient.subscribe('/topic/sgWorld/' + endPoint + "/avatarWSControll/reRenderingUsers", function(udateUserList) {
 			var udateUserList = JSON.parse(udateUserList.body);
 			console.log("udateUserList :: "+JSON.stringify(udateUserList) + "// usersNum :: "  + udateUserList.x)
-			$('em#usersNum,em#usersNum2').text(udateUserList[0].usersNum)
-			$('#ipUsersNum').val(udateUserList[0].usersNum)
-			usersNumChage()
+			
 			this.users = []
 			var userLsit=[];
 			loopi:for(var i = 0 ; i < udateUserList.length; i ++){
@@ -165,6 +155,9 @@ function connect() {
 			}
 			console.log(JSON.stringify("after for ie. this.users:: " + JSON.stringify(users)))
 			findMyInx()
+			$('em#usersNum,em#usersNum2').text(userLsit.length)
+			var usersNum = $('#ipUsersNum').val(userLsit.length)
+			sendUsersNum(userLsit.length)
 		});
 		stompClient.subscribe('/topic/sgWorld/' + endPoint + "/avatarWSControll/update", function(update) {
 			var update = JSON.parse(update.body)
@@ -172,34 +165,18 @@ function connect() {
 		});
 		
 		send(endPoint,infrMmSeq)
-		
-		
     });
+    
+    stompClient.reconnect_delay = 5000;
 }
 
 function send(ep,seq) {
 	data={'infrMmSeq' : infrMmSeq}
 	stompClient.send("/app/sgWorld/msgTo/" +ep+"/requestOnloadInfo",{},JSON.stringify(data));
 }
-function usersNumChage(){
-	console.log($('#ipUsersNum').val())
-	 $('#ipUsersNum').change(function(){
-		var arr={
-			'usersNum':$('#ipUsersNum').val()
-			,'endPoint':endPoint
-			}
-		console.log("arr :: "+JSON.stringify(arr))
-		stompClient.send("/app/usersNum/"+endPoint,{},JSON.stringify(arr));
-	})
-}
-
-function sendUsersNum(){
-	var arr={
-		'usersNum':$('#usersNum').text()
-		,'endPoint':endPoint
-	}
-	console.log("arr :: "+JSON.stringify(arr))
-	stompClient.send("/app/usersNum/"+endPoint,{},JSON.stringify(arr));
+function sendUsersNum(usersNum){
+	console.log("usersNum :: " + usersNum)
+	stompClient.send("/app/usersNum/"+endPoint,{},usersNum);
 }
 function leaveAndDel() {
 	var users = this.users;
@@ -294,6 +271,8 @@ function updateState(infrMmSeq,x,y){
 
 var ballRadius = 10;
 
+
+
 function draw(){
 	
 	let users = this.users
@@ -382,7 +361,40 @@ function draw(){
         sendLocation(user);
     }
     
+    for(var e = 0 ; e  < users.length; e ++){
+		if(users[e].infrMmSeq != user.infrMmSeq){
+			let contact = users[e].x < user.x + 25 && users[e].x > user.x - 25 && users[e].y < user.y + 25 && users[e].y > user.y - 25
+			
+			if(contact){
+				shoCamDiv(true)
+			}else{
+				shoCamDiv(false)
+			}	
+		}
+	}
 }
+function shoCamDiv(event){
+	if(event){
+		$('#camDiv').show()
+	}else{
+		$('#camDiv').hide()
+	}
+}
+
 setInterval(draw, 50);
+
+
+
+	
+		
+			
+		
+	
+	
+		
+			
+		
+	
+
 
 	

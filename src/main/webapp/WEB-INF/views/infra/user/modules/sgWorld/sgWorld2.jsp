@@ -17,6 +17,19 @@
 <input type="hidden" id="sgwSeq" value="<c:out value="${sgwSeq}"/>">
 <div class="wrapper" style="display:flex; height:93%">
 	 <canvas id = "myCanvas" width ="1024" height = "768" style="background:#fff"></canvas>
+	 
+	 <div id="camDiv" class="camDiv" style="display:none;">
+		<div class="littleCamDiv" onclick="fullCamDiv()">
+			<div class="cam">
+				cam
+			</div>
+		</div>
+		<div class="littleCamDiv" onclick="fullCamDiv()">
+			<div class="cam">
+				cam
+			</div>
+		</div>
+	</div>
 	 <article class="utilDiv chatDiv">
 		<div class="headerDiv">
 			<h6>SgWorld Room Title</h6>
@@ -62,8 +75,8 @@
 		<div class="divContents" style="width:80px;" >
 			<!-- onclick="fullCamDivOff()" -->
 			<i class="fa-solid fa-users"></i>
-			<em id="usersNum"style="font-size:15px;" onclick="usersNumChage()">#</em>
-			<input type="hidden" id="ipUsersNum" onchange="usersNumChage()">
+			<em id="usersNum"style="font-size:15px;" onclick="sendUsersNum()">#</em>
+			<input type="hidden" id="ipUsersNum" onchange="sendUsersNum()">
 			
 		</div>
 		<div style="font-size:26px; color:#333A64; font-weight:700;">|</div>
