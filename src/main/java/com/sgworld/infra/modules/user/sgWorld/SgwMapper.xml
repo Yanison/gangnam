@@ -111,7 +111,6 @@
 			,r.infrMmSeq
 			,m.infrMmNickname
 			,r.avatarSeq
-			,count(*) as usersNum
 		from sgWorld s 
 			left join sgWorldRoom r on s.sgwSeq = r.sgwSeq
 			left join infrMember m on r.infrMmSeq = m.infrMmSeq

@@ -83,7 +83,7 @@ public class SgwWSController {
 	 }
 	 
 	 @MessageMapping(value = "/sgWorld/msgTo/{endPoint}/requestOnloadInfo")
-	 public void requestOnloadInfo( @DestinationVariable String endPoint,SgwChat sgwChat)throws Exception {
+	 public void requestOnloadInfo( @DestinationVariable String endPoint,SgwChat sgwChat,SgwDto sgwDto)throws Exception {
 		 System.out.println("msg :: "+sgwChat.getSgwSeq() +" // "+ sgwChat.getInfrMmSeq());
 		
 		 //SgwChat user = sgwService.findRoomMmOne(sgwChat);
@@ -91,9 +91,10 @@ public class SgwWSController {
 		 
 		 sgwChat.setEndPoint(endPoint);
 		 List<SgwChat> userList = sgwService.findRoomMm(sgwChat);
+		 SgwDto usersNum = sgwService.usersNum(sgwDto);
 		 
 		 template.convertAndSend("/topic/sgWorld/"+endPoint+"/avatarWSControll/reRenderingUsers", userList);
-		 
+		 this.template.convertAndSend("/topic/usersNum", usersNum);
 	 }
 	/*
 	 * 유저를 연결시켜주고 끝이 아니다. 실시시간으로 유저의 좌표를 서버와 통신받고 웹소켓 서버에 연결된 유저들에게 공유가되어야한다.

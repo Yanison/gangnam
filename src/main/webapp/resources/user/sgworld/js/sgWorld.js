@@ -74,7 +74,13 @@ function connect() {
             console.log("topic/sgWorld/chatroom"+ msgObj)
         });
         
-        
+        stompClient.subscribe('/topic/usersNum',function(howManyUsers){
+			var howManyUsers = JSON.parse(howManyUsers.body);
+			var endPoint =$('#'+howManyUsers.endPoint)
+			console.log("howManyUsers :: "+JSON.stringify(howManyUsers))
+			console.log("endPoint" + endPoint)
+			$("#"+endPoint).text(howManyUsers.usersNum)
+		})
         stompClient.subscribe('/topic/sgWorld/requestOnloadInfo/'+endPoint, function(usersInfo) {
 		console.log('/topic/sgWorld/requestOnloadInfo/')
 		var usersInfo = JSON.parse(usersInfo.body)
