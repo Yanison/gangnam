@@ -38,8 +38,6 @@ function isSssValThere(str){
 	)
 }
 
-<<<<<<< HEAD
-=======
 function gohome(){
 	location.href="/"
 }
@@ -51,7 +49,7 @@ function goboard(){
 function goWrite(){
 	location.href="/board/boardWrite"
 }
->>>>>>> branch 'dev' of https://github.com/Yanison/gangnam.git
+
 
 
 
