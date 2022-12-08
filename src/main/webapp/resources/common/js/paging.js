@@ -29,7 +29,30 @@ function goBoardHome(){
 	//  onclick="goBoardHome()"
 }
 
+function gohome(){
+	location.href="../"
+}
 
+function goboard(){
+	location.href="../board/boardList"
+}
+
+function goWrite(){
+	location.href="../board/boardWrite"
+}
+
+function goMemberView(){
+	location.href="../member/memberView"
+}
+
+//var goUrlView = "/member/memberView";
+//var form = $("form[name=form]");
+//var seq = $("input:hidden[name=infrMmSeq]");
+
+//goMemberView = function(keyValue) {
+//	seq.val(keyValue);
+//	form.attr("action", goUrlView).submit();
+//}
 
 /** @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @@@@@@@@@@@@@@ Amin
