@@ -14,18 +14,19 @@
 <input type="hidden" id="infrMmSeq" value="<c:out value="${infrMmSeq}"/>">
 <input type="hidden" id="infrMmNickname" value="<c:out value="${infrMmNickname}"/>">
 <input type="hidden" id="endPoint" value="<c:out value="${endPoint}"/>">
-<div class="wrapper" style="display:flex">
+<input type="hidden" id="sgwSeq" value="<c:out value="${sgwSeq}"/>">
+<div class="wrapper" style="display:flex; height:93%">
 	 <canvas id = "myCanvas" width ="1024" height = "768" style="background:#fff"></canvas>
 	 <article class="utilDiv chatDiv">
 		<div class="headerDiv">
 			<h6>SgWorld Room Title</h6>
-			<i id="extiRoom" class="fa-solid fa-x"></i>
+			<i id="extiRoom" class="fa-solid fa-x" onclick="confirmLeaving()"></i>
 		</div>
 		<p style="font-size:24px; width:100%;">Chat</p>
 		<div class="showNumPeople">
 			<div>
-				<i class="fa-solid fa-location-dot"></i>
-				<em style="font-size:14px;">num</em>
+				<i  class="fa-solid fa-location-dot"></i>
+				<em id="usersNum2" style="font-size:14px;">num</em>
 			</div>
 		</div>
 		<div class="chat" id="sgwChat">
@@ -44,32 +45,31 @@
 		</div>
 	</article>
 </div>
-<section class="bottom div2 utilDiv">
-		<div class="left">
-			<img id="sgLogo"class="sgLogo" src="/../../resources/common/images/sgLogo.png">
-			
-			<div class="divContents">
-				<i class="fa-solid fa-microphone-lines"></i>
-				<<i class="fa-solid fa-microphone-lines-slash"></i>
-			</div>
-			<div class="divContents">
-				<i class="fa-solid fa-video-slash"></i>
-				<i class="fa-solid fa-video"></i>
-			</div>
+<section class="bottom div2 utilDiv" style="width:1300px;">
+	<div class="left">
+		<img id="sgLogo"class="sgLogo" src="/../../resources/common/images/sgLogo.png">
+		
+		<div class="divContents">
+			<i class="fa-solid fa-microphone-lines"></i>
+			<i class="fa-solid fa-microphone-lines-slash"></i>
 		</div>
-		<div class="right">
-			<div class="divContents" style="width:80px;" onclick="sendUserList()">
-				<!-- onclick="fullCamDivOff()" -->
-				<i class="fa-solid fa-users"></i>
-				<em style="font-size:15px;">#</em>
-			</div>
-			<div style="font-size:26px; color:#333A64; font-weight:700;">|</div>
-			<div class="divContents" style="width:56px;" onclick="leaveAndDel()">
-				<i id="leaveDoor" class="fa-solid fa-door-open" ></i>
-			</div>
+		<div class="divContents">
+			<i class="fa-solid fa-video-slash"></i>
+			<i class="fa-solid fa-video"></i>
 		</div>
-	</section>
-
+	</div>
+	<div class="right">
+		<div class="divContents" style="width:80px;" onclick="sendUserList()">
+			<!-- onclick="fullCamDivOff()" -->
+			<i class="fa-solid fa-users"></i>
+			<em id="usersNum"style="font-size:15px;">#</em>
+		</div>
+		<div style="font-size:26px; color:#333A64; font-weight:700;">|</div>
+		<div class="divContents" style="width:56px;" onclick="confirmLeaving()">
+			<i id="leaveDoor" class="fa-solid fa-door-open" ></i>
+		</div>
+	</div>
+</section>
 </body>
 </html>
 <script src="/resources/user/sgworld/js/sgWorldDiv.js"></script>

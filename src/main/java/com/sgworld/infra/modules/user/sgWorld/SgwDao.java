@@ -47,7 +47,6 @@ public class SgwDao {
 	public int onLiveNy(SgwDto sgwDto) {
 		return sqlSession.update(namespace+".onLiveNy",sgwDto);
 	}
-	
 	public int addUserSgwRoom(SgwDto sgwDto) {
 		return sqlSession.insert(namespace+".addUserSgwRoom", sgwDto);
 	}
@@ -59,7 +58,9 @@ public class SgwDao {
 	public int isDupleLink(SgwDto sgwDto){
 		return sqlSession.selectOne(namespace+".isDupleLink", sgwDto);
 	}
-	
+	public SgwDto usersNum(SgwDto sgwDto){
+		return sqlSession.selectOne(namespace+".usersNum", sgwDto);
+	}
 	/* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 	 * @@@@@@ user
 	 * @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -88,7 +89,7 @@ public class SgwDao {
 	}
 	public int deleteRoomUser(SgwChat sgwDto) {
 		return sqlSession.insert(namespace+".deleteRoomUser",sgwDto);
-	}
+	}	
 	public List<SgwChat> findRoomMm(SgwChat sgwDto) {
 		return sqlSession.selectList(namespace+".findRoomMm",sgwDto);
 	}

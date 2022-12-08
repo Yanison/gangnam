@@ -13,6 +13,7 @@
 <body>
 <input type="hidden" id="infrMmSeq" value="<c:out value="${infrMmSeq}"/>">
 <input type="hidden" id="endPoint" value="<c:out value="${endPoint}"/>">
+<input type="hidden" id="sgwSeq" value="<c:out value="${sgwSeq}"/>">
 
 
 <div class="sgWorld">
@@ -43,7 +44,7 @@
 		<article class="utilDiv chatDiv">
 			<div class="headerDiv">
 				<h6>SgWorld Room Title</h6>
-				<i id="extiRoom" class="fa-solid fa-x"></i>
+				<i id="extiRoom" class="fa-solid fa-x" ></i>
 			</div>
 			<p style="font-size:24px; width:100%;">Chat</p>
 			<div class="showNumPeople">

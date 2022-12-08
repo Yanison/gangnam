@@ -6,21 +6,21 @@ public class SgwChat {
 	
 	public static List<SgwChat> userList;
 	
-	private String sgwseq;
+	private String sgwSeq;
 	private String chatMsg;
 	private String infrMmSeq;
 	private String infrMmNickname;
 	private String endPoint;
 	private String avatarseq;
-	private int x;
-	private int y;
+	private int x = 497;
+	private int y = 375;
 	
 	
-	public String getSgwseq() {
-		return sgwseq;
+	public String getSgwSeq() {
+		return sgwSeq;
 	}
-	public void setSgwseq(String sgwseq) {
-		this.sgwseq = sgwseq;
+	public void setSgwSeq(String sgwSeq) {
+		this.sgwSeq = sgwSeq;
 	}
 	public String getChatMsg() {
 		return chatMsg;
@@ -110,5 +110,16 @@ public class SgwChat {
 	public void setSgwLink(String sgwLink) {
 		this.sgwLink = sgwLink;
 	}
+	
+	private int usersNum;
+
+
+	public int getUsersNum() {
+		return usersNum;
+	}
+	public void setUsersNum(int usersNum) {
+		this.usersNum = usersNum;
+	}
+	
 	
 }

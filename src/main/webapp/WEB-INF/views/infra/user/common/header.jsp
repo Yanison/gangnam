@@ -24,11 +24,16 @@
 					<li class="logedIn" style="margin-left:20px"><span style="font-weight:600;"><c:out value="${infrMmName}"/></span> 님</li>
 					<li class="logedIn"><button id="logOutBtn" onClick="userLogOut()">로그아웃</button></li>
 					<!-- 마이페이지 링크 연결해주세요 -->
+<<<<<<< HEAD
 					<%-- <form name="formm" method="post">
 						<input type="hidden" id="sessMmSeq" name="infrMmSeq" value="${infrMmSeq}" onchange="isSssValThere('#sessMmSeq')">
 						<li class="logedIn" ><a href="javascript:goMemberView(<c:out value="${infrMmSeq }"/>)" >마이페이지</a></li>
 					</form> --%>
 					<li class="logedIn" ><a href="#" onclick="goMemberView()">마이페이지</a></li> 
+=======
+					
+					<li class="logedIn" ><a href="javascript:goMemberView(<c:out value="${infrMmSeq}"/>)" >마이페이지</a></li>
+>>>>>>> branch 'dev' of https://github.com/Yanison/gangnam.git
 					<!-- <li class="logedIn"><button onclick="myPage()">마이페이지</button></li> -->
 				</c:otherwise>
 			</c:choose>
