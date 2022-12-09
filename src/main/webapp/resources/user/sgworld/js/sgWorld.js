@@ -370,7 +370,8 @@ function draw(){
 				if(users[e].userStatus == "normal"){
 					shoCamDiv(true,users[e].infrMmSeq,user.infrMmSeq)
 					users[e].userStatus = "onCam"
-					user.userStatus = "onCam"	
+					user.userStatus = "onCam"
+					getMedia()
 				}else{
 					console.log("상대가 화상채팅중 입니다. 대상 :: " + camwith)
 				}
@@ -401,42 +402,7 @@ function shoCamDiv(event,you,me){
 setInterval(draw, 50);
 
 
-function fullCamDiv(){
-	$('#fullCamDiv').fadeIn("fast")
-}
-function fullCamDivOff(){
-	$('#fullCamDiv').fadeOut("fast")
-}
-function whosCam(e){
-	console.log("whosCam :: "+$(e).val())
-}
 
-function onoff(e){
-	var option = $(e).attr("id")
-	
-	switch(option){
-		case "micOff":
-			console.log("micOff")
-			$('.onOffMic').css("color","#fff")
-			$('#'+option).css("color","#ac3b49")
-			break;
-		case "micOn":
-			console.log("micOn")
-			$('.onOffMic').css("color","#fff")
-			$('#'+option).css("color","#4d9d85")
-			break;
-		case "camOff":
-			console.log("camOff")
-			$('.onOffCam').css("color","#fff")
-			$('#'+option).css("color","#ac3b49")
-			break;
-		case "camOn":
-			console.log("camOn")
-			$('.onOffCam').css("color","#fff")
-			$('#'+option).css("color","#4d9d85")
-			break;
-	}
-}
 	
 		
 			

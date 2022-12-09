@@ -11,6 +11,8 @@
 	
 </head>
 <body>
+
+
 <input type="hidden" id="infrMmSeq" value="<c:out value="${infrMmSeq}"/>">
 <input type="hidden" id="infrMmNickname" value="<c:out value="${infrMmNickname}"/>">
 <input type="hidden" id="endPoint" value="<c:out value="${endPoint}"/>">
@@ -22,12 +24,12 @@
 	 <div id="camDiv" class="camDiv" style="display:none;">
 		<div class="littleCamDiv" onclick="fullCamDiv()">
 			<div class="cam myCam" onclick="whosCam(this)">
-				cam
+				<video id="myFace" autoplay playsinline width="200" height="160"></video>
 			</div>
 		</div>
 		<div class="littleCamDiv" onclick="fullCamDiv()">
-			<div class="cam yourCam" onclick="whosCam(this)">
-				cam
+			<div class="cam myCam" onclick="whosCam(this)">
+				<video id="yourFace" autoplay playsinline width="200" height="150"></video>
 			</div>
 		</div>
 	</div>
@@ -64,12 +66,21 @@
 		<img id="sgLogo"class="sgLogo" src="/../../resources/common/images/sgLogo.png">
 		
 		<div class="divContents">
-			<i class="fa-solid fa-microphone-lines onOffMic" id="micOff" onclick="onoff(this)" value="0"></i>
-			<i class="fa-solid fa-microphone-lines-slash onOffMic" id="micOn" onclick="onoff(this)" value="1"></i>
+			<button  id="micOff" onclick="onoff(this)" value="0">
+				<i class="fa-solid fa-microphone-lines onOffMic"></i>
+			</button>
+			<button id="micOn" onclick="onoff(this)" value="1">
+				<i class="fa-solid fa-microphone-lines-slash onOffMic"></i>
+			</button>
+			
 		</div>
 		<div class="divContents">
-			<i class="fa-solid fa-video-slash onOffCam" id="camOff" onclick="onoff(this)" value="0"></i>
-			<i class="fa-solid fa-video onOffCam" id="camOn" onclick="onoff(this)" value="1"></i>
+			<button  id="camOff" onclick="onoff(this)" value="0">
+				<i class="fa-solid fa-video-slash onOffCam"></i>
+			</button>
+			<button  id="camOn" onclick="onoff(this)" value="1">
+				<i class="fa-solid fa-video onOffCam"></i>
+			</button>
 		</div>
 	</div>
 	<div class="right">
@@ -116,11 +127,12 @@
 	</section>
 </div>
 
-  <video muted autoplay loop class="backgroundVid">
+ <!--  <video muted autoplay loop class="backgroundVid">
     <source src="/resources/common/video/space.mp4" type="video/mp4">
     <strong>Your browser does not support the video tag.</strong>
-  </video>
+  </video> -->
 </body>
 </html>
+<script src="/resources/user/sgworld/js/sgworldCam.js"></script>
 <script src="/resources/user/sgworld/js/sgWorldRequets.js"></script>
 <script src="/resources/user/sgworld/js/sgWorld.js"></script>
