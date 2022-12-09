@@ -1,4 +1,6 @@
 body{
+	padding: 0px; 
+	margin: 0px;
 	background:#333A64;
 	position:relative;
 	overflow: hidden;
@@ -9,6 +11,26 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+.mainDiv{
+	position:absolute;
+	width:100%;
+	display:flex;
+	flex-direction:column;
+	justify-content:center;
+	align-items:center;
+	z-index: 1;
+}
+video.backgroundVid {
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 102%;
+    overflow: hidden;
+    margin: 0px auto;
+    z-index: 0;
+    object-fit: none;
+    transform: translate(-50%, -50%);
 }
 
 div, span, ul, li, a {
@@ -62,6 +84,7 @@ div, span, ul, li, a {
 	height:180px;
 	position:absolute;
 	top:100px;
+	left:-130px;
 	display:flex;
 	justify-content:center;
 }
@@ -257,18 +280,19 @@ div, span, ul, li, a {
 }
 
 .fullCamDiv{
-	width:100%;
-	height:100%;
-	background:#333A64;
-	
-	position:absolute;
-	top:0;
-	right:0;
+	width: 1304px;
+    height: 756px;
+    background: #333A64;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
 }
 .fullCamDiv .top{
 	width:100%;
-	height:calc(100% - 60px);
-	background:#333;
+	height:100%;
+	background:#171717;
 	display:flex;
 }
 
@@ -287,12 +311,26 @@ div, span, ul, li, a {
 	justify-content:center;
 	align-items:center;
 }
-
+.fullCamDivHeader{
+	height:40px;
+	background:#202540;
+	text-align:center;
+	line-height:40px;
+	color:#fff;
+	font-size:20px;
+	cursor:pointer;
+}
+.fullCamDivHeader:hover{
+	background:#151829;
+}
 .bigCam{
 	width:960px;
 	height:640px;
 	background:#333A64;
 	border-radius:10px;
+	padding: 10px;
+    box-shadow: 6px 6px 12px -5px rgb(88 88 88);
+    cursor: pointer;
 }
 
 

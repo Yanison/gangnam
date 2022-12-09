@@ -23,23 +23,7 @@
 			
 			
 			</canvas>
-			<!-- <div class="camDiv" style="display:none;">
-				
 			
-			
-			
-			
-				<div class="littleCamDiv" onclick="fullCamDiv()">
-					<div class="cam">
-						cam
-					</div>
-				</div>
-				<div class="littleCamDiv" onclick="fullCamDiv()">
-					<div class="cam">
-						cam
-					</div>
-				</div>
-			</div> -->
 		</div>
 		<article class="utilDiv chatDiv">
 			<div class="headerDiv">

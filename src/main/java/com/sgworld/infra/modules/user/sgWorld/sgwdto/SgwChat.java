@@ -3,7 +3,6 @@ package com.sgworld.infra.modules.user.sgWorld.sgwdto;
 import java.util.List;
 
 public class SgwChat {
-	
 	public static List<SgwChat> userList;
 	
 	private String sgwSeq;
@@ -12,8 +11,8 @@ public class SgwChat {
 	private String infrMmNickname;
 	private String endPoint;
 	private String avatarseq;
-	private int x = 497;
-	private int y = 375;
+	private int x = (int) Math.floor(Math.random() * (900 - 200) + 200);;
+	private int y = (int) Math.floor(Math.random() * (600 - 200) + 200);;
 	
 	
 	public String getSgwSeq() {
