@@ -61,6 +61,13 @@
 	display: flex;
 	justify-content: center;
 }
+
+#bdContent{
+	width: 860px;
+	height: 506px;
+	resize: none;
+}
+
 .boardFormContent{
 	text-indent: 15px;
 	line-height: 50px;

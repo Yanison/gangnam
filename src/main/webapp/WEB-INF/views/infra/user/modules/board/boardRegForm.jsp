@@ -22,10 +22,11 @@
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
 	
 	<!-- summernote -->
+	<!-- 
 	<script src="/resources/summernote/summernote-lite.js"></script>
 	<script src="/resources/summernote/lang/summernote-ko-KR.js"></script>
 	<link rel="stylesheet" href="/resources/summernote/summernote-lite.css">
-	
+	 -->
 </head>
 <body>
 	<!-- header s -->
@@ -66,7 +67,13 @@
 						<input class="contentTitle" type="text" id="bdTitle" name="bdTitle" value="<c:out value="${dto.bdTitle }" />" placeholder="글 제목을 입력해 주세요.">
 					</div>
 					<div class="boardContent">
-						<textarea class="boardFormContent summerNote" id="bdContent" name="bdContent"><c:out value="${dto.bdContent }" /></textarea>
+						<div>
+							
+						</div>
+						<%-- <textarea id="bdContent" name="bdContent">
+							<c:out value="${dto.bdContent }"/>
+						</textarea> --%>
+						<%-- <textarea class="boardFormContent summerNote" id="bdContent" name="bdContent"><c:out value="${dto.bdContent }" /></textarea> --%>
 					</div>
 				</div>
 			</article>
