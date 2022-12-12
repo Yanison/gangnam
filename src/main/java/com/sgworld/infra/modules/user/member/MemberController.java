@@ -32,11 +32,9 @@ public class MemberController {
 	AdminAvatarServiceImpl servicee;
 	
 	@Autowired
-	SgwSerivceImpl sgwService;
-
-	@Autowired
 	HttpSession session;
-	
+	@Autowired
+	SgwSerivceImpl sgwService;
 	public void getSss(Model model,SgwDto sgwDto) {
 		Object infrMmId = session.getAttribute("infrMmId");
 		Object infrMmName = session.getAttribute("infrMmName");

@@ -1,6 +1,5 @@
-
 $(document).ready(function(){
-//connect()
+connect()
 })
 
 function showModal(){
@@ -46,10 +45,23 @@ function connect(){
 		
 		stompClient.subscribe('/topic/usersNum',function(howManyUsers){
 			var howManyUsers = JSON.parse(howManyUsers.body);
-			$(".sgwSeqDiv"+howManyUsers.sgwSeq +" em.usersNum").text(howManyUsers.usersNum)
+			var endPoint = howManyUsers.endPoint
+			var howManyUsers = howManyUsers.usersNum
+			console.log(endPoint+" = "+howManyUsers)
+			
+			$("#"+endPoint+" em").text(howManyUsers)
+		})
+		
+		stompClient.subscribe('/topic/home/chat',function(msg){
+			var msg = JSON.parse(msg.body);
+			appendChat(msg)
 		})
 	})
 }
+
+
+
+
 
 function addSGW(sgwSeq){
 	var html = "";

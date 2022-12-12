@@ -29,12 +29,10 @@ public class BoardController {
 	
 	@Autowired
 	AdminBoardServiceImpl service;
-	
-	@Autowired
-	HttpSession session;
-	
 	@Autowired
 	SgwSerivceImpl sgwService;
+	@Autowired
+	HttpSession session;
 	
 	public void getSss(Model model,SgwDto sgwDto) {
 		Object infrMmId = session.getAttribute("infrMmId");

@@ -1,12 +1,9 @@
 package com.sgworld.infra.modules.user.sgWorld.Controller;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
@@ -14,10 +11,8 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.sgworld.infra.modules.user.sgWorld.SgwSerivceImpl;
-import com.sgworld.infra.modules.user.sgWorld.sgwdto.AvatarControllVo;
 import com.sgworld.infra.modules.user.sgWorld.sgwdto.SgwChat;
 import com.sgworld.infra.modules.user.sgWorld.sgwdto.SgwDto;
 
@@ -26,7 +21,6 @@ import com.sgworld.infra.modules.user.sgWorld.sgwdto.SgwDto;
 public class SgwWSController {
 	@Autowired
 	SgwSerivceImpl sgwService;
-	private HttpSession session;
 	private SimpMessagingTemplate template;
 	@Autowired
 	public SgwWSController(SimpMessagingTemplate template) {
@@ -39,9 +33,21 @@ public class SgwWSController {
 		SgwDto selectSgwOne = sgwService.findSgwbyMmSeq(sgwDto);
 		this.template.convertAndSend("/topic/createSgworldDiv", selectSgwOne);
 	}
-	@MessageMapping(value="usersNum")
-	public void usersNum(SgwDto sgwDto)throws Exception {
-		SgwDto usersNum = sgwService.usersNum(sgwDto);
+	@MessageMapping(value="/home/chat")
+	public void homeChat(SgwChat sgwChat)throws Exception {
+		this.template.convertAndSend("/topic/home/chat", sgwChat);
+	}
+	@MessageMapping(value="usersNum/{endPoint}")
+	public synchronized void usersNum(String num,@DestinationVariable String endPoint)throws Exception {
+		
+		System.out.println(
+				"usersNum :: "+num+ "\n" +
+				"endPoint :: "+ endPoint
+				);
+		HashMap<String,String> usersNum = new HashMap<String,String>();
+		usersNum.put("endPoint", endPoint);
+		usersNum.put("usersNum",num);
+		
 		this.template.convertAndSend("/topic/usersNum", usersNum);
 	}
 	
@@ -74,7 +80,7 @@ public class SgwWSController {
 	 }
 	 
 	 @MessageMapping(value = "/sgWorld/msgTo/{endPoint}/requestOnloadInfo")
-	 public void requestOnloadInfo( @DestinationVariable String endPoint,SgwChat sgwChat)throws Exception {
+	 public void requestOnloadInfo( @DestinationVariable String endPoint,SgwChat sgwChat,SgwDto sgwDto)throws Exception {
 		 System.out.println("msg :: "+sgwChat.getSgwSeq() +" // "+ sgwChat.getInfrMmSeq());
 		
 		 //SgwChat user = sgwService.findRoomMmOne(sgwChat);
@@ -84,7 +90,6 @@ public class SgwWSController {
 		 List<SgwChat> userList = sgwService.findRoomMm(sgwChat);
 		 
 		 template.convertAndSend("/topic/sgWorld/"+endPoint+"/avatarWSControll/reRenderingUsers", userList);
-		 
 	 }
 	/*
 	 * 유저를 연결시켜주고 끝이 아니다. 실시시간으로 유저의 좌표를 서버와 통신받고 웹소켓 서버에 연결된 유저들에게 공유가되어야한다.
@@ -113,7 +118,6 @@ public class SgwWSController {
 				 sgwDto.setOnLiveNy(0);
 				 sgwService.onLiveNy(onLoadInfoSgw);
 			 }
-			 usersNum(sgwDto);
 		 }catch(Exception e){
 			 e.printStackTrace();
 		 }

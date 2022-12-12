@@ -1,10 +1,10 @@
 $(window).on("beforeunload",function(){
+	
 	leaveAndDel()
+	sendUsersNum(users.length)
 	disconnect() 
 })
-
-
-
+var camwith = null;
 var endPoint = $('#endPoint').val()
 var infrMmSeq = $('#infrMmSeq').val()
 var sgwSeq = $('#sgwSeq').val()
@@ -71,8 +71,6 @@ function connect() {
             var leave = JSON.parse(leave.body)
             console.log("topic/sgWorld/chatroom"+ msgObj)
         });
-        
-        
         stompClient.subscribe('/topic/sgWorld/requestOnloadInfo/'+endPoint, function(usersInfo) {
 		console.log('/topic/sgWorld/requestOnloadInfo/')
 		var usersInfo = JSON.parse(usersInfo.body)
@@ -103,7 +101,7 @@ function connect() {
         stompClient.subscribe('/topic/sgWorld/' + endPoint + "/avatarWSControll/reRenderingUsers", function(udateUserList) {
 			var udateUserList = JSON.parse(udateUserList.body);
 			console.log("udateUserList :: "+JSON.stringify(udateUserList) + "// usersNum :: "  + udateUserList.x)
-			$('em#usersNum,em#usersNum2').text(udateUserList[0].usersNum)
+			
 			this.users = []
 			var userLsit=[];
 			loopi:for(var i = 0 ; i < udateUserList.length; i ++){
@@ -118,7 +116,8 @@ function connect() {
 								userColor :  udateUserList[q].userColor,
 								x :  udateUserList[q].x,
 								y :  udateUserList[q].y,
-								avatarSeq : udateUserList[q].avatarSeqx
+								avatarSeq : udateUserList[q].avatarSeqx,
+								userStatus : "normal"
 							}
 						userLsit.push(arr); console.log("break"); 	
 					}
@@ -136,7 +135,8 @@ function connect() {
 								userColor :  udateUserList[i].userColor,
 								x :  udateUserList[i].x,
 								y :  udateUserList[i].y,
-								avatarSeq : udateUserList[i].avatarSeq
+								avatarSeq : udateUserList[i].avatarSeq,
+								userStatus : "normal"
 							}
 							userLsit.push(arr)
 							console.log(JSON.stringify("arr :: " + arr))
@@ -155,6 +155,9 @@ function connect() {
 			}
 			console.log(JSON.stringify("after for ie. this.users:: " + JSON.stringify(users)))
 			findMyInx()
+			$('em#usersNum,em#usersNum2').text(userLsit.length)
+			var usersNum = $('#ipUsersNum').val(userLsit.length)
+			sendUsersNum(userLsit.length)
 		});
 		stompClient.subscribe('/topic/sgWorld/' + endPoint + "/avatarWSControll/update", function(update) {
 			var update = JSON.parse(update.body)
@@ -163,11 +166,17 @@ function connect() {
 		
 		send(endPoint,infrMmSeq)
     });
+    
+    stompClient.reconnect_delay = 5000;
 }
 
 function send(ep,seq) {
 	data={'infrMmSeq' : infrMmSeq}
 	stompClient.send("/app/sgWorld/msgTo/" +ep+"/requestOnloadInfo",{},JSON.stringify(data));
+}
+function sendUsersNum(usersNum){
+	console.log("usersNum :: " + usersNum)
+	stompClient.send("/app/usersNum/"+endPoint,{},usersNum);
 }
 function leaveAndDel() {
 	var users = this.users;
@@ -262,16 +271,20 @@ function updateState(infrMmSeq,x,y){
 
 var ballRadius = 10;
 
+
+
 function draw(){
 	
 	let users = this.users
-	
+		
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	for(var i = 0 ; i <users.length ; i ++){
 		ctx.beginPath();
 	    ctx.arc(users[i].x, users[i].y, ballRadius, 0, Math.PI*2);
 	    ctx.fillStyle = colArr[i];
 	    ctx.fill();
+	    ctx.font = "10px Arial";
+		ctx.fillText(users[i].infrMmNickname, users[i].x-(ballRadius+5), users[i].y-(ballRadius+2));
 	    ctx.closePath();
 	}
 	
@@ -349,8 +362,91 @@ function draw(){
         }
         sendLocation(user);
     }
-    
+    for(var e = 0 ; e  < users.length; e ++){
+		if(users[e].infrMmSeq != user.infrMmSeq){
+			let contact = users[e].x < user.x + 25 && users[e].x > user.x - 25 && users[e].y < user.y + 25 && users[e].y > user.y - 25
+			
+			if(contact){
+				if(users[e].userStatus == "normal"){
+					shoCamDiv(true,users[e].infrMmSeq,user.infrMmSeq)
+					users[e].userStatus = "onCam"
+					user.userStatus = "onCam"	
+				}else{
+					console.log("상대가 화상채팅중 입니다. 대상 :: " + camwith)
+				}
+			}else{
+				shoCamDiv(false,users[e].infrMmSeq,user.infrMmSeq)
+				users[e].userStatus = "normal"
+				user.userStatus = "normal"
+			}
+		}
+	}
 }
+function shoCamDiv(event,you,me){
+	
+	if(event){
+		$('#camDiv').fadeIn("fast")
+		camwith = you
+		$('.yourCam').val(you)
+		$('.myCam').val(me)
+	}else{
+		$('#camDiv').fadeOut("fast")
+		camwith = null;
+		$('.yourCam').val(null)
+		$('.myCam').val(null)
+		$('#fullCamDiv').fadeOut("fast")
+	}
+}
+
 setInterval(draw, 50);
+
+
+function fullCamDiv(){
+	$('#fullCamDiv').fadeIn("fast")
+}
+function fullCamDivOff(){
+	$('#fullCamDiv').fadeOut("fast")
+}
+function whosCam(e){
+	console.log("whosCam :: "+$(e).val())
+}
+
+function onoff(e){
+	var option = $(e).attr("id")
+	
+	switch(option){
+		case "micOff":
+			console.log("micOff")
+			$('.onOffMic').css("color","#fff")
+			$('#'+option).css("color","#ac3b49")
+			break;
+		case "micOn":
+			console.log("micOn")
+			$('.onOffMic').css("color","#fff")
+			$('#'+option).css("color","#4d9d85")
+			break;
+		case "camOff":
+			console.log("camOff")
+			$('.onOffCam').css("color","#fff")
+			$('#'+option).css("color","#ac3b49")
+			break;
+		case "camOn":
+			console.log("camOn")
+			$('.onOffCam').css("color","#fff")
+			$('#'+option).css("color","#4d9d85")
+			break;
+	}
+}
+	
+		
+			
+		
+	
+	
+		
+			
+		
+	
+
 
 	
