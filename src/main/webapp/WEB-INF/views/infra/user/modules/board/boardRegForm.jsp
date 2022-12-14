@@ -70,8 +70,8 @@
 						<div class="selectImage">
 							<ul>
 								<li>
-									<label class="btnImage" for="uploadImg" style="cursor: pointer">
-										<i class="fa-regular fa-image" style="display: block;"></i>
+									<label class="btnImage" for="uploadImg" style="cursor: pointer" onclick="Image()">
+										<i class="fa-regular fa-image" style="display: block; text-align: center;"></i>
 										<span></span>
 										<span>사진</span>
 									</label>
@@ -89,12 +89,12 @@
 					<div class="boardInputDiv">
 						<c:set var="type" value="2"/>		<!-- #-> -->
 				        	<c:set var="name" value="uploadImg"/>		<!-- #-> -->
-							<div id="<c:out value="${name }"/>Preview" class="addScroll">
+							<div id="<c:out value="${name }"/>Preview" class="addScroll" style="display: none;">
 								<c:forEach items="${listUploaded}" var="listUploaded" varStatus="statusUploaded">
 									<c:if test="${listUploaded.type eq type }">
-										<div id="imgDiv_<c:out value="${type }"/>_<c:out value="${listUploaded.sort }"/>" style="display: inline-block; height: 95px;">
-											<img src="<c:out value="${listUploaded.path }"/><c:out value="${listUploaded.uuidName }"/>" class="rounded" width= "85px" height="85px" style="cursor:pointer;" onClick="openViewer(<c:out value="${listUploaded.type }"/>, <c:out value="${listUploaded. sort }"/>);">
-											<div style="position: relative; top:-85px; left:5px"><span style="color: red; cursor:pointer;" onClick="delImgDiv('<c:out value="${name }"/>', <c:out value="${type }"/>,<c:out value="${listUploaded.sort }"/>, <c:out value="${listUploaded.seq }"/>, '<c:out value="${listUploaded.path }"/><c:out value="${listUploaded.uuidName }"/>')">X</span></div>
+										<div id="imgDiv_<c:out value="${type }"/>_<c:out value="${listUploaded.sort }"/>" class="imgDiv">
+											<img src="<c:out value="${listUploaded.path }"/><c:out value="${listUploaded.uuidName }"/>" class="rounded"  onClick="openViewer(<c:out value="${listUploaded.type }"/>, <c:out value="${listUploaded. sort }"/>);">
+											<div style="position: relative; top:-450px; left:5px"><span style="color: red; cursor:pointer;" onClick="delImgDiv('<c:out value="${name }"/>', <c:out value="${type }"/>,<c:out value="${listUploaded.sort }"/>, <c:out value="${listUploaded.seq }"/>, '<c:out value="${listUploaded.path }"/><c:out value="${listUploaded.uuidName }"/>')">X</span></div>
 										</div>
 									</c:if>
 								</c:forEach>
@@ -181,6 +181,12 @@
 		        
 		        $('#bdContent').summernote('editor.insertText', "${board_data.BOARD_CONTENT}")
 		})
+		
+		var hide = $('.addScroll');
+		function Image(){
+			hide.show();
+		}
+		
 	</script>
 </body>
 </html>

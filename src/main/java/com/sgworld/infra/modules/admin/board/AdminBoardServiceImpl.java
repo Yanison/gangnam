@@ -113,7 +113,7 @@ public class AdminBoardServiceImpl extends BaseServiceImpl implements AdminBoard
 		
 		//setRegMod(dto);
 		dao.insert(dto);
-		//uploadFiles(dto.getUploadImg(), dto, "boardUploaded", dto.getUploadImgType(), dto.getUploadImgMaxNumber());
+		uploadFiles(dto.getUploadImg(), dto, "boardUploaded", dto.getUploadImgType(), dto.getUploadImgMaxNumber());
 		//uploadFiles(dto.getUploadFile(), dto, "boardUploaded", dto.getUploadFileType(), dto.getUploadFileMaxNumber());
 		return 1; 
 	}

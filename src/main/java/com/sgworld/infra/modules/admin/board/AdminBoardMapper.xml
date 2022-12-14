@@ -75,6 +75,7 @@
 			,bdContent
 			,regDatetime
 			,delNy
+			,viewCount
 		)
 		VALUES (
 			#{infrMmSeq}
@@ -83,6 +84,7 @@
 			,#{bdContent}
 			,now()
 			,1
+			,0
 		)
 			<selectKey resultType="String" keyProperty="bdSeq" order="AFTER">
 				SELECT last_insert_id()
