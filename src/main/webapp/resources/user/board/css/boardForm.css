@@ -48,7 +48,7 @@
 .boardTitle{
 	display: flex;
 	justify-content: center;
-	padding: 10px 0;
+	padding-top: 10px;
 }
 .contentTitle{
 	width: 860px;
@@ -60,6 +60,34 @@
 .boardContent{
 	display: flex;
 	justify-content: center;
+} 
+
+.selectImage{
+	/* display: flex;
+	justify-content: center; */
+	border: 1px solid #DEDEDE;
+	width: 860px;
+	height: 42px;
+}
+
+.btnImage{
+	background-color: transparent;
+	border: none;
+}
+
+.boardInputDiv{
+	display: flex;
+	justify-content: center;
+	margin: auto;
+	width: 860px;
+	border: 1px solid #DEDEDE;
+	height: 500px;
+}
+
+.boardInput{
+	width: 100%;
+	border: none;
+	resize: none;
 }
 
 #bdContent{

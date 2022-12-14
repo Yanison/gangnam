@@ -66,15 +66,30 @@
 					<div class="boardTitle">
 						<input class="contentTitle" type="text" id="bdTitle" name="bdTitle" value="<c:out value="${dto.bdTitle }" />" placeholder="글 제목을 입력해 주세요.">
 					</div>
-					<div class="boardContent">
-						<div>
-							
+					<div class="boardContent"> 
+						<div class="selectImage">
+							<ul>
+								<li>
+									<button class="btnImage">
+										<i class="fa-regular fa-image" style="display: block;"></i>
+										<span></span>
+										<span>사진</span>
+									</button>
+								</li>		
+							</ul>
 						</div>
+						<!-- <div>
+							<input type="text">
+						</div> -->
 						<%-- <textarea id="bdContent" name="bdContent">
 							<c:out value="${dto.bdContent }"/>
 						</textarea> --%>
 						<%-- <textarea class="boardFormContent summerNote" id="bdContent" name="bdContent"><c:out value="${dto.bdContent }" /></textarea> --%>
 					</div>
+					<div class="boardInputDiv">
+						<!-- 이미지  -->
+						<textarea rows="" cols="" class="boardInput"></textarea>
+					</div> 
 				</div>
 			</article>
 		</section>
