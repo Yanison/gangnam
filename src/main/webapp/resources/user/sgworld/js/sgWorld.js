@@ -2,7 +2,7 @@ $(window).on("beforeunload",function(){
 	
 	leaveAndDel()
 	sendUsersNum(users.length)
-	disconnect() 
+	disconnect()
 })
 var camwith = null;
 var endPoint = $('#endPoint').val()
@@ -56,6 +56,46 @@ function connect() {
         setConnected(true);
         console.log('Connected: ' + frame);
         
+        
+        //listenContact
+		stompClient.subscribe("/topic/sgWorld/" +endPoint+"/avatarWSControll/WebRTC/contactListener",function (contactListener) {
+		   let contact = false;
+		   
+		   if(contactListener.body == "contacted"){
+				contact = true;
+			}else{
+				contact = false;
+			}
+			if(contact === true){
+				console.log("init c")
+				initCall();
+				sendOffer();
+			}
+		});
+        //listenOffer
+		stompClient.subscribe("/topic/sgWorld/" +endPoint+"/avatarWSControll/WebRTC/offer",function (listenOffer) {
+		    const offer = JSON.parse(listenOffer.body)
+		    console.log(offer)
+		    console.log("received the answer"+ offer);
+		    sendAnswer(offer);
+		    
+		});
+        //listenAnswer
+		stompClient.subscribe("/topic/sgWorld/" +endPoint+"/avatarWSControll/WebRTC/answer",function (listenAnswer) {
+		   	const answer = JSON.parse(listenAnswer.body)
+		   	console.log(answer);
+		    console.log("received the answer" + answer);
+		    myPeerConnection.setRemoteDescription(answer);
+		});
+		//listenIceCandidate
+		stompClient.subscribe("/topic/sgWorld/" +endPoint+"/avatarWSControll/WebRTC/ice",function (iceCandidate) {
+			const ice = JSON.parse(iceCandidate.body)
+			console.log(ice);
+		    console.log("received the answer" + ice);
+		    myPeerConnection.addIceCandidate(ice);
+		});
+
+        
         stompClient.subscribe('/topic/sgWorld/chatroom/'+endPoint, function (msgObjFromServer) {
 			 var msgObj = JSON.parse(msgObjFromServer.body)
 			 console.log("topic/sgWorld/chatroom"+ msgObj)
@@ -82,7 +122,7 @@ function connect() {
 				userColor :  usersInfo.userColor,
 				x :  usersInfo.x,
 				y :  usersInfo.y,
-				avatarSeq : usersInfo.avatarSeq
+				avatarSeq : usersInfo.avatarSe,
 			}
 		users.push(arr)
 		/**
@@ -289,6 +329,28 @@ function draw(){
 	}
 	
     let user = users[userIdx];
+  
+//    let preventOverlap = 
+//		user.x < users[e].x + ballRadius&&
+//		user.x > users[e].x - ballRadius&& 
+//		user.y < users[e].y + ballRadius&& 
+//		user.y >users[e].y - ballRadius
+//	
+//	if(preventOverlap){
+//		if(user.x  > users[e].x - ballRadius &&  user.y > users[e].y - ballRadius){
+//			user.x = users[e].x - ballRadius;
+//			user.y = users[e].y - ballRadius;
+//		}else if(user.x  < users[e].x + ballRadius &&  user.y > users[e].y - ballRadius){
+//   			user.x = users[e].x + ballRadius;
+//			user.y = users[e].y - ballRadius;
+//		}else if(user.x  < users[e].x + ballRadius &&  user.y < users[e].y + ballRadius){
+//			user.x = users[e].x + ballRadius;
+//			user.y = users[e].y + ballRadius;
+//		}else if(user.x  > users[e].x - ballRadius &&  user.y < users[e].y + ballRadius){
+//			user.x = users[e].x - ballRadius;
+//			user.y = users[e].y + ballRadius;
+//		}
+//	}
     
     // 정방향
     if(rightPressed) {
@@ -319,6 +381,7 @@ function draw(){
         }
         sendLocation(user);
     }
+    
     
     //대각
     if(downPressed && leftPressed) {
@@ -366,41 +429,68 @@ function draw(){
 		if(users[e].infrMmSeq != user.infrMmSeq){
 			let contact = users[e].x < user.x + 25 && users[e].x > user.x - 25 && users[e].y < user.y + 25 && users[e].y > user.y - 25
 			
-			if(contact){
-				if(users[e].userStatus == "normal"){
-					shoCamDiv(true,users[e].infrMmSeq,user.infrMmSeq)
-					users[e].userStatus = "onCam"
+			
+			if(contact){anotherUser = e}
+			if(anotherUser != null){
+				let contactWith = users[anotherUser].x < user.x + 25 && users[anotherUser].x > user.x - 25 && users[anotherUser].y < user.y + 25 && users[anotherUser].y > user.y - 25
+				if(contactWith){
+					if(users[anotherUser].userStatus == "normal" && user.userStatus == "normal"){
+						showCamDiv(true)
+					}
+					users[anotherUser].userStatus = "onCam"
 					user.userStatus = "onCam"
-					getMedia()
 				}else{
-					console.log("상대가 화상채팅중 입니다. 대상 :: " + camwith)
+					if(users[anotherUser].userStatus == "onCam" && user.userStatus == "onCam"){
+						showCamDiv(false)
+					}
+					users[anotherUser].userStatus = "normal"
+					user.userStatus = "normal"
+					anotherUser=null
 				}
-			}else{
-				shoCamDiv(false,users[e].infrMmSeq,user.infrMmSeq)
-				users[e].userStatus = "normal"
-				user.userStatus = "normal"
 			}
 		}
 	}
 }
-function shoCamDiv(event,you,me){
-	
-	if(event){
-		$('#camDiv').fadeIn("fast")
-		camwith = you
-		$('.yourCam').val(you)
-		$('.myCam').val(me)
+setInterval(draw, 50);
+let anotherUser;
+let bool = false;
+
+function showCamDiv(e){
+	console.log("showCamDivEnvet :: "+e)
+	if(e != bool){
+		bool = e;
+		console.log("값이 바뀜")
+		if(e){
+			console.log('showCamDivOn')
+			appendCam()
+		}else{
+			$('.littleCamDiv').remove()
+			console.log('showCamDivOff')
+			//myPeerConnection.close()
+		}	
 	}else{
-		$('#camDiv').fadeOut("fast")
-		camwith = null;
-		$('.yourCam').val(null)
-		$('.myCam').val(null)
-		$('#fullCamDiv').fadeOut("fast")
+		console.log("중복 할당 방지")
 	}
 }
 
-setInterval(draw, 50);
 
+function appendCam(){
+	html =""
+	html += '<div class="littleCamDiv" onclick="fullCamDiv()">'
+	html += '<div class="cam myCam" onclick="whosCam(this)">'
+	html += '<video id="myFace" autoplay playsinline width="200" height="160"></video>'
+	html += '</div></div>'
+	
+	
+	html2 =""
+	html += '<div class="littleCamDiv" onclick="fullCamDiv()">'
+	html += '<div class="cam myCam" onclick="whosCam(this)">'
+	html += '<video id="yourFace" autoplay playsinline width="200" height="150"></video>'
+	html +=	'</div></div>'
+	
+	$('#myCamDiv').append(html)
+	$('#yourCamDiv').append(html2)
+}
 
 
 	

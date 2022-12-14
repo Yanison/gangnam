@@ -88,6 +88,11 @@ div, span, ul, li, a {
 	display:flex;
 	justify-content:center;
 }
+
+.userCamDiv{
+	display:flex;
+	justify-content:center;
+}
 .littleCamDiv{
 	width:220px;
 	height:180px;
@@ -265,6 +270,7 @@ div, span, ul, li, a {
 	display:block;
 	height:50%;
 	
+	
 	display: flex;
     justify-content: space-around;
     align-items: center;
@@ -281,6 +287,8 @@ div, span, ul, li, a {
 	border:none;
 	color:#fff;
 	background:none;
+	width:120px;
+	height:40px;
 }
 
 .fullCamDiv{

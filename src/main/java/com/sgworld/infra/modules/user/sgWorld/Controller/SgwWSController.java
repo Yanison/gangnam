@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -12,6 +13,8 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sgworld.infra.modules.user.sgWorld.SgwSerivceImpl;
 import com.sgworld.infra.modules.user.sgWorld.sgwdto.SgwChat;
 import com.sgworld.infra.modules.user.sgWorld.sgwdto.SgwDto;
@@ -122,4 +125,31 @@ public class SgwWSController {
 			 e.printStackTrace();
 		 }
 	 }
+	 
+	 
+	 
+	 /******************
+	  ***** WebRTC
+	  ******************/
+	 @MessageMapping(value="sgWorld/{endPoint}/avatarWSControll/WebRTC/contactListener")
+	 public void contactListener(@DestinationVariable String endPoint,String contact) throws ParseException {
+		 System.out.println("contactListener :: "+contact);
+		 template.convertAndSend("/topic/sgWorld/"+endPoint+"/avatarWSControll/WebRTC/contactListener",contact);
+	 }
+	 @MessageMapping(value="sgWorld/{endPoint}/avatarWSControll/WebRTC/answer")
+	 public void answer(@DestinationVariable String endPoint,String answer) throws ParseException {
+		 System.out.println("answer :: " + answer);
+		 template.convertAndSend("/topic/sgWorld/"+endPoint+"/avatarWSControll/WebRTC/answer",answer);
+	 }
+	 @MessageMapping(value="sgWorld/{endPoint}/avatarWSControll/WebRTC/offer")
+	 public void offer(@DestinationVariable String endPoint,String offer) {
+		 System.out.println("offer :: " + offer);
+		 template.convertAndSend("/topic/sgWorld/"+endPoint+"/avatarWSControll/WebRTC/offer",offer);
+	 }
+	 @MessageMapping(value="sgWorld/{endPoint}/avatarWSControll/WebRTC/ice")
+	 public void ice(@DestinationVariable String endPoint,String ice) {
+		 System.out.println("ice :: " + ice);
+		 template.convertAndSend("/topic/sgWorld/"+endPoint+"/avatarWSControll/WebRTC/ice",ice);
+	 }
+	 
 }

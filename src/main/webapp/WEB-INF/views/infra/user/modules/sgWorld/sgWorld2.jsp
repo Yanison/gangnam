@@ -21,18 +21,11 @@
 <div class="wrapper" style="display:flex; height:93%">
 	 <canvas id = "myCanvas" width ="1024" height = "768" style="background:#fff"></canvas>
 	 
-	 <div id="camDiv" class="camDiv" style="display:none;">
-		<div class="littleCamDiv" onclick="fullCamDiv()">
-			<div class="cam myCam" onclick="whosCam(this)">
-				<video id="myFace" autoplay playsinline width="200" height="160"></video>
-			</div>
-		</div>
-		<div class="littleCamDiv" onclick="fullCamDiv()">
-			<div class="cam myCam" onclick="whosCam(this)">
-				<video id="yourFace" autoplay playsinline width="200" height="150"></video>
-			</div>
-		</div>
+	 <div id="camDiv" class="camDiv">
+	 	<div id="myCamDiv" class="userCamDiv myCamDiv"></div>
+	 	<div id="yourCamDiv" class="userCamDiv yourCamDiv"></div>
 	</div>
+	
 	 <article class="utilDiv chatDiv">
 		<div class="headerDiv">
 			<h6>SgWorld Room Title</h6>
@@ -66,22 +59,26 @@
 		<img id="sgLogo"class="sgLogo" src="/../../resources/common/images/sgLogo.png">
 		
 		<div class="divContents">
-			<button  id="micOff" onclick="onoff(this)" value="0">
-				<i class="fa-solid fa-microphone-lines onOffMic"></i>
+			<button  id="micOnOff" value="0" onclick="handleMicOnOff()">
+				<i class="fa-solid fa-microphone-lines onOffMic" style="color:#4d9d85"></i>
 			</button>
-			<button id="micOn" onclick="onoff(this)" value="1">
-				<i class="fa-solid fa-microphone-lines-slash onOffMic"></i>
+		</div>
+		<div class="divContents" style="width:240px">
+			<button  id="camOnOff" value="1" onclick="handleCamOnOff()">
+				<i class="fa-solid fa-video onOffCam" style="color:#4d9d85"></i>
 			</button>
-			
+			<select id="cameras" style="width:120px; font-size:15px;">
+				<option>카메라 장치 선택</option>
+			</select>
 		</div>
 		<div class="divContents">
-			<button  id="camOff" onclick="onoff(this)" value="0">
-				<i class="fa-solid fa-video-slash onOffCam"></i>
-			</button>
-			<button  id="camOn" onclick="onoff(this)" value="1">
-				<i class="fa-solid fa-video onOffCam"></i>
+			<button  id="sreenShare" value="1">
+				<i class="fa-solid fa-desktop"></i>
 			</button>
 		</div>
+		<input id="boolean" type="text" readOnly onchange="showCamDiv()">
+		<input id="yourCamSeq" type="hidden">
+		<input id="myCamSeq" type="hidden">
 	</div>
 	<div class="right">
 		<div class="divContents" style="width:80px;" >
@@ -133,6 +130,7 @@
   </video> -->
 </body>
 </html>
-<script src="/resources/user/sgworld/js/sgworldCam.js"></script>
-<script src="/resources/user/sgworld/js/sgWorldRequets.js"></script>
 <script src="/resources/user/sgworld/js/sgWorld.js"></script>
+<script src="/resources/user/sgworld/js/webRTC.js"></script>
+<!-- <script src="/resources/user/sgworld/js/sgworldCam.js"></script> -->
+<script src="/resources/user/sgworld/js/sgWorldRequets.js"></script>
