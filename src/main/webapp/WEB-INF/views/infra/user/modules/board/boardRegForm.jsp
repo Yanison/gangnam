@@ -70,11 +70,11 @@
 						<div class="selectImage">
 							<ul>
 								<li>
-									<button class="btnImage">
+									<label class="btnImage" for="uploadImg" style="cursor: pointer">
 										<i class="fa-regular fa-image" style="display: block;"></i>
 										<span></span>
 										<span>사진</span>
-									</button>
+									</label>
 								</li>		
 							</ul>
 						</div>
@@ -87,8 +87,26 @@
 						<%-- <textarea class="boardFormContent summerNote" id="bdContent" name="bdContent"><c:out value="${dto.bdContent }" /></textarea> --%>
 					</div>
 					<div class="boardInputDiv">
-						<!-- 이미지  -->
-						<textarea rows="" cols="" class="boardInput"></textarea>
+						<c:set var="type" value="2"/>		<!-- #-> -->
+				        	<c:set var="name" value="uploadImg"/>		<!-- #-> -->
+							<div id="<c:out value="${name }"/>Preview" class="addScroll">
+								<c:forEach items="${listUploaded}" var="listUploaded" varStatus="statusUploaded">
+									<c:if test="${listUploaded.type eq type }">
+										<div id="imgDiv_<c:out value="${type }"/>_<c:out value="${listUploaded.sort }"/>" style="display: inline-block; height: 95px;">
+											<img src="<c:out value="${listUploaded.path }"/><c:out value="${listUploaded.uuidName }"/>" class="rounded" width= "85px" height="85px" style="cursor:pointer;" onClick="openViewer(<c:out value="${listUploaded.type }"/>, <c:out value="${listUploaded. sort }"/>);">
+											<div style="position: relative; top:-85px; left:5px"><span style="color: red; cursor:pointer;" onClick="delImgDiv('<c:out value="${name }"/>', <c:out value="${type }"/>,<c:out value="${listUploaded.sort }"/>, <c:out value="${listUploaded.seq }"/>, '<c:out value="${listUploaded.path }"/><c:out value="${listUploaded.uuidName }"/>')">X</span></div>
+										</div>
+									</c:if>
+								</c:forEach>
+							</div>
+							<input type="hidden" id="<c:out value="${name }"/>Type" name="<c:out value="${name }"/>Type" value="<c:out value="${type }"/>"/>
+				        	<input type="hidden" id="<c:out value="${name }"/>MaxNumber" name="<c:out value="${name }"/>MaxNumber" value="0"/>
+				        	<input type="hidden" id="<c:out value="${name }"/>DeleteSeq" name="<c:out value="${name }"/>DeleteSeq"/>
+				        	<input type="hidden" id="<c:out value="${name }"/>DeletePathFile" name="<c:out value="${name }"/>DeletePathFile"/>
+				 			<input class="form-control form-control-sm" id="<c:out value="${name }"/>" name="<c:out value="${name }"/>" type="file" style="display: none;" onChange="upload('<c:out value="${name }"/>', <c:out value="${type }"/>, 0, 1, 0, 0, 1);">
+							<%-- <label for="uploadImg" class=" input-file-button">이미지첨부</label><c:set var="type" value="2"/> --%>		<!-- #-> -->
+				        	<c:set var="name" value="uploadImg"/>		<!-- #-> -->
+						<textarea rows="" cols="" class="boardInput" name="bdContent" placeholder="글을 입력해주세요"><c:out value="${dto.bdContent }"/></textarea>
 					</div> 
 				</div>
 			</article>
@@ -100,6 +118,7 @@
 	<%@ include file="../../common/footer.jsp" %>
 	<!-- footer e -->
 	<script src="/resources/user/common/js/commonUser.js"></script>
+	<script src="/resources/common/js/upload.js"></script>
 	<script type="text/javascript">
 		var goUrlBoardInst = "/board/boardInst";
 		var goUrlList = "/board/boardList";
