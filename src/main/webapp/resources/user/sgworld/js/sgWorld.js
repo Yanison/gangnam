@@ -1,9 +1,125 @@
 $(window).on("beforeunload",function(){
-	
 	leaveAndDel()
 	sendUsersNum(users.length)
 	disconnect()
 })
+
+
+/**
+ WebRTC Field
+ */
+ 
+let myFace;
+let yourFace;
+const muteBtn = document.getElementById('micOnOff');
+const cameraBtn = document.getElementById("camOnOff");
+const camerasSelect = document.getElementById("cameras");
+const shareBtn = document.getElementById("sreenShare")
+let myScreen;
+let yourScreen;
+let myDisplayStream;
+let yourDisplayStream;
+ 
+let myStream;
+let yourSteam;
+let myPeerConnection;
+let muted = false;
+let cameraOff = false;
+let myScreenShare = false;
+let yourScreenShare = false;
+
+// 사용자의 오디오,카메라 장치를 가져올 메소드 
+async function getCameras() {
+    try {
+        //enumerateDevices()로 사용자의 장치 목록 정보들이 담긴 배열을 불러와 devices 변수에 할당. 
+        const devices = await navigator.mediaDevices.enumerateDevices();
+        //filter메소드를 사용하여 devices 배열에서 kind(key) === "videoinput"(value)인 조건의 데이터(카메라 장치 목록)를 cameras에 담음. 
+        const cameras = devices.filter((device) => device.kind === "videoinput");
+        //카메라 장치 목록들 중 첫번째 장치의 Stream을 currentCamera에 할당. 
+        const currentCamera = myStream.getVideoTracks()[0];
+        //enumerateDevices() 로 가져온 내 비디오장치 목록을을 forEach 반복문으로 돌림.
+        cameras.forEach((camera) => {
+            //option은 camerasSelect의 select DOM 요소의 option DOM 
+            const option = document.createElement("option");
+            //option value 값은 장치의 id
+            option.value = camera.deviceId;
+            //option의 텍스트는 장치의 label
+            option.innerText = camera.label;
+            //장치 목록들 중 현재 출력되고 있는 Stream 장치의 label과 일치하면 select true
+            if (currentCamera.label === camera.label) {
+                option.selected = true;
+            }
+            //select 내부에 카메라 장치들을 append 해줌. 
+            camerasSelect.appendChild(option);
+        });
+    } catch (e) {
+        console.log(e);
+    }
+}
+
+
+	
+//getUserMedia()로 본인의 카메라 장치의 Steam을 불러옴. 
+async function getMedia(deviceId) {
+    //초기 contraints
+    const initialConstrains = {
+        audio: true,
+        video: { facingMode: "user" },
+    };
+    /**
+     * getCameras() 불러온 장치의 contraints, 만약 카메라 장치가 여러개일 경우 해당 카메라 장치로 전환할 수 있도록 하기 위함.
+    */
+    const cameraConstraints = {
+        audio: true,
+        video: { deviceId: { exact: deviceId } },
+    };
+
+    try {
+        //getUserMedia() 메소드로 Stream을 myStream변수에 할당. 
+        myStream = await navigator.mediaDevices.getUserMedia(
+            //getUserMedia() 에 매개변수로 들어갈 contraints 조건문, deviceId가 cameraConstraints과 일치하면 해당 장치로 보여주게 하기 위함. 
+            deviceId ? cameraConstraints : initialConstrains
+        );
+        
+        // video Dom 요소인 myFace에 srcObject() 메소드를 사용하여 myStream(선택된 장치의 Stream)을 할당. 
+        myFace.srcObject = myStream;
+            //deviceId가 비어있으면 getCameras()메소드를 호출하여  deviceId를 가져옴. 
+        if (!deviceId) {
+        await getCameras();
+        }
+    } catch (e) {
+        console.log(e);
+    }
+    
+    return true
+}
+
+//getDisplayMedia() 메소드로 화면공유기능 구현
+async function getDisplayMedia(){
+    try{
+        //getDisplayMedia의 contraints
+        const options = {audio: true, video: true};
+        //화면공유 Stream을 mydisPlayStream에 할당. 
+        myDisplayStream = await navigator.mediaDevices.getDisplayMedia(options);
+        console.log("displayMedia :: " + myDisplayStream);
+        //video DOM 요소에 srcObject메소드를 사용하여 화면공유 Stream을 할당. 
+        myScreen = document.getElementById('myScreen');
+        myScreen.srcObject = myDisplayStream;
+
+        const videoTrack = myDisplayStream.getVideoTracks()[0]
+
+        console.info("Track settings:");
+        console.info(JSON.stringify(videoTrack.getSettings(), null, 2));
+        console.info("Track constraints:");
+        console.info(JSON.stringify(videoTrack.getConstraints(), null, 2));
+    }catch(e){
+        console.log(e)
+    }
+}
+
+/**
+ sgworld Field
+ */
 var camwith = null;
 var endPoint = $('#endPoint').val()
 var infrMmSeq = $('#infrMmSeq').val()
@@ -57,54 +173,42 @@ function connect() {
         console.log('Connected: ' + frame);
         
         
-        //listenContact
-		stompClient.subscribe("/topic/sgWorld/" +endPoint+"/avatarWSControll/WebRTC/contactListener",function (contactListener) {
-		   let contact = false;
-		   
-		   if(contactListener.body == "contacted"){
-				contact = true;
-			}else{
-				contact = false;
-			}
-			if(contact === true){
-				console.log("init c")
-				initCall();
-				sendOffer();
-			}
-		});
         //listenOffer
-		stompClient.subscribe("/topic/sgWorld/" +endPoint+"/avatarWSControll/WebRTC/offer",function (listenOffer) {
-		    const offer = JSON.parse(listenOffer.body)
-		    console.log(offer)
-		    console.log("received the answer"+ offer);
-		    sendAnswer(offer);
-		    
+		stompClient.subscribe("/topic/sgWorld/" +endPoint+"/avatarWSControll/WebRTC/offer/"+infrMmSeq,function (listenOffer) {
+			const offerFromServer = JSON.parse(listenOffer.body)
+			var receive = offerFromServer.to
+			console.log("recieved Offer from :: " + users[userIdx].infrMmSeq + " me ::" + receive)
+				console.log("recieved Offer")
+				console.log(offerFromServer)
+				const receivedoffer = offerFromServer.obj
+				receiveAnswer(receivedoffer);
 		});
         //listenAnswer
-		stompClient.subscribe("/topic/sgWorld/" +endPoint+"/avatarWSControll/WebRTC/answer",function (listenAnswer) {
-		   	const answer = JSON.parse(listenAnswer.body)
-		   	console.log(answer);
-		    console.log("received the answer" + answer);
-		    myPeerConnection.setRemoteDescription(answer);
+		stompClient.subscribe("/topic/sgWorld/" +endPoint+"/avatarWSControll/WebRTC/answer/"+infrMmSeq,function (listenAnswer) {
+		   	const answerFromServer = JSON.parse(listenAnswer.body)
+		   	receivedAnswer = answerFromServer.obj
+		   	console.log("received answer :: ")
+		   	console.log(receivedAnswer)
+		   	remoteDescription(receivedAnswer)
 		});
 		//listenIceCandidate
 		stompClient.subscribe("/topic/sgWorld/" +endPoint+"/avatarWSControll/WebRTC/ice",function (iceCandidate) {
-			const ice = JSON.parse(iceCandidate.body)
-			console.log(ice);
-		    console.log("received the answer" + ice);
-		    myPeerConnection.addIceCandidate(ice);
+			const iceFromServer = JSON.parse(iceCandidate.body);
+			console.log("received candidate")
+			console.log(iceFromServer.obj)
+			myPeerConnection.addIceCandidate(iceFromServer.obj)
 		});
 
         
         stompClient.subscribe('/topic/sgWorld/chatroom/'+endPoint, function (msgObjFromServer) {
 			 var msgObj = JSON.parse(msgObjFromServer.body)
 			 console.log("topic/sgWorld/chatroom"+ msgObj)
-            showMsg(msgObj);
+             showMsg(msgObj);
         });
         
          stompClient.subscribe('/topic/sgWorld/sendMessage/'+endPoint, function (msgObjFromServer) {
             var msgObj = JSON.parse(msgObjFromServer.body)
-            showMsg(msgObj);
+             showMsg(msgObj);
         });
         
         stompClient.subscribe("/topic/sgWorld/" +this.endPoint+"/avatarWSControll/updateLoca",function (leave) {
@@ -426,11 +530,20 @@ function draw(){
         sendLocation(user);
     }
     for(var e = 0 ; e  < users.length; e ++){
+		
 		if(users[e].infrMmSeq != user.infrMmSeq){
 			let contact = users[e].x < user.x + 25 && users[e].x > user.x - 25 && users[e].y < user.y + 25 && users[e].y > user.y - 25
-			
-			
 			if(contact){anotherUser = e}
+			if(contact){
+				const f = anotherUsers.find((elem) => elem == users[e].infrMmSeq)
+				if(f != undefined){
+					console.log(anotherUsers)
+				}else{
+					console.log("nope go push")
+					anotherUsers.push(users[e].infrMmSeq)
+				}
+			}
+			
 			if(anotherUser != null){
 				let contactWith = users[anotherUser].x < user.x + 25 && users[anotherUser].x > user.x - 25 && users[anotherUser].y < user.y + 25 && users[anotherUser].y > user.y - 25
 				if(contactWith){
@@ -453,9 +566,10 @@ function draw(){
 }
 setInterval(draw, 50);
 let anotherUser;
+let anotherUsers = [infrMmSeq];
 let bool = false;
 
-function showCamDiv(e){
+async function showCamDiv(e){
 	console.log("showCamDivEnvet :: "+e)
 	if(e != bool){
 		bool = e;
@@ -463,9 +577,12 @@ function showCamDiv(e){
 		if(e){
 			console.log('showCamDivOn')
 			appendCam()
+			const myFace = document.getElementById('myFace')
+			await initCall()
 		}else{
 			$('.littleCamDiv').remove()
 			console.log('showCamDivOff')
+			RTCdisconnection()
 			//myPeerConnection.close()
 		}	
 	}else{
@@ -483,23 +600,224 @@ function appendCam(){
 	
 	
 	html2 =""
-	html += '<div class="littleCamDiv" onclick="fullCamDiv()">'
-	html += '<div class="cam myCam" onclick="whosCam(this)">'
-	html += '<video id="yourFace" autoplay playsinline width="200" height="150"></video>'
-	html +=	'</div></div>'
+	html2 += '<div class="littleCamDiv">'
+	html2 += '<div class="cam yourCam" onclick="receiveAnswer()">'
+	html2 += '<video id="yourFace" autoplay playsinline width="200" height="150"></video>'
+	html2 += '</div></div>'
 	
 	$('#myCamDiv').append(html)
 	$('#yourCamDiv').append(html2)
+	myFace = document.getElementById('myFace')
+	yourFace = document.getElementById('yourFace')
 }
 
 
+/***
+@@@@@@ RTC PeerConnection
+ */
+function RTCdisconnection(){
+	$('#cameras option').remove()
+	myStream.getTracks().forEach(function(track) {
+  		track.stop();
+	});
+	yourStream.getTracks().forEach(function(track) {
+  		track.stop();
+	});
+	myDisplayStream.getTracks().forEach(function(track) {
+  		track.stop();
+	});
+}
+
+
+// 음소거 버튼 Controll 이벤트 
+function handleMuteClick(){
+    //Stream이 담겨진 myStream에서 getAudioTracks()에서 forEach(track)으로 접근하여 track의 enable 요소를 컨트롤 
+    myStream
+        .getAudioTracks()
+        .forEach((track) => (track.enabled = !track.enabled))
+        /**
+         * track.enabled 에 새로운 value를 설정해주는 것
+         * track.enabled이 true면 false로 설정해주고 false면 그 반대로 true로 설정해줌. 
+         */
+    // 동시에 음소거를 ui로 보여줄 수 있는 DOM 요소도 컨트롤
+    if(!muted){
+        muteBtn.innerHtml = '<i class="fa-solid fa-microphone-lines onOffMic" style="color:#4d9d85"></i>';
+        muted = true;
+    }else{
+        muteBtn.innerHtml ='<i class="fa-solid fa-microphone-lines-slash onOffMic" style="color:#ac3b49"></i>';
+        muted = false;
+    }
+}
+
+// 카메라 버튼 Controll
+function handleCameraClick(){
+    //Stream이 담겨진 myStream에서 getVideoTracks()에서 forEach(track)으로 접근하여 track의 enable 요소를 컨트롤 
+    myStream.getVideoTracks().forEach((track) => (track.enabled = !track.enabled))
+    // 동시에 카메라 onOff를 ui로 보여줄 수 있는 DOM 요소도 컨트롤
+    if(!cameraOff){
+        cameraBtn.innerHtml='<i class="fa-solid fa-video onOffCam" style="color:#4d9d85"></i>'
+        cameraOff = true;
+    }else{
+        cameraBtn.innerHtml='<i class="fa-solid fa-video-slash onOffCam" style="color:#ac3b49"></i>'
+        cameraOff = false;
+    }
+}
+
+
+function handleScreenShareClick(){
+	var html = ""
 	
+	html += '<div id="myScreenDiv" class="littleCamDiv">'
+	html += '<div class="cam myScreen" onclick="receiveAnswer()">'
+	html += '<video id="myScreen" autoplay playsinline width="200" height="150"></video>'
+	html +=	'</div></div>'
+	
+	if(!myScreenShare){
+		myScreenShare = true;
+		$('#myCamDiv').after(html)
+		getDisplayMedia()
+		//myDisplayStream.getTracks().forEach((track) => myPeerConnection.addTrack(track, myDisplayStream));
+	}else{
+		myDisplayStream.getTracks().forEach(function(track) {
+  			track.stop();
+		});
+		myScreenShare = false;
+		$('#myScreenDiv').remove()
+	}
+}
+
+async function handleCameraChange() {
+    //getMedia() 메소드로 현재 선택된 카메라 장치의 deviceId를 매게변수로 실행함. 
+    await getMedia(camerasSelect.value);
+    /**
+     * myPeerConnection(new RTCPeerConnection()) 객체가 null이 아니면 조건문을 실행.
+     * 아래 조건문은 연결된 상대방의 peer에도 내 브라우저에서 변경된 Stream을 전달하기 위함. 
+    */
+    if (myPeerConnection) {
+        //videoTrack은 현재 변경하고 적용된 Track;
+        const videoTrack = myStream.getVideoTracks()[0];
+        
+        /**
+         * RTCPeerConnection()에서 제공하는 getSenders()를 콘손에 띄우면 RTCRtpSender객체를 배열형식으로 가져오는데 
+         * find()메소드를 사용하여 sender.track.kind 가 "video" 인 데이터를 가져와서 videoSender에 할당함. 
+         */
+        const videoSender = myPeerConnection
+            .getSenders()
+            .find((sender) => sender.track.kind === "video");
+        
+        //replaceTrack으로 상대방의 peer에 변경된 Stream의 videoTrack을 전달함. 
+        videoSender.replaceTrack(videoTrack);
+    }
+}
+
+//음소거 이벤트
+muteBtn.addEventListener("click",handleMuteClick);
+//camera ofOff 이벤트
+cameraBtn.addEventListener("click",handleCameraClick);
+//videoTrack 변경 이벤트
+camerasSelect.addEventListener("input",handleCameraChange);
+//화면 공유 이벤트
+shareBtn.addEventListener("click", handleScreenShareClick);
 		
 			
 		
+function contactListener(){
+	console.log("users got contact")
+	msg = {
+		user:users[userIdx],
+		msg:"contacted"
+	}
+	stompClient.send("/app/sgWorld/" +endPoint+"/avatarWSControll/WebRTC/contactListener",{},JSON.stringify(msg));
+}
+async function initCall(){
+	await getMedia()
+	setTimeout(()=>{
+		makeConnection()
+		if(userIdx < anotherUser){
+			localDescription()
+		}
+	},1500)
+}
+function makeConnection(){
+	console.log("makeConnection")
+	myPeerConnection = new RTCPeerConnection();
+    myPeerConnection = new RTCPeerConnection({
+    iceServers: [
+            {
+            urls: [
+                "stun:stun.l.google.com:19302",
+                "stun:stun1.l.google.com:19302",
+                "stun:stun2.l.google.com:19302",
+                "stun:stun3.l.google.com:19302",
+                "stun:stun4.l.google.com:19302",
+            ],
+            },
+        ],
+    });
+    myPeerConnection.addEventListener("icecandidate", handleIce);
+    myPeerConnection.addEventListener("addstream", handleAddStream);
+    console.log(myStream)
+    myStream.getTracks().forEach((track) => myPeerConnection.addTrack(track, myStream));
+}
+
+function handleIce(data) {
+    console.log("sent candidate");
+    //#webSocket
+    const iceMsg = {
+		type : "offer",
+		obj : data.candidate,
+		from : users[userIdx].infrMmSeq, // me
+		to : users[anotherUser].infrMmSeq // 상대방
+	}
+    stompClient.send("/app/sgWorld/" +endPoint+"/avatarWSControll/WebRTC/ice",{},JSON.stringify(iceMsg));
+}
+function handleAddStream(data) {
+	console.log("handleAddStream")
+	console.log(data)
+	if(data != null){
+		yourSteam = data.stream;
+	}
+	const yourFace = document.getElementById("yourFace");
+	yourFace.srcObject = yourSteam;
+}
+
+async function localDescription(){
+    const offer = await myPeerConnection.createOffer();
+    
+    myPeerConnection.setLocalDescription(offer);
+    
+    const offerMsg = {
+		type : "offer",
+		obj : offer,
+		from : users[userIdx].infrMmSeq, // me
+		to : users[anotherUser].infrMmSeq // 상대방
+	}
 	
+	console.log(offerMsg.obj);
+	stompClient.send("/app/sgWorld/" +endPoint+"/avatarWSControll/WebRTC/offer/"+offerMsg.to,{},JSON.stringify(offerMsg));
+	console.log("sent the offer");
+}
+
+async function receiveAnswer(receivedoffer){
+	myPeerConnection.setRemoteDescription(receivedoffer);
 	
-		
+	const answer = await myPeerConnection.createAnswer();
+	const answerMsg = {
+		type : "answer",
+		obj : answer,
+		from : users[userIdx].infrMmSeq, // me
+		to : users[anotherUser].infrMmSeq // 상대방
+	}
+	myPeerConnection.setLocalDescription(answer);
+	console.log(answerMsg.obj);
+	stompClient.send("/app/sgWorld/" +endPoint+"/avatarWSControll/WebRTC/answer/"+answerMsg.to,{},JSON.stringify(answerMsg));
+	console.log("sent the answer");
+}
+
+function remoteDescription(receivedAnswer){
+	myPeerConnection.setRemoteDescription(receivedAnswer)
+	console.log("setRemoteDescription");
+}
 			
 		
 	

@@ -59,12 +59,12 @@
 		<img id="sgLogo"class="sgLogo" src="/../../resources/common/images/sgLogo.png">
 		
 		<div class="divContents">
-			<button  id="micOnOff" value="0" onclick="handleMicOnOff()">
+			<button  id="micOnOff" value="0" onclick="handleMuteClick()">
 				<i class="fa-solid fa-microphone-lines onOffMic" style="color:#4d9d85"></i>
 			</button>
 		</div>
 		<div class="divContents" style="width:240px">
-			<button  id="camOnOff" value="1" onclick="handleCamOnOff()">
+			<button  id="camOnOff" value="1" onclick="handleCameraClick()">
 				<i class="fa-solid fa-video onOffCam" style="color:#4d9d85"></i>
 			</button>
 			<select id="cameras" style="width:120px; font-size:15px;">
@@ -76,13 +76,9 @@
 				<i class="fa-solid fa-desktop"></i>
 			</button>
 		</div>
-		<input id="boolean" type="text" readOnly onchange="showCamDiv()">
-		<input id="yourCamSeq" type="hidden">
-		<input id="myCamSeq" type="hidden">
 	</div>
 	<div class="right">
 		<div class="divContents" style="width:80px;" >
-			<!-- onclick="fullCamDivOff()" -->
 			<i class="fa-solid fa-users"></i>
 			<em id="usersNum"style="font-size:15px;">#</em>
 			<input type="hidden" id="ipUsersNum" onchange="sendUsersNum()">
@@ -131,6 +127,5 @@
 </body>
 </html>
 <script src="/resources/user/sgworld/js/sgWorld.js"></script>
-<script src="/resources/user/sgworld/js/webRTC.js"></script>
 <!-- <script src="/resources/user/sgworld/js/sgworldCam.js"></script> -->
 <script src="/resources/user/sgworld/js/sgWorldRequets.js"></script>

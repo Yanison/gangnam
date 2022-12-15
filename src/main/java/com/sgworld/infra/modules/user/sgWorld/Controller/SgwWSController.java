@@ -136,15 +136,15 @@ public class SgwWSController {
 		 System.out.println("contactListener :: "+contact);
 		 template.convertAndSend("/topic/sgWorld/"+endPoint+"/avatarWSControll/WebRTC/contactListener",contact);
 	 }
-	 @MessageMapping(value="sgWorld/{endPoint}/avatarWSControll/WebRTC/answer")
-	 public void answer(@DestinationVariable String endPoint,String answer) throws ParseException {
+	 @MessageMapping(value="sgWorld/{endPoint}/avatarWSControll/WebRTC/answer/{to}")
+	 public void answer(@DestinationVariable String endPoint,@DestinationVariable String to,String answer) throws ParseException {
 		 System.out.println("answer :: " + answer);
-		 template.convertAndSend("/topic/sgWorld/"+endPoint+"/avatarWSControll/WebRTC/answer",answer);
+		 template.convertAndSend("/topic/sgWorld/"+endPoint+"/avatarWSControll/WebRTC/answer/"+to,answer);
 	 }
-	 @MessageMapping(value="sgWorld/{endPoint}/avatarWSControll/WebRTC/offer")
-	 public void offer(@DestinationVariable String endPoint,String offer) {
+	 @MessageMapping(value="sgWorld/{endPoint}/avatarWSControll/WebRTC/offer/{to}")
+	 public void offer(@DestinationVariable String endPoint,@DestinationVariable String to,String offer) {
 		 System.out.println("offer :: " + offer);
-		 template.convertAndSend("/topic/sgWorld/"+endPoint+"/avatarWSControll/WebRTC/offer",offer);
+		 template.convertAndSend("/topic/sgWorld/"+endPoint+"/avatarWSControll/WebRTC/offer/"+to,offer);
 	 }
 	 @MessageMapping(value="sgWorld/{endPoint}/avatarWSControll/WebRTC/ice")
 	 public void ice(@DestinationVariable String endPoint,String ice) {

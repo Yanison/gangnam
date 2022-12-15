@@ -12,7 +12,7 @@
  */
 
 //video DOM 요소, video, checked
-const myFace = document.getElementById("myFace");
+const myFace = $('video#myFace')
 //음소거 DOM 요소, button, checked
 const muteBtn = document.getElementById("micOnOff");
 //카메라 onOff DOM 요소, button, checked
@@ -22,7 +22,7 @@ const camerasSelect = document.getElementById("cameras")
 //화면공유 DOM 요소, buttom, checked
 const shareBtn = document.getElementById("sreenShare")
 //화면공유 화면을 담을 DOM 요소, video
-const display = document.getElementById('myScreen');
+const myDisplay = document.getElementById('myScreen');
 const yourDisplay = document.getElementById('yourScreen');
 const camDiv = document.getElementById("camDiv");
 const myCamDiv = document.getElementById("myCamDiv");
@@ -239,10 +239,8 @@ shareBtn.addEventListener("click", handleScreenShareClick);
 async function initCall() {
     //getMedia() 메소드 실행, 유저의 카메라 장치 가져옴. 
     await getMedia();
-    //makeConnection() 실행, P2P 연결시도. 
     
     makeConnection();
-    
 }
 
 /**
@@ -264,6 +262,8 @@ async function sendOffer(){ // welcome으로 워딩된 소켓 서버를 구독�
     //p2p 연결을 위한 offer을 만드는 메소드. 
     const offer = await myPeerConnection.createOffer();
     //본인의 브라우저의 LocalDescription을 정의
+    console.log(" sendOffer setLocalDescription ")
+    console.log(offer)
     myPeerConnection.setLocalDescription(offer);
     console.log("sent the offer");
     // 소켓서버에 본인 브라우저의 offer를 보냄. (signalling)
@@ -278,7 +278,9 @@ async function sendAnswer(offer){ // offer으로 워딩된 소켓 서버를 구�
         myDataChannel.addEventListener("message",(event) => console.log(event.data));
     });
     console.log("received the offer");
-    //offer를 발신한 발신자의 정보를 setRemoteDescription에서 정의함. 
+    //offer를 발신한 발신자의 정보를 setRemoteDescription에서 정의함.
+    console.log(" sendAnswer setLocalDescription ")
+    console.log(offer)
     myPeerConnection.setRemoteDescription(offer);
     //offer를 정의하고 answer을 정의 
     const answer = await myPeerConnection.createAnswer();
@@ -287,6 +289,7 @@ async function sendAnswer(offer){ // offer으로 워딩된 소켓 서버를 구�
     //소켓으로 offer을 발신한 상대방에게 정의한 본인의 localDescription을 answer로 전달. 
     console.log("sent the answer");
     stompClient.send("/app/sgWorld/" +endPoint+"/avatarWSControll/WebRTC/answer",{},JSON.stringify(answer));
+    
 }
 
 ////listenAnswer
@@ -310,7 +313,6 @@ async function sendAnswer(offer){ // offer으로 워딩된 소켓 서버를 구�
 
 //WebRTC 연결을 실행하는 메소드
 function makeConnection() {
-    myPeerConnection = new RTCPeerConnection();
     //임시 STUN Server를 만들어줌. 
     myPeerConnection = new RTCPeerConnection({
     iceServers: [
@@ -344,14 +346,16 @@ function makeConnection() {
 //	    .forEach((track) => myPeerConnection.addTrack(track, display));
 }
 
+
+
 function handleIce(data) {
     console.log("sent candidate");
     //#webSocket
     stompClient.send("/app/sgWorld/" +endPoint+"/avatarWSControll/WebRTC/ice",{},JSON.stringify(data.candidate));
 }
 function handleAddStream(data) {
-    const peerFace = document.getElementById("peerFace");
-    peerFace.srcObject = data.stream;
+    const yourFace = document.getElementById("yourFace");
+    yourFace.srcObject = data.stream;
 }
 function handleAddStreamSreenShare(data){
 	const yourDisplay = document.getElementById("yourDisplay");
