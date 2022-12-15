@@ -40,6 +40,14 @@
 				</div>
 				<div class="boarderBody">
 					<div class="content">
+						<c:choose>
+							<c:when test="${item.path eq null}"><!-- 이미지가 없을때 -->
+								<!-- pass -->
+							</c:when>
+							<c:otherwise><!-- 이미지가 있을때 -->
+								<img src="${item.path }${item.uuidName}">
+							</c:otherwise>
+						</c:choose>
 						${item.bdContent }<!-- 게시글 내용 -->
 					</div>
 					<div class="icon">
