@@ -12,6 +12,7 @@
 	<sql id="selectCommon">
 		FROM board a
 		JOIN infrMember b on a.infrMmSeq = b.infrMmSeq
+		LEFT JOIN boardUploaded c on a.bdSeq = c.pSeq
 		WHERE 1=1
 			<if test="shDelNy != null and !shDelNy.equals('')">AND a.delNy = #{shDelNy}</if>
 			<choose>
@@ -38,6 +39,8 @@
 				,a.viewCount
 				,(select count(bdLikeSeq) from bdLike c where 1=1 and a.bdSeq = c.bdSeq) as likeCount
 				,(select count(cmSeq) from bdComment d where 1=1 and a.bdSeq = d.board_seq) as commentCount
+				,c.path
+				,c.uuidName
 			<include refid="selectCommon" />
 			ORDER BY a.bdSeq DESC
 		<include refid="Base.selectListLowerForMysql" />
@@ -53,6 +56,8 @@
 			a.*
 			,b.infrMmNickname
 			,(select count(cmSeq) from bdComment d where 1=1 and a.bdSeq = d.board_seq) as commentCount
+			,c.path
+			,c.uuidName
 		FROM board a
 		JOIN infrMember b on a.infrMmSeq = b.infrMmSeq
 		WHERE 1=1

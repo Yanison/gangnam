@@ -24,7 +24,7 @@
 	<!-- contend s -->
 	<section class=" container boardBody">
 		<div class="boarderTitle">
-			<a>게시판</a><a>자유게시판</a> <!-- 게시판 타이틀 -->
+			<a>자유게시판</a> <!-- 게시판 타이틀 -->
 		</div>
 		<section class="boarder row">
 		<c:choose>
@@ -49,6 +49,15 @@
 						</p> 글 제목 -->
 					</div>
 					<div class="contentBox">
+						<c:choose>
+							<c:when test="${list.path eq null }"><!-- 이미지가 없을때 -->
+							<!-- pass -->
+							</c:when>
+							<c:otherwise><!-- 이미지가 있을때 -->
+								<div><img src="${list.path }${list.uuidName}" style="width: 200px; height: 180px;"></div><!-- 이미지 영역 -->	
+							</c:otherwise>
+						</c:choose>
+						<%-- <div>${listUploaded.uuidName }</div> --%>
 						<div>${list.bdContent }</div> <!-- 글 내용(게시판 리스트에 보이는 글자 수 제한 둘 것) -->
 					</div>
 					<div class="userName">
