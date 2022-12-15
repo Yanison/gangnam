@@ -6,26 +6,31 @@
 <script src="webRTC.js"></script>
 </head>
 <body>
-<div class="messagebox">
-  <label for="message"
-    >Enter a message:
-    <input
-      type="text"
-      name="message"
-      id="message"
-      placeholder="Message text"
-      inputmode="latin"
-      size="60"
-      maxlength="120"
-      disabled />
-  </label>
-  <button id="sendButton" name="sendButton" class="buttonright" disabled>
-    Send
-  </button>
-</div> 
+<video autoplay playsinline width="400" height="400" id="myFace" ></video>
+<button onclick="getMedia()">getMedia</button>
 
-<div class="messagebox" id="receivebox">
-  <p>Messages received:</p>
-</div>
+<script>
+//const socket = io();
+const myFace = document.getElementById('myFace')
+
+//Stream은 비디오와 오디오가 합쳐진것을 말한다. 
+let myStream;
+let muted = false;
+let cameraOff = false;
+
+async function getMedia(){
+	try{
+		myStream = await navigator.mediaDevices.getUserMedia({
+            audio:true,
+            video:true,
+        });
+		myFace.srcObject = myStream;
+        console.log("####################### " + JSON.stringify(myStream))
+	}catch(e){
+	 	console.log(e);
+	}
+}
+
+</script>
 </body>
 </html>

@@ -11,6 +11,8 @@
 	
 </head>
 <body>
+
+
 <input type="hidden" id="infrMmSeq" value="<c:out value="${infrMmSeq}"/>">
 <input type="hidden" id="infrMmNickname" value="<c:out value="${infrMmNickname}"/>">
 <input type="hidden" id="endPoint" value="<c:out value="${endPoint}"/>">
@@ -19,18 +21,11 @@
 <div class="wrapper" style="display:flex; height:93%">
 	 <canvas id = "myCanvas" width ="1024" height = "768" style="background:#fff"></canvas>
 	 
-	 <div id="camDiv" class="camDiv" style="display:none;">
-		<div class="littleCamDiv" onclick="fullCamDiv()">
-			<div class="cam myCam" onclick="whosCam(this)">
-				cam
-			</div>
-		</div>
-		<div class="littleCamDiv" onclick="fullCamDiv()">
-			<div class="cam yourCam" onclick="whosCam(this)">
-				cam
-			</div>
-		</div>
+	 <div id="camDiv" class="camDiv">
+	 	<div id="myCamDiv" class="userCamDiv myCamDiv"></div>
+	 	<div id="yourCamDiv" class="userCamDiv yourCamDiv"></div>
 	</div>
+	
 	 <article class="utilDiv chatDiv">
 		<div class="headerDiv">
 			<h6>SgWorld Room Title</h6>
@@ -64,17 +59,26 @@
 		<img id="sgLogo"class="sgLogo" src="/../../resources/common/images/sgLogo.png">
 		
 		<div class="divContents">
-			<i class="fa-solid fa-microphone-lines onOffMic" id="micOff" onclick="onoff(this)" value="0"></i>
-			<i class="fa-solid fa-microphone-lines-slash onOffMic" id="micOn" onclick="onoff(this)" value="1"></i>
+			<button  id="micOnOff" value="0" onclick="handleMuteClick()">
+				<i class="fa-solid fa-microphone-lines onOffMic" style="color:#4d9d85"></i>
+			</button>
+		</div>
+		<div class="divContents" style="width:240px">
+			<button  id="camOnOff" value="1" onclick="handleCameraClick()">
+				<i class="fa-solid fa-video onOffCam" style="color:#4d9d85"></i>
+			</button>
+			<select id="cameras" style="width:120px; font-size:15px;">
+				<option>카메라 장치 선택</option>
+			</select>
 		</div>
 		<div class="divContents">
-			<i class="fa-solid fa-video-slash onOffCam" id="camOff" onclick="onoff(this)" value="0"></i>
-			<i class="fa-solid fa-video onOffCam" id="camOn" onclick="onoff(this)" value="1"></i>
+			<button  id="sreenShare" value="1">
+				<i class="fa-solid fa-desktop"></i>
+			</button>
 		</div>
 	</div>
 	<div class="right">
 		<div class="divContents" style="width:80px;" >
-			<!-- onclick="fullCamDivOff()" -->
 			<i class="fa-solid fa-users"></i>
 			<em id="usersNum"style="font-size:15px;">#</em>
 			<input type="hidden" id="ipUsersNum" onchange="sendUsersNum()">
@@ -116,11 +120,12 @@
 	</section>
 </div>
 
-  <video muted autoplay loop class="backgroundVid">
+ <!--  <video muted autoplay loop class="backgroundVid">
     <source src="/resources/common/video/space.mp4" type="video/mp4">
     <strong>Your browser does not support the video tag.</strong>
-  </video>
+  </video> -->
 </body>
 </html>
-<script src="/resources/user/sgworld/js/sgWorldRequets.js"></script>
 <script src="/resources/user/sgworld/js/sgWorld.js"></script>
+<!-- <script src="/resources/user/sgworld/js/sgworldCam.js"></script> -->
+<script src="/resources/user/sgworld/js/sgWorldRequets.js"></script>
