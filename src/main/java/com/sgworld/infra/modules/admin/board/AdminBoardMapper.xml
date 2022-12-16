@@ -57,10 +57,10 @@
 			,b.infrMmNickname
 			,(select count(cmSeq) from bdComment d where 1=1 and a.bdSeq = d.board_seq) as commentCount
 			,c.path
-			,c.uuidName
+			<!-- ,c.uuidName -->
 		FROM board a
 		JOIN infrMember b on a.infrMmSeq = b.infrMmSeq
-		LEFT JOIN boardUploaded c on a.bdSeq = c.pSeq
+		LEFT JOIN boardUploaded c on a.bdSeq = c.pSeq 
 		WHERE 1=1
 			AND bdSeq = #{bdSeq}
 	</select>
@@ -282,6 +282,16 @@
 		SELECT COUNT(*)FROM bdReComment
 			WHERE 1=1
 			AND comment_seq = #{cmSeq}    
+	</select>
+	
+	<!-- 게시글 이미지 불러오기 -->
+	<select id="selectImg" resultMap="resultMapObj">
+		SELECT 
+			path
+		    ,uuidName
+		FROM boardUploaded
+			WHERE 1=1
+			AND pSeq = #{bdSeq}  
 	</select>
  	
 </mapper>

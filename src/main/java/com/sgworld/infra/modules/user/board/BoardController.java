@@ -105,6 +105,8 @@ public class BoardController {
 		
 		AdminBoardDto item = service.selectOne(vo); //계시글 한개에 대한 정보
 		model.addAttribute("item", item);
+		
+		model.addAttribute("list", service.selectImg(vo));
 		System.out.println("boardCount:" + item.getCommentCount());
 		
 		return "infra/user/modules/board/boardView";

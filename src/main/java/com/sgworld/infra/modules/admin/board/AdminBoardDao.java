@@ -77,4 +77,9 @@ public class AdminBoardDao {
 	
 	//답글 갯수세기
 	public int selectReCommentCount(AdminBoardVo vo) {return sqlSession.selectOne(namespace +".selectReCommentCount", vo);}
+	
+	//게시글 이미지 불러오기
+	public List<AdminBoardDto>selectImg(AdminBoardVo vo){return sqlSession.selectList(namespace +".selectImg", vo);}
+
+
 }

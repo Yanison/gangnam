@@ -50,5 +50,8 @@ public interface AdminBoardService {
 	
 	//답글 갯수세기
 	public int selectReCommentCount(AdminBoardVo vo)throws Exception;
+	
+	//게시글 이미지 불러오기
+	public List<AdminBoardDto>selectImg(AdminBoardVo vo)throws Exception;
 }
 

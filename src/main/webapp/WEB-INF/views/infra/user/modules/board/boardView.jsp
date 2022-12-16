@@ -45,7 +45,9 @@
 								<!-- pass -->
 							</c:when>
 							<c:otherwise><!-- 이미지가 있을때 -->
-								<img src="${item.path }${item.uuidName}">
+								<c:forEach items="${list }" var="list" varStatus="status">
+									<img src="${list.path }${list.uuidName}">
+								</c:forEach>
 							</c:otherwise>
 						</c:choose>
 						${item.bdContent }<!-- 게시글 내용 -->

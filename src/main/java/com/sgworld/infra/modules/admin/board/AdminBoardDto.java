@@ -255,6 +255,7 @@ public class AdminBoardDto extends Base{
 	public void setReContent(String reContent) {
 		this.reContent = reContent;
 	}
+
 	
 	
 	
