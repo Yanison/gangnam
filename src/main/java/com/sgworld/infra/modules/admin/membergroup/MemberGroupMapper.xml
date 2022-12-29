@@ -98,7 +98,7 @@
 	  ,regDatetime
 	) values(
 	  #{infrMmId}
-	  ,MD5(#{infrMmPw})
+	  ,#{infrMmPw}
 	  ,#{infrMmName}
 	  ,#{infrMmNickname}
 	  ,#{infrMmBod}

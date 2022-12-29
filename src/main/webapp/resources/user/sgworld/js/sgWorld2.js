@@ -1,4 +1,3 @@
-
 $(window).on("beforeunload",function(){
 	leaveAndDel()
 	sendUsersNum(users.length)
@@ -22,7 +21,7 @@ let myDisplayStream;
 let yourDisplayStream;
  
 let myStream;
-let yourSteam;
+let yourStream;
 let myPeerConnection;
 let muted = false;
 let cameraOff = false;
@@ -178,26 +177,23 @@ function connect() {
 		stompClient.subscribe("/topic/sgWorld/" +endPoint+"/avatarWSControll/WebRTC/offer/"+infrMmSeq,function (listenOffer) {
 			const offerFromServer = JSON.parse(listenOffer.body)
 			var receive = offerFromServer.to
-			console.log("recieved Offer from :: " + users[userIdx].infrMmSeq + " me ::" + receive)
-				console.log("recieved Offer")
+			console.log("received Offer from :: " + users[userIdx].infrMmSeq + " me ::" + receive)
+				console.log("received Offer")
 				console.log(offerFromServer)
 				const receivedoffer = offerFromServer.obj
-				receiveAnswer(receivedoffer);
+				receiveAnswer(offerFromServer);
 		});
         //listenAnswer
 		stompClient.subscribe("/topic/sgWorld/" +endPoint+"/avatarWSControll/WebRTC/answer/"+infrMmSeq,function (listenAnswer) {
 		   	const answerFromServer = JSON.parse(listenAnswer.body)
 		   	receivedAnswer = answerFromServer.obj
 		   	console.log("received answer :: ")
-		   	console.log(receivedAnswer)
-		   	remoteDescription(receivedAnswer)
+		   	remoteDescription(answerFromServer)
 		});
 		//listenIceCandidate
-		stompClient.subscribe("/topic/sgWorld/" +endPoint+"/avatarWSControll/WebRTC/ice",function (iceCandidate) {
+		stompClient.subscribe("/topic/sgWorld/" +endPoint+"/avatarWSControll/WebRTC/ice/"+infrMmSeq,function (iceCandidate) {
 			const iceFromServer = JSON.parse(iceCandidate.body);
-			console.log("received candidate")
-			console.log(iceFromServer.obj)
-			myPeerConnection.addIceCandidate(iceFromServer.obj)
+			addCandy(iceFromServer)
 		});
 
         
@@ -262,7 +258,8 @@ function connect() {
 								x :  udateUserList[q].x,
 								y :  udateUserList[q].y,
 								avatarSeq : udateUserList[q].avatarSeqx,
-								userStatus : "normal"
+								userStatus : "normal",
+								userStream : null
 							}
 						userLsit.push(arr); console.log("break"); 	
 					}
@@ -281,7 +278,8 @@ function connect() {
 								x :  udateUserList[i].x,
 								y :  udateUserList[i].y,
 								avatarSeq : udateUserList[i].avatarSeq,
-								userStatus : "normal"
+								userStatus : "normal",
+								userStream : null
 							}
 							userLsit.push(arr)
 							console.log(JSON.stringify("arr :: " + arr))
@@ -534,39 +532,45 @@ function draw(){
 		
 		if(users[e].infrMmSeq != user.infrMmSeq){
 			let contact = users[e].x < user.x + 25 && users[e].x > user.x - 25 && users[e].y < user.y + 25 && users[e].y > user.y - 25
-			if(contact){anotherUser = e}
+			if(contact){pcUserIdx = e}
+			
 			if(contact){
-				const f = anotherUsers.find((elem) => elem == users[e].infrMmSeq)
+				
+				const f = pcUsers.find((elem) => elem == users[e])
 				if(f == undefined){
 					console.log("nope go push")
-					anotherUsers.push(users[e].infrMmSeq)
+					pcUsers.push(users[e])
+					console.log(pcUsers)
 				}
 			}
 			
-			if(anotherUser != null){
-				let contactWith = users[anotherUser].x < user.x + 25 && users[anotherUser].x > user.x - 25 && users[anotherUser].y < user.y + 25 && users[anotherUser].y > user.y - 25
+			if(pcUserIdx != null){
+				let contactWith = users[pcUserIdx].x < user.x + 25 && users[pcUserIdx].x > user.x - 25 && users[pcUserIdx].y < user.y + 25 && users[pcUserIdx].y > user.y - 25
 				if(contactWith){
-					if(users[anotherUser].userStatus == "normal" && user.userStatus == "normal"){
+					if(users[pcUserIdx].userStatus == "normal" && user.userStatus == "normal"){
 						showCamDiv(true)
 					}
-					users[anotherUser].userStatus = "onCam"
+					users[pcUserIdx].userStatus = "onCam"
 					user.userStatus = "onCam"
 				}else{
-					if(users[anotherUser].userStatus == "onCam" && user.userStatus == "onCam"){
+					if(users[pcUserIdx].userStatus == "onCam" && user.userStatus == "onCam"){
 						showCamDiv(false)
 					}
-					users[anotherUser].userStatus = "normal"
+					users[pcUserIdx].userStatus = "normal"
 					user.userStatus = "normal"
-					anotherUser=null
+					pcUserIdx=null
 				}
 			}
 		}
 	}
 }
 setInterval(draw, 50);
-let anotherUser;
-let anotherUsers = [infrMmSeq];
+
+let pcUserIdx;
+let pcUsers = [];
 let bool = false;
+
+
 
 async function showCamDiv(e){
 	console.log("showCamDivEnvet :: "+e)
@@ -578,6 +582,7 @@ async function showCamDiv(e){
 			appendCam()
 			const myFace = document.getElementById('myFace')
 			await initCall()
+			console.log(pcUsers)
 		}else{
 			$('.littleCamDiv').remove()
 			console.log('showCamDivOff')
@@ -597,17 +602,8 @@ function appendCam(){
 	html += '<video id="myFace" autoplay playsinline width="200" height="160"></video>'
 	html += '</div></div>'
 	
-	
-	html2 =""
-	html2 += '<div class="littleCamDiv">'
-	html2 += '<div class="cam yourCam" onclick="receiveAnswer()">'
-	html2 += '<video id="yourFace" autoplay playsinline width="200" height="150"></video>'
-	html2 += '</div></div>'
-	
 	$('#myCamDiv').append(html)
-	$('#yourCamDiv').append(html2)
 	myFace = document.getElementById('myFace')
-	yourFace = document.getElementById('yourFace')
 }
 
 
@@ -617,9 +613,6 @@ function appendCam(){
 function RTCdisconnection(){
 	$('#cameras option').remove()
 	myStream.getTracks().forEach(function(track) {
-  		track.stop();
-	});
-	yourStream.getTracks().forEach(function(track) {
   		track.stop();
 	});
 	myDisplayStream.getTracks().forEach(function(track) {
@@ -717,79 +710,110 @@ cameraBtn.addEventListener("click",handleCameraClick);
 camerasSelect.addEventListener("input",handleCameraChange);
 //화면 공유 이벤트
 shareBtn.addEventListener("click", handleScreenShareClick);
-		
-			
-		
-function contactListener(){
-	console.log("users got contact")
-	msg = {
-		user:users[userIdx],
-		msg:"contacted"
-	}
-	stompClient.send("/app/sgWorld/" +endPoint+"/avatarWSControll/WebRTC/contactListener",{},JSON.stringify(msg));
-}
+
+
+
+
 async function initCall(){
 	await getMedia()
+	
 	setTimeout(()=>{
-		makeConnection()
-		if(userIdx < anotherUser){
-			localDescription()
-		}
+		creatAllConnection()
 	},1500)
 }
-function makeConnection(){
-	console.log("makeConnection")
-	myPeerConnection = new RTCPeerConnection();
-    myPeerConnection = new RTCPeerConnection({
-    iceServers: [
-            {
-            urls: [
-                "stun:stun.l.google.com:19302",
-                "stun:stun1.l.google.com:19302",
-                "stun:stun2.l.google.com:19302",
-                "stun:stun3.l.google.com:19302",
-                "stun:stun4.l.google.com:19302",
-            ],
-            },
+//1:m 일때 반복문으로 바뀌어야 함.
+
+async function creatAllConnection(){
+	
+	let len = pcUsers.length;
+	
+	for(let i = 0 ; i < len ; i++){
+		
+		makeConnection(pcUsers[i])
+		localDescription(pcUsers[i])
+		
+		let pc = pcUsers[i]
+		
+		if(pc.userStream){
+			let offer = await peerConnection.createOffer()
+			peerConnection.setLocalDescription(offer)
+			
+			const offerMsg = {
+				sdp : offer.sdp,
+				pcUser : pcUser.infrMmSeq
+			}
+			//send offer
+			stompClient.send("/app/sgWorld/" +endPoint+"/avatarWSControll/WebRTC/offer/"+pcUser.infrMmSeq,{},JSON.stringify(offerMsg));
+		}
+	}
+}
+
+const pcConfig = {
+iceServers: [
+        {
+        urls: [
+            "stun:stun.l.google.com:19302",
+            "stun:stun1.l.google.com:19302",
+            "stun:stun2.l.google.com:19302",
+            "stun:stun3.l.google.com:19302",
+            "stun:stun4.l.google.com:19302",
         ],
-    });
-    myPeerConnection.addEventListener("icecandidate", handleIce);
-    myPeerConnection.addEventListener("addstream", handleAddStream);
-    console.log(myStream)
-    myStream.getTracks().forEach((track) => myPeerConnection.addTrack(track, myStream));
+        },
+    ],	
 }
 
-function handleIce(data) {
-    console.log("sent candidate");
-    //#webSocket
-    const iceMsg = {
-		type : "offer",
-		obj : data.candidate,
-		from : users[userIdx].infrMmSeq, // me
-		to : users[anotherUser].infrMmSeq // 상대방
-	}
-    stompClient.send("/app/sgWorld/" +endPoint+"/avatarWSControll/WebRTC/ice",{},JSON.stringify(iceMsg));
-}
-function handleAddStream(data) {
-	console.log("handleAddStream")
-	console.log(data)
-	if(data != null){
-		yourSteam = data.stream;
-	}
-	const yourFace = document.getElementById("yourFace");
-	yourFace.srcObject = yourSteam;
+function makeConnection(pcUser){
+	
+	console.log("makeConnection")
+	console.log(pcUser)
+	myPeerConnection = new RTCPeerConnection(pcConfig)
+	
+	myPeerConnection.addEventListener("icecandidate", (data) =>{
+		console.log("sent candidate");
+	    //#webSocket
+	    const iceMsg = {
+			obj : data.candidate,
+			from : infrMmSeq,
+			to : pcUser.infrMmSeq
+		}
+	    stompClient.send("/app/sgWorld/" +endPoint+"/avatarWSControll/WebRTC/ice/"+pcUser.infrMmSeq,{},JSON.stringify(iceMsg));
+	});
+	myPeerConnection.addEventListener("addstream", data =>{
+		console.log("handleAddStream")
+		console.log(data)
+		if(data != null){
+			pcUser.userStream = data.stream;
+		}
+		console.log("pcUser.userStream")
+		console.log(pcUser.userStream)
+		
+		addCamDiv(pcUser.userStream,pcUser.infrMmSeq)
+	});
+	
+	myStream.getTracks().forEach((track) => myPeerConnection.addTrack(track, myStream));
 }
 
-async function localDescription(){
+function addCamDiv(pcStream,infrMmSeq){
+	html2 =""
+	html2 += '<div class="littleCamDiv">'
+	html2 += '<div class="cam yourCam" onclick="receiveAnswer()">'
+	html2 += '<video id="pcCam'+infrMmSeq+'" autoplay playsinline width="200" height="150"></video>'
+	html2 += '</div></div>'
+	
+	$('#yourCamDiv').append(html2)
+	pcCam = document.getElementById('pcCam'+infrMmSeq)
+	pcCam = pcStream;
+}
+async function localDescription(pcUser){
+	
     const offer = await myPeerConnection.createOffer();
     
     myPeerConnection.setLocalDescription(offer);
     
     const offerMsg = {
-		type : "offer",
 		obj : offer,
-		from : users[userIdx].infrMmSeq, // me
-		to : users[anotherUser].infrMmSeq // 상대방
+		from : infrMmSeq,
+		to : pcUser.infrMmSeq
 	}
 	
 	console.log(offerMsg.obj);
@@ -798,26 +822,31 @@ async function localDescription(){
 }
 
 async function receiveAnswer(receivedoffer){
-	myPeerConnection.setRemoteDescription(receivedoffer);
+	
+	myPeerConnection.setRemoteDescription(receivedoffer.obj);
 	
 	const answer = await myPeerConnection.createAnswer();
 	const answerMsg = {
-		type : "answer",
 		obj : answer,
-		from : users[userIdx].infrMmSeq, // me
-		to : users[anotherUser].infrMmSeq // 상대방
+		from : infrMmSeq,
+		to : receivedoffer.from
 	}
 	myPeerConnection.setLocalDescription(answer);
 	console.log(answerMsg.obj);
 	stompClient.send("/app/sgWorld/" +endPoint+"/avatarWSControll/WebRTC/answer/"+answerMsg.to,{},JSON.stringify(answerMsg));
-	console.log("sent the answer");
+	console.log("sent the answer to :: " + answerMsg.to);
 }
 
 function remoteDescription(receivedAnswer){
-	myPeerConnection.setRemoteDescription(receivedAnswer)
+	
+	myPeerConnection.setRemoteDescription(receivedAnswer.obj)
 	console.log("setRemoteDescription");
 }
 
+function addCandy(receivedCandidate){
+	console.log("recieved Candidate")
+ 	myPeerConnection.addIceCandidate(receivedCandidate.obj)
+}
 			
 		
 	

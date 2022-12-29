@@ -36,6 +36,21 @@ function sendMsg(f) {
 	    $('#inputMsg').val('');
 	}
 }
+function sendMsgBtn() {
+	var chatmsg = {
+		chatMsg : $('input[name="msg"]').val(),
+		infrMmSeq : $('#infrMmSeq').val(),
+		infrMmNickname : $('#infrMmNickname').val()
+	}
+	
+    stompClient.send(
+		"/app/sgWorld/msgTo/"+endPoint,
+    {}, 
+    JSON.stringify(chatmsg)
+    );
+    $('#inputMsg').val('');
+}
+
 function showMsg(message) {
 	var html =''
 	html += '<div class="msgDiv">'

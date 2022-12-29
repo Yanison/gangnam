@@ -51,6 +51,7 @@
 			</select>
 			</div>
 			<input type="text" class="inputMsg" name="msg" id="inputMsg" placeholder="Message..." onkeypress="sendMsg(event)">
+			<button id="sendMsgBtn" onclick="sendMsgBtn()" style="width:80px;height:25px">보내기</button>
 		</div>
 	</article>
 </div>
@@ -127,5 +128,4 @@
 </body>
 </html>
 <script src="/resources/user/sgworld/js/sgWorld.js"></script>
-<!-- <script src="/resources/user/sgworld/js/sgworldCam.js"></script> -->
 <script src="/resources/user/sgworld/js/sgWorldRequets.js"></script>

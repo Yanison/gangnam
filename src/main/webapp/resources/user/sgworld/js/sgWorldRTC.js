@@ -1,4 +1,3 @@
-
 $(window).on("beforeunload",function(){
 	leaveAndDel()
 	sendUsersNum(users.length)
@@ -28,6 +27,13 @@ let muted = false;
 let cameraOff = false;
 let myScreenShare = false;
 let yourScreenShare = false;
+/*
+let Peers = {
+	infrMmSeq: infrMmSeq,
+	Stream : null,
+	disStream: null,
+}
+*/
 
 // 사용자의 오디오,카메라 장치를 가져올 메소드 
 async function getCameras() {
@@ -216,6 +222,7 @@ function connect() {
             var leave = JSON.parse(leave.body)
             console.log("topic/sgWorld/chatroom"+ msgObj)
         });
+        
         stompClient.subscribe('/topic/sgWorld/requestOnloadInfo/'+endPoint, function(usersInfo) {
 		console.log('/topic/sgWorld/requestOnloadInfo/')
 		var usersInfo = JSON.parse(usersInfo.body)
@@ -243,6 +250,7 @@ function connect() {
 	      왜냐하면 
 		 */
         });
+        
         stompClient.subscribe('/topic/sgWorld/' + endPoint + "/avatarWSControll/reRenderingUsers", function(udateUserList) {
 			var udateUserList = JSON.parse(udateUserList.body);
 			console.log("udateUserList :: "+JSON.stringify(udateUserList) + "// usersNum :: "  + udateUserList.x)
@@ -262,7 +270,8 @@ function connect() {
 								x :  udateUserList[q].x,
 								y :  udateUserList[q].y,
 								avatarSeq : udateUserList[q].avatarSeqx,
-								userStatus : "normal"
+								userStatus : "normal",
+								userStream : new RTCPeerConneciton()
 							}
 						userLsit.push(arr); console.log("break"); 	
 					}
@@ -281,7 +290,8 @@ function connect() {
 								x :  udateUserList[i].x,
 								y :  udateUserList[i].y,
 								avatarSeq : udateUserList[i].avatarSeq,
-								userStatus : "normal"
+								userStatus : "normal",
+								userStream : new RTCPeerConneciton()
 							}
 							userLsit.push(arr)
 							console.log(JSON.stringify("arr :: " + arr))
@@ -294,15 +304,18 @@ function connect() {
 				
 				
 			}
+			
 			console.log(JSON.stringify("after for ie. userLsit :: " + JSON.stringify(userLsit)))
 			for(var o = 0; o < userLsit.length; o  ++){
 				users.push(userLsit[o])
 			}
+			
 			console.log(JSON.stringify("after for ie. this.users:: " + JSON.stringify(users)))
 			findMyInx()
 			$('em#usersNum,em#usersNum2').text(userLsit.length)
 			var usersNum = $('#ipUsersNum').val(userLsit.length)
 			sendUsersNum(userLsit.length)
+			
 		});
 		stompClient.subscribe('/topic/sgWorld/' + endPoint + "/avatarWSControll/update", function(update) {
 			var update = JSON.parse(update.body)
@@ -537,7 +550,9 @@ function draw(){
 			if(contact){anotherUser = e}
 			if(contact){
 				const f = anotherUsers.find((elem) => elem == users[e].infrMmSeq)
-				if(f == undefined){
+				if(f != undefined){
+					console.log(anotherUsers)
+				}else{
 					console.log("nope go push")
 					anotherUsers.push(users[e].infrMmSeq)
 				}
@@ -719,15 +734,6 @@ camerasSelect.addEventListener("input",handleCameraChange);
 shareBtn.addEventListener("click", handleScreenShareClick);
 		
 			
-		
-function contactListener(){
-	console.log("users got contact")
-	msg = {
-		user:users[userIdx],
-		msg:"contacted"
-	}
-	stompClient.send("/app/sgWorld/" +endPoint+"/avatarWSControll/WebRTC/contactListener",{},JSON.stringify(msg));
-}
 async function initCall(){
 	await getMedia()
 	setTimeout(()=>{
@@ -737,10 +743,34 @@ async function initCall(){
 		}
 	},1500)
 }
-function makeConnection(){
-	console.log("makeConnection")
-	myPeerConnection = new RTCPeerConnection();
-    myPeerConnection = new RTCPeerConnection({
+/**
+	allUsers :: 유저들 목록
+	let pcs: { [socketId: string]: RTCPeerConnection };
+ */
+function allUsers(allUsers,){
+	/**
+	 반복문
+	 	- 유저수만큼 반복
+	 	- 유저 수 만큼 createPeerConnection 실행
+	 	- pcs에서 유저 하나의 RTCPeerConnection 정보를 가져옴, pcs는 기존에 입장한 유저들의 RTCPeerConnection이 저장된 dictionary
+	 	- offer를 하나 생성함
+	 	- setLocalDescription 설정
+	 	- 서버로 offer 보냄. 이때 특정 유저한태만 보냄. 
+	 */
+	 
+	 /**
+	 stream이 활성화 되려면 
+	 유저 수 만큼 RTCPeerConnection을 생성하고 track에 추가함. 
+	 offer와 answer를 주고 받아야 함. 
+	 candidate를 주고 받아야 함. 
+	 그럼 유저 수 만큼 주고 받으면 됨. 
+	  */
+}
+
+
+//allUsers 메소드에서 유저 수 만큼 해당 메소드를 반복함. 
+function makeConnection(user,stream){
+	let peerConnection = new RTCPeerConnection({
     iceServers: [
             {
             urls: [
@@ -752,34 +782,47 @@ function makeConnection(){
             ],
             },
         ],
-    });
-    myPeerConnection.addEventListener("icecandidate", handleIce);
-    myPeerConnection.addEventListener("addstream", handleAddStream);
-    console.log(myStream)
-    myStream.getTracks().forEach((track) => myPeerConnection.addTrack(track, myStream));
+    }); 
+    
+    
+    peerConnection.addEventListener("icecandidate",(data)=>{
+		//addEventListener("icecandidate",func) 랑 같음
+		if(data.candidate){
+			const iceMsg = {
+				type : "offer",
+				obj : data.candidate,
+				from : users[userIdx].infrMmSeq, // me
+				to : users[anotherUser].infrMmSeq // 상대방
+			}
+			console.log("onicecandidate");
+			stompClient.send("/app/sgWorld/" +endPoint+"/avatarWSControll/WebRTC/ice/"+infrMmSeq,{},JSON.stringify(iceMsg))
+		}
+	})
+	
+	peerConnection.addEventListener("iceconnectionstatechange",(data) => {
+		console.log(data);
+	})
+	
+	peerConnection.addEventListener("addtrack",(data) =>{
+		console.log("ontrack success")
+		console.log(data)
+		userStream = data.stream
+	})
+	
+	if(stream){
+		console.log("stream add");
+		stream.getTracks().forEach(track =>{
+			peerConnection.addTrack(track,stream)
+		})
+	}else{
+		console.log("no local Stream")
+	}
+	
 }
 
-function handleIce(data) {
-    console.log("sent candidate");
-    //#webSocket
-    const iceMsg = {
-		type : "offer",
-		obj : data.candidate,
-		from : users[userIdx].infrMmSeq, // me
-		to : users[anotherUser].infrMmSeq // 상대방
-	}
-    stompClient.send("/app/sgWorld/" +endPoint+"/avatarWSControll/WebRTC/ice",{},JSON.stringify(iceMsg));
-}
-function handleAddStream(data) {
-	console.log("handleAddStream")
-	console.log(data)
-	if(data != null){
-		yourSteam = data.stream;
-	}
-	const yourFace = document.getElementById("yourFace");
-	yourFace.srcObject = yourSteam;
-}
-
+/**
+create offer
+ */
 async function localDescription(){
     const offer = await myPeerConnection.createOffer();
     
@@ -797,6 +840,10 @@ async function localDescription(){
 	console.log("sent the offer");
 }
 
+/**
+receive offer and 
+send answer
+ */
 async function receiveAnswer(receivedoffer){
 	myPeerConnection.setRemoteDescription(receivedoffer);
 	
@@ -813,11 +860,13 @@ async function receiveAnswer(receivedoffer){
 	console.log("sent the answer");
 }
 
+/**
+set remoteDescription
+ */
 function remoteDescription(receivedAnswer){
 	myPeerConnection.setRemoteDescription(receivedAnswer)
 	console.log("setRemoteDescription");
 }
-
 			
 		
 	
