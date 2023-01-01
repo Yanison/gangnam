@@ -28,7 +28,7 @@ https://god-gil.tistory.com/78<br>
 
 ### 프로젝트 구조
 
-#### Front-end
+#### - Front-end
 📦main<br>
  ┣ 📂java<br>
  ┃ ┗ 📂com<br>
@@ -65,7 +65,7 @@ https://god-gil.tistory.com/78<br>
  
  
  
- #### Front-end
+ #### - Front-end
  ┗ 📂webapp<br>
  ┃ ┣ 📂META-INF<br>
  ┃ ┃ ┗ 📜MANIFEST.MF<br>
