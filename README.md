@@ -28,7 +28,7 @@ https://god-gil.tistory.com/78<br>
 
 ### 프로젝트 구조
 
-#### - Front-end
+- Back-end
 📦main<br>
  ┣ 📂java<br>
  ┃ ┗ 📂com<br>
@@ -38,14 +38,14 @@ https://god-gil.tistory.com/78<br>
  ┃ ┃ ┃ ┃ ┃ ┣ 📂interceptor<br>
  ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜CheckLoginSessionInterception.java<br>
  ┃ ┃ ┃ ┃ ┃ ┣ 📂util<br>
- ┃ ┃ ┃ ┃ ┃ ┣ 📜MailService.java<br>
- ┃ ┃ ┃ ┃ ┃ ┗ 📜SMS.java<br>
+ ┃ ┃ ┃ ┃ ┃ ┣ 📜MailService.java :: 구글STMP 메일서버 &  이메일인증 서비스 로직 <br>
+ ┃ ┃ ┃ ┃ ┃ ┗ 📜SMS.java &nbsp;&nbsp;::&nbsp;&nbsp; 휴대폰 인증 서비스로직(현제 계정 사용중지)<br>
  ┃ ┃ ┃ ┃ ┗ 📂modules<br>
  ┃ ┃ ┃ ┃ ┃ ┣ 📂admin<br>
  ┃ ┃ ┃ ┃ ┃ ┗ 📂user<br>
- ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂home<br>
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂home<br> :: 
  ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂member<br>
- ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📂sgWorld<br>
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📂sgWorld<br> ::
  ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂Controller<br>
  ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜SgWorldController.java<br>
  ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜SgwRestController.java<br>
@@ -65,7 +65,7 @@ https://god-gil.tistory.com/78<br>
  
  
  
- #### - Front-end
+- Front-end
  ┗ 📂webapp<br>
  ┃ ┣ 📂META-INF<br>
  ┃ ┃ ┗ 📜MANIFEST.MF<br>
