@@ -1,6 +1,6 @@
 # SgWorld_캐릭터 조작과 실시간 채팅 및, 화상채팅이 가능한 커뮤니티 서비스
 
-## 프로젝트 개요 및 목적.
+### 프로젝트 개요 및 목적.
 - WebSocket과 WebRTC를 활용한 실시간 메타버스 커뮤니케이션 어플리케이션 서비스 개발
 
 
@@ -26,9 +26,9 @@ JS&Canvas & Node.js _ sokect.io를 활용한 실시간 2d 게임 구현<br>
 https://god-gil.tistory.com/78<br>
 
 
-## 프로젝트 구조
+### 프로젝트 구조
 
-### Front-end
+#### Front-end
 📦main
  ┣ 📂java<br>
  ┃ ┗ 📂com<br>
@@ -65,7 +65,7 @@ https://god-gil.tistory.com/78<br>
  
  
  
- ### Front-end
+ #### Front-end
  ┗ 📂webapp<br>
  ┃ ┣ 📂META-INF<br>
  ┃ ┃ ┗ 📜MANIFEST.MF<br>
