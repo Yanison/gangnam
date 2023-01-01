@@ -29,7 +29,7 @@ https://god-gil.tistory.com/78<br>
 ### 프로젝트 구조
 
 #### Front-end
-📦main
+📦main<br>
  ┣ 📂java<br>
  ┃ ┗ 📂com<br>
  ┃ ┃ ┗ 📂sgworld<br>
