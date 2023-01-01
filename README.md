@@ -97,3 +97,14 @@ https://god-gil.tistory.com/78<br>
  ┃ ┃ ┃ ┃ ┗ 📂js<br>
  ┃ ┃ ┃ ┃ ┃ ┣ 📜sgWorld.js &nbsp;&nbsp;::&nbsp;&nbsp; 실시간 채팅 및 화상채팅 로직 및 아바타 조작 로직 script <br>
  ┃ ┃ ┃ ┃ ┃ ┗ 📜sgWorldRequets.js &nbsp;&nbsp;::&nbsp;&nbsp; client to server-side restful api 요청  script <br>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ ## ERD-Model
+ 
+ ![SGWorldERD](https://user-images.githubusercontent.com/88885019/210168387-db11a778-dc72-48ad-9700-17d03fbc488b.png)
+
