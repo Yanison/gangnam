@@ -83,6 +83,11 @@ public class HomeController {
 	public String userLogin() {
 		return "infra/user/modules/home/userLogin";
 	}
+	//로그인 화면
+	@RequestMapping(value="userLoginFor")
+	public String userLoginFor() {
+		return "infra/user/modules/home/userLoginFor";
+	}
 	//회원가입
 	@RequestMapping(value="userSignIn")
 	public String userSignIn() {

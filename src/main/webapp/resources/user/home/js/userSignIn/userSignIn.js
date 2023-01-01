@@ -41,23 +41,11 @@ function requestSignIn(){
 			,infrMmJibunAddress
 			,infrMmDetailAddress
 			,infrMmExtraAddress
-			,infrMmLat
-			,infrMmLong
 			]
 			
-	for(i = 0 ; i < inputArr.length; i ++){
-		if(i != 16 && i != 15){
-			if(inputArr[i] == ""){
-				console.log("inputArr["+i+"] is empty " )
-				return false;
-			}
-		}else{
-			console.log("inputArr["+i+"] :: " + inputArr[i] +" :: "+ i+"/18")
-		}
-	}
 	
 	$.ajax({
-			url:'../member/userSignIn'
+			url:'/gangnam/member/userSignIn'
 			,method:'post'
 			,data:{
 				'infrMmId': infrMmId /** 1*/
@@ -81,7 +69,7 @@ function requestSignIn(){
 			}
 			,success:function(rp){
 				if(rp == "userSignIn"){
-					location.replace('../')
+					location.replace('/gangnam/')
 				}else{
 					alert('회원가입 거부')
 				}
@@ -133,7 +121,7 @@ function Validation(inputArrStr){
 				addValiHtml(inputArrStr[i],"Enable","enable")
 			}
 	}
-	if($('.enable').length != 18){
+	if($('.enable').length != 13){
 		alert(" 올바른 회원가입 정보를 입력해주세요 $('.enable').length :: " + $('.enable').length)
 		return false;
 	}else{
@@ -225,7 +213,7 @@ function enableInputVal(str,val){
 			addValiHtml(str,"reTest :: Enable","enable")
 			console.log("dupleValiObj // shDupleStr :: " +getDupleValiObj + " // "+ val)
 			$.ajax({
-				url:'../member/getValidationOfDuple'
+				url:'/gangnam/member/getValidationOfDuple'
 				,method:'get'
 				,data:{
 					'dupleValiObj' : getDupleValiObj
@@ -281,7 +269,7 @@ function getSMS(){
 	
 	if(toNum != '' && infrMmTelecom !=''){
 		$.ajax({
-			url:'../member/send-one'
+			url:'/gangnam/member/send-one'
 			,method:'post'
 			,data:{ 'toNum':toNum
 				
@@ -329,7 +317,7 @@ function getEmailAuthCode(){
 	if(infrMmEmailId != "" && infrMmEmailAddress != ""){
 		console.log("infrMmEmail :: "+infrMmEmailId + infrMmEmailAddress)
 		$.ajax({
-			url:'../member/getEmailAuthCode'
+			url:'/gangnam/member/getEmailAuthCode'
 			,method:'post'
 			,data:{ 'infrMmEmail':infrMmEmailId + infrMmEmailAddress
 				

@@ -9,7 +9,7 @@
 	<title>sgworld | 싸게월드</title>
 	<%@ include file="rscs/basicRscs.jsp" %>
 	<script src="https://kit.fontawesome.com/059fbc3cf8.js" crossorigin="anonymous"></script>
-	<link href="/resources/user/sgworld/css/sgworldList.css" rel="stylesheet">
+	<link href="/gangnam/resources/user/sgworld/css/sgworldList.css" rel="stylesheet">
 </head>
 <body>
 	<!-- header s -->

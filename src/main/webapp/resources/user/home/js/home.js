@@ -22,7 +22,7 @@ function closeModal(){
 var stompClient = null;
 
 function connect(){
-	var socket = new SockJS('/sgWorldService');
+	var socket = new SockJS('/gangnam/sgWorldService');
 	stompClient = Stomp.over(socket)
 	stompClient.connect({},function(frame){
 		console.log('Connected: ' + frame);

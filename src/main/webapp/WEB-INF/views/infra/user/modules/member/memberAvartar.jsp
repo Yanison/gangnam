@@ -6,9 +6,9 @@
 	<title>SGWorld</title>
 	<%@ include file="../../../../rscs/basicRscs.jsp" %>
 	 
-	<link href="/resources/user/member/css/memberAvartar.css" rel="stylesheet">
-	<link href="../resources/user/home/css/header.css" rel="stylesheet">
-	<link href="../resources/user/home/css/footer.css" rel="stylesheet">
+	<link href="/gangnam/resources/user/member/css/memberAvartar.css" rel="stylesheet">
+	<link href="/gangnam/../resources/user/home/css/header.css" rel="stylesheet">
+	<link href="/gangnam/../resources/user/home/css/footer.css" rel="stylesheet">
 </head>
 <body>
 	<form name="form" method="post" enctype="multipart/form-data">
@@ -101,9 +101,9 @@
 	
 <!-- jquery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-<!-- <script src="/resources/common/js/upload.js"></script> -->
-<script src="/resources/common/js/commonAdmin.js"></script>
-<script src="/resources/common/js/memberUpload.js"></script>
+<!-- <script src="/gangnam/resources/common/js/upload.js"></script> -->
+<script src="/gangnam/resources/common/js/commonAdmin.js"></script>
+<script src="/gangnam/resources/common/js/memberUpload.js"></script>
 <script>
 	var goUrlMemberView = "/member/memberView";
 	var goUrlMemberAvartar = "/member/memberAvartar";

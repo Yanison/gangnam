@@ -4,12 +4,12 @@
 	<title>SGWorld</title>
 	<%@ include file="../../../../rscs/basicRscs.jsp" %>
 	 
-	<link href="/resources/user/home/css/home.css" rel="stylesheet">
-	<script src="/resources/user/home/js/home.js"></script>
+	<link href="/gangnam/resources/user/home/css/home.css" rel="stylesheet">
+	<script src="/gangnam/resources/user/home/js/home.js"></script>
 	
 	<!-- homeChat -->
-	<link href="/resources/common/css/homeChat.css" rel="stylesheet">
-	<script src="/resources/common/js/homeChat.js"></script>
+	<link href="/gangnam/resources/common/css/homeChat.css" rel="stylesheet">
+	<script src="/gangnam/resources/common/js/homeChat.js"></script>
 </head>
 <body>
 	
@@ -26,7 +26,7 @@
 					</button>
 				</c:when>
 				<c:otherwise>
-					<button class="creatMySgWorld" id="creatMySgWorld" onclick="showModal()" rel="modal:open">
+					<button class="creatMySgWorld" id="creatMySgWorld" onclick="showModal()" rel="modal:open"> 
 						Create SgWorld
 					</button>
 				</c:otherwise>
@@ -34,16 +34,7 @@
 		</article>
 		<article class="onLiveSgWorld">
 			<!-- homeChat -->
-				<div class="sideChatDiv">
-					<div class="chatHeader">
-						sgWorld Chat
-					</div>
-					<div class="chatBody">
-					</div>
-					<div class="chatFoot">
-						<input id="homeChat" type="text" placeholder="message" required onkeypress="sendMsg(event)">
-					</div>
-				</div>
+				
 			<!-- homeChat -->
 			<h1 class="onLiveSgWorldTitle">Onlive</h1>
 			<div class="onSgWorldListDiv">
@@ -54,7 +45,7 @@
 					    <div class="col">
 						    <div  id="${sl.sgwLink}" class="SgWorldPreviewDiv">
 								<a class="SgWorldPreview" href="./sgWorld/join/${sl.sgwLink}">
-									<img scr="/resources/common/images/pepe.png">
+									<img scr="/gangnam/resources/common/images/pepe.png">
 								</a>
 								<div class="sgwTitle">
 									<div>
@@ -82,91 +73,20 @@
 				<!-- forEach로 데이터 뿌려주세요 -->
 			</div>
 		</article>
-		<article class="board">
-			<div class="boardPrev free">
-				<table>
-					<colgroup>
-						<col width="70%">
-						<col width="30%">
-					</colgroup>
-					<thead>
-						<th>자유게시판</th>
-						<td><strong><a>더보기</a></strong></td>
-					</thead>
-					<tbody>
-						<c:choose>
-							<c:when test="${fn:length(bdList) eq 0} } ">
-								<tr>
-									<th>
-										<a>title</a>
-									</th>
-									<td>
-										<i class="fa-solid fa-eye"></i>
-										<em>num</em>
-									</td>	
-								</tr>
-							</c:when>
-							<c:otherwise>
-								<c:forEach items="${bdList}" var="bdList" varStatus="status">
-									<tr>
-										<th>
-											<a>${bdList.bdTitle}</a>
-										</th>
-										<td>
-											<i class="fa-solid fa-eye"></i>
-											<em>${bdList.viewCount}</em>
-										</td>
-									</tr>		
-								</c:forEach>
-							</c:otherwise>
-						</c:choose>
-						
-					</tbody>
-				</table>
+		
+		<div class="sideChatDiv">
+			<div>
+				<div class="chatHeader">
+					sgWorld Chat
+				</div>
+				<div class="chatBody">
+				</div>
+				<div class="chatFoot">
+					<input id="homeChat" type="text" placeholder="message" required onkeypress="sendMsg(event)">
+				</div>
 			</div>
-			<!-- <div class="boardPrev info">
-				<table>
-					<colgroup>
-						<col width="70%">
-						<col width="30%">
-					</colgroup>
-					<thead>
-						<th>정보게시판</th>
-						<td><strong><a>더보기</a></strong></td>
-					</thead>
-					<tbody>
-						<th>
-							<a>title</a>
-						</th>
-						<td>
-							<i class="fa-solid fa-eye"></i>
-							<em>num</em>
-						</td>
-					</tbody>
-				</table>
-			</div>
-			<div class="boardPrev trade">
-				<table>
-					<colgroup>
-						<col width="70%">
-						<col width="30%">
-					</colgroup>
-					<thead>
-						<th>거래게시판</th>
-						<td><strong><a>더보기</a></strong></td>
-					</thead>
-					<tbody>
-						<th>
-							<a>title</a>
-						</th>
-						<td>
-							<i class="fa-solid fa-eye"></i>
-							<em>num</em>
-						</td>
-					</tbody>
-				</table>
-			</div> -->
-		</article>
+			
+		</div>
 	</section>
 	<footer>
 		<%@include file="../../common/footer.jsp" %>

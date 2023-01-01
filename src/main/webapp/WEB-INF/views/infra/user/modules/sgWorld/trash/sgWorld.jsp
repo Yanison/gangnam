@@ -7,7 +7,7 @@
 	<title>sgWorld</title>
 	<%@ include file="../../../../rscs/basicRscs.jsp" %>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.1/sockjs.min.js" integrity="sha512-1QvjE7BtotQjkq8PxLeF6P46gEpBRXuskzIVgjFpekzFVF4yjRgrQvTG1MTOJ3yQgvTteKAcO7DSZI92+u/yZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-	<link href="/resources/user/sgworld/css/sgWorldTest.css" rel="stylesheet"/>
+	<link href="/gangnam/resources/user/sgworld/css/sgWorldTest.css" rel="stylesheet"/>
 	
 </head>
 <body>
@@ -55,7 +55,7 @@
 	</section>
 	<section class="div2 utilDiv">
 		<div class="left">
-			<img id="sgLogo"class="sgLogo" src="../../resources/common/images/sgLogo.png">
+			<img id="sgLogo"class="sgLogo" src="/gangnam/../../resources/common/images/sgLogo.png">
 			<div class="divContents">
 				<i class="fa-solid fa-user"></i>
 			</div>
@@ -136,6 +136,6 @@
 
 </body>
 </html>
-<script src="/resources/user/sgworld/js/sgWorldDiv.js"></script>
-<script src="/resources/user/sgworld/js/sgWorldRequets.js"></script>
-<script src="/resources/user/sgworld/js/sgWorld.js"></script>
+<script src="/gangnam/resources/user/sgworld/js/sgWorldDiv.js"></script>
+<script src="/gangnam/resources/user/sgworld/js/sgWorldRequets.js"></script>
+<script src="/gangnam/resources/user/sgworld/js/sgWorld.js"></script>

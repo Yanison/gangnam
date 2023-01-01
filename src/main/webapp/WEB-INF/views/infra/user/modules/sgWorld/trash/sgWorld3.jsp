@@ -7,8 +7,8 @@
 	<title>sgWorld</title>
 	<%@ include file="../../../../rscs/basicRscs.jsp" %>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.1/sockjs.min.js" integrity="sha512-1QvjE7BtotQjkq8PxLeF6P46gEpBRXuskzIVgjFpekzFVF4yjRgrQvTG1MTOJ3yQgvTteKAcO7DSZI92+u/yZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-	
 	<link href="/gangnam/resources/user/sgworld/css/sgWorldTest.css" rel="stylesheet"/>
+	
 </head>
 <body>
 
@@ -51,7 +51,7 @@
 			</select>
 			</div>
 			<input type="text" class="inputMsg" name="msg" id="inputMsg" placeholder="Message..." onkeypress="sendMsg(event)">
-			
+			<button id="sendMsgBtn" onclick="sendMsgBtn()" style="width:80px;height:25px">보내기</button>
 		</div>
 	</article>
 </div>
@@ -114,7 +114,7 @@
 		<div class="right">
 			<div id="bigCam" class="bigCam">
 				<div  class="cam yourFullFace" onclick="whosCam(this)">
-					<video id="yourFullFace" autoplay playsinline width="942" height="620"></video>
+					<video id="yourFullFace" autoplay playsinline width="200" height="160"></video>
 				</div>
 			</div>
 		</div>

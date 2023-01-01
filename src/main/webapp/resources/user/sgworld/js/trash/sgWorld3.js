@@ -1,3 +1,4 @@
+
 $(window).on("beforeunload",function(){
 	leaveAndDel()
 	sendUsersNum(users.length)
@@ -17,11 +18,16 @@ const camerasSelect = document.getElementById("cameras");
 const shareBtn = document.getElementById("sreenShare")
 let myScreen;
 let yourScreen;
+let yourFullFace;
+let myFullFace;
+
 let myDisplayStream;
 let yourDisplayStream;
  
 let myStream;
 let yourStream;
+
+
 let myPeerConnection;
 let muted = false;
 let cameraOff = false;
@@ -166,7 +172,7 @@ function findMyInx(){
 	
 }
 function connect() {
-	var socket = new SockJS('/sgWorldService');
+	var socket = new SockJS('/gangnam/sgWorldService');
 	stompClient = Stomp.over(socket);
     stompClient.connect({}, function (frame) {
         setConnected(true);
@@ -174,26 +180,54 @@ function connect() {
         
         
         //listenOffer
-		stompClient.subscribe("/topic/sgWorld/" +endPoint+"/avatarWSControll/WebRTC/offer/"+infrMmSeq,function (listenOffer) {
+		stompClient.subscribe("/topic/sgWorld/" +endPoint+"/avatarWSControll/WebRTC/offer/"+infrMmSeq, async function (listenOffer) {
 			const offerFromServer = JSON.parse(listenOffer.body)
 			var receive = offerFromServer.to
-			console.log("received Offer from :: " + users[userIdx].infrMmSeq + " me ::" + receive)
-				console.log("received Offer")
+			console.log("recieved Offer from :: " + users[userIdx].infrMmSeq + " me ::" + receive)
+				console.log("recieved Offer")
 				console.log(offerFromServer)
 				const receivedoffer = offerFromServer.obj
-				receiveAnswer(offerFromServer);
+				console.log(myPeerConnection)
+				
+				myPeerConnection.setRemoteDescription(receivedoffer);
+				
+				let answer = await myPeerConnection.createAnswer();
+				
+				const answerMsg = {
+				type : "answer",
+				obj : answer,
+				from : users[userIdx].infrMmSeq, // me
+				to : users[anotherUser].infrMmSeq // 상대방
+				}
+				
+				myPeerConnection.setLocalDescription(answer);
+				console.log(answerMsg.obj);
+				stompClient.send("/app/sgWorld/" +endPoint+"/avatarWSControll/WebRTC/answer/"+answerMsg.to,{},JSON.stringify(answerMsg));
+				console.log("sent the answer");
 		});
         //listenAnswer
 		stompClient.subscribe("/topic/sgWorld/" +endPoint+"/avatarWSControll/WebRTC/answer/"+infrMmSeq,function (listenAnswer) {
 		   	const answerFromServer = JSON.parse(listenAnswer.body)
 		   	receivedAnswer = answerFromServer.obj
 		   	console.log("received answer :: ")
-		   	remoteDescription(answerFromServer)
+		   	console.log(receivedAnswer)
+		   	
+		   	myPeerConnection.setRemoteDescription(receivedAnswer)
+			console.log("setRemoteDescription");
 		});
 		//listenIceCandidate
-		stompClient.subscribe("/topic/sgWorld/" +endPoint+"/avatarWSControll/WebRTC/ice/"+infrMmSeq,function (iceCandidate) {
+		stompClient.subscribe("/topic/sgWorld/" +endPoint+"/avatarWSControll/WebRTC/ice",function (iceCandidate) {
 			const iceFromServer = JSON.parse(iceCandidate.body);
-			addCandy(iceFromServer)
+			console.log("received candidate")
+			console.log(iceFromServer.obj)
+			if(!myPeerConnection){
+				console.log("myPeerConnection not null")
+				if(!iceFromServer.obj){
+					myPeerConnection.addIceCandidate(iceFromServer.obj);
+				}
+			}
+			
+			
 		});
 
         
@@ -258,8 +292,7 @@ function connect() {
 								x :  udateUserList[q].x,
 								y :  udateUserList[q].y,
 								avatarSeq : udateUserList[q].avatarSeqx,
-								userStatus : "normal",
-								userStream : null
+								userStatus : "normal"
 							}
 						userLsit.push(arr); console.log("break"); 	
 					}
@@ -278,8 +311,7 @@ function connect() {
 								x :  udateUserList[i].x,
 								y :  udateUserList[i].y,
 								avatarSeq : udateUserList[i].avatarSeq,
-								userStatus : "normal",
-								userStream : null
+								userStatus : "normal"
 							}
 							userLsit.push(arr)
 							console.log(JSON.stringify("arr :: " + arr))
@@ -532,45 +564,39 @@ function draw(){
 		
 		if(users[e].infrMmSeq != user.infrMmSeq){
 			let contact = users[e].x < user.x + 25 && users[e].x > user.x - 25 && users[e].y < user.y + 25 && users[e].y > user.y - 25
-			if(contact){pcUserIdx = e}
-			
+			if(contact){anotherUser = e}
 			if(contact){
-				
-				const f = pcUsers.find((elem) => elem == users[e])
+				const f = anotherUsers.find((elem) => elem == users[e].infrMmSeq)
 				if(f == undefined){
 					console.log("nope go push")
-					pcUsers.push(users[e])
-					console.log(pcUsers)
+					anotherUsers.push(users[e].infrMmSeq)
 				}
 			}
 			
-			if(pcUserIdx != null){
-				let contactWith = users[pcUserIdx].x < user.x + 25 && users[pcUserIdx].x > user.x - 25 && users[pcUserIdx].y < user.y + 25 && users[pcUserIdx].y > user.y - 25
+			if(anotherUser != null){
+				let contactWith = users[anotherUser].x < user.x + 25 && users[anotherUser].x > user.x - 25 && users[anotherUser].y < user.y + 25 && users[anotherUser].y > user.y - 25
 				if(contactWith){
-					if(users[pcUserIdx].userStatus == "normal" && user.userStatus == "normal"){
+					if(users[anotherUser].userStatus == "normal" && user.userStatus == "normal"){
 						showCamDiv(true)
 					}
-					users[pcUserIdx].userStatus = "onCam"
+					users[anotherUser].userStatus = "onCam"
 					user.userStatus = "onCam"
 				}else{
-					if(users[pcUserIdx].userStatus == "onCam" && user.userStatus == "onCam"){
+					if(users[anotherUser].userStatus == "onCam" && user.userStatus == "onCam"){
 						showCamDiv(false)
 					}
-					users[pcUserIdx].userStatus = "normal"
+					users[anotherUser].userStatus = "normal"
 					user.userStatus = "normal"
-					pcUserIdx=null
+					anotherUser=null
 				}
 			}
 		}
 	}
 }
 setInterval(draw, 50);
-
-let pcUserIdx;
-let pcUsers = [];
+let anotherUser;
+let anotherUsers = [infrMmSeq];
 let bool = false;
-
-
 
 async function showCamDiv(e){
 	console.log("showCamDivEnvet :: "+e)
@@ -580,9 +606,11 @@ async function showCamDiv(e){
 		if(e){
 			console.log('showCamDivOn')
 			appendCam()
-			const myFace = document.getElementById('myFace')
 			await initCall()
-			console.log(pcUsers)
+			
+			if(userIdx < anotherUser){
+				localDescription()
+			}
 		}else{
 			$('.littleCamDiv').remove()
 			console.log('showCamDivOff')
@@ -597,14 +625,25 @@ async function showCamDiv(e){
 
 function appendCam(){
 	html =""
-	html += '<div class="littleCamDiv" onclick="fullCamDiv()">'
-	html += '<div class="cam myCam" onclick="whosCam(this)">'
+	html += '<div class="littleCamDiv">'
+	html += '<div class="cam myCam" onclick="openFullCam()">'
 	html += '<video id="myFace" autoplay playsinline width="200" height="160"></video>'
 	html += '</div></div>'
 	
+	
+	html2 =""
+	html2 += '<div class="littleCamDiv">'
+	html2 += '<div class="cam yourCam" onclick="openFullCam()">'
+	html2 += '<video id="yourFace" autoplay playsinline width="200" height="150"></video>'
+	html2 += '</div></div>'
+	
 	$('#myCamDiv').append(html)
+	$('#yourCamDiv').append(html2)
 	myFace = document.getElementById('myFace')
+	yourFace = document.getElementById('yourFace')
 }
+
+
 
 
 /***
@@ -615,6 +654,9 @@ function RTCdisconnection(){
 	myStream.getTracks().forEach(function(track) {
   		track.stop();
 	});
+	yourStream.getTracks().forEach(function(track) {
+  		track.stop();
+	});
 	myDisplayStream.getTracks().forEach(function(track) {
   		track.stop();
 	});
@@ -623,6 +665,7 @@ function RTCdisconnection(){
 
 // 음소거 버튼 Controll 이벤트 
 function handleMuteClick(){
+	console.log("handleMuteClick")
     //Stream이 담겨진 myStream에서 getAudioTracks()에서 forEach(track)으로 접근하여 track의 enable 요소를 컨트롤 
     myStream
         .getAudioTracks()
@@ -643,6 +686,7 @@ function handleMuteClick(){
 
 // 카메라 버튼 Controll
 function handleCameraClick(){
+	console.log("handleCameraClick")
     //Stream이 담겨진 myStream에서 getVideoTracks()에서 forEach(track)으로 접근하여 track의 enable 요소를 컨트롤 
     myStream.getVideoTracks().forEach((track) => (track.enabled = !track.enabled))
     // 동시에 카메라 onOff를 ui로 보여줄 수 있는 DOM 요소도 컨트롤
@@ -668,7 +712,7 @@ function handleScreenShareClick(){
 		myScreenShare = true;
 		$('#myCamDiv').after(html)
 		getDisplayMedia()
-		//myDisplayStream.getTracks().forEach((track) => myPeerConnection.addTrack(track, myDisplayStream));
+		myDisplayStream.getTracks().forEach((track) => myPeerConnection.addTrack(track, myDisplayStream));
 	}else{
 		myDisplayStream.getTracks().forEach(function(track) {
   			track.stop();
@@ -710,110 +754,78 @@ cameraBtn.addEventListener("click",handleCameraClick);
 camerasSelect.addEventListener("input",handleCameraChange);
 //화면 공유 이벤트
 shareBtn.addEventListener("click", handleScreenShareClick);
-
-
-
+		
+			
+		
+function contactListener(){
+	console.log("users got contact")
+	msg = {
+		user:users[userIdx],
+		msg:"contacted"
+	}
+	stompClient.send("/app/sgWorld/" +endPoint+"/avatarWSControll/WebRTC/contactListener",{},JSON.stringify(msg));
+}
 
 async function initCall(){
 	await getMedia()
-	
-	setTimeout(()=>{
-		creatAllConnection()
-	},1500)
+	makeConnection()
 }
-//1:m 일때 반복문으로 바뀌어야 함.
-
-async function creatAllConnection(){
-	
-	let len = pcUsers.length;
-	
-	for(let i = 0 ; i < len ; i++){
-		
-		makeConnection(pcUsers[i])
-		localDescription(pcUsers[i])
-		
-		let pc = pcUsers[i]
-		
-		if(pc.userStream){
-			let offer = await peerConnection.createOffer()
-			peerConnection.setLocalDescription(offer)
-			
-			const offerMsg = {
-				sdp : offer.sdp,
-				pcUser : pcUser.infrMmSeq
-			}
-			//send offer
-			stompClient.send("/app/sgWorld/" +endPoint+"/avatarWSControll/WebRTC/offer/"+pcUser.infrMmSeq,{},JSON.stringify(offerMsg));
-		}
+function makeConnection(){
+	console.log("makeConnection")
+    myPeerConnection = new RTCPeerConnection({
+    iceServers: [
+            {
+            urls: [
+                "stun:stun.l.google.com:19302",
+                "stun:stun1.l.google.com:19302",
+                "stun:stun2.l.google.com:19302",
+                "stun:stun3.l.google.com:19302",
+                "stun:stun4.l.google.com:19302",
+            ],
+            },
+        ],
+    });
+	myPeerConnection.addEventListener("icecandidate", handleIce);
+    myPeerConnection.addEventListener("addstream", handleAddStream);
+    console.log(myStream)
+    myStream.getTracks().forEach((track) => myPeerConnection.addTrack(track, myStream));
+}
+function handleIce(data) {
+    console.log("sent candidate");
+    //#webSocket
+    const iceMsg = {
+		type : "offer",
+		obj : data.candidate,
+		from : users[userIdx].infrMmSeq, // me
+		to : users[anotherUser].infrMmSeq // 상대방
+	}
+	if(iceMsg.obj != null){
+		stompClient.send("/app/sgWorld/" +endPoint+"/avatarWSControll/WebRTC/ice",{},JSON.stringify(iceMsg));
+	}else{
+		console.log("iceMsg.obj null")
 	}
 }
-
-const pcConfig = {
-iceServers: [
-        {
-        urls: [
-            "stun:stun.l.google.com:19302",
-            "stun:stun1.l.google.com:19302",
-            "stun:stun2.l.google.com:19302",
-            "stun:stun3.l.google.com:19302",
-            "stun:stun4.l.google.com:19302",
-        ],
-        },
-    ],	
+function handleAddStream(data) {
+	console.log("handleAddStream")
+	console.log(data)
+	if(data != null){
+		yourStream = data.stream;
+	}
+	const yourFace = document.getElementById("yourFace");
+	
+	yourFace.srcObject = yourStream;
 }
 
-function makeConnection(pcUser){
-	
-	console.log("makeConnection")
-	console.log(pcUser)
-	myPeerConnection = new RTCPeerConnection(pcConfig)
-	
-	myPeerConnection.addEventListener("icecandidate", (data) =>{
-		console.log("sent candidate");
-	    //#webSocket
-	    const iceMsg = {
-			obj : data.candidate,
-			from : infrMmSeq,
-			to : pcUser.infrMmSeq
-		}
-	    stompClient.send("/app/sgWorld/" +endPoint+"/avatarWSControll/WebRTC/ice/"+pcUser.infrMmSeq,{},JSON.stringify(iceMsg));
-	});
-	myPeerConnection.addEventListener("addstream", data =>{
-		console.log("handleAddStream")
-		console.log(data)
-		if(data != null){
-			pcUser.userStream = data.stream;
-		}
-		console.log("pcUser.userStream")
-		console.log(pcUser.userStream)
-		
-		addCamDiv(pcUser.userStream,pcUser.infrMmSeq)
-	});
-	
-	myStream.getTracks().forEach((track) => myPeerConnection.addTrack(track, myStream));
-}
-
-function addCamDiv(pcStream,infrMmSeq){
-	html2 =""
-	html2 += '<div class="littleCamDiv">'
-	html2 += '<div class="cam yourCam" onclick="receiveAnswer()">'
-	html2 += '<video id="pcCam'+infrMmSeq+'" autoplay playsinline width="200" height="150"></video>'
-	html2 += '</div></div>'
-	
-	$('#yourCamDiv').append(html2)
-	pcCam = document.getElementById('pcCam'+infrMmSeq)
-	pcCam = pcStream;
-}
-async function localDescription(pcUser){
-	
+async function localDescription(){
     const offer = await myPeerConnection.createOffer();
     
     myPeerConnection.setLocalDescription(offer);
     
     const offerMsg = {
+		type : "offer",
 		obj : offer,
-		from : infrMmSeq,
-		to : pcUser.infrMmSeq
+		from : users[userIdx].infrMmSeq, // me
+		to : users[anotherUser].infrMmSeq // 상대방
 	}
 	
 	console.log(offerMsg.obj);
@@ -821,34 +833,42 @@ async function localDescription(pcUser){
 	console.log("sent the offer");
 }
 
-async function receiveAnswer(receivedoffer){
+function openFullCam(){
 	
-	myPeerConnection.setRemoteDescription(receivedoffer.obj);
+	$('#fullCamDiv').show();
 	
-	const answer = await myPeerConnection.createAnswer();
-	const answerMsg = {
-		obj : answer,
-		from : infrMmSeq,
-		to : receivedoffer.from
-	}
-	myPeerConnection.setLocalDescription(answer);
-	console.log(answerMsg.obj);
-	stompClient.send("/app/sgWorld/" +endPoint+"/avatarWSControll/WebRTC/answer/"+answerMsg.to,{},JSON.stringify(answerMsg));
-	console.log("sent the answer to :: " + answerMsg.to);
+	let yourFullFace = document.getElementById('yourFullFace');
+	let myFullFace = document.getElementById('myFullFace');
+	
+	myFace.srcObject = null
+	yourFace.srcObject = null
+	
+	yourFullFace.srcObject = yourStream
+	myFullFace.srcObject = myStream
+	
+	
+	
+}
+function fullCamDivOff(){
+	$('#fullCamDiv').hide();
+	
+	let yourFullFace = document.getElementById('yourFullFace');
+	let myFullFace = document.getElementById('myFullFace');
+	
+	yourFullFace.srcObject = null
+	myFullFace.srcObject = null
+	
+	yourFace.srcObject = yourStream
+	myFace.srcObject = myStream
+	
+	
 }
 
-function remoteDescription(receivedAnswer){
-	
-	myPeerConnection.setRemoteDescription(receivedAnswer.obj)
-	console.log("setRemoteDescription");
-}
 
-function addCandy(receivedCandidate){
-	console.log("recieved Candidate")
- 	myPeerConnection.addIceCandidate(receivedCandidate.obj)
+function whosCam(){
+	console.log(myStream)
+	console.log(yourStream)
 }
-			
-		
 	
 
 

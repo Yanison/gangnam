@@ -1,10 +1,10 @@
 $(document).ready(function(){
 	$('#goToSignIn').click(function(){
-		location.href = "/userSignInChoice";
+		location.href = "/gangnam/userSignIn";
 	})
 	
 	$('#findMyLogin').click(function(){
-		location.href = "/findMyLogin";
+		location.href = "/gangnam/findMyLogin";
 	})
 })
 
@@ -23,7 +23,7 @@ function userLogin(){
 			async:true
 			,cache:false
 			,type:"get"
-			,url:"../member/userLogin"
+			,url:"/gangnam/member/userLogin"
 			,data:{
 				"infrMmId" : infrMmId
 				,"infrMmPw" : infrMmPw
@@ -31,7 +31,7 @@ function userLogin(){
 			,success: function(userLogin){
 				if(userLogin == "okay"){
 					alert("로그인되셨습니다.")
-					location.replace('../');
+					location.replace('/gangnam/');
 				}else{
 					alert("일치한 회원정보가 없습니다.")
 				}

@@ -1,4 +1,3 @@
-
 $(window).on("beforeunload",function(){
 	leaveAndDel()
 	sendUsersNum(users.length)
@@ -22,7 +21,7 @@ let myDisplayStream;
 let yourDisplayStream;
  
 let myStream;
-let yourSteam;
+let yourStream;
 let myPeerConnection;
 let muted = false;
 let cameraOff = false;
@@ -167,7 +166,7 @@ function findMyInx(){
 	
 }
 function connect() {
-	var socket = new SockJS('/sgWorldService');
+	var socket = new SockJS('/gangnam/sgWorldService');
 	stompClient = Stomp.over(socket);
     stompClient.connect({}, function (frame) {
         setConnected(true);
@@ -343,7 +342,7 @@ function leaveAndDel() {
 	console.log("leavingUser :: " + JSON.stringify(leavingUser))
 	stompClient.send("/app/sgWorld/" +this.endPoint+"/avatarWSControll/leave",{},JSON.stringify(leavingUser));
 	
-	location.href="/"
+	location.href="/gangnam/"
 }
 function confirmLeaving(){
 	if(confirm("정말 나가시겠습니까?"+this.sgwSeq)){
@@ -537,7 +536,9 @@ function draw(){
 			if(contact){anotherUser = e}
 			if(contact){
 				const f = anotherUsers.find((elem) => elem == users[e].infrMmSeq)
-				if(f == undefined){
+				if(f != undefined){
+					
+				}else{
 					console.log("nope go push")
 					anotherUsers.push(users[e].infrMmSeq)
 				}
@@ -592,15 +593,15 @@ async function showCamDiv(e){
 
 function appendCam(){
 	html =""
-	html += '<div class="littleCamDiv" onclick="fullCamDiv()">'
-	html += '<div class="cam myCam" onclick="whosCam(this)">'
+	html += '<div class="littleCamDiv">'
+	html += '<div class="cam myCam" onclick="openFullCam()">'
 	html += '<video id="myFace" autoplay playsinline width="200" height="160"></video>'
 	html += '</div></div>'
 	
 	
 	html2 =""
 	html2 += '<div class="littleCamDiv">'
-	html2 += '<div class="cam yourCam" onclick="receiveAnswer()">'
+	html2 += '<div class="cam yourCam" onclick="openFullCam()">'
 	html2 += '<video id="yourFace" autoplay playsinline width="200" height="150"></video>'
 	html2 += '</div></div>'
 	
@@ -630,6 +631,15 @@ function RTCdisconnection(){
 
 // 음소거 버튼 Controll 이벤트 
 function handleMuteClick(){
+	 // 동시에 음소거를 ui로 보여줄 수 있는 DOM 요소도 컨트롤
+	let muteBtn = document.getElementById('micOnOff')
+    if(!muted){
+        muteBtn.innerHTML = "<i class='fa-solid fa-microphone-lines onOffMic' style='color:#4d9d85'></i>";
+        muted = true;
+    }else{
+        muteBtn.innerHTML = "<i class='fa-solid fa-microphone-lines-slash onOffMic' style='color:#ac3b49'></i>";
+        muted = false;
+    }
     //Stream이 담겨진 myStream에서 getAudioTracks()에서 forEach(track)으로 접근하여 track의 enable 요소를 컨트롤 
     myStream
         .getAudioTracks()
@@ -638,28 +648,24 @@ function handleMuteClick(){
          * track.enabled 에 새로운 value를 설정해주는 것
          * track.enabled이 true면 false로 설정해주고 false면 그 반대로 true로 설정해줌. 
          */
-    // 동시에 음소거를 ui로 보여줄 수 있는 DOM 요소도 컨트롤
-    if(!muted){
-        muteBtn.innerHtml = '<i class="fa-solid fa-microphone-lines onOffMic" style="color:#4d9d85"></i>';
-        muted = true;
-    }else{
-        muteBtn.innerHtml ='<i class="fa-solid fa-microphone-lines-slash onOffMic" style="color:#ac3b49"></i>';
-        muted = false;
-    }
+   
 }
 
 // 카메라 버튼 Controll
 function handleCameraClick(){
+	let cameraBtn = document.getElementById('camOnOff')
+	
+	if(!cameraOff){
+        cameraBtn.innerHTML='<i class="fa-solid fa-video onOffCam" style="color:#4d9d85"></i>'
+        cameraOff = true;
+    }else{
+        cameraBtn.innerHTML='<i class="fa-solid fa-video-slash onOffCam" style="color:#ac3b49"></i>'
+        cameraOff = false;
+    }
     //Stream이 담겨진 myStream에서 getVideoTracks()에서 forEach(track)으로 접근하여 track의 enable 요소를 컨트롤 
     myStream.getVideoTracks().forEach((track) => (track.enabled = !track.enabled))
     // 동시에 카메라 onOff를 ui로 보여줄 수 있는 DOM 요소도 컨트롤
-    if(!cameraOff){
-        cameraBtn.innerHtml='<i class="fa-solid fa-video onOffCam" style="color:#4d9d85"></i>'
-        cameraOff = true;
-    }else{
-        cameraBtn.innerHtml='<i class="fa-solid fa-video-slash onOffCam" style="color:#ac3b49"></i>'
-        cameraOff = false;
-    }
+    
 }
 
 
@@ -774,10 +780,10 @@ function handleAddStream(data) {
 	console.log("handleAddStream")
 	console.log(data)
 	if(data != null){
-		yourSteam = data.stream;
+		yourStream = data.stream;
 	}
 	const yourFace = document.getElementById("yourFace");
-	yourFace.srcObject = yourSteam;
+	yourFace.srcObject = yourStream;
 }
 
 async function localDescription(){
@@ -817,10 +823,46 @@ function remoteDescription(receivedAnswer){
 	myPeerConnection.setRemoteDescription(receivedAnswer)
 	console.log("setRemoteDescription");
 }
-
-			
 		
+		
+
+function openFullCam(){
 	
+	$('#fullCamDiv').show();
+	
+	let yourFullFace = document.getElementById('yourFullFace');
+	let myFullFace = document.getElementById('myFullFace');
+	
+	myFullFace.srcObject = myStream
+	yourFullFace.srcObject = yourStream
+	
+	myFace.srcObject = null
+	yourFace.srcObject = null
+	
+	
+	
+	
+	
+}
+function fullCamDivOff(){
+	$('#fullCamDiv').hide();
+	
+	let yourFullFace = document.getElementById('yourFullFace');
+	let myFullFace = document.getElementById('myFullFace');
+	
+	myFace.srcObject = myStream
+	yourFace.srcObject = yourStream
+	
+	yourFullFace.srcObject = null
+	myFullFace.srcObject = null
+	
+	
+	
+	
+}
 
 
-	
+function whosCam(){
+	console.log(myFullFace)
+	console.log(yourFullFace)
+}

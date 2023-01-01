@@ -30,10 +30,10 @@
 			<section class="loginBody">
 				<article class="loginBox">
 						<div class="inputIdBox">
-							<input class="inputId inputLogin" id="infrMmId" name="infrMmId" type="text" placeholder="아이디">
+							<input class="inputId inputLogin" id="infrMmId" name="infrMmId" type="text" value="ghkdtjsdi878">
 						</div>
 						<div class="inputPwBox">
-							<input class="inputPw inputLogin" id="infrMmPw" name="infrMmPw" type="password" placeholder="비밀번호">
+							<input class="inputPw inputLogin" id="infrMmPw" name="infrMmPw" type="password" value="123123">
 						</div>
 						<div class="loginBtnBox">
 							<button class="loginBtn" type="button" onClick="userLogin()">로그인</button> 
@@ -44,7 +44,7 @@
 			<div class="loginFooterBox">
 				<div class="loginFooter">
 					<a id="findMyLogin">아이디/비밀번호 찾기</a>
-					<a id="goToSignIn" href="/gangnam/userSignIn">회원가입</a>
+					<a id="goToSignIn" href="">회원가입</a>
 				</div>
 			</div>
 		</section>

@@ -14,7 +14,7 @@
 <meta name="author" content="">
 
 <!-- Favicon -->
-<link href="/resources/common/images/sgLogo.png" rel="icon">
+<link href="/gangnam/resources//common/images/sgLogo.png" rel="icon">
  
 <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
@@ -42,10 +42,10 @@
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 
 <!-- commonJS -->
-<script src="/resources/common/js/paging.js"></script>
+<script src="/gangnam/resources//common/js/paging.js"></script>
 <!-- <script src="../resources/js/numFmt.js"></script> -->
 <!-- commonCSS -->
-<link href="/resources/common/css/common.css" rel="stylesheet">
+<link href="/gangnam/resources//common/css/common.css" rel="stylesheet">
 
 <!-- JavaScript Bundle with Popper -->
 

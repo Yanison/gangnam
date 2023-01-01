@@ -19,7 +19,7 @@ function userLogOut(){
 			,success:function(logout){
 				if(logout == "userLogOut"){
 					alert('로그아웃 되셨습니다.')
-					location.replace("/")	
+					location.replace("/gangnam")	
 				}
 			},err:function(){
 			}
@@ -45,19 +45,19 @@ function isSssValThere(str){
 }
 
 function gohome(){
-	location.href="/"
+	location.href="/gangnam"
 }
 
 function goboard(){
-	location.href="/board/boardList"
+	location.href="/gangnam/board/boardList"
 }
 
 function goWrite(){
-	location.href="/board/boardWrite"
+	location.href="/gangnam/board/boardWrite"
 }
 
 
-var goUrlView = "/member/memberView?infrMmSeq=";
+var goUrlView = "/gangnam/member/memberView?infrMmSeq=";
 
 var form = $("form[name=form]");
 var seq = $("input:hidden[name=infrMmSeq]");

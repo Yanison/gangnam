@@ -6,8 +6,8 @@
 <head>
 	<title>userSignIn</title>
 	<%@ include file="../../../../rscs/basicRscs.jsp" %>
-	<link href="./resources/user/home/css/userSignInChoice.css" rel="stylesheet">
-	<script src="./resources/user/home/js/userSignInChoice.js"></script>
+	<link href="/gangnam/resources/user/home/css/userSignInChoice.css" rel="stylesheet">
+	<script src="/gangnam/resources/user/home/js/userSignInChoice.js"></script>
 </head>
 <body>
 <header>
@@ -24,19 +24,19 @@
 			<section class="ChoiceBoxDiv">
 				<article class="ChoiceBox">
 					<button id="normalSignIn" class="signInChoiceBtn" href="http://127.0.0.1:8085/userSignIn">
-						<img alt="카카오톡" src="./resources/user/home/images/logo/mainLogo.png">
+						<img alt="카카오톡" src="/gangnam/resources/user/home/images/logo/mainLogo.png">
 						<span>일반회원가입</span>
 					</button>
 					<button class="signInChoiceBtn">
-						<img alt="네이버" src="./resources/user/home/images/logo/naver.png">
+						<img alt="네이버" src="/gangnam/resources/user/home/images/logo/naver.png">
 						<span>네이버</span>
 					</button>
 					<button class="signInChoiceBtn">
-						<img alt="구글" src="./resources/user/home/images/logo/google.png">
+						<img alt="구글" src="/gangnam/resources/user/home/images/logo/google.png">
 						<span>Google</span>
 					</button>
 					<button class="signInChoiceBtn">
-						<img alt="카카오톡" src="./resources/user/home/images/logo/kakao.png">
+						<img alt="카카오톡" src="/gangnam/resources/user/home/images/logo/kakao.png">
 						<span>KakaoTalk</span>
 					</button>
 				</article>

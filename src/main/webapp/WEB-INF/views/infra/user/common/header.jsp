@@ -1,35 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<link href="/resources/user/home/css/header.css" rel="stylesheet">
-<script src="/resources/common/js/header.js"></script>
+<link href="/gangnam/resources/user/home/css/header.css" rel="stylesheet">
+<script src="/gangnam/resources/common/js/header.js"></script>
 <nav class="navbar">
 	<div class="leftNav">
 		<div class="logoStyle">
-			<a href="http://127.0.0.1:8085/"><img class="headerLogo" alt="logo아이콘" src="/resources/user/home/images/logo/mainLogo.png"></a>
+			<a href="/gangnam/"><img class="headerLogo" alt="logo아이콘" src="${pageContext.request.contextPath}/resources/user/home/images/logo/mainLogo.png"></a>
 		</div>
-		<ul class="navMenu">
-			<li><a href="#" onclick="gohome()">홈</a></li>
-			<li><a href="#" onclick="goboard()">게시판</a></li>
-			<li><a href="#">싸게월드</a></li>
-		</ul>
 	</div> 
 	<div class="rightNav">
 		<ul class="navBtn">
-			<li class="write"><a class="writeBtn" onclick="goWrite()">글쓰기</a></li>
+			
 			<c:choose>
 				<c:when test="${infrMmSeq eq null}">
-					<li class="last"><a href="/userLogin" type="button" id="">로그인</a></li>
+					<li class="last" style="margin-right:20px"><a href="/gangnam/userLogin" type="button" id="" >로그인</a></li>
+					<li class="last"><a href="/gangnam/userSignIn" type="button" id="">회원가입</a></li>
+					
 				</c:when>
 				<c:otherwise>
-					<li class="logedIn" style="margin-left:20px"><span style="font-weight:600;"><c:out value="${infrMmName}"/></span> 님</li>
+					<li class="logedIn" style="margin-left:20px; width: 150px;" ><span style="font-weight:600;"><c:out value="${infrMmName}"/></span> 님</li>
 					<li class="logedIn"><button id="logOutBtn" onClick="userLogOut()">로그아웃</button></li>
-
-					<%-- <form name="formm" method="post">
-						<input type="hidden" id="sessMmSeq" name="infrMmSeq" value="${infrMmSeq}" onchange="isSssValThere('#sessMmSeq')">
-						<li class="logedIn" ><a href="javascript:goMemberView(<c:out value="${infrMmSeq }"/>)" >마이페이지</a></li>
-					</form> --%>
-					<li class="logedIn" ><a href="#" onclick="goMp()">마이페이지</a></li> 
-					<%-- <li class="logedIn" ><a href="javascript:goMemberView(<c:out value="${infrMmSeq}"/>)" >마이페이지</a></li> --%>
 				</c:otherwise>
 			</c:choose>
 		</ul>

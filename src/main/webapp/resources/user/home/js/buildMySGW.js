@@ -25,7 +25,7 @@ function requestBuildSgw(){
 	)
 	
 	$.ajax({
-		url:'/sgWorld/buildSgw'
+		url:'/gangnam/sgWorld/buildSgw'
 		,data:{
 			'sgwTitle':sgwTitle
 			,'isHidden':isHidden
@@ -47,9 +47,9 @@ function requestBuildSgw(){
 			}else{
 				if(confirm("개설된 방으로 입장합니다.")){
 					console.log(rp)
-					location.href='/sgWorld/join/'+rp
+					location.href='/gangnam/sgWorld/join/'+rp
 				}else{
-					location.replace('./')
+					location.replace('/gangnam/')
 				}
 			}
 		}
@@ -61,12 +61,12 @@ function requestBuildSgw(){
 
 function goMySgwolrd(infrMmSeq){
 	$.ajax({
-		url:'/sgWorld/findSgwbyMmSeq'
+		url:'/gangnam/sgWorld/findSgwbyMmSeq'
 		,data:{
 			'infrMmSeq' : infrMmSeq
 		},method:'get'
 		,success:function(response){
-			var sgwUrl = '/sgWorld/join/'+response.sgwLink
+			var sgwUrl = '/gangnam/sgWorld/join/'+response.sgwLink
 			if(confirm("개설된 방으로 입장합니다.")){
 				location.replace(sgwUrl)
 			}
@@ -79,7 +79,7 @@ function goMySgwolrd(infrMmSeq){
 
 function checkSgwolrd(infrMmSeq){
 	$.ajax({
-		url:'/sgWorld/findSgwbyMmSeq'
+		url:'/gangnam/sgWorld/findSgwbyMmSeq'
 		,data:{
 			'infrMmSeq' : infrMmSeq
 		},method:'get'
@@ -134,7 +134,7 @@ function valiForBuildingSgw(){
 			if(confirm("싸게월들을 개설합니다!")){
 				requestBuildSgw()
 			}else{
-				location.replace('./')
+				location.replace('/gangnam/')
 			}
 		}else{
 			alert("올바른 정보를 입력해주세요")
@@ -146,7 +146,7 @@ function valiForBuildingSgw(){
 			if(confirm("싸게월들을 개설합니다!")){
 				requestBuildSgw()
 			}else{
-				location.replace('./')
+				location.replace('/gangnam/')
 			}
 		}else{
 			alert("올바른 정보를 입력해주세요")
@@ -203,7 +203,7 @@ function enableInputVal(str,val){
 //				console.log('err')
 //			}
 //		})
-	}
+	} 
 }
 
 function reTest(re,what){

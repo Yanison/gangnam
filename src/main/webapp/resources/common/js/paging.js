@@ -1,5 +1,5 @@
 function goWhereYouWant(){
-	location.href="../path"
+	location.href=="/gangnam/path"
 }
 
 /** @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -7,7 +7,7 @@ function goWhereYouWant(){
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
  */
 function goUserAdmin(){
-	location.href="../userAdmin"
+	location.href=="/gangnam/userAdmin"
 }
 
 /** @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -16,41 +16,39 @@ function goUserAdmin(){
  */
 
 function goUser(){
-	location.href="../"
+	location.href=="/gangnam/"
 	//  onclick="goUser()"
 }
 function goAdmin(){
-	location.href="../../../admin/adminLogin"
+	location.href=="/gangnam/../../admin/adminLogin"
 	//  onclick="goAdmin()"
 }
 
 function goBoardHome(){
-	location.href="../boardHome"
+	location.href=="/gangnam/boardHome"
 	//  onclick="goBoardHome()"
 }
 
 function gohome(){
-	location.href="../"
+	location.href=="/gangnam/"
 }
 
 function goboard(){
-	location.href="../board/boardList"
+	location.href=="/gangnam//board/boardList"
 }
 
 function goWrite(){
-	location.href="../board/boardWrite"
+	location.href=="/gangnam/board/boardWrite"
 }
 
 function goMemberView(){
 	var mmSeq = $('#sessMmSeq').val()
-	console.log("../member/memberView?infrMmSeq="+mmSeq)
-	//location.href="../member/memberView?infrMmSeq="+mmSeq
+	//location.href=="/gangnam//member/memberView?infrMmSeq="+mmSeq
 }
 
 function goMp(){
 	var mmSeq = $('#sessMmSeq').val()
-	console.log("../member/memberView?infrMmSeq="+mmSeq)
-	//location.href="../member/memberView?infrMmSeq="+mmSeq
+	//location.href=="/gangnam//member/memberView?infrMmSeq="+mmSeq
 }
 //var goUrlView = "/member/memberView";
 //var form = $("form[name=form]");
@@ -68,39 +66,39 @@ function goMp(){
  
 //avatar
 function goAdminAvartForm(){
-	location.href="../../../admin/avatar/infrAvatarForm"
+	location.href=="/gangnam//../../admin/avatar/infrAvatarForm"
 	//  onclick="goAdminAvartForm()"
 }
 function goAdminAvartList(){
-	location.href="../../../admin/avatar/infrAvatarList"
+	location.href=="/gangnam//../../admin/avatar/infrAvatarList"
 	//  onclick="goAdminAvartList()"
 }
 function goAdminAvartView(){
-	location.href="../../../admin/avatar/infrAvatarView"
+	location.href=="/gangnam//../../admin/avatar/infrAvatarView"
 	//  onclick="goAdminAvartView()"
 }
 
 function goAdminCodeGroupList(){
-	location.href ="../../../admin/codeGroup/infrCcgList"
+	location.href =="/gangnam//../../admin/codeGroup/infrCcgList"
 	//  onclick="goAdminCodeGroupList()"
 }
 
 function goAdminCodeList(){
-	location.href="../../../admin/code/infrCcList"
+	location.href=="/gangnam//../../admin/code/infrCcList"
 	//  onclick = "goAdminCodeList()"
 }
 
 function goAdminMemberList(){
-	location.href = "../../../admin/memberGroup/infrMmList"
+	location.href = "/gangnam//../../admin/memberGroup/infrMmList"
 	//  onclick = "goAdminMemberList()"
 }
 
 function goAdminMetaversMap(){
-	location.href="../../../admin/metaverse/infrMapList"
+	location.href=="/gangnam//../../admin/metaverse/infrMapList"
 	// onclick = "goAdminMetaversMap()"
 }
 
 function goAdminBoardList(){
-	location.href="../../../admin/board/infrBdList"
+	location.href=="/gangnam//../../admin/board/infrBdList"
 	// onclick = "goAdminBoardList()"
 }

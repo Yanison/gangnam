@@ -7,14 +7,14 @@
 <head>
 <title>userSignIn</title>
 	<%@ include file="../../../../rscs/basicRscs.jsp"%>
-	<link href="/resources/user/home/css/userSignIn.css" rel="stylesheet">
-	<script src="/resources/user/home/js/userSignIn/userSignIn.js"></script>
-	<script src="/resources/user/home/js/userSignIn/kkoGetAddr.js"></script>
+	<link href="/gangnam/resources/user/home/css/userSignIn.css" rel="stylesheet">
+	<script src="/gangnam/resources/user/home/js/userSignIn/userSignIn.js"></script>
+	<script src="/gangnam/resources/user/home/js/userSignIn/kkoGetAddr.js"></script>
 	
-	<script src="/resources/user/home/jquery-datePircker-ui-1.13.2/jquery-ui.js"></script>
-	<link href="/resources/user/home/jquery-datePircker-ui-1.13.2/jquery-ui.css" rel="stylesheet"/>
-	<link href="/resources/user/home/jquery-datePircker-ui-1.13.2/jquery-ui.structure.css" rel="stylesheet"/>
-	<link href="/resources/user/home/jquery-datePircker-ui-1.13.2/jquery-ui.theme.css" rel="stylesheet"/>
+	<script src="/gangnam/resources/user/home/jquery-datePircker-ui-1.13.2/jquery-ui.js"></script>
+	<link href="/gangnam/resources/user/home/jquery-datePircker-ui-1.13.2/jquery-ui.css" rel="stylesheet"/>
+	<link href="/gangnam/resources/user/home/jquery-datePircker-ui-1.13.2/jquery-ui.structure.css" rel="stylesheet"/>
+	<link href="/gangnam/resources/user/home/jquery-datePircker-ui-1.13.2/jquery-ui.theme.css" rel="stylesheet"/>
 	<script>
 		$.datepicker.setDefaults({
 			  dateFormat: 'yy-mm-dd',
@@ -26,7 +26,8 @@
 			  dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
 			  dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
 			  showMonthAfterYear: true,
-			  yearSuffix: '년'
+			  yearSuffix: '년',
+			  yearRange:'1920:2099'
 			  
 			});
 	 $(function(){
@@ -41,7 +42,7 @@
 		<%@ include file="../../common/header.jsp"%>
 	</header>
 	<div class="bodyWrapper">
-		<img class="logo" alt="로고이미지" src="/resources/user/home/images/logo/mainLogo.png" style="margin-bottom:20px">
+		<img class="logo" alt="로고이미지" src="/gangnam/resources/user/home/images/logo/mainLogo.png" style="margin-bottom:20px">
 		<form class="inputSignInGroup">
 			<div class="inputDiv"  id="memberIdDiv">
 				<!-- input 1 -->	
@@ -76,7 +77,7 @@
 						
 					</script>
 					<!-- input 5 -->
-					<input class="datepicker memberInput" name="datepicker" onchange="getValBod('#infrMmBod')" autocomplete='off' readOnly>
+					<input class="datepicker memberInput" name="datepicker" onchange="getValBod('#infrMmBod')" autocomplete='off' placeholder="생년월일" readOnly>
 				</div>
 				<div class="inputDiv" style="width:200px; " id="infrMmGenderDiv">
 					<!-- input 6 -->
@@ -95,7 +96,7 @@
 			
 			
 			<div class="telDiv">
-				<div class="telNumDiv">
+				<div class="telNumDiv" style="display:none">
 					<div class="inputDiv" id="infrMmPhoneDiv">
 						<!-- input 7,8 -->
 						<input type="number" id="infrMmPhone" class="memberInput" name="member" placeholder="Tel" onkeyup="enableInputVal('#infrMmPhone',$('#infrMmPhone').val())">
@@ -111,7 +112,7 @@
 						</select>
 					</div>
 				</div>
-				<div class="inputDiv" id="certiNumDiv">
+				<div class="inputDiv" id="certiNumDiv"  style="display:none">
 					<div>
 						<!-- input 9 -->
 						<input type="number" id="AuthCode" class="memberInput" name="member" placeholder="인증번호 입력" onkeyup="onkeyupCerti()">
@@ -161,13 +162,13 @@
 				<div class="inputDiv">
 					<input type="text" class="memberInput" id="infrMmExtraAddress" name="addrLoca"  placeholder="참고항목" readonly>
 				</div>
-				<div class="inputDiv">
+				<div class="inputDiv" style="display:none">
 					<div class="srchAddr">
 						<div class="inputDiv" id="infrMmLatDiv">
-							<input id="infrMmLat" class="memberInput" type="text" name="addrLat" placeholder="위도" readonly>
+							<input id="infrMmLat" class="memberInput" type="hidden" name="addrLat" placeholder="위도" readonly>
 						</div>
 						<div class="inputDiv" id="infrMmLongDiv">
-							<input id="infrMmLong" class="memberInput" type="text" name="addrLong" placeholder="경도" readonly>
+							<input id="infrMmLong" class="memberInput" type="hidden" name="addrLong" placeholder="경도" readonly>
 						</div>
 					</div>
 				</div>
