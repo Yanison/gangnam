@@ -38,20 +38,20 @@ https://god-gil.tistory.com/78<br>
  ┃ ┃ ┃ ┃ ┃ ┣ 📂interceptor<br>
  ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜CheckLoginSessionInterception.java<br>
  ┃ ┃ ┃ ┃ ┃ ┣ 📂util<br>
- ┃ ┃ ┃ ┃ ┃ ┣ 📜MailService.java :: 구글STMP 메일서버 &  이메일인증 서비스 로직 <br>
+ ┃ ┃ ┃ ┃ ┃ ┣ 📜MailService.java &nbsp;&nbsp;::&nbsp;&nbsp; 구글STMP 메일서버 &  이메일인증 서비스 로직 <br>
  ┃ ┃ ┃ ┃ ┃ ┗ 📜SMS.java &nbsp;&nbsp;::&nbsp;&nbsp; 휴대폰 인증 서비스로직(현제 계정 사용중지)<br>
  ┃ ┃ ┃ ┃ ┗ 📂modules<br>
  ┃ ┃ ┃ ┃ ┃ ┣ 📂admin<br>
  ┃ ┃ ┃ ┃ ┃ ┗ 📂user<br>
- ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂home<br> :: 
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂home <br>
  ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂member<br>
- ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📂sgWorld<br> ::
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📂sgWorld &nbsp;&nbsp;::&nbsp;&nbsp; 실시간 채팅방 및 화상채팅 관련 서비스 로직 package<br> 
  ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂Controller<br>
- ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜SgWorldController.java<br>
- ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜SgwRestController.java<br>
- ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜SgwWSController.java<br>
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜SgWorldController.java &nbsp;&nbsp;::&nbsp;&nbsp; 페이지 매핑 컨트롤러<br>
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜SgwRestController.java &nbsp;&nbsp;::&nbsp;&nbsp; restful api 컨트롤러<br>
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜SgwWSController.java &nbsp;&nbsp;::&nbsp;&nbsp; STOMP webSocket 컨트롤러<br>
  ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂sgwSocket<br>
- ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜SgWorldSocketConfiguration.java<br>
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜SgWorldSocketConfiguration.java &nbsp;&nbsp;::&nbsp;&nbsp; websocket configurer class <br>
  ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂sgwdto<br>
  ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜SgwDao.java<br>
  ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜SgwMapper.xml<br>
@@ -77,30 +77,15 @@ https://god-gil.tistory.com/78<br>
  ┃ ┃ ┃ ┣ 📜.DS_Store<br>
  ┃ ┃ ┃ ┗ 📜root-context.xml<br>
  ┃ ┃ ┣ 📂views<br>
- ┃ ┃ ┃ ┣ 📂ERD<br>
- ┃ ┃ ┃ ┣ 📂infra<br>
- ┃ ┃ ┃ ┃ ┗ 📂user<br>
- ┃ ┃ ┃ ┃ ┃ ┣ 📂common<br>
- ┃ ┃ ┃ ┃ ┃ ┗ 📂modules<br>
- ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂home<br>
- ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂member<br>
- ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📂sgWorld<br>
- ┃ ┃ ┃ ┣ 📂rscs<br>
- ┃ ┃ ┃ ┣ 📂test<br>
- ┃ ┃ ┗ 📜web.xml<br>
  ┃ ┗ 📂resources<br>
  ┃ ┃ ┣ 📂common<br>
- ┃ ┃ ┃ ┣ 📂css<br>
- ┃ ┃ ┃ ┣ 📂font<br>
- ┃ ┃ ┃ ┣ 📂images<br>
- ┃ ┃ ┃ ┣ 📂js<br>
  ┃ ┃ ┣ 📂user<br>
  ┃ ┃ ┃ ┣ 📂common<br>
- ┃ ┃ ┃ ┣ 📂home<br>
+ ┃ ┃ ┃ ┣ 📂home &nbsp;&nbsp;::&nbsp;&nbsp; 홈페이지 관련 css,js resources folder <br>
  ┃ ┃ ┃ ┃ ┣ 📂js<br>
- ┃ ┃ ┃ ┃ ┃ ┣ 📂userSignIn<br>
- ┃ ┃ ┃ ┃ ┃ ┣ 📜buildMySGW.js<br>
- ┃ ┃ ┃ ┃ ┃ ┣ 📜home.js<br>
+ ┃ ┃ ┃ ┃ ┃ ┣ 📂userSignIn &nbsp;&nbsp;::&nbsp;&nbsp; 회원가입 유효성 검사 로직 script<br>
+ ┃ ┃ ┃ ┃ ┃ ┣ 📜buildMySGW.js &nbsp;&nbsp;::&nbsp;&nbsp; 채팅방 개설 로직 script<br>
+ ┃ ┃ ┃ ┃ ┃ ┣ 📜home.js <br>
  ┃ ┃ ┃ ┃ ┃ ┣ 📜modal.js<br>
  ┃ ┃ ┃ ┃ ┃ ┣ 📜userLogin.js<br>
  ┃ ┃ ┃ ┃ ┗ 📜.DS_Store<br>
@@ -110,5 +95,5 @@ https://god-gil.tistory.com/78<br>
  ┃ ┃ ┃ ┃ ┣ 📂css<br>
  ┃ ┃ ┃ ┃ ┣ 📂images<br>
  ┃ ┃ ┃ ┃ ┗ 📂js<br>
- ┃ ┃ ┃ ┃ ┃ ┣ 📜sgWorld.js<br>
- ┃ ┃ ┃ ┃ ┃ ┗ 📜sgWorldRequets.js<br>
+ ┃ ┃ ┃ ┃ ┃ ┣ 📜sgWorld.js &nbsp;&nbsp;::&nbsp;&nbsp; 실시간 채팅 및 화상채팅 로직 및 아바타 조작 로직 script <br>
+ ┃ ┃ ┃ ┃ ┃ ┗ 📜sgWorldRequets.js &nbsp;&nbsp;::&nbsp;&nbsp; client to server-side restful api 요청  script <br>
