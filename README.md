@@ -19,7 +19,7 @@ mozila webRTC 공식문서 <br>
 https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API<br>
 노마드 코더 WebRTC 강의<br>
 https://nomadcoders.co/noom/lectures/3077<br>
--HTML Canvas<br>
+- HTML Canvas<br>
 Mozilla 공튀기기 게임 튜토리얼<br>
 https://developer.mozilla.org/en-US/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript/Create_the_Canvas_and_draw_on_it<br>
 JS&Canvas & Node.js _ sokect.io를 활용한 실시간 2d 게임 구현<br>
